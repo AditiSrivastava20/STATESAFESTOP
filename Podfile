@@ -10,11 +10,11 @@ target 'SSS' do
   pod 'Kingfisher', '~> 3.0'
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
-  pod 'SwiftGen'
   pod 'EZSwiftExtensions'
   pod 'IQKeyboardManagerSwift'
-  pod 'RMMapper'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'XLPagerTabStrip', '~> 7.0'
+  pod 'SwiftGen'
 
 end

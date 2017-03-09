@@ -29,12 +29,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RMMapper.xcscheme</key>
+		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwiftyJSON.xcscheme</key>
+		<key>XLPagerTabStrip-XLPagerTabStrip.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>XLPagerTabStrip.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,7 +52,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>127B9591C44AFCD6B545FC383AB19260</key>
+		<key>173DE110DF21030A9DB6645D843126B4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,7 +62,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6D70DEA51229BACA73CD6395121F443A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A42306F81CD8136FFB7EB72CAC3D5EC9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,12 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E178A321629EDCF393EC9C9267817F0B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E28D2F0A6936A3687701414DD403C313</key>
+		<key>E2F0B31CB37C7D817D86AF2DACFC82B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

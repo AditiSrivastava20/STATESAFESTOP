@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-        
         statusBar.backgroundColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)
+        
+        Fabric.with([Crashlytics.self])
         
         return true
     }
