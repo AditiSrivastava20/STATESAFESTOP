@@ -14,7 +14,13 @@ target 'SSS' do
   pod 'IQKeyboardManagerSwift'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'XLPagerTabStrip', '~> 7.0'
-  pod 'SwiftGen'
+  #pod 'ENSwiftSideMenu', '~> 0.1.1'
+  pod 'PermissionScope'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKShareKit'
+  pod 'FBSDKLoginKit'
+  pod 'TwitterKit'
+  pod 'SJSwiftSideMenuController'
+  pod 'Material', '~> 2.0'
 
 end

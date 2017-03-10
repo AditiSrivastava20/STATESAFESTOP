@@ -9,7 +9,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>EZSwiftExtensions.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKCoreKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKLoginKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKShareKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -24,22 +44,37 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Material-com.cosmicmind.material.fonts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Material-com.cosmicmind.material.icons.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Material.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PermissionScope.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SSS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SJSwiftSideMenuController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>XLPagerTabStrip-XLPagerTabStrip.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>XLPagerTabStrip.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,7 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>173DE110DF21030A9DB6645D843126B4</key>
+		<key>144B40607397E40E1DDDF96AC1BED675</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3778B8C2CC3D0E1D353FFFB9A1120B81</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3F3F2CE7329B0A70E49EAAE9389170F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>44CAD6CE523055ED339E87154473A254</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,7 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6D70DEA51229BACA73CD6395121F443A</key>
+		<key>510FE7C437286ED8FE0B7D4618784340</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5BF6613065B9B45B2716EFBB48659772</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>808BF1AAB30340347945199AA24226EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A42306F81CD8136FFB7EB72CAC3D5EC9</key>
+		<key>BC5000D645EEAF961C85907CDC796FE1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BEF7E6E85DB5CDE5D7A18F4F2EB8494B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +147,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E2F0B31CB37C7D817D86AF2DACFC82B7</key>
+		<key>D973DBB3FF803A3BAC3F870E70F87628</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E396A93E4C79B22B7816E9F02F62ECED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
