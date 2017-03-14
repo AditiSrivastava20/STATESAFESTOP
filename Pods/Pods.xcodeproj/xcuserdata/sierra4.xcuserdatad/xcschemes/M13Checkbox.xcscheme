@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8BEAAEE712513031AC0C994959F984C9'
-               BlueprintName = 'SJSwiftSideMenuController'
+               BlueprintIdentifier = '20A9DD9ABBF08BC57372A26C35327BF1'
+               BlueprintName = 'M13Checkbox'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SJSwiftSideMenuController.framework'>
+               BuildableName = 'M13Checkbox.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

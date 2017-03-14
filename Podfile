@@ -22,5 +22,6 @@ target 'SSS' do
   pod 'TwitterKit'
   pod 'SJSwiftSideMenuController'
   pod 'Material', '~> 2.0'
+  pod 'M13Checkbox'
 
 end

@@ -54,6 +54,7 @@ enum Asset: String {
   case icVideoPlayWhiteFill = "ic_video play white fill"
   case icVideoPlayYellow = "ic_video play yellow"
   case icVideoPlay = "ic_video play"
+  case icVideocamWhite = "ic_videocam_white"
   case icView = "ic_view"
   case icYellowButton = "ic_yellow button"
   case icZipCode = "ic_zip code"

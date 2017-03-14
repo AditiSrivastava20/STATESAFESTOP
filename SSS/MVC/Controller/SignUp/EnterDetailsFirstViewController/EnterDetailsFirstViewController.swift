@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EnterDetailsFirstViewController: UIViewController {
+class EnterDetailsFirstViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
