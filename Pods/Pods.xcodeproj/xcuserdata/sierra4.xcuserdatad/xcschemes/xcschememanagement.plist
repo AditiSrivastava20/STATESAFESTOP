@@ -79,6 +79,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SkyFloatingLabelTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -88,6 +93,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>09968426A3D60B1B743F0FFA3D756DCC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>09C2CB2088719A719A3FE965FC1DDA50</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,7 +117,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>409B362C8453B79E1C31CE49B9AC4A5B</key>
+		<key>3F913B031A5D4FFDD37B2C78B65B8A5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,7 +142,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8BEAAEE712513031AC0C994959F984C9</key>
+		<key>A0010D5E649950DEE6A423251F368C34</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,7 +172,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ECB2B84FD4FBF42699A76887F0E64425</key>
+		<key>E3B508382A1433B381482F15AEABCABD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

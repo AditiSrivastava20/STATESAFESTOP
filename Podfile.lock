@@ -24,6 +24,7 @@ PODS:
   - Material/Core (2.5.0)
   - PermissionScope (1.1.1)
   - SJSwiftSideMenuController (0.1.4)
+  - SkyFloatingLabelTextField (2.0.1)
   - SwiftyJSON (3.1.4)
   - TwitterCore (2.8.0):
     - Fabric
@@ -44,6 +45,7 @@ DEPENDENCIES:
   - Material (~> 2.0)
   - PermissionScope
   - SJSwiftSideMenuController
+  - SkyFloatingLabelTextField (~> 2.0.0)
   - SwiftyJSON
   - TwitterKit
 
@@ -62,10 +64,11 @@ SPEC CHECKSUMS:
   Material: 878cdefe31685a2b16352a6cfa8c5decc40f75c3
   PermissionScope: a30c16e015779ba27c97c124e7539e27b5829de2
   SJSwiftSideMenuController: 41f5558261bfdcc8754475ea0e3c08397ac0a079
+  SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 9b2d0deaaa552cb1a04143ed7784c2332570785d
+PODFILE CHECKSUM: e0bb1906c73e0315376cb40468a2b3881efc8a6a
 
 COCOAPODS: 1.2.0

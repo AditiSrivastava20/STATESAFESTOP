@@ -59,10 +59,6 @@
 		1DBC29B91E716B040090BCFA /* APIRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29B81E716B040090BCFA /* APIRoutes.swift */; };
 		1DBC29BB1E716B0E0090BCFA /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29BA1E716B0E0090BCFA /* APIManager.swift */; };
 		1DBC29BD1E716B1A0090BCFA /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29BC1E716B1A0090BCFA /* HTTPClient.swift */; };
-		1DBC29EF1E7172370090BCFA /* ComplaintListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29CA1E7172370090BCFA /* ComplaintListViewController.swift */; };
-		1DBC29F01E7172370090BCFA /* SubmitComplaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29CC1E7172370090BCFA /* SubmitComplaintViewController.swift */; };
-		1DBC29F11E7172370090BCFA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29CE1E7172370090BCFA /* HomeViewController.swift */; };
-		1DBC29F21E7172370090BCFA /* RecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29D01E7172370090BCFA /* RecordingsViewController.swift */; };
 		1DBC29F31E7172370090BCFA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29D21E7172370090BCFA /* LoginViewController.swift */; };
 		1DBC29F41E7172370090BCFA /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29D41E7172370090BCFA /* NotificationViewController.swift */; };
 		1DBC29F51E7172370090BCFA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29D61E7172370090BCFA /* ProfileViewController.swift */; };
@@ -76,6 +72,11 @@
 		1DBC29FD1E7172370090BCFA /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29E81E7172370090BCFA /* SplashViewController.swift */; };
 		1DBC29FF1E7172370090BCFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DBC29EB1E7172370090BCFA /* LaunchScreen.storyboard */; };
 		1DBC2A001E7172370090BCFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DBC29ED1E7172370090BCFA /* Main.storyboard */; };
+		1DC80C981E7914AB0004445E /* RecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C8D1E7914AB0004445E /* RecordingsViewController.swift */; };
+		1DC80C991E7914AB0004445E /* ComplaintListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C901E7914AB0004445E /* ComplaintListViewController.swift */; };
+		1DC80C9A1E7914AB0004445E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C931E7914AB0004445E /* HomeViewController.swift */; };
+		1DC80C9B1E7914AB0004445E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C951E7914AB0004445E /* PageViewController.swift */; };
+		1DC80C9C1E7914AB0004445E /* SubmitComplaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C971E7914AB0004445E /* SubmitComplaintViewController.swift */; };
 		7F704FA8C94C9CC2CAC7FEC0 /* Pods_SSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F766C508ABD4F0DAAF6452C /* Pods_SSS.framework */; };
 /* End PBXBuildFile section */
 
@@ -137,10 +138,6 @@
 		1DBC29B81E716B040090BCFA /* APIRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRoutes.swift; sourceTree = "<group>"; };
 		1DBC29BA1E716B0E0090BCFA /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		1DBC29BC1E716B1A0090BCFA /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
-		1DBC29CA1E7172370090BCFA /* ComplaintListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplaintListViewController.swift; sourceTree = "<group>"; };
-		1DBC29CC1E7172370090BCFA /* SubmitComplaintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitComplaintViewController.swift; sourceTree = "<group>"; };
-		1DBC29CE1E7172370090BCFA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		1DBC29D01E7172370090BCFA /* RecordingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsViewController.swift; sourceTree = "<group>"; };
 		1DBC29D21E7172370090BCFA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1DBC29D41E7172370090BCFA /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		1DBC29D61E7172370090BCFA /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +151,11 @@
 		1DBC29E81E7172370090BCFA /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		1DBC29EC1E7172370090BCFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DBC29EE1E7172370090BCFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1DC80C8D1E7914AB0004445E /* RecordingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsViewController.swift; sourceTree = "<group>"; };
+		1DC80C901E7914AB0004445E /* ComplaintListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplaintListViewController.swift; sourceTree = "<group>"; };
+		1DC80C931E7914AB0004445E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1DC80C951E7914AB0004445E /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		1DC80C971E7914AB0004445E /* SubmitComplaintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitComplaintViewController.swift; sourceTree = "<group>"; };
 		1DD216221E6FE34B009E1296 /* SSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F766C508ABD4F0DAAF6452C /* Pods_SSS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SSS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C7908565C4A81C8BDDA6E4 /* Pods-SSS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SSS/Pods-SSS.release.xcconfig"; sourceTree = "<group>"; };
@@ -398,8 +400,8 @@
 		1DBC29C61E7172370090BCFA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1DC80C8A1E7914AB0004445E /* Home */,
 				1D54D3101E77AFA800E955BB /* BaseViewController */,
-				1DBC29C71E7172370090BCFA /* Home */,
 				1DBC29D11E7172370090BCFA /* LoginViewController */,
 				1DBC29D31E7172370090BCFA /* NotificationViewController */,
 				1DBC29D51E7172370090BCFA /* ProfileViewController */,
@@ -409,57 +411,6 @@
 				1DBC29E71E7172370090BCFA /* SplashViewController */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		1DBC29C71E7172370090BCFA /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				1DBC29C81E7172370090BCFA /* Complaint */,
-				1DBC29CD1E7172370090BCFA /* HomeViewController */,
-				1DBC29CF1E7172370090BCFA /* RecordingsViewController */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		1DBC29C81E7172370090BCFA /* Complaint */ = {
-			isa = PBXGroup;
-			children = (
-				1DBC29C91E7172370090BCFA /* ComplaintListViewController */,
-				1DBC29CB1E7172370090BCFA /* SubmitComplaintViewController */,
-			);
-			path = Complaint;
-			sourceTree = "<group>";
-		};
-		1DBC29C91E7172370090BCFA /* ComplaintListViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1DBC29CA1E7172370090BCFA /* ComplaintListViewController.swift */,
-			);
-			path = ComplaintListViewController;
-			sourceTree = "<group>";
-		};
-		1DBC29CB1E7172370090BCFA /* SubmitComplaintViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1DBC29CC1E7172370090BCFA /* SubmitComplaintViewController.swift */,
-			);
-			path = SubmitComplaintViewController;
-			sourceTree = "<group>";
-		};
-		1DBC29CD1E7172370090BCFA /* HomeViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1DBC29CE1E7172370090BCFA /* HomeViewController.swift */,
-			);
-			path = HomeViewController;
-			sourceTree = "<group>";
-		};
-		1DBC29CF1E7172370090BCFA /* RecordingsViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1DBC29D01E7172370090BCFA /* RecordingsViewController.swift */,
-			);
-			path = RecordingsViewController;
 			sourceTree = "<group>";
 		};
 		1DBC29D11E7172370090BCFA /* LoginViewController */ = {
@@ -579,6 +530,82 @@
 				1D98D6E91E72C53700F6BD64 /* SignUp.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1DC80C8A1E7914AB0004445E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1DC80C8B1E7914AB0004445E /* PageOne */,
+				1DC80C8E1E7914AB0004445E /* PageThree */,
+				1DC80C911E7914AB0004445E /* PageTwo */,
+				1DC80C941E7914AB0004445E /* PageViewController */,
+				1DC80C961E7914AB0004445E /* SubmitComplaintViewController */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1DC80C8B1E7914AB0004445E /* PageOne */ = {
+			isa = PBXGroup;
+			children = (
+				1DC80C8C1E7914AB0004445E /* RecordingsViewController */,
+			);
+			path = PageOne;
+			sourceTree = "<group>";
+		};
+		1DC80C8C1E7914AB0004445E /* RecordingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1DC80C8D1E7914AB0004445E /* RecordingsViewController.swift */,
+			);
+			path = RecordingsViewController;
+			sourceTree = "<group>";
+		};
+		1DC80C8E1E7914AB0004445E /* PageThree */ = {
+			isa = PBXGroup;
+			children = (
+				1DC80C8F1E7914AB0004445E /* ComplaintListViewController */,
+			);
+			path = PageThree;
+			sourceTree = "<group>";
+		};
+		1DC80C8F1E7914AB0004445E /* ComplaintListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1DC80C901E7914AB0004445E /* ComplaintListViewController.swift */,
+			);
+			path = ComplaintListViewController;
+			sourceTree = "<group>";
+		};
+		1DC80C911E7914AB0004445E /* PageTwo */ = {
+			isa = PBXGroup;
+			children = (
+				1DC80C921E7914AB0004445E /* HomeViewController */,
+			);
+			path = PageTwo;
+			sourceTree = "<group>";
+		};
+		1DC80C921E7914AB0004445E /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1DC80C931E7914AB0004445E /* HomeViewController.swift */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		1DC80C941E7914AB0004445E /* PageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1DC80C951E7914AB0004445E /* PageViewController.swift */,
+			);
+			path = PageViewController;
+			sourceTree = "<group>";
+		};
+		1DC80C961E7914AB0004445E /* SubmitComplaintViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1DC80C971E7914AB0004445E /* SubmitComplaintViewController.swift */,
+			);
+			path = SubmitComplaintViewController;
 			sourceTree = "<group>";
 		};
 		1DD216191E6FE34B009E1296 = {
@@ -803,25 +830,26 @@
 				1DBC29F41E7172370090BCFA /* NotificationViewController.swift in Sources */,
 				1DBC299D1E7168590090BCFA /* RMMapper.m in Sources */,
 				1DBC29F31E7172370090BCFA /* LoginViewController.swift in Sources */,
-				1DBC29EF1E7172370090BCFA /* ComplaintListViewController.swift in Sources */,
 				1DBC29F91E7172370090BCFA /* CardTransactionViewController.swift in Sources */,
 				1DBC29F71E7172370090BCFA /* SidePanelViewController.swift in Sources */,
 				1DBC29BD1E716B1A0090BCFA /* HTTPClient.swift in Sources */,
 				1DBC29FD1E7172370090BCFA /* SplashViewController.swift in Sources */,
+				1DC80C981E7914AB0004445E /* RecordingsViewController.swift in Sources */,
 				1DBC29F51E7172370090BCFA /* ProfileViewController.swift in Sources */,
 				1DBC29B91E716B040090BCFA /* APIRoutes.swift in Sources */,
-				1DBC29F21E7172370090BCFA /* RecordingsViewController.swift in Sources */,
 				1DBC299C1E7168590090BCFA /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				1D54D3121E77AFB700E955BB /* BaseViewController.swift in Sources */,
 				1DBC29FA1E7172370090BCFA /* SSSPackageViewController.swift in Sources */,
+				1DC80C9C1E7914AB0004445E /* SubmitComplaintViewController.swift in Sources */,
 				1D0C22161E7820AE00C42C6A /* RecordingTableCell.swift in Sources */,
 				1DBC299B1E7168590090BCFA /* NSObject+RMCopyable.m in Sources */,
-				1DBC29F01E7172370090BCFA /* SubmitComplaintViewController.swift in Sources */,
 				1D0C221A1E7820C000C42C6A /* ComplaintTableCell.swift in Sources */,
+				1DC80C991E7914AB0004445E /* ComplaintListViewController.swift in Sources */,
 				1DBC29F61E7172370090BCFA /* SafeListViewController.swift in Sources */,
+				1DC80C9A1E7914AB0004445E /* HomeViewController.swift in Sources */,
 				1DBC29B71E716AF90090BCFA /* APIConstants.swift in Sources */,
 				1DBC29BB1E716B0E0090BCFA /* APIManager.swift in Sources */,
-				1DBC29F11E7172370090BCFA /* HomeViewController.swift in Sources */,
+				1DC80C9B1E7914AB0004445E /* PageViewController.swift in Sources */,
 				1DBC299A1E7168590090BCFA /* NSObject+RMArchivable.m in Sources */,
 				1DBC29FB1E7172370090BCFA /* EnterDetailsSecondViewController.swift in Sources */,
 				1DB9D9871E72754F00C4D2C4 /* Images.swift in Sources */,

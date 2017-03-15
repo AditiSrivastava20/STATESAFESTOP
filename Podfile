@@ -23,5 +23,6 @@ target 'SSS' do
   pod 'SJSwiftSideMenuController'
   pod 'Material', '~> 2.0'
   pod 'M13Checkbox'
+  pod 'SkyFloatingLabelTextField', '~> 2.0.0'
 
 end

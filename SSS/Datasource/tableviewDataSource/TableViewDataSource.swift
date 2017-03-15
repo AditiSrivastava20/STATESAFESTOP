@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias  ListCellConfigureBlock = (_ cell : AnyObject , _ item : AnyObject? , _ indexpath: AnyObject?) -> ()
 typealias  DidSelectedRow = (_ indexPath : IndexPath) -> ()

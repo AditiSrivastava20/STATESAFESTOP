@@ -11,6 +11,7 @@ import Fabric
 import Crashlytics
 import FBSDKCoreKit
 import TwitterKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        IQKeyboardManager.sharedManager().enable = true
         return true
     }
     
