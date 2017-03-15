@@ -1,14 +1,14 @@
 //
-//  ComplaintListViewController.swift
+//  PinValidationViewController.swift
 //  SSS
 //
-//  Created by Sierra 4 on 09/03/17.
+//  Created by Sierra 4 on 15/03/17.
 //  Copyright © 2017 Codebrew. All rights reserved.
 //
 
 import UIKit
 
-class ComplaintListViewController: UIViewController {
+class PinValidationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,5 +21,7 @@ class ComplaintListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func validatePinAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
-

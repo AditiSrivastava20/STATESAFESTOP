@@ -75,8 +75,9 @@
 		1DC80C981E7914AB0004445E /* RecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C8D1E7914AB0004445E /* RecordingsViewController.swift */; };
 		1DC80C991E7914AB0004445E /* ComplaintListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C901E7914AB0004445E /* ComplaintListViewController.swift */; };
 		1DC80C9A1E7914AB0004445E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C931E7914AB0004445E /* HomeViewController.swift */; };
-		1DC80C9B1E7914AB0004445E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C951E7914AB0004445E /* PageViewController.swift */; };
 		1DC80C9C1E7914AB0004445E /* SubmitComplaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C971E7914AB0004445E /* SubmitComplaintViewController.swift */; };
+		1DF039031E794D9500E343E3 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF039021E794D9500E343E3 /* PageViewController.swift */; };
+		1DF039061E795C4900E343E3 /* PinValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF039051E795C4900E343E3 /* PinValidationViewController.swift */; };
 		7F704FA8C94C9CC2CAC7FEC0 /* Pods_SSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F766C508ABD4F0DAAF6452C /* Pods_SSS.framework */; };
 /* End PBXBuildFile section */
 
@@ -154,9 +155,10 @@
 		1DC80C8D1E7914AB0004445E /* RecordingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsViewController.swift; sourceTree = "<group>"; };
 		1DC80C901E7914AB0004445E /* ComplaintListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplaintListViewController.swift; sourceTree = "<group>"; };
 		1DC80C931E7914AB0004445E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		1DC80C951E7914AB0004445E /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		1DC80C971E7914AB0004445E /* SubmitComplaintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitComplaintViewController.swift; sourceTree = "<group>"; };
 		1DD216221E6FE34B009E1296 /* SSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF039021E794D9500E343E3 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		1DF039051E795C4900E343E3 /* PinValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinValidationViewController.swift; sourceTree = "<group>"; };
 		2F766C508ABD4F0DAAF6452C /* Pods_SSS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SSS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C7908565C4A81C8BDDA6E4 /* Pods-SSS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SSS/Pods-SSS.release.xcconfig"; sourceTree = "<group>"; };
 		DD160A99A039F880F3E47172 /* Pods-SSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SSS/Pods-SSS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 		1DC80C8A1E7914AB0004445E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1DF039041E795C2B00E343E3 /* PinValidationViewController */,
 				1DC80C8B1E7914AB0004445E /* PageOne */,
 				1DC80C8E1E7914AB0004445E /* PageThree */,
 				1DC80C911E7914AB0004445E /* PageTwo */,
@@ -595,7 +598,7 @@
 		1DC80C941E7914AB0004445E /* PageViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1DC80C951E7914AB0004445E /* PageViewController.swift */,
+				1DF039021E794D9500E343E3 /* PageViewController.swift */,
 			);
 			path = PageViewController;
 			sourceTree = "<group>";
@@ -624,6 +627,14 @@
 				1DD216221E6FE34B009E1296 /* SSS.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1DF039041E795C2B00E343E3 /* PinValidationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1DF039051E795C4900E343E3 /* PinValidationViewController.swift */,
+			);
+			path = PinValidationViewController;
 			sourceTree = "<group>";
 		};
 		8F9FEE0F376DDFB87681DD24 /* Pods */ = {
@@ -842,14 +853,15 @@
 				1DBC29FA1E7172370090BCFA /* SSSPackageViewController.swift in Sources */,
 				1DC80C9C1E7914AB0004445E /* SubmitComplaintViewController.swift in Sources */,
 				1D0C22161E7820AE00C42C6A /* RecordingTableCell.swift in Sources */,
+				1DF039061E795C4900E343E3 /* PinValidationViewController.swift in Sources */,
 				1DBC299B1E7168590090BCFA /* NSObject+RMCopyable.m in Sources */,
 				1D0C221A1E7820C000C42C6A /* ComplaintTableCell.swift in Sources */,
 				1DC80C991E7914AB0004445E /* ComplaintListViewController.swift in Sources */,
 				1DBC29F61E7172370090BCFA /* SafeListViewController.swift in Sources */,
 				1DC80C9A1E7914AB0004445E /* HomeViewController.swift in Sources */,
+				1DF039031E794D9500E343E3 /* PageViewController.swift in Sources */,
 				1DBC29B71E716AF90090BCFA /* APIConstants.swift in Sources */,
 				1DBC29BB1E716B0E0090BCFA /* APIManager.swift in Sources */,
-				1DC80C9B1E7914AB0004445E /* PageViewController.swift in Sources */,
 				1DBC299A1E7168590090BCFA /* NSObject+RMArchivable.m in Sources */,
 				1DBC29FB1E7172370090BCFA /* EnterDetailsSecondViewController.swift in Sources */,
 				1DB9D9871E72754F00C4D2C4 /* Images.swift in Sources */,
