@@ -13,6 +13,8 @@
 
 // swiftlint:disable type_body_length
 enum Asset: String {
+  case audioBlack = "audio_black"
+  case audioYelow = "audio_yelow"
   case combinedShape = "Combined Shape"
   case icAttach = "ic_attach"
   case icBack = "ic_back"
@@ -58,6 +60,8 @@ enum Asset: String {
   case icView = "ic_view"
   case icYellowButton = "ic_yellow button"
   case icZipCode = "ic_zip code"
+  case vedioBlack = "vedio_black"
+  case vedioYelow = "vedio_yelow"
 
   var image: Image {
     let bundle = Bundle(for: BundleToken.self)

@@ -10,14 +10,17 @@ import UIKit
 
 class PageViewController: UIPageViewController {
     
+    let titles:[String] = ["COMPLAINT", "HOME", "RECORDING"]
+    var pageIndex:Int = 0
+    
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.newViewController("ComplaintListViewController"),
                 self.newViewController("HomeViewController"),
                 self.newViewController("RecordingsViewController")]
     }()
     
-    private func newViewController(_ color: String) -> UIViewController {
-        return (storyboard?.instantiateViewController(withIdentifier: color))!
+    private func newViewController(_ name: String) -> UIViewController {
+        return (storyboard?.instantiateViewController(withIdentifier: name))!
     }
     
     override func viewDidLoad() {
@@ -35,6 +38,20 @@ class PageViewController: UIPageViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navBarTitle()
+    }
+    
+    func navBarTitle() {
+        print(titles[pageIndex])
+        navigationItem.title = titles[pageIndex]
+    }
+    
+    @IBAction func profile(_ sender: Any) {
+        print("Profile")
+    }
+    
     
 }
 
@@ -70,15 +87,42 @@ extension PageViewController: UIPageViewControllerDelegate, UIPageViewController
         return orderedViewControllers[nextIndex]
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return orderedViewControllers.count
-    }
+//    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+//        return orderedViewControllers.count
+//    }
+//
+//    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+//        guard let firstViewController = viewControllers?.first,
+//            let firstViewControllerIndex = orderedViewControllers.index(of: firstViewController) else {
+//                return 0
+//        }
+//        return firstViewControllerIndex
+//    }
+//    
+//    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+//        if (!completed) {
+//            return
+//        }
+//        
+//        if let firstViewController = viewControllers?.first,
+//            let arrayIndex = orderedViewControllers.index(of: firstViewController) {
+//            pageIndex = arrayIndex
+//            self.navBarTitle()
+//        }
+//    }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        guard let firstViewController = viewControllers?.first,
-            let firstViewControllerIndex = orderedViewControllers.index(of: firstViewController) else {
-                return 0
-        }
-        return firstViewControllerIndex
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

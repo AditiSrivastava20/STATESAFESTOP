@@ -13,6 +13,9 @@
 		1D0C221B1E7820C000C42C6A /* ComplaintTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D0C22191E7820C000C42C6A /* ComplaintTableCell.xib */; };
 		1D0C221F1E782AAB00C42C6A /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C221E1E782AAB00C42C6A /* TableViewDataSource.swift */; };
 		1D54D3121E77AFB700E955BB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D54D3111E77AFB700E955BB /* BaseViewController.swift */; };
+		1D86B9941E7AA6B8007995F2 /* LoginEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D86B9931E7AA6B8007995F2 /* LoginEndPoint.swift */; };
+		1D86B9961E7ACC2C007995F2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D86B9951E7ACC2C007995F2 /* Location.swift */; };
+		1D86B9981E7AD118007995F2 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D86B9971E7AD118007995F2 /* Storyboards.swift */; };
 		1D98D6EB1E72C53700F6BD64 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D98D6E91E72C53700F6BD64 /* SignUp.storyboard */; };
 		1DB9D9851E7264EB00C4D2C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DB9D9841E7264EB00C4D2C4 /* Assets.xcassets */; };
 		1DB9D9871E72754F00C4D2C4 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB9D9861E72754F00C4D2C4 /* Images.swift */; };
@@ -88,6 +91,9 @@
 		1D0C22191E7820C000C42C6A /* ComplaintTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplaintTableCell.xib; sourceTree = "<group>"; };
 		1D0C221E1E782AAB00C42C6A /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		1D54D3111E77AFB700E955BB /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		1D86B9931E7AA6B8007995F2 /* LoginEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginEndPoint.swift; sourceTree = "<group>"; };
+		1D86B9951E7ACC2C007995F2 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		1D86B9971E7AD118007995F2 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		1D98D6EA1E72C53700F6BD64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SignUp.storyboard; sourceTree = "<group>"; };
 		1DB9D9841E7264EB00C4D2C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DB9D9861E72754F00C4D2C4 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -238,6 +244,7 @@
 		1D54D3191E77B72000E955BB /* CommonFunctions */ = {
 			isa = PBXGroup;
 			children = (
+				1D86B9951E7ACC2C007995F2 /* Location.swift */,
 			);
 			path = CommonFunctions;
 			sourceTree = "<group>";
@@ -331,6 +338,7 @@
 				1DBC29B81E716B040090BCFA /* APIRoutes.swift */,
 				1DBC29BA1E716B0E0090BCFA /* APIManager.swift */,
 				1DBC29BC1E716B1A0090BCFA /* HTTPClient.swift */,
+				1D86B9931E7AA6B8007995F2 /* LoginEndPoint.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -385,6 +393,7 @@
 		1DBC29C21E71717E0090BCFA /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				1D86B9971E7AD118007995F2 /* Storyboards.swift */,
 				1DB9D9861E72754F00C4D2C4 /* Images.swift */,
 			);
 			path = Constants;
@@ -683,6 +692,7 @@
 				TargetAttributes = {
 					1DD216211E6FE34B009E1296 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = E749MJ873J;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -798,7 +808,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftgen images -t swift3 \"$PROJECT_DIR/SSS/MVC/View/Assets.xcassets\" --output \"$PROJECT_DIR/SSS/Headers/Constants/Images.swift\"";
+			shellScript = "swiftgen images -t swift3 \"$PROJECT_DIR/SSS/MVC/View/Assets.xcassets\" --output \"$PROJECT_DIR/SSS/Headers/Constants/Images.swift\"\n\nswiftgen storyboards -t swift3 \"$PROJECT_DIR/SSS/MVC/View\" --output \"$PROJECT_DIR/SSS/Headers/Constants/Storyboards.swift\"\n\n";
 		};
 		3801AABD692EC01F14865BC8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -838,6 +848,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DBC290F1E7163700090BCFA /* AppDelegate.swift in Sources */,
+				1D86B9961E7ACC2C007995F2 /* Location.swift in Sources */,
 				1DBC29F41E7172370090BCFA /* NotificationViewController.swift in Sources */,
 				1DBC299D1E7168590090BCFA /* RMMapper.m in Sources */,
 				1DBC29F31E7172370090BCFA /* LoginViewController.swift in Sources */,
@@ -845,6 +856,7 @@
 				1DBC29F71E7172370090BCFA /* SidePanelViewController.swift in Sources */,
 				1DBC29BD1E716B1A0090BCFA /* HTTPClient.swift in Sources */,
 				1DBC29FD1E7172370090BCFA /* SplashViewController.swift in Sources */,
+				1D86B9941E7AA6B8007995F2 /* LoginEndPoint.swift in Sources */,
 				1DC80C981E7914AB0004445E /* RecordingsViewController.swift in Sources */,
 				1DBC29F51E7172370090BCFA /* ProfileViewController.swift in Sources */,
 				1DBC29B91E716B040090BCFA /* APIRoutes.swift in Sources */,
@@ -859,6 +871,7 @@
 				1DC80C991E7914AB0004445E /* ComplaintListViewController.swift in Sources */,
 				1DBC29F61E7172370090BCFA /* SafeListViewController.swift in Sources */,
 				1DC80C9A1E7914AB0004445E /* HomeViewController.swift in Sources */,
+				1D86B9981E7AD118007995F2 /* Storyboards.swift in Sources */,
 				1DF039031E794D9500E343E3 /* PageViewController.swift in Sources */,
 				1DBC29B71E716AF90090BCFA /* APIConstants.swift in Sources */,
 				1DBC29BB1E716B0E0090BCFA /* APIManager.swift in Sources */,
@@ -1000,6 +1013,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = E749MJ873J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/Crashlytics",
@@ -1028,6 +1042,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = E749MJ873J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/Crashlytics",

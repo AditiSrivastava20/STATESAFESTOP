@@ -14,17 +14,14 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            self.performSegue(withIdentifier: "Home", sender: nil)
-        })
+        self.performSegue(withIdentifier: "home", sender: nil)
+        
+//        let storyBoard = UIStoryboard(name: "SignUp", bundle: nil)
+//        let signup = storyBoard.instantiateViewController(withIdentifier: "loginAndSignup")
+//        present(signup, animated: true, completion: nil)
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = false
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
