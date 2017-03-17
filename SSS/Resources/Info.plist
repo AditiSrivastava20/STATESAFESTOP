@@ -65,6 +65,8 @@
 	<string>${PRODUCT_NAME} Always Location get</string>
 	<key>NSLocationUsageDescription</key>
 	<string>${PRODUCT_NAME} Location Updates</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>${PRODUCT_NAME} Location in use</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>${PRODUCT_NAME} Microphone Usage</string>
 	<key>UILaunchStoryboardName</key>

@@ -74,7 +74,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SJSwiftSideMenuController.xcscheme</key>
+		<key>SideMenuController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -97,12 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>09C2CB2088719A719A3FE965FC1DDA50</key>
+		<key>20A9DD9ABBF08BC57372A26C35327BF1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>20A9DD9ABBF08BC57372A26C35327BF1</key>
+		<key>26A1EE49532686955F5C1FA4B5C7578B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,12 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3F3F2CE7329B0A70E49EAAE9389170F9</key>
+		<key>38E8CC4FDEECC07B78B163F49FA9F42A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3F913B031A5D4FFDD37B2C78B65B8A5C</key>
+		<key>3F3F2CE7329B0A70E49EAAE9389170F9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,7 +142,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A0010D5E649950DEE6A423251F368C34</key>
+		<key>8C0612E84B2ADDB86C8D3D22324EC984</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A5FE0BBA0A28EF6522AE2028463CF4EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -168,11 +173,6 @@
 			<true/>
 		</dict>
 		<key>E396A93E4C79B22B7816E9F02F62ECED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E3B508382A1433B381482F15AEABCABD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

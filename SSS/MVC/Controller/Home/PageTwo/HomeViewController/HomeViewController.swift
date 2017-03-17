@@ -9,16 +9,14 @@
 import UIKit
 import PermissionScope
 import AVFoundation
+import Foundation
 
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var cameraView: UIImageView!
     @IBOutlet weak var cameraPreview: UIView!
-    
     @IBOutlet weak var btnVideo: UIButton!
-    
     @IBOutlet weak var btnAudio: UIButton!
-    
     
     let pscope = PermissionScope()
 
@@ -58,7 +56,7 @@ class HomeViewController: UIViewController {
     
     lazy var cameraSession: AVCaptureSession = {
         let s = AVCaptureSession()
-        s.sessionPreset = AVCaptureSessionPresetLow
+        s.sessionPreset = AVCaptureSessionPresetMedium
         return s
     }()
     
@@ -72,6 +70,9 @@ class HomeViewController: UIViewController {
     
     
     @IBAction func sendLocation(_ sender: Any) {
+        let location = Location.shared.GPS()
+        print("latitude: ", location.lat)
+        print("longitude: ", location.long)
     }
     
     @IBAction func useCamera(_ sender: Any) {
@@ -104,13 +105,10 @@ extension HomeViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         do {
             let deviceInput = try AVCaptureDeviceInput(device: captureDevice)
-            
             cameraSession.beginConfiguration()
-            
             if (cameraSession.canAddInput(deviceInput) == true) {
                 cameraSession.addInput(deviceInput)
             }
-            
             let dataOutput = AVCaptureVideoDataOutput()
             dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString) : NSNumber(value: kCVPixelFormatType_420YpCbCr8BiPlanarFullRange as UInt32)]
             dataOutput.alwaysDiscardsLateVideoFrames = true
@@ -118,7 +116,6 @@ extension HomeViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             if (cameraSession.canAddOutput(dataOutput) == true) {
                 cameraSession.addOutput(dataOutput)
             }
-            
             cameraSession.commitConfiguration()
             
             let queue = DispatchQueue(label: "com.invasivecode.videoQueue")
@@ -129,14 +126,37 @@ extension HomeViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             NSLog("\(error), \(error.localizedDescription)")
         }
     }
+
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        // Here you collect each frame and process it
-    }
+//    func captureOutput(_ captureOutput: AVCaptureOutput, didOutputSampleBuffer sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+//        print("buffered")
+//        let imageBuffer: CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
+//        CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
+//        let width: size_t = CVPixelBufferGetWidthOfPlane(imageBuffer, 0)
+//        let height: size_t = CVPixelBufferGetHeightOfPlane(imageBuffer, 0)
+//        let bytesPerRow: size_t = CVPixelBufferGetBytesPerRowOfPlane(imageBuffer, 0)
+//        let lumaBuffer: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddressOfPlane(imageBuffer, 0)!
+//        let grayColorSpace: CGColorSpace = CGColorSpaceCreateDeviceGray()
+//        let context: CGContext = CGContext(data: lumaBuffer, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: grayColorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!//problematic
+//        
+//        let dstImageFilter: CGImage = context.makeImage()!
+//        DispatchQueue.main.sync(
+//            previewLayer.contents = dstImageFilter as AnyObject
+//        })
+//    }
+
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        // Here you can count how many frames are dopped
-    }
+    
+    
+    
+
+//    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+//        // Here you collect each frame and process it
+//    }
+//    
+//    func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+//        // Here you can count how many frames are dopped
+//    }
 
 }
 

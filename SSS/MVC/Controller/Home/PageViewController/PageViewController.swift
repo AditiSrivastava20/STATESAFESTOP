@@ -7,25 +7,20 @@
 //
 
 import UIKit
+import SideMenuController
 
-class PageViewController: UIPageViewController {
+class PageViewController: UIPageViewController, SideMenuControllerDelegate {
     
     let titles:[String] = ["COMPLAINT", "HOME", "RECORDING"]
     var pageIndex:Int = 0
     
-    private(set) lazy var orderedViewControllers: [UIViewController] = {
-        return [self.newViewController("ComplaintListViewController"),
-                self.newViewController("HomeViewController"),
-                self.newViewController("RecordingsViewController")]
-    }()
-    
-    private func newViewController(_ name: String) -> UIViewController {
-        return (storyboard?.instantiateViewController(withIdentifier: name))!
-    }
+    let orderedViewControllers:[UIViewController] = [StoryboardScene.Main.instantiateComplaintListViewController(),
+                StoryboardScene.Main.instantiateHomeViewController(),
+                StoryboardScene.Main.instantiateRecordingsViewController()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navbarButtons()
         self.dataSource = self
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
@@ -33,14 +28,34 @@ class PageViewController: UIPageViewController {
                                animated: true,
                                completion: nil)
         }
+        sideMenuController?.delegate = self
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("\(#function) -- \(self)")
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("\(#function) -- \(self)")
+    }
+    
+    func sideMenuControllerDidHide(_ sideMenuController: SideMenuController) {
+        print(#function)
+    }
+    
+    func sideMenuControllerDidReveal(_ sideMenuController: SideMenuController) {
+        print(#function)
+    }
+    
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
-        self.navBarTitle()
+        navBarTitle()
     }
     
     func navBarTitle() {
@@ -48,12 +63,31 @@ class PageViewController: UIPageViewController {
         navigationItem.title = titles[pageIndex]
     }
     
-    @IBAction func profile(_ sender: Any) {
-        print("Profile")
+    func navbarButtons() {
+//        let btn1 = MaterialButton.shared.btn()
+//        btn1.setImage(Image(asset: .icProfile), for: .normal)
+//        btn1.addTarget(self, action: #selector(profilePanel), for: .touchUpInside)
+//        let item1 = UIBarButtonItem(customView: btn1)
+        
+        let btn2 = MaterialButton.shared.btn()
+        btn2.setImage(Image(asset: .icNotification), for: .normal)
+        btn2.addTarget(self, action: #selector(notificationAction), for: .touchUpInside)
+        let item2 = UIBarButtonItem(customView: btn2)
+        
+//        self.navigationItem.setLeftBarButtonItems([item1], animated: true)
+        self.navigationItem.setRightBarButtonItems([item2], animated: true)
     }
     
+    func profilePanel() {
+        
+    }
+    
+    func notificationAction() {
+        performSegue(withIdentifier: "notification", sender: nil)
+    }
     
 }
+
 
 extension PageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
@@ -99,17 +133,17 @@ extension PageViewController: UIPageViewControllerDelegate, UIPageViewController
 //        return firstViewControllerIndex
 //    }
 //    
-//    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-//        if (!completed) {
-//            return
-//        }
-//        
-//        if let firstViewController = viewControllers?.first,
-//            let arrayIndex = orderedViewControllers.index(of: firstViewController) {
-//            pageIndex = arrayIndex
-//            self.navBarTitle()
-//        }
-//    }
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if (!completed) {
+            return
+        }
+        
+        if let firstViewController = viewControllers?.first,
+            let arrayIndex = orderedViewControllers.index(of: firstViewController) {
+            pageIndex = arrayIndex
+            self.navBarTitle()
+        }
+    }
     
 }
 

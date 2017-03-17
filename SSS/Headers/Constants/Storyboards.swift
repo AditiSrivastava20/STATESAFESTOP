@@ -2,6 +2,7 @@
 
 import Foundation
 import UIKit
+import SideMenuController
 
 // swiftlint:disable file_length
 // swiftlint:disable line_length
@@ -48,8 +49,8 @@ enum StoryboardScene {
   enum Main: String, StoryboardSceneType {
     static let storyboardName = "Main"
 
-    static func initialViewController() -> UINavigationController {
-      guard let vc = storyboard().instantiateInitialViewController() as? UINavigationController else {
+    static func initialViewController() -> SSS.SplashViewController {
+      guard let vc = storyboard().instantiateInitialViewController() as? SSS.SplashViewController else {
         fatalError("Failed to instantiate initialViewController for \(self.storyboardName)")
       }
       return vc
@@ -142,6 +143,8 @@ enum StoryboardScene {
 enum StoryboardSegue {
   enum Main: String, StoryboardSegueType {
     case home
+    case notification
+    case sidePanel
   }
   enum SignUp: String, StoryboardSegueType {
     case signup

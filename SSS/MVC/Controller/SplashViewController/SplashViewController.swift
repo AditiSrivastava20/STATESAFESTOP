@@ -7,19 +7,14 @@
 //
 
 import UIKit
-import Foundation
+import SideMenuController
 
-class SplashViewController: UIViewController {
+class SplashViewController: SideMenuController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.performSegue(withIdentifier: "home", sender: nil)
-        
-//        let storyBoard = UIStoryboard(name: "SignUp", bundle: nil)
-//        let signup = storyBoard.instantiateViewController(withIdentifier: "loginAndSignup")
-//        present(signup, animated: true, completion: nil)
-        
+        self.performSegue(withIdentifier: "sidePanel", sender: nil)
     }
     
     override func didReceiveMemoryWarning() {

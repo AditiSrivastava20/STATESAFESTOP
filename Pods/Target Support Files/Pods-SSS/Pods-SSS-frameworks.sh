@@ -100,7 +100,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/M13Checkbox/M13Checkbox.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Material/Material.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PermissionScope/PermissionScope.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SJSwiftSideMenuController/SJSwiftSideMenuController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SideMenuController/SideMenuController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
@@ -116,7 +116,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/M13Checkbox/M13Checkbox.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Material/Material.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PermissionScope/PermissionScope.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SJSwiftSideMenuController/SJSwiftSideMenuController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SideMenuController/SideMenuController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi

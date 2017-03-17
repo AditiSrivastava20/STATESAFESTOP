@@ -12,6 +12,7 @@ import Crashlytics
 import FBSDKCoreKit
 import TwitterKit
 import IQKeyboardManagerSwift
+import SideMenuController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,16 +24,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         statusBar.backgroundColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)
-        
         UINavigationBar.appearance().barTintColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)
-        //UINavigationBar.appearance().titleTextAttributes =
+        //UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Helvetica-Neue",size: CGFloat(16)) as Any]
         
         Fabric.with([Crashlytics.self])
         Fabric.with([Twitter.self])
         
+        //facebook instance
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        //IQ keyboard
         IQKeyboardManager.sharedManager().enable = true
+        
+        //side panel button
+        SideMenuController.preferences.drawing.menuButtonImage = UIImage(named: "ic_Profile")
+        SideMenuController.preferences.drawing.sidePanelPosition = .overCenterPanelLeft
+        SideMenuController.preferences.drawing.sidePanelWidth = 300
+        SideMenuController.preferences.drawing.centerPanelShadow = true
+        SideMenuController.preferences.animating.transitionAnimator = FadeAnimator.self
+        
         return true
     }
     
