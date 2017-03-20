@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import SideMenuController
 
-class PageViewController: UIPageViewController, SideMenuControllerDelegate {
+class PageViewController: UIPageViewController {
     
     let titles:[String] = ["COMPLAINT", "HOME", "RECORDING"]
     var pageIndex:Int = 0
+    let btn1 = MaterialButton.shared.btn()
     
     let orderedViewControllers:[UIViewController] = [StoryboardScene.Main.instantiateComplaintListViewController(),
                 StoryboardScene.Main.instantiateHomeViewController(),
@@ -28,30 +28,7 @@ class PageViewController: UIPageViewController, SideMenuControllerDelegate {
                                animated: true,
                                completion: nil)
         }
-        sideMenuController?.delegate = self
     }
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("\(#function) -- \(self)")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("\(#function) -- \(self)")
-    }
-    
-    func sideMenuControllerDidHide(_ sideMenuController: SideMenuController) {
-        print(#function)
-    }
-    
-    func sideMenuControllerDidReveal(_ sideMenuController: SideMenuController) {
-        print(#function)
-    }
-    
-    
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,22 +41,24 @@ class PageViewController: UIPageViewController, SideMenuControllerDelegate {
     }
     
     func navbarButtons() {
-//        let btn1 = MaterialButton.shared.btn()
-//        btn1.setImage(Image(asset: .icProfile), for: .normal)
-//        btn1.addTarget(self, action: #selector(profilePanel), for: .touchUpInside)
-//        let item1 = UIBarButtonItem(customView: btn1)
+        self.btn1.setImage(Image(asset: .icProfile), for: .normal)
+        self.btn1.addTarget(self, action: #selector(profilePanel), for: .touchUpInside)
+        let item1 = UIBarButtonItem(customView: btn1)
         
         let btn2 = MaterialButton.shared.btn()
         btn2.setImage(Image(asset: .icNotification), for: .normal)
         btn2.addTarget(self, action: #selector(notificationAction), for: .touchUpInside)
         let item2 = UIBarButtonItem(customView: btn2)
         
-//        self.navigationItem.setLeftBarButtonItems([item1], animated: true)
+        self.navigationItem.setLeftBarButtonItems([item1], animated: true)
         self.navigationItem.setRightBarButtonItems([item2], animated: true)
     }
     
     func profilePanel() {
-        
+        self.btn1.isEnabled = false
+        SidePanel.shared.ShowPanel(obj: self,opr: .left,identifier: "ProfilePanel"){_ in
+            self.btn1.isEnabled = true
+        }
     }
     
     func notificationAction() {

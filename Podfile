@@ -14,7 +14,6 @@ target 'SSS' do
   pod 'IQKeyboardManagerSwift'
   pod 'Fabric'
   pod 'Crashlytics'
-  #pod 'ENSwiftSideMenu', '~> 0.1.1'
   pod 'PermissionScope'
   pod 'FBSDKCoreKit'
   pod 'FBSDKShareKit'
@@ -23,6 +22,7 @@ target 'SSS' do
   pod 'Material', '~> 2.0'
   pod 'M13Checkbox'
   pod 'SkyFloatingLabelTextField', '~> 2.0.0'
-  pod 'SideMenuController'
+  pod 'ISMessages'
+  pod 'NVActivityIndicatorView'
 
 end

@@ -17,13 +17,14 @@ PODS:
   - FBSDKShareKit (4.19.0):
     - FBSDKCoreKit
   - IQKeyboardManagerSwift (4.0.8)
+  - ISMessages (1.2)
   - Kingfisher (3.5.0)
   - M13Checkbox (3.1.3)
   - Material (2.5.0):
     - Material/Core (= 2.5.0)
   - Material/Core (2.5.0)
+  - NVActivityIndicatorView (3.5)
   - PermissionScope (1.1.1)
-  - SideMenuController (0.2.4)
   - SkyFloatingLabelTextField (2.0.1)
   - SwiftyJSON (3.1.4)
   - TwitterCore (2.8.0):
@@ -40,11 +41,12 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - FBSDKShareKit
   - IQKeyboardManagerSwift
+  - ISMessages
   - Kingfisher (~> 3.0)
   - M13Checkbox
   - Material (~> 2.0)
+  - NVActivityIndicatorView
   - PermissionScope
-  - SideMenuController
   - SkyFloatingLabelTextField (~> 2.0.0)
   - SwiftyJSON
   - TwitterKit
@@ -59,16 +61,17 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
   FBSDKShareKit: 5953758366278430dc322d5cdc906db361ed7f81
   IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
+  ISMessages: d39098b48672813d69d30f44da06260b9920fed4
   Kingfisher: 7c62087039d93d26c54c8dd9b0b588d2ce55cef6
   M13Checkbox: c132a7e0eb964731855eff67b883a0b21b7c0977
   Material: 878cdefe31685a2b16352a6cfa8c5decc40f75c3
+  NVActivityIndicatorView: e5252b082f93885f0bfc24c318719b4eaabcd37b
   PermissionScope: a30c16e015779ba27c97c124e7539e27b5829de2
-  SideMenuController: b463d2b3aa58e2afe57f57a07938fa9a647894ca
   SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 7fde7b23ae597fb799b8aa40da1f5eb477d2e81f
+PODFILE CHECKSUM: f74777a678234e5291ce73b7e0f69618e8d5859f
 
 COCOAPODS: 1.2.0

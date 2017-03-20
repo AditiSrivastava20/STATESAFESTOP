@@ -6,17 +6,60 @@
 //  Copyright © 2017 Codebrew. All rights reserved.
 //
 
-import Foundation
+
+import UIKit
 import Alamofire
 
 enum LoginEndpoint {
     
-    case login()
-    case signup()
-    case facebook()
+    case login(email : String? , password : String?, accountType: String?, deviceToken: String?)
+    case signup(fullname : String? , email : String?, fullAddress: String?, password: String? , phone: String?, accountType: String?, deviceToken: String?, image: String?)
     
 }
 
+
+extension LoginEndpoint : Router{
+    
+    var route : String  {
+        
+        switch self {
+            
+        case .login(_): return APIConstants.login
+        case .signup(_): return APIConstants.signup
+        }
+    }
+    
+    var parameters: OptionalDictionary{
+        return format()
+    }
+    
+    
+    func format() -> OptionalDictionary {
+        
+        switch self {
+            
+        case .login(let email , let password, let accountType, let deviceToken):
+            return Parameters.login.map(values: [email, password, accountType, deviceToken])
+            
+        case .signup(let fullname, let email, let password, let accountType, let phone, let fullAddress, let deviceToken, let image):
+            return Parameters.signup.map(values: [fullname , email , password , accountType , phone , fullAddress , deviceToken, image])
+            
+            
+        }
+    }
+    
+    var method : Alamofire.HTTPMethod {
+        switch self {
+        default:
+            return .post
+        }
+    }
+    
+    var baseURL: String{
+        return APIConstants.basePath
+    }
+    
+}
 
 
 

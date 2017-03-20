@@ -39,6 +39,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ISMessages-ISMessages.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ISMessages.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -64,17 +74,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NVActivityIndicatorView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PermissionScope.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-SSS.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SideMenuController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -102,17 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>26A1EE49532686955F5C1FA4B5C7578B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3778B8C2CC3D0E1D353FFFB9A1120B81</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>38E8CC4FDEECC07B78B163F49FA9F42A</key>
+		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -123,6 +128,11 @@
 			<true/>
 		</dict>
 		<key>44CAD6CE523055ED339E87154473A254</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C4B180216960A09E044DCD1340DC2C9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,12 +152,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8C0612E84B2ADDB86C8D3D22324EC984</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A5FE0BBA0A28EF6522AE2028463CF4EE</key>
+		<key>B7DE9FA59E16A9C679272B9F11915537</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -163,6 +168,21 @@
 			<true/>
 		</dict>
 		<key>C4944FEC314D1A66588651D006273ADE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CEF3F3FD48F30AE7E6A6674BC46F1068</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D30ABCDD1D49EB0038C9AEDE1013C442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D8FDCCA00537F104FA6A6F698071A40F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

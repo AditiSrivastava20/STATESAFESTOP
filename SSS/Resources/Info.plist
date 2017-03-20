@@ -65,14 +65,14 @@
 	<string>${PRODUCT_NAME} Always Location get</string>
 	<key>NSLocationUsageDescription</key>
 	<string>${PRODUCT_NAME} Location Updates</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>${PRODUCT_NAME} Location in use</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>${PRODUCT_NAME} Location in use</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>${PRODUCT_NAME} Microphone Usage</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<string>SignUp</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

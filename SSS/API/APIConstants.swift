@@ -10,27 +10,112 @@ import Foundation
 
 internal struct APIConstants {
     
-    static let basePath = "http://192.168.100.37:8000/api/"
-    static let login = "users/login"
-    static let signup = "users/signup"
-    static let editProfile = "users/edit-profile"
-    static let status = "success"
+    static let basePath = "http://35.167.142.176/api/users/"
+    static let login = "login"
+    static let signup = "signup"
+    static let editProfile = "edit-profile"
+    static let pinPassword = "set/pin-password"
+    static let phoneNumber = "set/phone-number"
+    static let forgotPassword = "forgot-password"
+    static let checkExistEmailOrPhone = "checkexist-email-phone"
+    static let readContacts = "readcontacts"
+    static let addToSafelist = "addsafelist"
+    static let removeFromSafelist = "removesafeuser"
+    static let success = "success"
     static let userExist = "is_user_exist"
     static let message = "msg"
+    static let completeProfile = "is_complete_profile"
     
+}
+
+enum AccountType: String {
+    
+    case normal = "1"
+    case facebook = "2"
+    case twitter = "3"
 }
 
 enum Keys: String {
     
     //login
     case email = "email"
-    case pasword = "password"
+    case password = "password"
     case facebookId = "facebook_id"
     case twitterId = "twitter_id"
+    case accountType = "account_type"
+    case deviceToken = "device_token"
     
+    //signup
+    case fullName = "fullname"
+    case address = "address"
+    case phone = "phone"
+    case image = "image"
+    
+    //edit profile
+    case accessToken = "access_token"
+    case profilePic = "profile_pic"
+    
+    //set pin password
+    case pin = "pin_password"
+    
+    //set phone number
+    
+    //forgot password
+    
+    //check existing email and phone
+    
+    //read contacts
+    case contacts = "contacts" //array of phone numbers
+    
+    //add to safelist
+    
+    //remove from safelist
+    case safeUserId = "safe_user_id"
     
 }
 
+enum Validate: String {
+    
+    case none
+    case success = "200"
+    case failure = "500"
+    
+    func map(response message: String?) -> String? {
+        
+        switch self {
+        case .success:
+            return message
+        case .failure:
+            return message
+        default:
+            return message
+        }
+    }
+    
+}
+
+enum Response {
+    
+    case success(AnyObject?)
+    case failure(Validate)
+    
+}
+
+typealias OptionalDictionary = [String: String]?
+
+struct Parameters {
+    
+    static let login: [Keys] = [.email, .password, .accountType, .deviceToken]
+    static let signup: [Keys] = [.email, .fullName, .address, .phone, .image, .password, .accountType, .deviceToken]
+    static let editProfile: [Keys] = [.accessToken, .fullName, .address, .email, .phone, .profilePic]
+    static let pinPassword: [Keys] = [.accessToken, .pin]
+    static let phoneNumber: [Keys] = [.accessToken, .phone]
+    static let forgotPassword: [Keys] = [.email]
+    static let checkExistEmailOrPhone: [Keys] = [.email, .phone]
+    static let readContacts: [Keys] = [.accessToken, .contacts]
+    static let addSafelist: [Keys] = [.accessToken, .contacts]
+    static let removeSafeUser: [Keys] = [.accessToken, .contacts]
+}
 
 
 
