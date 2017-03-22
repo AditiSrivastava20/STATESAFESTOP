@@ -16,7 +16,6 @@ class Location {
     
     func GPS() -> (lat: String,long: String) {
         let locManager = CLLocationManager()
-        //locManager.requestWhenInUseAuthorization()
         
         var currentLocation = CLLocation()
         

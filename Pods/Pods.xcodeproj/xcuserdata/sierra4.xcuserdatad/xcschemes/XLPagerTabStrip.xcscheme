@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D30ABCDD1D49EB0038C9AEDE1013C442'
-               BlueprintName = 'SkyFloatingLabelTextField'
+               BlueprintIdentifier = 'A1BE07AC9AAB7F59D9E10BC0FF562066'
+               BlueprintName = 'XLPagerTabStrip'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SkyFloatingLabelTextField.framework'>
+               BuildableName = 'XLPagerTabStrip.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

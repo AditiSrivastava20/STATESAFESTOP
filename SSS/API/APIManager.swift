@@ -20,7 +20,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     func request(with api : Router , completion : @escaping Completion )  {
         
         if isLoaderNeeded(api: api) {
-            startAnimating(nil, message: nil, messageFont: nil, type: .ballRotateChase, color: UIColor.white, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+            startAnimating(nil, message: nil, messageFont: nil, type: .lineScalePulseOutRapid , color: UIColor.white, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
         }
         
         httpClient.postRequest(withApi: api, success: {[weak self] (data) in
@@ -32,8 +32,13 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
             let json = JSON(response)
             print(json)
             
-            let responseType = Validate(rawValue: json[APIConstants.success].stringValue) ?? .failure
+            let responseType = Validate(rawValue: json[APIConstants.userExist].stringValue) ?? .failure
             if responseType == Validate.success{
+                
+                let loginResponse = Validate(rawValue: json[APIConstants.completeProfile].stringValue) ?? .failure
+                if loginResponse == Validate.success {
+                    Alerts.shared.show(alert: .login, message: "Profile not complete", type: .info)
+                }
                 
                 let object : AnyObject?
                 object = api.handle(parameters: json)
@@ -41,15 +46,20 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
                 
                 return
             }
-            else{  completion(Response.failure(.failure)) }
+            else{ 
+                completion(Response.failure(json[APIConstants.message].stringValue))
+            
+            }
             
             }, failure: {[weak self] (message) in
                 self?.stopAnimating()
-                completion(Response.failure(.failure))
+                completion(Response.failure(message))
                 
         })
-        
     }
+    
+    
+    
     
     func isLoaderNeeded(api : Router) -> Bool{
         

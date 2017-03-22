@@ -35,6 +35,9 @@ class PageViewController: UIPageViewController {
         navBarTitle()
     }
     
+    //MARK: Navigation Controls
+    
+    
     func navBarTitle() {
         print(titles[pageIndex])
         navigationItem.title = titles[pageIndex]
@@ -112,6 +115,8 @@ extension PageViewController: UIPageViewControllerDelegate, UIPageViewController
 //        return firstViewControllerIndex
 //    }
 //    
+    
+    
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if (!completed) {
             return

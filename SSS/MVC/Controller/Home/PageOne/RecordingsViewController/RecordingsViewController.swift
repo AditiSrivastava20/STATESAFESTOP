@@ -8,18 +8,24 @@
 
 import UIKit
 
+
 class RecordingsViewController: UIViewController {
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let modalViewController = self.storyboard?.instantiateViewController(withIdentifier: "PinValidation")
-        modalViewController?.modalPresentationStyle = .overCurrentContext
-        present(modalViewController!, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+//        let modalViewController = self.storyboard?.instantiateViewController(withIdentifier: "PinValidation")
+//        modalViewController?.modalPresentationStyle = .overCurrentContext
+//        present(modalViewController!, animated: true, completion: nil)
+    }
+    
 
 }

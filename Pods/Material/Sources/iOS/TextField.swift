@@ -490,7 +490,7 @@ extension TextField {
         }
         
         placeholderLabel.frame = CGRect(x: w, y: 0, width: width - w, height: h)
-        placeholderLabel.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        placeholderLabel.transform = CGAffineTransform(scaleX: 1.16, y: 1.16)
         
         switch textAlignment {
         case .left, .natural:

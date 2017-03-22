@@ -89,7 +89,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SkyFloatingLabelTextField.xcscheme</key>
+		<key>SJSegmentedScrollView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -99,10 +99,25 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>XLPagerTabStrip-XLPagerTabStrip.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>XLPagerTabStrip.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>09968426A3D60B1B743F0FFA3D756DCC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E4690FC3FE42FD51E8A422B361B418F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,6 +157,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8035F23EDC8BF8D2A0F9AFC34BB81F1C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>808BF1AAB30340347945199AA24226EB</key>
 		<dict>
 			<key>primary</key>
@@ -152,7 +172,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7DE9FA59E16A9C679272B9F11915537</key>
+		<key>A1BE07AC9AAB7F59D9E10BC0FF562066</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -172,17 +192,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C918BF4B0BEE4A8E81DFA216065B8400</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CEF3F3FD48F30AE7E6A6674BC46F1068</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D30ABCDD1D49EB0038C9AEDE1013C442</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D8FDCCA00537F104FA6A6F698071A40F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -193,6 +208,11 @@
 			<true/>
 		</dict>
 		<key>E396A93E4C79B22B7816E9F02F62ECED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F97A4BD4ED29DB3A88C3C2768786010D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

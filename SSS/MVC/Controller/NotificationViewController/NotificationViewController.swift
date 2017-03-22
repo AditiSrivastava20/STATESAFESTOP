@@ -11,14 +11,25 @@ import Material
 
 class NotificationViewController: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navbarButtons()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func goBack() {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    func reloadNotification() {
+        print("reload notification")
+    }
+    
     
     func navbarButtons() {
         let btn1 = MaterialButton.shared.btn()
@@ -33,14 +44,6 @@ class NotificationViewController: UIViewController {
         
         self.navigationItem.setLeftBarButtonItems([item1], animated: true)
         self.navigationItem.setRightBarButtonItems([item2], animated: true)
-    }
-    
-    func goBack() {
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
-    func reloadNotification() {
-        print("reload notification")
     }
 
 }

@@ -13,25 +13,46 @@ import Foundation
 
 class HomeViewController: UIViewController {
     
+    
     @IBOutlet weak var cameraView: UIImageView!
     @IBOutlet weak var cameraPreview: UIView!
     @IBOutlet weak var btnVideo: UIButton!
     @IBOutlet weak var btnAudio: UIButton!
     
-    let pscope = PermissionScope()
+    var pscope: PermissionScope? {
+        didSet {
+            pscope?.addPermission(CameraPermission(), message: "We use this to capture Videos")
+        }
+    }
+    
+    lazy var cameraSession: AVCaptureSession = {
+        let s = AVCaptureSession()
+        s.sessionPreset = AVCaptureSessionPresetMedium
+        return s
+    }()
+    
+    lazy var previewLayer: AVCaptureVideoPreviewLayer = {
+        let preview =  AVCaptureVideoPreviewLayer(session: self.cameraSession)
+        preview?.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+        preview?.position = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
+        preview?.videoGravity = AVLayerVideoGravityResize
+        return preview!
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pscope.addPermission(CameraPermission(), message: "We use this to capture Videos")
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
-        pscope.show(
+        pscope?.show(
             { finished, results in
                 print("got results \(results)")
         },
@@ -54,19 +75,9 @@ class HomeViewController: UIViewController {
         }
     }
     
-    lazy var cameraSession: AVCaptureSession = {
-        let s = AVCaptureSession()
-        s.sessionPreset = AVCaptureSessionPresetMedium
-        return s
-    }()
     
-    lazy var previewLayer: AVCaptureVideoPreviewLayer = {
-        let preview =  AVCaptureVideoPreviewLayer(session: self.cameraSession)
-        preview?.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
-        preview?.position = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
-        preview?.videoGravity = AVLayerVideoGravityResize
-        return preview!
-    }()
+    
+    
     
     
     @IBAction func sendLocation(_ sender: Any) {

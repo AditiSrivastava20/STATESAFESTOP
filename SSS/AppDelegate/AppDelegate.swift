@@ -21,16 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-        statusBar.backgroundColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)
+        //let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        //statusBar.backgroundColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)
         UINavigationBar.appearance().barTintColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)
-        //UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Helvetica-Neue",size: CGFloat(16)) as Any]
         
-        //fabric
-        Fabric.with([Crashlytics.self])
-        
-        //twitter
-        Fabric.with([Twitter.self])
+        //fabric and twitter
+        Fabric.with([Crashlytics.self, Twitter.self])
         
         //facebook instance
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

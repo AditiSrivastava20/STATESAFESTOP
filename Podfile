@@ -21,8 +21,9 @@ target 'SSS' do
   pod 'TwitterKit'
   pod 'Material', '~> 2.0'
   pod 'M13Checkbox'
-  pod 'SkyFloatingLabelTextField', '~> 2.0.0'
   pod 'ISMessages'
   pod 'NVActivityIndicatorView'
+  pod 'XLPagerTabStrip', '~> 7.0'
+  pod ’SJSegmentedScrollView’, ‘1.3.5'
 
 end

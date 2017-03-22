@@ -10,6 +10,7 @@ import UIKit
 import Material
 import ISMessages
 import FBSDKLoginKit
+import TwitterKit
 import NVActivityIndicatorView
 
 class LoginViewController: BaseViewController {
@@ -17,8 +18,13 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var txtEmail: TextField!
     @IBOutlet weak var txtPassword: TextField!
     
+    let dToken:String = "adaffasdgsdg"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        txtEmail.placeHolderAtt()
+        txtPassword.placeHolderAtt()
         
         if let login = UserDefaults.standard.value(forKey: "login") as? [String: String] {
             if !login.isEmpty {
@@ -32,20 +38,6 @@ class LoginViewController: BaseViewController {
         return value
     }
     
-    func handleResponse(response : Response) {
-        switch response{
-            
-        case .success(let responseValue):
-            if let _ = responseValue as? User{
-                Alerts.shared.show(alert: .success, message: Alert.login.rawValue, type: .success)
-            }
-            
-        case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str.rawValue, type: .error)
-        }
-    }
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -54,6 +46,7 @@ class LoginViewController: BaseViewController {
 
 
 //Mark: Normal login action
+
 extension LoginViewController {
     
     @IBAction func forgotPasswd(_ sender: Any) {
@@ -66,9 +59,10 @@ extension LoginViewController {
         let value = Validate()
         switch value {
         case .success:
-            APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, accountType: AccountType.normal.rawValue, deviceToken: "adaffasdgsdg"), completion: {[weak self] (response) in
+            APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: dToken), completion: { (response) in
                 
-                self?.handleResponse(response: response)
+                HandleResponse.shared.handle(response: response, self)
+
             })
         case .failure(let title,let msg):
             Alerts.shared.show(alert: title, message: msg , type : .info)
@@ -78,9 +72,6 @@ extension LoginViewController {
     @IBAction func signUp(_ sender: Any) {
         performSegue(withIdentifier: "signup", sender: nil)
     }
-    
-    
-    
 }
 
 
@@ -90,30 +81,12 @@ extension LoginViewController {
     @IBAction func facebookLogin(_ sender: Any) {
         print("facebook login selected")
         
-        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) { (result, err) in
-            
-            if err != nil {
-                print("failed to start graph request: \(err)")
-                return
-            }
-            self.getEmailNameIdImageFromFB()
-        }
+        FBManager.shared.login(self)
     }
-    
-    
-    
-    func getEmailNameIdImageFromFB() {
-        
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name , email, picture.width(480).height(480), "]).start { (connection, result, err) -> Void in
-            
-            if err != nil {
-                print("failed to start graph request: \(err)")
-                return
-            }
-            print(result ?? "")
-        }
-    }
+
 }
+
+
 
 
 //Mark: Twitter login Action 
@@ -121,10 +94,39 @@ extension LoginViewController {
     
     @IBAction func twitterAction(_ sender: Any) {
         print("twitter login selected")
+        
+        TWManager.shared.login(self)
+        
     }
     
-    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
