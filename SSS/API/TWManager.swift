@@ -13,15 +13,17 @@ class TWManager {
     
     static let shared = TWManager()
     
+    //MARK:- Twitter logout
     func logOut() {
+        print("log out")
         let store = Twitter.sharedInstance().sessionStore
         if let userID = store.session()?.userID {
-            print("log out")
             store.logOutUserID(userID)
+            Twitter.sharedInstance().sessionStore.logOutUserID(userID)
         }
     }
     
-    //Mark: Twitter login
+    //MARK:- Twitter login
     func login(_ obj: UIViewController) {
         
         Twitter.sharedInstance().logIn { (session, error) in
@@ -38,12 +40,11 @@ class TWManager {
                         do{
                             let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
                             print("\(json["id"]!)")
+                            
                             APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: "\(json["id"]!)", accountType: AccountType.twitter.rawValue, deviceToken: "ahjsdgjhagshjd"), completion: { (response) in
                                 
                                 HandleResponse.shared.handle(response: response, obj)
-                                
                             })
-                            
                         } catch {
                             
                         }
@@ -56,6 +57,7 @@ class TWManager {
                 NSLog("Login error: ", error!.localizedDescription);
             }
         }
+        
     }
         
 }

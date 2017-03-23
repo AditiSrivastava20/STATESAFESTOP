@@ -35,11 +35,6 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
             let responseType = Validate(rawValue: json[APIConstants.userExist].stringValue) ?? .failure
             if responseType == Validate.success{
                 
-                let loginResponse = Validate(rawValue: json[APIConstants.completeProfile].stringValue) ?? .failure
-                if loginResponse == Validate.success {
-                    Alerts.shared.show(alert: .login, message: "Profile not complete", type: .info)
-                }
-                
                 let object : AnyObject?
                 object = api.handle(parameters: json)
                 completion(Response.success(object))

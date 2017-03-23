@@ -21,7 +21,10 @@ class PinValidationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func validatePinAction(_ sender: Any) {
+    
+    @IBAction func btnDoneAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
 }

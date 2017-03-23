@@ -18,15 +18,18 @@ class HandleResponse {
         
         switch response{
         case .success(let responseValue):
-            if let _ = responseValue as? User{
-                Alerts.shared.show(alert: .success, message: Alert.login.rawValue, type: .success)
+            if let value = responseValue as? User{
                 
+                print(value.profile?.twitter_id ?? "" )
+                //Alerts.shared.show(alert: .success, message: Alert.login.rawValue, type: .success)
+                print(Alert.login.rawValue)
                 obj.performSegue(withIdentifier: "main", sender: obj)
                 
             }
             
         case .failure(let str):
             Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            TWManager.shared.logOut()
         }
         
     }

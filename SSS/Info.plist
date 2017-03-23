@@ -26,33 +26,39 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb107854363053008</string>
+				<string>fb1808325419420171</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>5d13c0820d02feea96358c1e301bb612078a9a53</string>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict>
-					<key>consumerKey</key>
-					<string>mMwNmIzNevUGeds7l9QpyN9jT</string>
-					<key>consumerSecret</key>
-					<string>zcIDYFBSnLYxztIWO90GYun3cZyJT2ancF50kMPCw1Sh79uWsq</string>
-				</dict>
-				<key>KitName</key>
-				<string>Twitter</string>
-			</dict>
-		</array>
-	</dict>
+    <key>Fabric</key>
+    <dict>
+        <key>APIKey</key>
+        <string>f0c02c0ca0823958451ad35d488a5b511bea011d</string>
+        <key>Kits</key>
+        <array>
+            <dict>
+                <key>KitInfo</key>
+                <dict/>
+                <key>KitName</key>
+                <string>Crashlytics</string>
+            </dict>
+            <dict>
+                <key>KitInfo</key>
+                <dict>
+                    <key>consumerKey</key>
+                    <string>6SWd2wPxo3FRu1fmlWv13XXzc</string>
+                    <key>consumerSecret</key>
+                    <string>1JxACCwk9XebfUhb2utMsVbD2jWMhXGMxwKBpfYdtQQOOZHNaZ</string>
+                </dict>
+                <key>KitName</key>
+                <string>Twitter</string>
+            </dict>
+        </array>
+    </dict>
 	<key>FacebookAppID</key>
-	<string>107854363053008</string>
+	<string>1808325419420171</string>
 	<key>FacebookDisplayName</key>
 	<string>StateSafeStop</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -64,6 +70,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>{human-readable reason for photo access}</string>
 	<key>NSCameraUsageDescription</key>
 	<string>${PRODUCT_NAME} Camera Usage</string>
 	<key>NSLocationAlwaysUsageDescription</key>

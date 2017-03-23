@@ -23,7 +23,8 @@ target 'SSS' do
   pod 'M13Checkbox'
   pod 'ISMessages'
   pod 'NVActivityIndicatorView'
-  pod 'XLPagerTabStrip', '~> 7.0'
-  pod ’SJSegmentedScrollView’, ‘1.3.5'
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
+  pod 'GoogleMaps'
 
 end

@@ -17,6 +17,7 @@ enum Alert : String{
     case ok = "Ok"
     case cancel = "Cancel"
     case error = "Error"
+    case logout = "Logged out"
 }
 
 infix operator =>

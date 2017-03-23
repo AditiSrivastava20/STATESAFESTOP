@@ -76,34 +76,35 @@ class HomeViewController: UIViewController {
     }
     
     
-    
-    
-    
-    
-    @IBAction func sendLocation(_ sender: Any) {
+    @IBAction func btnLocationAction(_ sender: Any) {
         let location = Location.shared.GPS()
         print("latitude: ", location.lat)
         print("longitude: ", location.long)
     }
     
-    @IBAction func useCamera(_ sender: Any) {
+    
+    @IBAction func btnVideoAction(_ sender: Any) {
         btnVideo.setImage( UIImage(asset: .vedioYelow) , for: UIControlState.normal)
         btnAudio.setImage( UIImage(asset: .audioBlack) , for: UIControlState.normal)
     }
     
-    @IBAction func useMicrophone(_ sender: Any) {
+    @IBAction func btnAudioAction(_ sender: Any) {
         btnAudio.setImage( UIImage(asset: .audioYelow) , for: UIControlState.normal)
         btnVideo.setImage( UIImage(asset: .vedioBlack) , for: UIControlState.normal)
     }
     
-    @IBAction func recordingList(_ sender: Any) {
+    @IBAction func btnComplaintListAction(_ sender: Any) {
+        
     }
     
-    @IBAction func complaintList(_ sender: Any) {
+    @IBAction func btnRecordingListAction(_ sender: Any) {
+        
     }
     
-    @IBAction func capture(_ sender: Any) {
+    @IBAction func btnCaptureAction(_ sender: Any) {
+        
     }
+    
     
     
 }
@@ -137,37 +138,17 @@ extension HomeViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             NSLog("\(error), \(error.localizedDescription)")
         }
     }
-
-    
-//    func captureOutput(_ captureOutput: AVCaptureOutput, didOutputSampleBuffer sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-//        print("buffered")
-//        let imageBuffer: CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
-//        CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
-//        let width: size_t = CVPixelBufferGetWidthOfPlane(imageBuffer, 0)
-//        let height: size_t = CVPixelBufferGetHeightOfPlane(imageBuffer, 0)
-//        let bytesPerRow: size_t = CVPixelBufferGetBytesPerRowOfPlane(imageBuffer, 0)
-//        let lumaBuffer: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddressOfPlane(imageBuffer, 0)!
-//        let grayColorSpace: CGColorSpace = CGColorSpaceCreateDeviceGray()
-//        let context: CGContext = CGContext(data: lumaBuffer, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: grayColorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!//problematic
-//        
-//        let dstImageFilter: CGImage = context.makeImage()!
-//        DispatchQueue.main.sync(
-//            previewLayer.contents = dstImageFilter as AnyObject
-//        })
-//    }
-
-    
     
     
     
 
-//    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-//        // Here you collect each frame and process it
-//    }
-//    
-//    func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-//        // Here you can count how many frames are dopped
-//    }
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        // Here you collect each frame and process it
+    }
+    
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        // Here you can count how many frames are dopped
+    }
 
 }
 

@@ -24,6 +24,7 @@ enum Asset: String {
   case icCardHolder = "ic_card holder"
   case icCent = "ic_cent"
   case icCheckin = "ic_checkin"
+  case icClear = "ic_clear"
   case icComplaintDone = "ic_complaint done"
   case icComplaintGray = "ic_complaint gray"
   case icComplaintYellow = "ic_complaint yellow"

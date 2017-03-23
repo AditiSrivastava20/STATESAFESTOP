@@ -121,9 +121,18 @@ enum StoryboardScene {
   enum SignUp: String, StoryboardSceneType {
     static let storyboardName = "SignUp"
 
-    static func initialViewController() -> UINavigationController {
-      guard let vc = storyboard().instantiateInitialViewController() as? UINavigationController else {
+    static func initialViewController() -> SSS.EnterDetailsFirstViewController {
+      guard let vc = storyboard().instantiateInitialViewController() as? SSS.EnterDetailsFirstViewController else {
         fatalError("Failed to instantiate initialViewController for \(self.storyboardName)")
+      }
+      return vc
+    }
+
+    case imagePickViewControllerScene = "ImagePickViewController"
+    static func instantiateImagePickViewController() -> SSS.ImagePickViewController {
+      guard let vc = StoryboardScene.SignUp.imagePickViewControllerScene.viewController() as? SSS.ImagePickViewController
+      else {
+        fatalError("ViewController 'ImagePickViewController' is not of the expected class SSS.ImagePickViewController.")
       }
       return vc
     }
@@ -154,7 +163,6 @@ enum StoryboardSegue {
   }
   enum SignUp: String, StoryboardSegueType {
     case main
-    case signup
   }
 }
 

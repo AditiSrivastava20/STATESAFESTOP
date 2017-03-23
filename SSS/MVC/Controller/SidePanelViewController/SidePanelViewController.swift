@@ -21,12 +21,10 @@ class SidePanelViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    @IBAction func logOut(_ sender: Any) {
+    
+    
+    @IBAction func btnLogoutAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        
-        TWManager.shared.logOut()
-        
-        
     }
+    
 }

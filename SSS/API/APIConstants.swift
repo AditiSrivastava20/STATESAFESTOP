@@ -35,6 +35,7 @@ enum AccountType: String {
     case normal = "1"
     case facebook = "2"
     case twitter = "3"
+    
 }
 
 enum Keys: String {

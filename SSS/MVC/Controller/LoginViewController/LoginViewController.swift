@@ -17,6 +17,9 @@ class LoginViewController: BaseViewController {
     
     @IBOutlet weak var txtEmail: TextField!
     @IBOutlet weak var txtPassword: TextField!
+    @IBOutlet weak var btnFacebook: Button!
+    
+    @IBOutlet weak var btnTwitter: Button!
     
     let dToken:String = "adaffasdgsdg"
     
@@ -26,6 +29,10 @@ class LoginViewController: BaseViewController {
         txtEmail.placeHolderAtt()
         txtPassword.placeHolderAtt()
         
+        checkLogin()
+    }
+    
+    func checkLogin() {
         if let login = UserDefaults.standard.value(forKey: "login") as? [String: String] {
             if !login.isEmpty {
                 performSegue(withIdentifier: "main", sender: self)
@@ -42,18 +49,21 @@ class LoginViewController: BaseViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
 }
 
 
-//Mark: Normal login action
+//MARK: Normal login action
 
 extension LoginViewController {
     
-    @IBAction func forgotPasswd(_ sender: Any) {
+    @IBAction func btnForgotPasswordAction(_ sender: Any) {
+        
         print("forgot password")
     }
     
-    @IBAction func login(_ sender: Any) {
+    @IBAction func btnLoginAction(_ sender: Any) {
+        
         print("login")
         ISMessages.hideAlert(animated: true)
         let value = Validate()
@@ -62,23 +72,24 @@ extension LoginViewController {
             APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: dToken), completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, self)
-
+                
             })
         case .failure(let title,let msg):
             Alerts.shared.show(alert: title, message: msg , type : .info)
         }
     }
     
-    @IBAction func signUp(_ sender: Any) {
+    @IBAction func btnSignUpAction(_ sender: Any) {
         performSegue(withIdentifier: "signup", sender: nil)
     }
+    
 }
 
 
-//Mark: Facebook login action
+//MARK: Facebook login action
 extension LoginViewController {
     
-    @IBAction func facebookLogin(_ sender: Any) {
+    @IBAction func btnFacebookAction(_ sender: Any) {
         print("facebook login selected")
         
         FBManager.shared.login(self)
@@ -89,16 +100,16 @@ extension LoginViewController {
 
 
 
-//Mark: Twitter login Action 
+//MARK: Twitter login Action
 extension LoginViewController {
     
-    @IBAction func twitterAction(_ sender: Any) {
+    @IBAction func btnTwitterAction(_ sender: Any) {
         print("twitter login selected")
         
         TWManager.shared.login(self)
         
     }
-    
+
 }
 
 

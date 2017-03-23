@@ -14,6 +14,11 @@ class FBManager {
     
     static let shared = FBManager()
     
+    func logOut() {
+        print("facebook logout")
+    }
+    
+    
     func login(_ obj: UIViewController) {
         
         var fbProfile:FacebookResponse?
@@ -37,6 +42,9 @@ class FBManager {
                 })
             }
         }
+        
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut()
         
     }
     
