@@ -13,8 +13,6 @@ internal struct APIConstants {
     static let basePath = "http://35.167.142.176/api/users/"
     static let login = "login"
     static let signup = "signup"
-    static let facebook = "login"
-    static let twitter = "login"
     static let editProfile = "edit-profile"
     static let pinPassword = "set/pin-password"
     static let phoneNumber = "set/phone-number"
@@ -96,6 +94,27 @@ enum Validate: String {
     }
 }
 
+enum SignUpValidation: String {
+    
+    case none
+    case success = "200"
+    case failure
+    
+    func map(response message: String?) -> String? {
+        
+        switch self {
+        case .success:
+            return message
+        case .failure:
+            return message
+        default:
+            return message
+        }
+    }
+    
+    
+}
+
 
 enum Response {
     
@@ -109,7 +128,7 @@ typealias OptionalDictionary = [String: String]?
 struct Parameters {
     
     static let login: [Keys] = [.email, .password, .facebookId, .twitterId, .accountType, .deviceToken]
-    static let signup: [Keys] = [.email, .fullName, .address, .phone, .image, .facebookId, .twitterId, .password, .accountType, .deviceToken]
+    static let signup: [Keys] = [.fullName, .email, .address, .password, .facebookId, .twitterId, .phone, .accountType, .deviceToken]
     static let editProfile: [Keys] = [.accessToken, .fullName, .address, .email, .phone, .profilePic]
     static let pinPassword: [Keys] = [.accessToken, .pin]
     static let phoneNumber: [Keys] = [.accessToken, .phone]

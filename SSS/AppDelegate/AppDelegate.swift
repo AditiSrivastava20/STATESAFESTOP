@@ -11,6 +11,9 @@ import Fabric
 import Crashlytics
 import FBSDKCoreKit
 import TwitterKit
+import GooglePlaces
+import GoogleMaps
+import GooglePlacePicker
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
@@ -30,6 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //facebook instance
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        //GMS
+        GMSPlacesClient.provideAPIKey("AIzaSyCAIQBZ8sU2UIN8j-j4s2_avEb7k-qzKsE")
+        GMSServices.provideAPIKey("AIzaSyCAIQBZ8sU2UIN8j-j4s2_avEb7k-qzKsE")
         
         //IQ keyboard
         IQKeyboardManager.sharedManager().enable = true

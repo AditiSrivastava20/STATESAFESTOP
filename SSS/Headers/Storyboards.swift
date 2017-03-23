@@ -121,8 +121,8 @@ enum StoryboardScene {
   enum SignUp: String, StoryboardSceneType {
     static let storyboardName = "SignUp"
 
-    static func initialViewController() -> SSS.EnterDetailsFirstViewController {
-      guard let vc = storyboard().instantiateInitialViewController() as? SSS.EnterDetailsFirstViewController else {
+    static func initialViewController() -> UINavigationController {
+      guard let vc = storyboard().instantiateInitialViewController() as? UINavigationController else {
         fatalError("Failed to instantiate initialViewController for \(self.storyboardName)")
       }
       return vc
@@ -163,6 +163,7 @@ enum StoryboardSegue {
   }
   enum SignUp: String, StoryboardSegueType {
     case main
+    case signup
   }
 }
 

@@ -21,7 +21,12 @@ extension LoginEndpoint {
             do {
                 return try User(attributes: parameters.dictionaryValue )
             } catch _ { return nil }
+        
+        case .checkExistEmailOrPhone(_):
             
+            do {
+                return try User(attributes: parameters.dictionaryValue )
+            } catch _ { return nil }
         }
     }
 }

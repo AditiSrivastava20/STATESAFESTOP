@@ -13,7 +13,8 @@ import Alamofire
 enum LoginEndpoint {
     
     case login(email : String? , password : String?, facebookId: String?, twitterId: String?, accountType: String?, deviceToken: String?)
-    case signup(fullname : String? , email : String?, fullAddress: String?, password: String? , facebookId: String?, twitterId: String?, phone: String?, accountType: String?, deviceToken: String?, image: String?)
+    case signup(fullname : String? , email : String?, fullAddress: String?, password: String? , facebookId: String?, twitterId: String?, phone: String?, accountType: String?, deviceToken: String?)
+    case checkExistEmailOrPhone(email: String?, phone: String?)
     
 }
 
@@ -26,6 +27,7 @@ extension LoginEndpoint : Router{
             
         case .login(_): return APIConstants.login
         case .signup(_): return APIConstants.signup
+        case .checkExistEmailOrPhone(_): return APIConstants.checkExistEmailOrPhone
             
         }
     }
@@ -42,9 +44,11 @@ extension LoginEndpoint : Router{
         case .login(let email , let password, let facebookId, let twitterId, let accountType, let deviceToken):
             return Parameters.login.map(values: [email, password, facebookId, twitterId, accountType, deviceToken])
             
-        case .signup(let fullname, let email, let password, let facebookId, let twitterId, let accountType, let phone, let fullAddress, let deviceToken, let image):
-            return Parameters.signup.map(values: [fullname , email , password , facebookId, twitterId, accountType , phone , fullAddress , deviceToken, image])
-            
+        case .signup(let fullname, let email, let fullAddress, let password, let facebookId, let twitterId, let phone, let accountType,  let deviceToken):
+            return Parameters.signup.map(values: [fullname , email , fullAddress , password , facebookId, twitterId, phone , accountType ,   deviceToken])
+        
+        case .checkExistEmailOrPhone(let email, let phone):
+            return Parameters.checkExistEmailOrPhone.map(values: [email, phone])
         }
     }
     

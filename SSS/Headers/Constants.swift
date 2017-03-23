@@ -20,6 +20,10 @@ enum Alert : String{
     case logout = "Logged out"
 }
 
+enum Device: String {
+    case token = "iaudhikaskdfh"
+}
+
 infix operator =>
 infix operator =|
 infix operator =<

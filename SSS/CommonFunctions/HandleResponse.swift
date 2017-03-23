@@ -23,7 +23,7 @@ class HandleResponse {
                 print(value.profile?.twitter_id ?? "" )
                 //Alerts.shared.show(alert: .success, message: Alert.login.rawValue, type: .success)
                 print(Alert.login.rawValue)
-                obj.performSegue(withIdentifier: "main", sender: obj)
+                //obj.performSegue(withIdentifier: "main", sender: obj)
                 
             }
             
