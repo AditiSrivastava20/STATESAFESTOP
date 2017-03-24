@@ -10,8 +10,8 @@ import Foundation
 
 enum ParamKeys: String {
     
-    //login
-    case success = "success"
+    //MARK:- login/signup
+    case status_code = "status_code"
     case msg = "msg"
     case isnewuser = "isnewuser"
     case is_user_exist = "is_user_exist"

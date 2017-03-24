@@ -8,6 +8,7 @@
 
 import Foundation
 import TwitterKit
+import Kingfisher
 
 class TWManager {
     
@@ -24,7 +25,7 @@ class TWManager {
     }
     
     //MARK:- Twitter login
-    func login(_ obj: UIViewController) {
+    func login(_ obj: UIViewController, check: Check, completion : @escaping ([String: Any]) -> () ) {
         
         Twitter.sharedInstance().logIn { (session, error) in
             if session != nil {
@@ -41,10 +42,9 @@ class TWManager {
                             let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
                             print("\(json["id"]!)")
                             
-                            APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: "\(json["id"]!)", accountType: AccountType.twitter.rawValue, deviceToken: "ahjsdgjhagshjd"), completion: { (response) in
-                                
-                                HandleResponse.shared.handle(response: response, obj)
-                            })
+                            self.apiHit(param: json, check: check, obj: obj)
+                            completion(json)
+                            
                         } catch {
                             
                         }
@@ -59,6 +59,26 @@ class TWManager {
         }
         
     }
+    
+    
+    
+    //MARK:- login/signup after twitter response
+    func apiHit(param: [String: Any] , check: Check , obj: UIViewController) {
+        
+        switch check {
+        case .login:
+            APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: "\(param["id"]!)", accountType: AccountType.twitter.rawValue, deviceToken: Device.token.rawValue), completion: { (response) in
+                
+                HandleResponse.shared.handle(response: response, obj)
+            })
+            
+        case .signup:
+            print(param)
+            
+        }
+        
+    }
+    
         
 }
 

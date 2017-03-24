@@ -8,7 +8,7 @@ target 'SSS' do
 
   # Pods for SSS
   pod 'Kingfisher', '~> 3.0'
-  pod 'Alamofire', '~> 4.4'
+  pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'EZSwiftExtensions'
   pod 'IQKeyboardManagerSwift'

@@ -16,17 +16,12 @@ extension LoginEndpoint {
     func handle(parameters : JSON) -> AnyObject? {
         
         switch self {
-        case .login(_),.signup(_):
+        case .login(_),.signup(_),.pinPassword(_),.checkExistEmailOrPhone(_):
             
             do {
                 return try User(attributes: parameters.dictionaryValue )
             } catch _ { return nil }
         
-        case .checkExistEmailOrPhone(_):
-            
-            do {
-                return try User(attributes: parameters.dictionaryValue )
-            } catch _ { return nil }
         }
     }
 }

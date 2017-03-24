@@ -20,18 +20,34 @@ class HandleResponse {
         case .success(let responseValue):
             if let value = responseValue as? User{
                 
-                print(value.profile?.twitter_id ?? "" )
-                //Alerts.shared.show(alert: .success, message: Alert.login.rawValue, type: .success)
-                print(Alert.login.rawValue)
-                //obj.performSegue(withIdentifier: "main", sender: obj)
+                print(value.msg ?? "")
+                self.handleSuccess(response: value, obj)
                 
             }
             
         case .failure(let str):
             Alerts.shared.show(alert: .oops, message: /str, type: .error)
-            TWManager.shared.logOut()
         }
         
     }
     
+    func handleSuccess(response: User, _ obj: UIViewController) {
+        
+        UserDefaults.standard.setValue(response.access_token, forKey: ParamKeys.access_token.rawValue)
+        
+        if response.profile?.is_pin == "0" {
+            
+            obj.performSegue(withIdentifier: "setUpPin", sender: obj)
+            
+        } else if response.is_user_exist == "1" {
+            
+            obj.performSegue(withIdentifier: "main", sender: obj)
+            
+        }
+    }
+    
+    
 }
+
+
+

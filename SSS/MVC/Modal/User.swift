@@ -13,7 +13,7 @@ import SwiftyJSON
 class User: NSObject {
     
     var profile: Profile?
-    var success: String?
+    var status_code: String?
     var is_user_exist: String?
     var access_token: String?
     var isnewuser: String?
@@ -23,7 +23,7 @@ class User: NSObject {
         super.init()
         
         msg = .msg => attributes
-        success = .success => attributes
+        status_code = .status_code => attributes
         is_user_exist = .is_user_exist => attributes
         access_token = .access_token => attributes
         isnewuser = .isnewuser => attributes

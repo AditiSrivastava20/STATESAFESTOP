@@ -14,6 +14,7 @@ enum Alert : String{
     case success = "Success"
     case oops = "Oops Something went wrong !"
     case login = "Login Successfull"
+    case signup = "Sign Up Successfull"
     case ok = "Ok"
     case cancel = "Cancel"
     case error = "Error"
@@ -23,6 +24,7 @@ enum Alert : String{
 enum Device: String {
     case token = "iaudhikaskdfh"
 }
+
 
 infix operator =>
 infix operator =|

@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 typealias HttpClientSuccess = (Any?) -> ()
 typealias HttpClientFailure = (String) -> ()
@@ -18,6 +19,7 @@ class HTTPClient {
         do { return try JSONSerialization.jsonObject(with: data as Data, options: []) }
         catch { return .none }
     }
+    
     
     func postRequest(withApi api : Router  , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ){
         
@@ -38,21 +40,27 @@ class HTTPClient {
         
     }
     
+    
     func postRequestWithImages(withApi api : Router , image: UIImage? , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ) {
         
         guard let params = api.parameters else {failure("empty"); return}
         let fullPath = api.baseURL + api.route
         print(fullPath)
         print(params)
+    
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             
             guard let imageData = UIImageJPEGRepresentation(image!, 0.5) else {
                 return }
             
-            multipartFormData.append(imageData, withName: "image", fileName: "image.png", mimeType: "image/png")
+            multipartFormData.append(imageData, withName: "image", fileName: "image.jpg", mimeType: "image/jpg")
             
             for (key, value) in params {
-                multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                
+                let tempKey = value as? String ?? ""
+                
+                multipartFormData.append(tempKey.data(using: String.Encoding.utf8)!, withName: key)
+               // multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
             }
             
         }, to: fullPath) { (encodingResult) in
@@ -76,37 +84,6 @@ class HTTPClient {
     
 }
 
-//Alamofire.upload(
-//    multipartFormData: {
-//        multipartFormData in
-//        
-//        if let ppic = img?.resize(with: 600.0) , let imageData = UIImageJPEGRepresentation(ppic, 0.2){
-//            multipartFormData.append(imageData, withName: imageParamater, fileName: "image.png", mimeType:"image/png" )
-//            
-//            for (key, value) in parameters{
-//                multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
-//            }
-//        }
-//        
-//        
-//        
-//},
-//    to: url,
-//    encodingCompletion: { encodingResult in
-//        switch encodingResult {
-//        case .success(let upload, _, _):
-//            
-//            upload.responseJSON { response in
-//                print(response)
-//                success((response.result.value ?? "") as Any)
-//            }
-//        case .failure(let encodingError):
-//            print(encodingError)
-//            failure(encodingError as NSError)
-//        }
-//        
-//}
-//)
 
 
 

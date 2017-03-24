@@ -21,22 +21,18 @@ class LoginViewController: BaseViewController {
     
     @IBOutlet weak var btnTwitter: Button!
     
-    let dToken:String = "adaffasdgsdg"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         txtEmail.placeHolderAtt()
         txtPassword.placeHolderAtt()
         
-        checkLogin()
+        //checkLogin()
     }
     
     func checkLogin() {
-        if let login = UserDefaults.standard.value(forKey: "login") as? [String: String] {
-            if !login.isEmpty {
-                performSegue(withIdentifier: "main", sender: self)
-            }
+        if let _ = UserDefaults.standard.value(forKey: "User") as? User {
+            performSegue(withIdentifier: "main", sender: self)
         }
     }
     
@@ -69,7 +65,7 @@ extension LoginViewController {
         let value = Validate()
         switch value {
         case .success:
-            APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: dToken), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: Device.token.rawValue), completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, self)
                 
@@ -92,7 +88,10 @@ extension LoginViewController {
     @IBAction func btnFacebookAction(_ sender: Any) {
         print("facebook login selected")
         
-        FBManager.shared.login(self)
+        FBManager.shared.login(self, check: .login , completion: { (fbProfile) in
+            print(fbProfile.fbId ?? "")
+        })
+
     }
 
 }
@@ -106,8 +105,11 @@ extension LoginViewController {
     @IBAction func btnTwitterAction(_ sender: Any) {
         print("twitter login selected")
         
-        TWManager.shared.login(self)
+        TWManager.shared.login(self, check: .login, completion: { (json) in
+            
+            print("\(json["id"]!)")
         
+        })
     }
 
 }

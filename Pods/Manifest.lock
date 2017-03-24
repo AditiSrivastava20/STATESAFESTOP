@@ -42,7 +42,7 @@ PODS:
     - TwitterCore (>= 2.8)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.4)
+  - Alamofire
   - Crashlytics
   - EZSwiftExtensions
   - Fabric
@@ -85,6 +85,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 619fd2f77cd894b5bb63edf77a8554fe84c1ce5b
+PODFILE CHECKSUM: 1eb91c702949797314397526c00147f915a8c139
 
 COCOAPODS: 1.2.0

@@ -20,6 +20,13 @@ class PageViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        if let user = UserDefaults.standard.value(forKey: "User") as? User {
+//            if user.profile?.is_pin == 0 {
+//                print("pin set pending")
+//            }
+//        }
+        
         navbarButtons()
         self.dataSource = self
         if let firstViewController = orderedViewControllers.first {

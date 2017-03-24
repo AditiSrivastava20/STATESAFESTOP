@@ -16,6 +16,15 @@ enum Valid{
     case failure(Alert,String)
 }
 
+internal struct RegexExpresssions {
+    
+    static let EmailRegex = "[A-Z0-9a-z._%+-]{1,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+    static let PasswordRegex = "[A-Za-z0-9]{6,20}"
+    static let PhoneRegex = "[0-9]{6,14}"
+    
+}
+
+
 class Validation: NSObject {
     
     static let shared = Validation()
@@ -31,45 +40,36 @@ class Validation: NSObject {
         return .success
     }
     
-    func validate(signup fullname: String?, email: String?, password: String?, confirmPasswd: String?, fulladdress: String?, phoneNo: String?) -> Valid {
+    func validate(signup fullname: String?, email: String?, password: String?, confirmPasswd: String?, fulladdress: String?, phoneNo: String?, facebookID: String?, twitterID: String?) -> Valid {
         
         if (/fullname).isEmpty {
             return errorMsg(str: "Enter fullname")
         }
         
-//        if !(/fullname).isEmpty {
-//            let name = (/fullname).trimmingCharacters(in: .whitespaces)
-//            print(name)
-//            let letters = CharacterSet.letters
-//            for char in name.unicodeScalars {
-//                if !letters.contains(char) {
-//                    return errorMsg(str: "Invalid fullname")
-//                }
-//            }
-//        }
-        
         if (/email).isEmpty {
             return errorMsg(str: "Please enter email")
         }
         
-        if !(/email).isEmpty {
-            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-            if !emailTest.evaluate(with: (/email)) {
-                return errorMsg(str: "Invalid email")
+        if !isValidEmail((/email)) {
+            return errorMsg(str: "Invalid email")
+        }
+        
+        if (/facebookID).isEmpty && (/twitterID).isEmpty {
+            if (/password).isEmpty {
+                return errorMsg(str: "Enter password")
             }
-        }
-        
-        if (/password).isEmpty {
-            return errorMsg(str: "Enter password")
-        }
-        
-        if (/confirmPasswd).isEmpty {
-            return errorMsg(str: "Enter confirm Password")
-        }
-        
-        if !(/password).isEqual((/confirmPasswd)) {
-            return errorMsg(str: "Password's don't match")
+            
+            if (/password).characters.count <= 7 {
+                return errorMsg(str: "Password should be atleast 8 characters long")
+            }
+            
+            if (/confirmPasswd).isEmpty {
+                return errorMsg(str: "Enter confirm Password")
+            }
+            
+            if !(/password).isEqual((/confirmPasswd)) {
+                return errorMsg(str: "Password's don't match")
+            }
         }
         
         if (/fulladdress).isEmpty {
@@ -80,23 +80,46 @@ class Validation: NSObject {
             return errorMsg(str: "Enter phone number")
         }
         
-        if !(/phoneNo).isEmpty {
-            let num = /phoneNo
-            let numbers = CharacterSet.decimalDigits
-            if String(num.characters[num.characters.startIndex]) == "0" {
-                return errorMsg(str: "Invalid phone no")
-            }
-            if num.characters.count > 10 || num.characters.count < 10 {
-                return errorMsg(str: "Invalid phone no")
-            }
-            for number in num.unicodeScalars {
-                if !numbers.contains(number) {
-                    return errorMsg(str: "Invalid phone no")
-                }
-            }
+        if !isValidPhone((/phoneNo)) {
+            return errorMsg(str: "Invalid phone number")
         }
         
         return .success
+    }
+    
+    func validate(pinCode value: String?) -> Valid {
+        
+        if ((/value).characters.count) < 4 {
+            return errorMsg(str: "Fill all four fields")
+        }
+        
+        return .success
+    }
+    
+    func isValidEmail(_ testStr:String) -> Bool {
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", RegexExpresssions.EmailRegex)
+        return emailTest.evaluate(with: testStr)
+    }
+
+    func isValidPhone(_ testStr:String) -> Bool {
+        let phoneTest = NSPredicate(format:"SELF MATCHES %@", RegexExpresssions.PhoneRegex)
+        return phoneTest.evaluate(with: testStr)
+    }
+    
+    func isValidPasswd(_ testStr:String) -> Bool {
+        let passwdTest = NSPredicate(format:"SELF MATCHES %@", RegexExpresssions.PasswordRegex)
+        return passwdTest.evaluate(with: testStr)
+    }
+    
+    func isValidName(_ testStr:String) -> Bool {
+        for char in testStr.characters {
+            if !(char <= "Z") && !(char >= "A") {
+                return false
+            } else if !(char <= "z") && !(char >= "a") {
+                return false
+            }
+        }
+        return true
     }
     
     func errorMsg(str : String) -> Valid{
@@ -104,3 +127,7 @@ class Validation: NSObject {
     }
     
 }
+
+
+
+

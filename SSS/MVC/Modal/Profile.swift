@@ -27,7 +27,7 @@ class Profile: NSObject{
     var phone: String?
     var is_admin: Int?
     var pwd_salt: String?
-    var is_pin: Int?
+    var is_pin: String?
     var access_token: String?
     var created_at: String?
     var twitter_id: String?
@@ -48,6 +48,7 @@ class Profile: NSObject{
         is_complete_profile = .is_complete_profile => attributes
         pin_password = .pin_password => attributes
         account_type = .account_type => attributes
+        is_pin = .is_pin => attributes
         
     }
     

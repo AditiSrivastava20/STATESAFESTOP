@@ -23,6 +23,7 @@ internal struct APIConstants {
     static let removeFromSafelist = "removesafeuser"
     static let success = "success"
     static let userExist = "is_user_exist"
+    static let newUser = "isnewuser"
     static let message = "msg"
     static let completeProfile = "is_complete_profile"
     
@@ -111,8 +112,12 @@ enum SignUpValidation: String {
             return message
         }
     }
+}
+
+enum Check {
     
-    
+    case login
+    case signup
 }
 
 

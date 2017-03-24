@@ -9,6 +9,8 @@
 import UIKit
 import Material
 import ISMessages
+import TwitterKit
+import Kingfisher
 import GooglePlacePicker
 
 class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
@@ -21,7 +23,8 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var txtFullAddress: TextField!
     @IBOutlet weak var txtPhoneNumber: TextField!
     
-    
+    var facebookID:String = ""
+    var twitterID:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +70,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     
     //MARK:- Validation
     func Validate() -> Valid{
-        let value = Validation.shared.validate(signup: txtFullname.text, email: txtEmailAddress.text, password: txtPassword.text, confirmPasswd: txtConfirmPassword.text, fulladdress: txtFullAddress.text, phoneNo: txtPhoneNumber.text)
+        let value = Validation.shared.validate(signup: txtFullname.text, email: txtEmailAddress.text, password: txtPassword.text, confirmPasswd: txtConfirmPassword.text, fulladdress: txtFullAddress.text, phoneNo: txtPhoneNumber.text, facebookID: facebookID, twitterID: twitterID)
         return value
     }
     
@@ -94,11 +97,32 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     //Mark:- Facebook Sign up
     @IBAction func btnFacebokAction(_ sender: Any) {
         
+        FBManager.shared.login(self, check: .signup, completion: { (fbProfile) in
+            
+            print(fbProfile.fbId ?? "")
+            if let url = fbProfile.imageUrl {
+                self.imgProfile.kf.setImage(with: URL(string: url))
+            }
+            self.txtFullname.text = fbProfile.name ?? ""
+            self.txtEmailAddress.text = fbProfile.email ?? ""
+            self.facebookID = fbProfile.fbId ?? ""
+            self.twitterID = ""
+        })
     }
     
     
     //Mark:- Twitter Sign up
     @IBAction func btnTwitterAction(_ sender: Any) {
+        
+        TWManager.shared.login(self, check: .signup, completion: { (json) in
+            
+            print("\(json["id"]!)")
+            self.imgProfile.kf.setImage(with: URL(string: "\(json["profile_image_url_https"]!)"))
+            self.txtFullname.text = "\(json["name"]!)"
+            self.twitterID = "\(json["id"]!)"
+            self.facebookID = ""
+        
+        })
         
     }
     
@@ -110,7 +134,8 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
         let value = Validate()
         switch value {
         case .success:
-            APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text, email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: "", twitterId: "", phone: txtPhoneNumber.text, accountType: AccountType.normal.rawValue, deviceToken: Device.token.rawValue),image: imgProfile.image , completion: { (response) in
+            
+            APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text, email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: Device.token.rawValue),image: imgProfile.image , completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, self)
             })
@@ -118,6 +143,30 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
         case .failure(let title,let msg):
             Alerts.shared.show(alert: title, message: msg , type : .info)
         }
+    }
+    
+    func accountType() -> String {
+        
+        if !facebookID.isEmpty {
+            return AccountType.facebook.rawValue
+        } else if !twitterID.isEmpty {
+            return AccountType.twitter.rawValue
+        } else {
+            return AccountType.normal.rawValue
+        }
+        
+    }
+    
+    
+    //MARK:- Check existing email/phone
+    func checkExistEmailOrPhone() {
+        
+        APIManager.shared.request(with: LoginEndpoint.checkExistEmailOrPhone(email: txtEmailAddress.text, phone: txtPhoneNumber.text) , completion: { (response) in
+            
+            HandleResponse.shared.handle(response: response, self)
+            
+        })
+        
     }
     
 }

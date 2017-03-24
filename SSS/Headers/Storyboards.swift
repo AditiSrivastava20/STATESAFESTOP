@@ -163,6 +163,7 @@ enum StoryboardSegue {
   }
   enum SignUp: String, StoryboardSegueType {
     case main
+    case setUpPin
     case signup
   }
 }

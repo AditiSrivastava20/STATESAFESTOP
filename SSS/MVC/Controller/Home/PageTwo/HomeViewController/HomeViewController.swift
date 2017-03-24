@@ -77,9 +77,6 @@ class HomeViewController: UIViewController {
     
     
     @IBAction func btnLocationAction(_ sender: Any) {
-        let location = Location.shared.GPS()
-        print("latitude: ", location.lat)
-        print("longitude: ", location.long)
     }
     
     

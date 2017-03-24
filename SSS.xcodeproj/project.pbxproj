@@ -20,6 +20,14 @@
 		1D68563B1E8265CB0098A0AE /* TWManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68563A1E8265CB0098A0AE /* TWManager.swift */; };
 		1D86B9941E7AA6B8007995F2 /* LoginEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D86B9931E7AA6B8007995F2 /* LoginEndPoint.swift */; };
 		1D86B9961E7ACC2C007995F2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D86B9951E7ACC2C007995F2 /* Location.swift */; };
+		1D8D92C71E854A30004CC1AA /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92C11E854A30004CC1AA /* IntExtension.swift */; };
+		1D8D92C81E854A30004CC1AA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92C21E854A30004CC1AA /* StringExtension.swift */; };
+		1D8D92C91E854A30004CC1AA /* PinCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92C31E854A30004CC1AA /* PinCodeTextField.swift */; };
+		1D8D92CA1E854A30004CC1AA /* PinCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92C41E854A30004CC1AA /* PinCodeTextFieldDelegate.swift */; };
+		1D8D92CB1E854A30004CC1AA /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92C61E854A30004CC1AA /* TextHelper.swift */; };
+		1D8D92CD1E85675F004CC1AA /* ProfileCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92CC1E85675F004CC1AA /* ProfileCheck.swift */; };
+		1D8D92D31E856BBB004CC1AA /* CardTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92D01E856BBB004CC1AA /* CardTransactionViewController.swift */; };
+		1D8D92D41E856BBB004CC1AA /* SSSPackageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92D21E856BBB004CC1AA /* SSSPackageViewController.swift */; };
 		1D98D6EB1E72C53700F6BD64 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D98D6E91E72C53700F6BD64 /* SignUp.storyboard */; };
 		1DB0C8CF1E7C133700795209 /* HelveticaNeue-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1DB0C8A91E7C133700795209 /* HelveticaNeue-Bold.otf */; };
 		1DB0C8D01E7C133700795209 /* HelveticaNeue-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1DB0C8AA1E7C133700795209 /* HelveticaNeue-BoldItalic.otf */; };
@@ -69,9 +77,6 @@
 		1DBC29F51E7172370090BCFA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29D61E7172370090BCFA /* ProfileViewController.swift */; };
 		1DBC29F61E7172370090BCFA /* SafeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29D81E7172370090BCFA /* SafeListViewController.swift */; };
 		1DBC29F71E7172370090BCFA /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29DA1E7172370090BCFA /* SidePanelViewController.swift */; };
-		1DBC29F91E7172370090BCFA /* CardTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29E01E7172370090BCFA /* CardTransactionViewController.swift */; };
-		1DBC29FA1E7172370090BCFA /* SSSPackageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29E21E7172370090BCFA /* SSSPackageViewController.swift */; };
-		1DBC29FC1E7172370090BCFA /* EnterDetailsThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29E61E7172370090BCFA /* EnterDetailsThirdViewController.swift */; };
 		1DBC29FF1E7172370090BCFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DBC29EB1E7172370090BCFA /* LaunchScreen.storyboard */; };
 		1DBC2A001E7172370090BCFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DBC29ED1E7172370090BCFA /* Main.storyboard */; };
 		1DC80C981E7914AB0004445E /* RecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C8D1E7914AB0004445E /* RecordingsViewController.swift */; };
@@ -114,6 +119,14 @@
 		1D68563A1E8265CB0098A0AE /* TWManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWManager.swift; sourceTree = "<group>"; };
 		1D86B9931E7AA6B8007995F2 /* LoginEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginEndPoint.swift; sourceTree = "<group>"; };
 		1D86B9951E7ACC2C007995F2 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		1D8D92C11E854A30004CC1AA /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		1D8D92C21E854A30004CC1AA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		1D8D92C31E854A30004CC1AA /* PinCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextField.swift; sourceTree = "<group>"; };
+		1D8D92C41E854A30004CC1AA /* PinCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
+		1D8D92C61E854A30004CC1AA /* TextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
+		1D8D92CC1E85675F004CC1AA /* ProfileCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCheck.swift; sourceTree = "<group>"; };
+		1D8D92D01E856BBB004CC1AA /* CardTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransactionViewController.swift; sourceTree = "<group>"; };
+		1D8D92D21E856BBB004CC1AA /* SSSPackageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSSPackageViewController.swift; sourceTree = "<group>"; };
 		1D98D6EA1E72C53700F6BD64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SignUp.storyboard; sourceTree = "<group>"; };
 		1DB0C8A91E7C133700795209 /* HelveticaNeue-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeue-Bold.otf"; sourceTree = "<group>"; };
 		1DB0C8AA1E7C133700795209 /* HelveticaNeue-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeue-BoldItalic.otf"; sourceTree = "<group>"; };
@@ -168,9 +181,6 @@
 		1DBC29D61E7172370090BCFA /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1DBC29D81E7172370090BCFA /* SafeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeListViewController.swift; sourceTree = "<group>"; };
 		1DBC29DA1E7172370090BCFA /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
-		1DBC29E01E7172370090BCFA /* CardTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransactionViewController.swift; sourceTree = "<group>"; };
-		1DBC29E21E7172370090BCFA /* SSSPackageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSSPackageViewController.swift; sourceTree = "<group>"; };
-		1DBC29E61E7172370090BCFA /* EnterDetailsThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterDetailsThirdViewController.swift; sourceTree = "<group>"; };
 		1DBC29EC1E7172370090BCFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DBC29EE1E7172370090BCFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DC80C8D1E7914AB0004445E /* RecordingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsViewController.swift; sourceTree = "<group>"; };
@@ -291,8 +301,70 @@
 				1DF7AB2C1E7FC25700F79235 /* Alert.swift */,
 				1DF7AB361E7FC43600F79235 /* ViewExtensions.swift */,
 				1D6856361E8262B90098A0AE /* HandleResponse.swift */,
+				1D8D92CC1E85675F004CC1AA /* ProfileCheck.swift */,
 			);
 			path = CommonFunctions;
+			sourceTree = "<group>";
+		};
+		1D8D92BE1E854A0F004CC1AA /* PinCodeTextfield */ = {
+			isa = PBXGroup;
+			children = (
+				1D8D92BF1E854A30004CC1AA /* Pod */,
+			);
+			path = PinCodeTextfield;
+			sourceTree = "<group>";
+		};
+		1D8D92BF1E854A30004CC1AA /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				1D8D92C01E854A30004CC1AA /* Extensions */,
+				1D8D92C31E854A30004CC1AA /* PinCodeTextField.swift */,
+				1D8D92C41E854A30004CC1AA /* PinCodeTextFieldDelegate.swift */,
+				1D8D92C51E854A30004CC1AA /* TextHelper */,
+			);
+			path = Pod;
+			sourceTree = "<group>";
+		};
+		1D8D92C01E854A30004CC1AA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1D8D92C11E854A30004CC1AA /* IntExtension.swift */,
+				1D8D92C21E854A30004CC1AA /* StringExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1D8D92C51E854A30004CC1AA /* TextHelper */ = {
+			isa = PBXGroup;
+			children = (
+				1D8D92C61E854A30004CC1AA /* TextHelper.swift */,
+			);
+			path = TextHelper;
+			sourceTree = "<group>";
+		};
+		1D8D92CE1E856BBB004CC1AA /* EnterDetailsThird */ = {
+			isa = PBXGroup;
+			children = (
+				1D8D92CF1E856BBB004CC1AA /* CardTransactionViewController */,
+				1D8D92D11E856BBB004CC1AA /* SSSPackageViewController */,
+			);
+			path = EnterDetailsThird;
+			sourceTree = "<group>";
+		};
+		1D8D92CF1E856BBB004CC1AA /* CardTransactionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D8D92D01E856BBB004CC1AA /* CardTransactionViewController.swift */,
+			);
+			path = CardTransactionViewController;
+			sourceTree = "<group>";
+		};
+		1D8D92D11E856BBB004CC1AA /* SSSPackageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D8D92D21E856BBB004CC1AA /* SSSPackageViewController.swift */,
+			);
+			path = SSSPackageViewController;
 			sourceTree = "<group>";
 		};
 		1DB0C8A61E7C133700795209 /* Resources */ = {
@@ -428,6 +500,7 @@
 		1DBC291B1E71676E0090BCFA /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				1D8D92BE1E854A0F004CC1AA /* PinCodeTextfield */,
 				1DBC29841E7167C10090BCFA /* RMMapper */,
 			);
 			path = ThirdParty;
@@ -476,8 +549,8 @@
 			children = (
 				1D0FF78D1E83DC80006F5D80 /* ImagePickViewController */,
 				1DC80C8A1E7914AB0004445E /* Home */,
-				1D54D3101E77AFA800E955BB /* BaseViewController */,
 				1DBC29D11E7172370090BCFA /* LoginViewController */,
+				1D54D3101E77AFA800E955BB /* BaseViewController */,
 				1DBC29D31E7172370090BCFA /* NotificationViewController */,
 				1DBC29D51E7172370090BCFA /* ProfileViewController */,
 				1DBC29D71E7172370090BCFA /* SafeListViewController */,
@@ -530,45 +603,11 @@
 		1DBC29DB1E7172370090BCFA /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				1D8D92CE1E856BBB004CC1AA /* EnterDetailsThird */,
 				1DDFFE3C1E80EBB500B73099 /* EnterDetailsFirstViewController */,
 				1DDFFE3E1E80EBB500B73099 /* EnterDetailsSecondViewController */,
-				1DBC29DE1E7172370090BCFA /* EnterDetailsFourth */,
-				1DBC29E51E7172370090BCFA /* EnterDetailsThirdViewController */,
 			);
 			path = SignUp;
-			sourceTree = "<group>";
-		};
-		1DBC29DE1E7172370090BCFA /* EnterDetailsFourth */ = {
-			isa = PBXGroup;
-			children = (
-				1DBC29DF1E7172370090BCFA /* CardTransactionViewController */,
-				1DBC29E11E7172370090BCFA /* SSSPackageViewController */,
-			);
-			path = EnterDetailsFourth;
-			sourceTree = "<group>";
-		};
-		1DBC29DF1E7172370090BCFA /* CardTransactionViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1DBC29E01E7172370090BCFA /* CardTransactionViewController.swift */,
-			);
-			path = CardTransactionViewController;
-			sourceTree = "<group>";
-		};
-		1DBC29E11E7172370090BCFA /* SSSPackageViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1DBC29E21E7172370090BCFA /* SSSPackageViewController.swift */,
-			);
-			path = SSSPackageViewController;
-			sourceTree = "<group>";
-		};
-		1DBC29E51E7172370090BCFA /* EnterDetailsThirdViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1DBC29E61E7172370090BCFA /* EnterDetailsThirdViewController.swift */,
-			);
-			path = EnterDetailsThirdViewController;
 			sourceTree = "<group>";
 		};
 		1DBC29E91E7172370090BCFA /* View */ = {
@@ -915,14 +954,15 @@
 				1D86B9961E7ACC2C007995F2 /* Location.swift in Sources */,
 				1DBC29F41E7172370090BCFA /* NotificationViewController.swift in Sources */,
 				1DF7AB281E7F9B7D00F79235 /* SidePanel.swift in Sources */,
+				1D8D92CD1E85675F004CC1AA /* ProfileCheck.swift in Sources */,
 				1DBC299D1E7168590090BCFA /* RMMapper.m in Sources */,
 				1D6856391E8265AC0098A0AE /* FBManager.swift in Sources */,
 				1DBC29F31E7172370090BCFA /* LoginViewController.swift in Sources */,
-				1DBC29F91E7172370090BCFA /* CardTransactionViewController.swift in Sources */,
 				1DF7AB351E7FC3F100F79235 /* ParamKeys.swift in Sources */,
 				1D68563B1E8265CB0098A0AE /* TWManager.swift in Sources */,
 				1DDFFE431E810AE700B73099 /* fonts.swift in Sources */,
 				1DBC29F71E7172370090BCFA /* SidePanelViewController.swift in Sources */,
+				1D8D92CB1E854A30004CC1AA /* TextHelper.swift in Sources */,
 				1DF7AB3B1E7FD6E800F79235 /* Profile.swift in Sources */,
 				1DDFFE451E810E9A00B73099 /* TextfieldExtensions.swift in Sources */,
 				1DBC29BD1E716B1A0090BCFA /* HTTPClient.swift in Sources */,
@@ -935,13 +975,17 @@
 				1DF7AB2B1E7FB44100F79235 /* Validation.swift in Sources */,
 				1D54D3121E77AFB700E955BB /* BaseViewController.swift in Sources */,
 				1DF7AB071E7F92EF00F79235 /* APIHandler.swift in Sources */,
-				1DBC29FA1E7172370090BCFA /* SSSPackageViewController.swift in Sources */,
+				1D8D92C81E854A30004CC1AA /* StringExtension.swift in Sources */,
 				1DC80C9C1E7914AB0004445E /* SubmitComplaintViewController.swift in Sources */,
+				1D8D92D31E856BBB004CC1AA /* CardTransactionViewController.swift in Sources */,
 				1DF7AB391E7FD63200F79235 /* User.swift in Sources */,
 				1D0C22161E7820AE00C42C6A /* RecordingTableCell.swift in Sources */,
+				1D8D92C91E854A30004CC1AA /* PinCodeTextField.swift in Sources */,
 				1DF7AB2F1E7FC36700F79235 /* Constants.swift in Sources */,
+				1D8D92C71E854A30004CC1AA /* IntExtension.swift in Sources */,
 				1DF039061E795C4900E343E3 /* PinValidationViewController.swift in Sources */,
 				1DBC299B1E7168590090BCFA /* NSObject+RMCopyable.m in Sources */,
+				1D8D92D41E856BBB004CC1AA /* SSSPackageViewController.swift in Sources */,
 				1D6856371E8262B90098A0AE /* HandleResponse.swift in Sources */,
 				1D0C221A1E7820C000C42C6A /* ComplaintTableCell.swift in Sources */,
 				1DC80C991E7914AB0004445E /* ComplaintListViewController.swift in Sources */,
@@ -955,9 +999,9 @@
 				1DBC29B71E716AF90090BCFA /* APIConstants.swift in Sources */,
 				1DDFFE401E80EBB500B73099 /* EnterDetailsFirstViewController.swift in Sources */,
 				1DBC29BB1E716B0E0090BCFA /* APIManager.swift in Sources */,
+				1D8D92CA1E854A30004CC1AA /* PinCodeTextFieldDelegate.swift in Sources */,
 				1DBC299A1E7168590090BCFA /* NSObject+RMArchivable.m in Sources */,
 				1DD5875E1E7BA24700966A7C /* MaterialButton.swift in Sources */,
-				1DBC29FC1E7172370090BCFA /* EnterDetailsThirdViewController.swift in Sources */,
 				1D03C4B31E82383500B34409 /* facebook.swift in Sources */,
 				1DF7AB321E7FC3D800F79235 /* Images.swift in Sources */,
 				1D0C221F1E782AAB00C42C6A /* TableViewDataSource.swift in Sources */,

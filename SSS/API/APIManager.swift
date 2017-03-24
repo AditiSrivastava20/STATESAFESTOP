@@ -69,7 +69,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
             let json = JSON(response)
             print(json)
             
-            let responseType = SignUpValidation(rawValue: json[APIConstants.success].stringValue) ?? .failure
+            let responseType = Validate(rawValue: json[APIConstants.newUser].stringValue) ?? .failure
             
             switch responseType {
             case .success:

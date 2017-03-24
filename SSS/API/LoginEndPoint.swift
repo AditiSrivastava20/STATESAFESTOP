@@ -15,6 +15,7 @@ enum LoginEndpoint {
     case login(email : String? , password : String?, facebookId: String?, twitterId: String?, accountType: String?, deviceToken: String?)
     case signup(fullname : String? , email : String?, fullAddress: String?, password: String? , facebookId: String?, twitterId: String?, phone: String?, accountType: String?, deviceToken: String?)
     case checkExistEmailOrPhone(email: String?, phone: String?)
+    case pinPassword(accessToken: String?, pinPassword: String?)
     
 }
 
@@ -28,7 +29,8 @@ extension LoginEndpoint : Router{
         case .login(_): return APIConstants.login
         case .signup(_): return APIConstants.signup
         case .checkExistEmailOrPhone(_): return APIConstants.checkExistEmailOrPhone
-            
+        case .pinPassword(_): return APIConstants.pinPassword
+        
         }
     }
     
@@ -49,6 +51,9 @@ extension LoginEndpoint : Router{
         
         case .checkExistEmailOrPhone(let email, let phone):
             return Parameters.checkExistEmailOrPhone.map(values: [email, phone])
+            
+        case .pinPassword(let accessToken, let pinPassword):
+            return Parameters.pinPassword.map(values: [accessToken, pinPassword])
         }
     }
     
