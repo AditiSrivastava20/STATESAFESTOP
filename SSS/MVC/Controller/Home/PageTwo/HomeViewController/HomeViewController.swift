@@ -42,7 +42,9 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if let value = UserDefaults.standard.value(forKey: "login") as? [String:String] {
+            print(value)
+        }
         
     }
 

@@ -9,7 +9,6 @@
 import UIKit
 import Material
 import ISMessages
-import TwitterKit
 import Kingfisher
 import GooglePlacePicker
 
@@ -137,7 +136,8 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
             
             APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text, email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: Device.token.rawValue),image: imgProfile.image , completion: { (response) in
                 
-                HandleResponse.shared.handle(response: response, self)
+                HandleResponse.shared.handle(response: response, self, from: .signup)
+                
             })
             
         case .failure(let title,let msg):
@@ -145,11 +145,12 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
         }
     }
     
+    //MARK:- Account type
     func accountType() -> String {
         
-        if !facebookID.isEmpty {
+        if (/facebookID).isEmpty {
             return AccountType.facebook.rawValue
-        } else if !twitterID.isEmpty {
+        } else if (/twitterID).isEmpty {
             return AccountType.twitter.rawValue
         } else {
             return AccountType.normal.rawValue
@@ -158,16 +159,16 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     }
     
     
-    //MARK:- Check existing email/phone
-    func checkExistEmailOrPhone() {
-        
-        APIManager.shared.request(with: LoginEndpoint.checkExistEmailOrPhone(email: txtEmailAddress.text, phone: txtPhoneNumber.text) , completion: { (response) in
-            
-            HandleResponse.shared.handle(response: response, self)
-            
-        })
-        
-    }
+//    //MARK:- Check existing email/phone
+//    func checkExistEmailOrPhone() {
+//        
+//        APIManager.shared.request(with: LoginEndpoint.checkExistEmailOrPhone(email: txtEmailAddress.text, phone: txtPhoneNumber.text) , completion: { (response) in
+//            
+//            HandleResponse.shared.handle(response: response, self)
+//            
+//        })
+//        
+//    }
     
 }
 

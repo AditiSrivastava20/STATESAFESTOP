@@ -10,18 +10,44 @@ import Foundation
 import ISMessages
 import UIKit
 
+enum HandleCheck {
+    
+    case login
+    case signup
+    case pinPassword
+    case sssPackage
+    case inAppPurchase
+}
+
+
 class HandleResponse {
     
     static let shared = HandleResponse()
     
-    func handle(response : Response, _ obj: UIViewController){
+    func handle(response : Response, _ obj: UIViewController, from: HandleCheck) {
         
         switch response{
         case .success(let responseValue):
             if let value = responseValue as? User{
                 
                 print(value.msg ?? "")
-                self.handleSuccess(response: value, obj)
+                
+                switch from {
+                case .login:
+                    ProfileData.shared.store(value)
+                    obj.performSegue(withIdentifier: "main", sender: obj)
+                    
+                case .signup:
+                    ProfileData.shared.store(value)
+                    obj.performSegue(withIdentifier: "setUpPin", sender: obj)
+                    
+                case .pinPassword:
+                    obj.performSegue(withIdentifier: "sssPackage", sender: obj)
+                    
+                case .sssPackage,.inAppPurchase:
+                    print("go to main")
+                
+                }
                 
             }
             
@@ -29,21 +55,6 @@ class HandleResponse {
             Alerts.shared.show(alert: .oops, message: /str, type: .error)
         }
         
-    }
-    
-    func handleSuccess(response: User, _ obj: UIViewController) {
-        
-        UserDefaults.standard.setValue(response.access_token, forKey: ParamKeys.access_token.rawValue)
-        
-        if response.profile?.is_pin == "0" {
-            
-            obj.performSegue(withIdentifier: "setUpPin", sender: obj)
-            
-        } else if response.is_user_exist == "1" {
-            
-            obj.performSegue(withIdentifier: "main", sender: obj)
-            
-        }
     }
     
     

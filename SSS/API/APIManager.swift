@@ -32,18 +32,34 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
             let json = JSON(response)
             print(json)
             
-            let responseType = Validate(rawValue: json[APIConstants.userExist].stringValue) ?? .failure
-            if responseType == Validate.success{
+            if api.route == APIConstants.pinPassword {
                 
-                let object : AnyObject?
-                object = api.handle(parameters: json)
-                completion(Response.success(object))
+                let responseType = StatusValidation(rawValue: json[APIConstants.statusCode].stringValue) ?? .failure
+                if responseType == StatusValidation.success{
+                    
+                    let object : AnyObject?
+                    object = api.handle(parameters: json)
+                    completion(Response.success(object))
+                    return
+                }
+                else{
+                    completion(Response.failure(json[APIConstants.message].stringValue))
+                }
                 
-                return
-            }
-            else{ 
-                completion(Response.failure(json[APIConstants.message].stringValue))
-            
+            } else {
+                
+                let responseType = Validate(rawValue: json[APIConstants.userExist].stringValue) ?? .failure
+                if responseType == Validate.success{
+                    
+                    let object : AnyObject?
+                    object = api.handle(parameters: json)
+                    completion(Response.success(object))
+                    return
+                }
+                else{
+                    completion(Response.failure(json[APIConstants.message].stringValue))
+                }
+                
             }
             
             }, failure: {[weak self] (message) in
@@ -69,7 +85,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
             let json = JSON(response)
             print(json)
             
-            let responseType = Validate(rawValue: json[APIConstants.newUser].stringValue) ?? .failure
+            let responseType = StatusValidation(rawValue: json[APIConstants.statusCode].stringValue) ?? .failure
             
             switch responseType {
             case .success:

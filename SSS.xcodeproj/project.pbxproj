@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1D03C4B31E82383500B34409 /* facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D03C4B21E82383500B34409 /* facebook.swift */; };
-		1D0C22161E7820AE00C42C6A /* RecordingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C22141E7820AE00C42C6A /* RecordingTableCell.swift */; };
-		1D0C22171E7820AE00C42C6A /* RecordingTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D0C22151E7820AE00C42C6A /* RecordingTableCell.xib */; };
 		1D0C221A1E7820C000C42C6A /* ComplaintTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C22181E7820C000C42C6A /* ComplaintTableCell.swift */; };
 		1D0C221B1E7820C000C42C6A /* ComplaintTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D0C22191E7820C000C42C6A /* ComplaintTableCell.xib */; };
 		1D0C221F1E782AAB00C42C6A /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C221E1E782AAB00C42C6A /* TableViewDataSource.swift */; };
@@ -19,13 +17,11 @@
 		1D6856391E8265AC0098A0AE /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6856381E8265AC0098A0AE /* FBManager.swift */; };
 		1D68563B1E8265CB0098A0AE /* TWManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68563A1E8265CB0098A0AE /* TWManager.swift */; };
 		1D86B9941E7AA6B8007995F2 /* LoginEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D86B9931E7AA6B8007995F2 /* LoginEndPoint.swift */; };
-		1D86B9961E7ACC2C007995F2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D86B9951E7ACC2C007995F2 /* Location.swift */; };
 		1D8D92C71E854A30004CC1AA /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92C11E854A30004CC1AA /* IntExtension.swift */; };
 		1D8D92C81E854A30004CC1AA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92C21E854A30004CC1AA /* StringExtension.swift */; };
 		1D8D92C91E854A30004CC1AA /* PinCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92C31E854A30004CC1AA /* PinCodeTextField.swift */; };
 		1D8D92CA1E854A30004CC1AA /* PinCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92C41E854A30004CC1AA /* PinCodeTextFieldDelegate.swift */; };
 		1D8D92CB1E854A30004CC1AA /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92C61E854A30004CC1AA /* TextHelper.swift */; };
-		1D8D92CD1E85675F004CC1AA /* ProfileCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92CC1E85675F004CC1AA /* ProfileCheck.swift */; };
 		1D8D92D31E856BBB004CC1AA /* CardTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92D01E856BBB004CC1AA /* CardTransactionViewController.swift */; };
 		1D8D92D41E856BBB004CC1AA /* SSSPackageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D92D21E856BBB004CC1AA /* SSSPackageViewController.swift */; };
 		1D98D6EB1E72C53700F6BD64 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D98D6E91E72C53700F6BD64 /* SignUp.storyboard */; };
@@ -79,6 +75,8 @@
 		1DBC29F71E7172370090BCFA /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC29DA1E7172370090BCFA /* SidePanelViewController.swift */; };
 		1DBC29FF1E7172370090BCFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DBC29EB1E7172370090BCFA /* LaunchScreen.storyboard */; };
 		1DBC2A001E7172370090BCFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DBC29ED1E7172370090BCFA /* Main.storyboard */; };
+		1DC517451E868C4F00E92E8B /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC517441E868C4F00E92E8B /* ProfileData.swift */; };
+		1DC517591E869DF100E92E8B /* RecordingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC517581E869DF100E92E8B /* RecordingTableCell.swift */; };
 		1DC80C981E7914AB0004445E /* RecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C8D1E7914AB0004445E /* RecordingsViewController.swift */; };
 		1DC80C991E7914AB0004445E /* ComplaintListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C901E7914AB0004445E /* ComplaintListViewController.swift */; };
 		1DC80C9A1E7914AB0004445E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C931E7914AB0004445E /* HomeViewController.swift */; };
@@ -107,8 +105,6 @@
 
 /* Begin PBXFileReference section */
 		1D03C4B21E82383500B34409 /* facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = facebook.swift; sourceTree = "<group>"; };
-		1D0C22141E7820AE00C42C6A /* RecordingTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingTableCell.swift; sourceTree = "<group>"; };
-		1D0C22151E7820AE00C42C6A /* RecordingTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordingTableCell.xib; sourceTree = "<group>"; };
 		1D0C22181E7820C000C42C6A /* ComplaintTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplaintTableCell.swift; sourceTree = "<group>"; };
 		1D0C22191E7820C000C42C6A /* ComplaintTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplaintTableCell.xib; sourceTree = "<group>"; };
 		1D0C221E1E782AAB00C42C6A /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
@@ -118,13 +114,11 @@
 		1D6856381E8265AC0098A0AE /* FBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
 		1D68563A1E8265CB0098A0AE /* TWManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWManager.swift; sourceTree = "<group>"; };
 		1D86B9931E7AA6B8007995F2 /* LoginEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginEndPoint.swift; sourceTree = "<group>"; };
-		1D86B9951E7ACC2C007995F2 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1D8D92C11E854A30004CC1AA /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		1D8D92C21E854A30004CC1AA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		1D8D92C31E854A30004CC1AA /* PinCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextField.swift; sourceTree = "<group>"; };
 		1D8D92C41E854A30004CC1AA /* PinCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
 		1D8D92C61E854A30004CC1AA /* TextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
-		1D8D92CC1E85675F004CC1AA /* ProfileCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCheck.swift; sourceTree = "<group>"; };
 		1D8D92D01E856BBB004CC1AA /* CardTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransactionViewController.swift; sourceTree = "<group>"; };
 		1D8D92D21E856BBB004CC1AA /* SSSPackageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSSPackageViewController.swift; sourceTree = "<group>"; };
 		1D98D6EA1E72C53700F6BD64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SignUp.storyboard; sourceTree = "<group>"; };
@@ -183,6 +177,8 @@
 		1DBC29DA1E7172370090BCFA /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		1DBC29EC1E7172370090BCFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DBC29EE1E7172370090BCFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1DC517441E868C4F00E92E8B /* ProfileData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
+		1DC517581E869DF100E92E8B /* RecordingTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingTableCell.swift; sourceTree = "<group>"; };
 		1DC80C8D1E7914AB0004445E /* RecordingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsViewController.swift; sourceTree = "<group>"; };
 		1DC80C901E7914AB0004445E /* ComplaintListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplaintListViewController.swift; sourceTree = "<group>"; };
 		1DC80C931E7914AB0004445E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -253,8 +249,7 @@
 		1D0C22131E78207B00C42C6A /* RecordingTableCell */ = {
 			isa = PBXGroup;
 			children = (
-				1D0C22141E7820AE00C42C6A /* RecordingTableCell.swift */,
-				1D0C22151E7820AE00C42C6A /* RecordingTableCell.xib */,
+				1DC517581E869DF100E92E8B /* RecordingTableCell.swift */,
 			);
 			path = RecordingTableCell;
 			sourceTree = "<group>";
@@ -294,14 +289,13 @@
 		1D54D3191E77B72000E955BB /* CommonFunctions */ = {
 			isa = PBXGroup;
 			children = (
-				1D86B9951E7ACC2C007995F2 /* Location.swift */,
 				1DD5875D1E7BA24700966A7C /* MaterialButton.swift */,
 				1DF7AB271E7F9B7D00F79235 /* SidePanel.swift */,
 				1DF7AB2A1E7FB44100F79235 /* Validation.swift */,
 				1DF7AB2C1E7FC25700F79235 /* Alert.swift */,
 				1DF7AB361E7FC43600F79235 /* ViewExtensions.swift */,
 				1D6856361E8262B90098A0AE /* HandleResponse.swift */,
-				1D8D92CC1E85675F004CC1AA /* ProfileCheck.swift */,
+				1DC517441E868C4F00E92E8B /* ProfileData.swift */,
 			);
 			path = CommonFunctions;
 			sourceTree = "<group>";
@@ -862,7 +856,6 @@
 				1DB0C8DB1E7C133700795209 /* SF-UI-Display-Black.otf in Resources */,
 				1DB0C8D91E7C133700795209 /* HelveticaNeue.otf in Resources */,
 				1DB0C8E61E7C133700795209 /* SF-UI-Text-Heavy.otf in Resources */,
-				1D0C22171E7820AE00C42C6A /* RecordingTableCell.xib in Resources */,
 				1DB0C8F01E7C133700795209 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -951,10 +944,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DBC290F1E7163700090BCFA /* AppDelegate.swift in Sources */,
-				1D86B9961E7ACC2C007995F2 /* Location.swift in Sources */,
 				1DBC29F41E7172370090BCFA /* NotificationViewController.swift in Sources */,
+				1DC517451E868C4F00E92E8B /* ProfileData.swift in Sources */,
 				1DF7AB281E7F9B7D00F79235 /* SidePanel.swift in Sources */,
-				1D8D92CD1E85675F004CC1AA /* ProfileCheck.swift in Sources */,
 				1DBC299D1E7168590090BCFA /* RMMapper.m in Sources */,
 				1D6856391E8265AC0098A0AE /* FBManager.swift in Sources */,
 				1DBC29F31E7172370090BCFA /* LoginViewController.swift in Sources */,
@@ -979,7 +971,6 @@
 				1DC80C9C1E7914AB0004445E /* SubmitComplaintViewController.swift in Sources */,
 				1D8D92D31E856BBB004CC1AA /* CardTransactionViewController.swift in Sources */,
 				1DF7AB391E7FD63200F79235 /* User.swift in Sources */,
-				1D0C22161E7820AE00C42C6A /* RecordingTableCell.swift in Sources */,
 				1D8D92C91E854A30004CC1AA /* PinCodeTextField.swift in Sources */,
 				1DF7AB2F1E7FC36700F79235 /* Constants.swift in Sources */,
 				1D8D92C71E854A30004CC1AA /* IntExtension.swift in Sources */,
@@ -994,6 +985,7 @@
 				1DBC29F61E7172370090BCFA /* SafeListViewController.swift in Sources */,
 				1DDFFE411E80EBB500B73099 /* EnterDetailsSecondViewController.swift in Sources */,
 				1DC80C9A1E7914AB0004445E /* HomeViewController.swift in Sources */,
+				1DC517591E869DF100E92E8B /* RecordingTableCell.swift in Sources */,
 				1DF7AB371E7FC43600F79235 /* ViewExtensions.swift in Sources */,
 				1DF039031E794D9500E343E3 /* PageViewController.swift in Sources */,
 				1DBC29B71E716AF90090BCFA /* APIConstants.swift in Sources */,

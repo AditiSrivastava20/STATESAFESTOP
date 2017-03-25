@@ -25,7 +25,7 @@ class TWManager {
     }
     
     //MARK:- Twitter login
-    func login(_ obj: UIViewController, check: Check, completion : @escaping ([String: Any]) -> () ) {
+    func login(_ obj: UIViewController, check: SocialCheck, completion : @escaping ([String: Any]) -> () ) {
         
         Twitter.sharedInstance().logIn { (session, error) in
             if session != nil {
@@ -63,17 +63,18 @@ class TWManager {
     
     
     //MARK:- login/signup after twitter response
-    func apiHit(param: [String: Any] , check: Check , obj: UIViewController) {
+    func apiHit(param: [String: Any] , check: SocialCheck , obj: UIViewController) {
         
         switch check {
         case .login:
             APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: "\(param["id"]!)", accountType: AccountType.twitter.rawValue, deviceToken: Device.token.rawValue), completion: { (response) in
                 
-                HandleResponse.shared.handle(response: response, obj)
+                HandleResponse.shared.handle(response: response, obj, from: .login)
+                
             })
             
         case .signup:
-            print(param)
+            print("signup")
             
         }
         

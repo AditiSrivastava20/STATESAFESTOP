@@ -21,7 +21,7 @@ internal struct APIConstants {
     static let readContacts = "readcontacts"
     static let addToSafelist = "addsafelist"
     static let removeFromSafelist = "removesafeuser"
-    static let success = "success"
+    static let statusCode = "status_code"
     static let userExist = "is_user_exist"
     static let newUser = "isnewuser"
     static let message = "msg"
@@ -95,11 +95,11 @@ enum Validate: String {
     }
 }
 
-enum SignUpValidation: String {
+enum StatusValidation: String {
     
     case none
     case success = "200"
-    case failure
+    case failure = "400"
     
     func map(response message: String?) -> String? {
         
@@ -114,7 +114,7 @@ enum SignUpValidation: String {
     }
 }
 
-enum Check {
+enum SocialCheck {
     
     case login
     case signup

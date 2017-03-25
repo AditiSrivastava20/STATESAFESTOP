@@ -18,7 +18,6 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var txtEmail: TextField!
     @IBOutlet weak var txtPassword: TextField!
     @IBOutlet weak var btnFacebook: Button!
-    
     @IBOutlet weak var btnTwitter: Button!
     
     override func viewDidLoad() {
@@ -67,9 +66,9 @@ extension LoginViewController {
         case .success:
             APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: Device.token.rawValue), completion: { (response) in
                 
-                HandleResponse.shared.handle(response: response, self)
-                
+                HandleResponse.shared.handle(response: response, self, from: .login)
             })
+            
         case .failure(let title,let msg):
             Alerts.shared.show(alert: title, message: msg , type : .info)
         }
@@ -106,9 +105,7 @@ extension LoginViewController {
         print("twitter login selected")
         
         TWManager.shared.login(self, check: .login, completion: { (json) in
-            
             print("\(json["id"]!)")
-        
         })
     }
 
