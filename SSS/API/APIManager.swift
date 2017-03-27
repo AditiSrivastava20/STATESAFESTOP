@@ -17,6 +17,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     static let shared = APIManager()
     private lazy var httpClient : HTTPClient = HTTPClient()
     
+    //MARK: Normal API (signin/login, pin setup etc)
     func request(with api : Router , completion : @escaping Completion )  {
         
         if isLoaderNeeded(api: api) {
@@ -32,10 +33,10 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
             let json = JSON(response)
             print(json)
             
-            if api.route == APIConstants.pinPassword {
+            if api.route == APIConstants.login {
                 
-                let responseType = StatusValidation(rawValue: json[APIConstants.statusCode].stringValue) ?? .failure
-                if responseType == StatusValidation.success{
+                let responseType = Validate(rawValue: json[APIConstants.userExist].stringValue) ?? .failure
+                if responseType == Validate.success{
                     
                     let object : AnyObject?
                     object = api.handle(parameters: json)
@@ -48,8 +49,8 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
                 
             } else {
                 
-                let responseType = Validate(rawValue: json[APIConstants.userExist].stringValue) ?? .failure
-                if responseType == Validate.success{
+                let responseType = StatusValidation(rawValue: json[APIConstants.statusCode].stringValue) ?? .failure
+                if responseType == StatusValidation.success{
                     
                     let object : AnyObject?
                     object = api.handle(parameters: json)
@@ -69,6 +70,42 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
         })
     }
     
+    //MARK: safelist API
+    func request(withArray api : Router, array: [String]? , completion : @escaping Completion )  {
+        
+        if isLoaderNeeded(api: api) {
+            startAnimating(nil, message: nil, messageFont: nil, type: .lineScalePulseOutRapid , color: UIColor.white, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+        }
+        
+        httpClient.postRequestWithArray(withApi: api, array: array, success: {[weak self] (data) in
+            self?.stopAnimating()
+            guard let response = data else {
+                completion(Response.failure(.none))
+                return
+            }
+            let json = JSON(response)
+            print(json)
+            
+            let responseType = StatusValidation(rawValue: json[APIConstants.statusCode].stringValue) ?? .failure
+            if responseType == StatusValidation.success{
+                
+                let object : AnyObject?
+                object = api.handle(parameters: json)
+                completion(Response.success(object))
+                return
+            }
+            else{
+                completion(Response.failure(json[APIConstants.message].stringValue))
+            }
+            
+            }, failure: {[weak self] (message) in
+                self?.stopAnimating()
+                completion(Response.failure(message))
+                
+        })
+    }
+    
+    //MARK: multipart data API (signup, edit profile)
     func request(withImages api : Router , image : UIImage?  , completion : @escaping Completion )  {
         
         if isLoaderNeeded(api: api) {

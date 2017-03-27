@@ -19,6 +19,7 @@ enum Alert : String{
     case cancel = "Cancel"
     case error = "Error"
     case logout = "Logged out"
+    case friendsErr = "Number of friends less than 10"
 }
 
 enum Device: String {

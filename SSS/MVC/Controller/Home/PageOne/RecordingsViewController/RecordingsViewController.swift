@@ -11,9 +11,6 @@ import UIKit
 
 class RecordingsViewController: UIViewController {
     
-    var selectedRow:Int = -1
-    let data:[String:String] = ["title": "video_01.mp4", "image": Asset.icVideoFill.rawValue]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,31 +20,6 @@ class RecordingsViewController: UIViewController {
     }
     
 }
-
-extension RecordingsViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRow = indexPath.row
-    }
-    
-}
-
-extension RecordingsViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecordingTableCell", for: indexPath) as! RecordingTableCell
-        
-        cell.cellData = data
-        return cell
-        
-    }
-    
-}
-
 
 
 

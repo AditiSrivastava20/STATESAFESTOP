@@ -23,3 +23,16 @@ class BaseViewController: UIViewController {
     }
 
 }
+
+extension EnterDetailsSecondViewController: PinCodeTextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: PinCodeTextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: PinCodeTextField) -> Bool {
+        return true
+    }
+    
+    
+}

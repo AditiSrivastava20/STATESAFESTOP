@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>EPContactsPicker-EPContactsPicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EPContactsPicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>EZSwiftExtensions.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -102,12 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>20A9DD9ABBF08BC57372A26C35327BF1</key>
+		<key>1ED7210FC5C9C6ADCEB3CDAD87B99D60</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>358D7F2F8BDC7059DCCE178453FDD6A1</key>
+		<key>20A9DD9ABBF08BC57372A26C35327BF1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,12 +162,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A9F4AEAD194F2E0130A84E4B17C1E85E</key>
+		<key>9B49654B82B0313D988195D5587273EF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>BC5000D645EEAF961C85907CDC796FE1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BDDFD4E5CAF5AA85F015161B7BADF982</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -173,6 +188,11 @@
 			<true/>
 		</dict>
 		<key>CEF3F3FD48F30AE7E6A6674BC46F1068</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D170B736C5B8F05A182636D590B05960</key>
 		<dict>
 			<key>primary</key>
 			<true/>

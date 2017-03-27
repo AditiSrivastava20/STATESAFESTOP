@@ -128,7 +128,7 @@ enum Response {
     
 }
 
-typealias OptionalDictionary = [String: String]?
+typealias OptionalDictionary = [String: Any]?
 
 struct Parameters {
     

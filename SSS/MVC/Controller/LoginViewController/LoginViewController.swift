@@ -22,15 +22,13 @@ class LoginViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //checkLogin()
         txtEmail.placeHolderAtt()
         txtPassword.placeHolderAtt()
-        
-        //checkLogin()
     }
     
     func checkLogin() {
-        if let _ = UserDefaults.standard.value(forKey: "User") as? User {
+        if let _ = UserDefaults.standard.value(forKey: "login") as? [String: String] {
             performSegue(withIdentifier: "main", sender: self)
         }
     }

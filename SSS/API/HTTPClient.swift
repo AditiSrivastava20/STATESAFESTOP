@@ -40,6 +40,28 @@ class HTTPClient {
         
     }
     
+    func postRequestWithArray(withApi api : Router, array: [String]? , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ) {
+        
+        var params = api.parameters
+        params?[Keys.contacts.rawValue] = array
+        let fullPath = api.baseURL + api.route
+        let method = api.method
+        print(fullPath)
+        print(params)
+        Alamofire.request(fullPath, method: method, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+            
+            switch response.result {
+            case .success(let data):
+                success(data)
+            case .failure(let error):
+                failure(error.localizedDescription)
+            }
+        }
+        
+        
+        
+    }
+    
     
     func postRequestWithImages(withApi api : Router , image: UIImage? , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ) {
         

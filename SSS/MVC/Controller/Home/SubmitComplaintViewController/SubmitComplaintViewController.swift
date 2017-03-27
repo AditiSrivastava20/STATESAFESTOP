@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Material
 
 class SubmitComplaintViewController: UIViewController {
+    
+    @IBOutlet weak var txtComplaintTitle: TextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        txtComplaintTitle.placeHolderAtt()
 
         // Do any additional setup after loading the view.
     }

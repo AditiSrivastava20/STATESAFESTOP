@@ -26,7 +26,7 @@ class FBManager {
     func login(_ obj: UIViewController, check: SocialCheck, completion : @escaping (FacebookResponse) -> () ) {
         
         var fbProfile:FacebookResponse?
-        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: obj) { (result, err) in
+        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile", "user_friends"], from: obj) { (result, err) in
             if err != nil {
                 print("failed to start graph request: \(err)")
                 return
@@ -44,13 +44,28 @@ class FBManager {
                 self.apiHit(param: fbProfile!, check: check, obj: obj)
                 completion(fbProfile!)
             }
+            
+            
         }
-        
-        let loginManager = FBSDKLoginManager()
-        loginManager.logOut()
-        
     }
     
+    func fetchFriendsAction(completion : @escaping (Int) -> () ) {
+        
+        FBSDKGraphRequest(graphPath: "/me/taggable_friends", parameters: ["fields": "id"]).start {(connection, result , error) -> Void in
+            
+            if error != nil {
+                print("failed to start graph request: \(error)")
+                return
+            }
+            
+            let resultdict = result as! NSDictionary
+            let friends = resultdict.object(forKey: "data") as! NSArray
+            //print("Found \(friends.count) friends")
+            
+            completion(friends.count)
+        }
+        
+    }
     
     //MARK:- login/signup after facebook response
     func apiHit(param: FacebookResponse , check: SocialCheck , obj: UIViewController) {

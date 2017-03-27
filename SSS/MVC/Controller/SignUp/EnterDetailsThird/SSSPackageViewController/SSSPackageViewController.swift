@@ -10,6 +10,7 @@ import UIKit
 import Material
 import FBSDKCoreKit
 import FBSDKShareKit
+import FBSDKLoginKit
 
 
 class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
@@ -24,12 +25,30 @@ class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
         
     }
     
+    //MARK: In App purchase action
     @IBAction func btnInAppPurchaseAction(_ sender: Any) {
         
     }
     
+    
+    //MARK: App invite button action
     @IBAction func btnAppInviteAction(_ sender: Any) {
         print("Invite button tapped")
+        
+        FBManager.shared.fetchFriendsAction(completion: {(count) in
+            
+            if count < 10 {
+                Alerts.shared.show(alert: .oops, message: Alert.friendsErr.rawValue, type: .error)
+            } else {
+                self.appInviteAction()
+            }
+        })
+        
+    }
+    
+    
+    //MARK: App invite dialog
+    func appInviteAction() {
         
         let inviteDialog:FBSDKAppInviteDialog = FBSDKAppInviteDialog()
         if(inviteDialog.canShow()){
@@ -45,8 +64,8 @@ class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
             inviteDialog.delegate = self
             inviteDialog.show()
         }
-        
     }
+    
     
     public func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [AnyHashable : Any]!) {
         
@@ -62,6 +81,8 @@ class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
             {
                 print("User Canceled invitation dialog")
             }
+        } else {
+            print("invite sent")
         }
 
     }

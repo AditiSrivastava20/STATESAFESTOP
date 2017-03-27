@@ -48,8 +48,8 @@ enum StoryboardScene {
   enum Main: String, StoryboardSceneType {
     static let storyboardName = "Main"
 
-    static func initialViewController() -> UINavigationController {
-      guard let vc = storyboard().instantiateInitialViewController() as? UINavigationController else {
+    static func initialViewController() -> SSS.SafeListViewController {
+      guard let vc = storyboard().instantiateInitialViewController() as? SSS.SafeListViewController else {
         fatalError("Failed to instantiate initialViewController for \(self.storyboardName)")
       }
       return vc
@@ -121,8 +121,8 @@ enum StoryboardScene {
   enum SignUp: String, StoryboardSceneType {
     static let storyboardName = "SignUp"
 
-    static func initialViewController() -> SSS.SSSPackageViewController {
-      guard let vc = storyboard().instantiateInitialViewController() as? SSS.SSSPackageViewController else {
+    static func initialViewController() -> UINavigationController {
+      guard let vc = storyboard().instantiateInitialViewController() as? UINavigationController else {
         fatalError("Failed to instantiate initialViewController for \(self.storyboardName)")
       }
       return vc

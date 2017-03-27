@@ -17,7 +17,7 @@ class ProfileData {
         var login:[String:String] = [:]
         
         login["fullname"] = value?.profile?.fullname
-        login["access_token"] = value?.profile?.access_token
+        login["access_token"] = /value?.access_token
         login["account_type"] = value?.profile?.account_type
         login["email"] = value?.profile?.email
         login["is_pin"] = value?.profile?.is_pin

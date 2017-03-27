@@ -1,14 +1,14 @@
 //
-//  ComplaintTableCell.swift
+//  SafelistCell.swift
 //  SSS
 //
-//  Created by Sierra 4 on 14/03/17.
+//  Created by Sierra 4 on 27/03/17.
 //  Copyright © 2017 Codebrew. All rights reserved.
 //
 
 import UIKit
 
-class ComplaintTableCell: UITableViewCell {
+class SafelistCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,5 +20,5 @@ class ComplaintTableCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
 }

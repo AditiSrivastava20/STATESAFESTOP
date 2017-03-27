@@ -114,13 +114,11 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     @IBAction func btnTwitterAction(_ sender: Any) {
         
         TWManager.shared.login(self, check: .signup, completion: { (json) in
-            
             print("\(json["id"]!)")
             self.imgProfile.kf.setImage(with: URL(string: "\(json["profile_image_url_https"]!)"))
             self.txtFullname.text = "\(json["name"]!)"
             self.twitterID = "\(json["id"]!)"
             self.facebookID = ""
-        
         })
         
     }
@@ -155,20 +153,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
         } else {
             return AccountType.normal.rawValue
         }
-        
     }
-    
-    
-//    //MARK:- Check existing email/phone
-//    func checkExistEmailOrPhone() {
-//        
-//        APIManager.shared.request(with: LoginEndpoint.checkExistEmailOrPhone(email: txtEmailAddress.text, phone: txtPhoneNumber.text) , completion: { (response) in
-//            
-//            HandleResponse.shared.handle(response: response, self)
-//            
-//        })
-//        
-//    }
     
 }
 
