@@ -9,6 +9,13 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    
+    var dataSource : TableViewDataSource?{
+        didSet{
+            
+            
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +28,31 @@ class BaseViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    
+    func setupTableView(tableView : UITableView? , cellId : String? , items : [Any]? ) {
+        
+        
+        dataSource = TableViewDataSource(items: items as Array<AnyObject>? , height: UITableViewAutomaticDimension , tableView: tableView, cellIdentifier:cellId , configureCellBlock: { (cell, item, indexPath) in
+            
+            //(cell as? SafelistCell)?.objSafeuser = item as? Safelist
+            
+        }, aRowSelectedListener: { (indexPath) in
+            
+            print(indexPath)
+            
+        }) { (scrollView) in
+            
+        }
+        
+        tableView?.delegate = dataSource
+        tableView?.dataSource = dataSource
+        
+    }
 
 }
 
-extension EnterDetailsSecondViewController: PinCodeTextFieldDelegate {
+
+extension BaseViewController: PinCodeTextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: PinCodeTextField) -> Bool {
         return true

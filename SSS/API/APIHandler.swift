@@ -22,6 +22,12 @@ extension LoginEndpoint {
                 return try User(attributes: parameters.dictionaryValue )
             } catch _ { return nil }
         
+        case .readContacts(_):
+            
+            do {
+                return try Safelist(attributes: parameters.dictionaryValue)
+            } catch _ { return nil }
+        
         }
     }
 }

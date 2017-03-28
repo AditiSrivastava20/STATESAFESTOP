@@ -41,6 +41,11 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
         
     }
     
+    //MARK:- Go back
+    @IBAction func btnBackAction(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     //MARK:- fetch full address
     func fetchAddress() {
         let config = GMSPlacePickerConfig(viewport: nil)
@@ -74,10 +79,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     }
     
     
-    //MARK:- Go back
-    @IBAction func btnBackAction(_ sender: Any) {
-        _ = navigationController?.popViewController(animated: true)
-    }
+    
     
     
     //MARK:- Image picker action

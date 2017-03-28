@@ -18,6 +18,7 @@ enum LoginEndpoint {
     case pinPassword(accessToken: String?, pinPassword: String?)
     case addSafelist(accessToken: String?)
     case removeSafeuser(accessToken: String?)
+    case readContacts(accessToken: String?)
     
 }
 
@@ -34,6 +35,7 @@ extension LoginEndpoint : Router{
         case .pinPassword(_): return APIConstants.pinPassword
         case .addSafelist(_): return APIConstants.addToSafelist
         case .removeSafeuser(_): return APIConstants.removeFromSafelist
+        case .readContacts(_): return APIConstants.readContacts
             
         }
     }
@@ -64,6 +66,9 @@ extension LoginEndpoint : Router{
             
         case .removeSafeuser(let accessToken):
             return Parameters.removeSafeUser.map(values: [accessToken])
+        
+        case .readContacts(let accessToken):
+            return Parameters.readContacts.map(values: [accessToken])
         }
     }
     

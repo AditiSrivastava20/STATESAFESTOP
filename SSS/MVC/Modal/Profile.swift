@@ -12,11 +12,8 @@ import SwiftyJSON
 class Profile: NSObject{
     var device_token: String?
     var image: String?
-    var updated_at: String?
     var unformatted_phone: String?
-    var deleted_at: String?
     var id: Int?
-    var is_block: Int?
     var fulladdress: String?
     var is_complete_profile: String?
     var facebook_id: String?
@@ -26,10 +23,8 @@ class Profile: NSObject{
     var pin_password: String?
     var phone: String?
     var is_admin: Int?
-    var pwd_salt: String?
     var is_pin: String?
     var access_token: String?
-    var created_at: String?
     var twitter_id: String?
     var reg_id: String?
     var image_url: String?

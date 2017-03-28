@@ -81,6 +81,7 @@
 		1DC80C9C1E7914AB0004445E /* SubmitComplaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80C971E7914AB0004445E /* SubmitComplaintViewController.swift */; };
 		1DCD00571E892A21006D31A5 /* SafelistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD00561E892A21006D31A5 /* SafelistCell.swift */; };
 		1DD5875E1E7BA24700966A7C /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD5875D1E7BA24700966A7C /* MaterialButton.swift */; };
+		1DD60EA81E8A329200E83B26 /* Safelist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD60EA71E8A329200E83B26 /* Safelist.swift */; };
 		1DDFFE401E80EBB500B73099 /* EnterDetailsFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDFFE3D1E80EBB500B73099 /* EnterDetailsFirstViewController.swift */; };
 		1DDFFE411E80EBB500B73099 /* EnterDetailsSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDFFE3F1E80EBB500B73099 /* EnterDetailsSecondViewController.swift */; };
 		1DDFFE431E810AE700B73099 /* fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDFFE421E810AE700B73099 /* fonts.swift */; };
@@ -183,6 +184,7 @@
 		1DCD00561E892A21006D31A5 /* SafelistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafelistCell.swift; sourceTree = "<group>"; };
 		1DD216221E6FE34B009E1296 /* SSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DD5875D1E7BA24700966A7C /* MaterialButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
+		1DD60EA71E8A329200E83B26 /* Safelist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Safelist.swift; sourceTree = "<group>"; };
 		1DDFFE3D1E80EBB500B73099 /* EnterDetailsFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterDetailsFirstViewController.swift; sourceTree = "<group>"; };
 		1DDFFE3F1E80EBB500B73099 /* EnterDetailsSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterDetailsSecondViewController.swift; sourceTree = "<group>"; };
 		1DDFFE421E810AE700B73099 /* fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fonts.swift; sourceTree = "<group>"; };
@@ -744,6 +746,7 @@
 				1DF7AB381E7FD63200F79235 /* User.swift */,
 				1DF7AB3A1E7FD6E800F79235 /* Profile.swift */,
 				1D03C4B21E82383500B34409 /* facebook.swift */,
+				1DD60EA71E8A329200E83B26 /* Safelist.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -969,6 +972,7 @@
 				1DBC29F51E7172370090BCFA /* ProfileViewController.swift in Sources */,
 				1DBC29B91E716B040090BCFA /* APIRoutes.swift in Sources */,
 				1DBC299C1E7168590090BCFA /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
+				1DD60EA81E8A329200E83B26 /* Safelist.swift in Sources */,
 				1DF7AB2B1E7FB44100F79235 /* Validation.swift in Sources */,
 				1D54D3121E77AFB700E955BB /* BaseViewController.swift in Sources */,
 				1DF7AB071E7F92EF00F79235 /* APIHandler.swift in Sources */,

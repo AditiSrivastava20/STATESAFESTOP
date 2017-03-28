@@ -17,6 +17,8 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     static let shared = APIManager()
     private lazy var httpClient : HTTPClient = HTTPClient()
     
+    
+    
     //MARK: Normal API (signin/login, pin setup etc)
     func request(with api : Router , completion : @escaping Completion )  {
         

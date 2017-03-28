@@ -10,7 +10,7 @@ import Foundation
 
 enum ParamKeys: String {
     
-    //MARK:- login/signup
+    //MARK:- Parameters for mapping
     case status_code = "status_code"
     case msg = "msg"
     case isnewuser = "isnewuser"
@@ -28,5 +28,8 @@ enum ParamKeys: String {
     case is_complete_profile = "is_complete_profile"
     case image_url = "image_url"
     case account_type = "account_type"
+    case safe_list = "safe_list"
+    case image = "image"
+    case id = "id"
     
 }

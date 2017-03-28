@@ -139,7 +139,7 @@ struct Parameters {
     static let phoneNumber: [Keys] = [.accessToken, .phone]
     static let forgotPassword: [Keys] = [.email]
     static let checkExistEmailOrPhone: [Keys] = [.email, .phone]
-    static let readContacts: [Keys] = [.accessToken, .contacts]
+    static let readContacts: [Keys] = [.accessToken]
     static let addSafelist: [Keys] = [.accessToken, .contacts]
     static let removeSafeUser: [Keys] = [.accessToken, .contacts]
 }
