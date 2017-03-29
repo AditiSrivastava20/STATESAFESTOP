@@ -18,6 +18,8 @@ class User: NSObject {
     var access_token: String?
     var isnewuser: String?
     var msg: String?
+    var complaints: [Complaint]?
+    var recordings: [Recording]?
     
     required init(attributes: OptionalJSON) throws{
         super.init()

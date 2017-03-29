@@ -27,5 +27,6 @@ target 'SSS' do
   pod 'GooglePlacePicker'
   pod 'GoogleMaps'
   pod 'EPContactsPicker'
+  pod 'SZTextView'
 
 end

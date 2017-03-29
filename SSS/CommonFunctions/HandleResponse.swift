@@ -35,14 +35,14 @@ class HandleResponse {
                 switch from {
                 case .login:
                     ProfileData.shared.store(value)
-                    obj.performSegue(withIdentifier: "main", sender: obj)
+                    obj.performSegue(withIdentifier: segue.loginToMain.rawValue, sender: obj)
                     
                 case .signup:
                     ProfileData.shared.store(value)
-                    obj.performSegue(withIdentifier: "setUpPin", sender: obj)
+                    obj.performSegue(withIdentifier: segue.signupToPin.rawValue, sender: obj)
                     
                 case .pinPassword:
-                    obj.performSegue(withIdentifier: "sssPackage", sender: obj)
+                    obj.performSegue(withIdentifier: segue.pinToPackage.rawValue, sender: obj)
                     
                 case .sssPackage,.inAppPurchase:
                     print("go to main")

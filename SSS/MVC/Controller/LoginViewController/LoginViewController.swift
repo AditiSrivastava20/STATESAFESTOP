@@ -29,7 +29,7 @@ class LoginViewController: BaseViewController {
     
     func checkLogin() {
         if let _ = UserDefaults.standard.value(forKey: "login") as? [String: String] {
-            performSegue(withIdentifier: "main", sender: self)
+            performSegue(withIdentifier: segue.loginToMain.rawValue, sender: self)
         }
     }
     
@@ -73,7 +73,7 @@ extension LoginViewController {
     }
     
     @IBAction func btnSignUpAction(_ sender: Any) {
-        performSegue(withIdentifier: "signup", sender: nil)
+        performSegue(withIdentifier: segue.loginToSignup.rawValue, sender: nil)
     }
     
 }

@@ -74,7 +74,7 @@ class TWManager {
             })
             
         case .signup:
-            print("signup")
+            print(SocialCheck.signup.rawValue)
             
         }
         

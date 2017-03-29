@@ -26,6 +26,10 @@ internal struct APIConstants {
     static let newUser = "isnewuser"
     static let message = "msg"
     static let completeProfile = "is_complete_profile"
+    static let recordingsList = "recordingslist"
+    static let complaintList = "complaintlist"
+    static let addComplaint = "add-complaint"
+    
     
 }
 
@@ -72,7 +76,16 @@ enum Keys: String {
     //add to safelist
     
     //remove from safelist
-    case safeUserId = "safe_user_id"
+    case safeUserIds = "safe_user_ids"
+    
+    //recording list
+    
+    //complaint list
+    
+    //add complaint
+    case title = "title"
+    case description = "description"
+    case media_id = "media_id"
     
 }
 
@@ -114,19 +127,29 @@ enum StatusValidation: String {
     }
 }
 
-enum SocialCheck {
-    
-    case login
-    case signup
+enum Safeusers {
+    case add
+    case remove
+}
+
+enum SocialCheck: String {
+    case login = "login"
+    case signup = "signup"
 }
 
 
 enum Response {
-    
     case success(AnyObject?)
     case failure(String?)
+}
+
+enum MediaType: String {
+    case audio = "audio"
+    case video = "video"
+    case none
     
 }
+
 
 typealias OptionalDictionary = [String: Any]?
 
@@ -141,7 +164,10 @@ struct Parameters {
     static let checkExistEmailOrPhone: [Keys] = [.email, .phone]
     static let readContacts: [Keys] = [.accessToken]
     static let addSafelist: [Keys] = [.accessToken, .contacts]
-    static let removeSafeUser: [Keys] = [.accessToken, .contacts]
+    static let removeSafeUser: [Keys] = [.accessToken, .safeUserIds]
+    static let recordingList: [Keys] = [.accessToken]
+    static let complaintList: [Keys] = [.accessToken]
+    static let addComplaint: [Keys] = [.accessToken, .title, .description, .media_id]
 }
 
 

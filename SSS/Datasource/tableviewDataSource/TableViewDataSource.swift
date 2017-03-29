@@ -1,15 +1,12 @@
 //
 //  TableViewDataSource.swift
-//  SSS
-//
-//  Created by Sierra 4 on 14/03/17.
-//  Copyright © 2017 Codebrew. All rights reserved.
-//
 
-import Foundation
+
+
+
 import UIKit
 
-typealias  ListCellConfigureBlock = (_ cell : AnyObject , _ item : AnyObject? , _ indexpath: AnyObject?) -> ()
+typealias  ListCellConfigureBlock = (_ cell : Any , _ item : Any? , _ indexpath: Any?) -> ()
 typealias  DidSelectedRow = (_ indexPath : IndexPath) -> ()
 typealias  ScrollViewDidScroll = (_ scrollView : UIScrollView) -> ()
 typealias ViewForHeaderInSection = (_ section : Int) -> UIView?
@@ -17,7 +14,7 @@ typealias ViewForHeaderInSection = (_ section : Int) -> UIView?
 
 class TableViewDataSource: NSObject  {
     
-    var items : Array<AnyObject>?
+    var items : Array<Any>?
     var cellIdentifier : String?
     var tableView  : UITableView?
     var tableViewRowHeight : CGFloat = 44.0
@@ -28,7 +25,7 @@ class TableViewDataSource: NSObject  {
     var viewforHeaderInSection : ViewForHeaderInSection?
     var headerHeight : CGFloat?
     
-    init (items : Array<AnyObject>? , height : CGFloat , tableView : UITableView? , cellIdentifier : String?  , configureCellBlock : ListCellConfigureBlock? , aRowSelectedListener : @escaping DidSelectedRow , DidScrollListener : @escaping ScrollViewDidScroll) {
+    init (items : Array<Any>? , height : CGFloat , tableView : UITableView? , cellIdentifier : String?  , configureCellBlock : ListCellConfigureBlock? , aRowSelectedListener : @escaping DidSelectedRow , DidScrollListener : @escaping ScrollViewDidScroll) {
         
         self.tableView = tableView
         self.items = items
@@ -37,16 +34,16 @@ class TableViewDataSource: NSObject  {
         self.configureCellBlock = configureCellBlock
         self.aRowSelectedListener = aRowSelectedListener
         self.ScrollViewListener = DidScrollListener
-        
+       
         
     }
     
     override init() {
         super.init()
-        
+       
     }
     
-    
+
 }
 
 extension TableViewDataSource : UITableViewDelegate , UITableViewDataSource{
@@ -58,8 +55,8 @@ extension TableViewDataSource : UITableViewDelegate , UITableViewDataSource{
         }
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier , for: indexPath) as UITableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        if let block = self.configureCellBlock , let item: AnyObject = self.items?[(indexPath as NSIndexPath).row]{
-            block(cell , item , indexPath as AnyObject?)
+        if let block = self.configureCellBlock , let item: Any = self.items?[(indexPath as NSIndexPath).row]{
+            block(cell , item , indexPath as Any?)
         }
         return cell
     }
@@ -92,11 +89,11 @@ extension TableViewDataSource : UITableViewDelegate , UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
+
         return headerHeight ?? 0.0
     }
     
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if let block = self.ScrollViewListener{
@@ -104,5 +101,5 @@ extension TableViewDataSource : UITableViewDelegate , UITableViewDataSource{
             block(scrollView)
         }
     }
-    
+
 }

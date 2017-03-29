@@ -29,6 +29,7 @@ class Validation: NSObject {
     
     static let shared = Validation()
     
+    //MARK: - login validation
     func validate(login email : String? , password : String?) -> Valid {
         
         if (/email).isEmpty {
@@ -40,6 +41,8 @@ class Validation: NSObject {
         return .success
     }
     
+    
+    //MARK: - signup validation
     func validate(signup fullname: String?, email: String?, password: String?, confirmPasswd: String?, fulladdress: String?, phoneNo: String?, facebookID: String?, twitterID: String?) -> Valid {
         
         if (/fullname).isEmpty {
@@ -87,6 +90,7 @@ class Validation: NSObject {
         return .success
     }
     
+    //MARK: - pincode validation
     func validate(pinCode value: String?) -> Valid {
         
         if ((/value).characters.count) < 4 {
@@ -95,6 +99,21 @@ class Validation: NSObject {
         
         return .success
     }
+    
+    //MARK: - add complaint validation
+    func validate(complaint title: String?, description: String?) -> Valid {
+        
+        if (/title).isEmpty {
+            return errorMsg(str: "Enter complaint title")
+        }
+        
+        if (/description).isEmpty {
+            return errorMsg(str: "Enter complaint description")
+        }
+        
+        return .success
+    }
+    
     
     func isValidEmail(_ testStr:String) -> Bool {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", RegexExpresssions.EmailRegex)

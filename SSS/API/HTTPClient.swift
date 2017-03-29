@@ -43,7 +43,13 @@ class HTTPClient {
     func postRequestWithArray(withApi api : Router, array: [String]? , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ) {
         
         var params = api.parameters
-        params?[Keys.contacts.rawValue] = array
+        
+        if api.route == APIConstants.removeFromSafelist {
+            params?[Keys.safeUserIds.rawValue] = array
+        } else if api.route == APIConstants.addToSafelist  {
+            params?[Keys.contacts.rawValue] = array
+        }
+        
         let fullPath = api.baseURL + api.route
         let method = api.method
         print(fullPath)
@@ -57,9 +63,6 @@ class HTTPClient {
                 failure(error.localizedDescription)
             }
         }
-        
-        
-        
     }
     
     

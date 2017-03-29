@@ -35,6 +35,8 @@ class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
     @IBAction func btnAppInviteAction(_ sender: Any) {
         print("Invite button tapped")
         
+        //self.appInviteAction()
+        
         FBManager.shared.fetchFriendsAction(completion: {(count) in
             
             if count < 10 {

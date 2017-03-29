@@ -78,7 +78,7 @@ class FBManager {
             })
         
         case .signup:
-            print("signup")
+            print(SocialCheck.signup.rawValue)
             
         }
         

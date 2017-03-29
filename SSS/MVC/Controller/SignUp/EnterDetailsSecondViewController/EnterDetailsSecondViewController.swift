@@ -27,10 +27,14 @@ class EnterDetailsSecondViewController: BaseViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
+    //MARK: Validate pin
     func Validate() -> Valid {
         return Validation.shared.validate(pinCode: pinCodeTextField.text)
     }
     
+    
+    //MARK: Button done Action
     @IBAction func btnDoneAction(_ sender: Any) {
         
         switch Validate() {

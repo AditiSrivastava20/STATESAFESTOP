@@ -57,7 +57,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwF-EL-BSQ">
-                                        <rect key="frame" x="139" y="32.5" width="42" height="20.5"/>
+                                        <rect key="frame" x="139" y="32" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -324,12 +324,12 @@
                         <outlet property="txtFullname" destination="U1d-aE-FAS" id="6KF-hw-gtt"/>
                         <outlet property="txtPassword" destination="d6b-9d-1Uz" id="xgh-Jy-BJ9"/>
                         <outlet property="txtPhoneNumber" destination="mOL-ue-e0t" id="UWY-dG-W9z"/>
-                        <segue destination="bhX-6g-Bb8" kind="show" identifier="setUpPin" id="tWL-ob-NT2"/>
+                        <segue destination="bhX-6g-Bb8" kind="show" identifier="signupToPin" id="tWL-ob-NT2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgs-4q-X1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="707" y="-41"/>
+            <point key="canvasLocation" x="894" y="-786"/>
         </scene>
         <!--Image Pick View Controller-->
         <scene sceneID="4Mw-93-CzK">
@@ -471,7 +471,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avu-FO-QAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="707" y="675"/>
+            <point key="canvasLocation" x="1740" y="-787"/>
         </scene>
         <!--Enter Details Second View Controller-->
         <scene sceneID="8Ys-3Q-oUk">
@@ -576,12 +576,12 @@
                     <connections>
                         <outlet property="btnDone" destination="jrJ-al-TOp" id="6Fg-3u-dMX"/>
                         <outlet property="pinCodeTextField" destination="dXP-bZ-YbS" id="86G-4l-7gd"/>
-                        <segue destination="QEv-by-JJk" kind="show" identifier="sssPackage" id="EhW-Xe-SL8"/>
+                        <segue destination="QEv-by-JJk" kind="show" identifier="pinToPackage" id="EhW-Xe-SL8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YwF-aD-E6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1513" y="-870"/>
+            <point key="canvasLocation" x="893" y="-41"/>
         </scene>
         <!--Package View Controller-->
         <scene sceneID="gWP-RR-TNA">
@@ -715,22 +715,22 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You wanna pay ¢99 per month?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgf-YG-p0q">
-                                <rect key="frame" x="48" y="178.5" width="224" height="37.5"/>
+                                <rect key="frame" x="48" y="178" width="224" height="38"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.38431372549019605" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose 10 friends from facebook" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTP-r0-SGA">
-                                <rect key="frame" x="48" y="422.5" width="224" height="37.5"/>
+                                <rect key="frame" x="48" y="422" width="224" height="38"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.38431372549019605" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pch-rx-Xdc">
-                                <rect key="frame" x="20" y="84" width="280" height="94.5"/>
+                                <rect key="frame" x="20" y="84" width="280" height="94"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_money" translatesAutoresizingMaskIntoConstraints="NO" id="RCT-tD-8zD">
-                                        <rect key="frame" x="112" y="19.5" width="56" height="56"/>
+                                        <rect key="frame" x="112" y="19" width="56" height="56"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -740,10 +740,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Hi-A1-515">
-                                <rect key="frame" x="20" y="332" width="280" height="90.5"/>
+                                <rect key="frame" x="20" y="332" width="280" height="90"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_friends" translatesAutoresizingMaskIntoConstraints="NO" id="2qm-Qu-5fK">
-                                        <rect key="frame" x="112" y="17.5" width="56" height="56"/>
+                                        <rect key="frame" x="112" y="17" width="56" height="56"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -791,12 +791,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="C6f-MH-oFE" kind="show" id="40X-59-C1k"/>
+                        <segue destination="C6f-MH-oFE" kind="show" identifier="packageToInAppPurchase" id="40X-59-C1k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CRo-x7-t0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2261" y="-41"/>
+            <point key="canvasLocation" x="-231" y="861"/>
         </scene>
         <!--Card Transaction View Controller-->
         <scene sceneID="B0D-Kh-2lJ">
@@ -1085,7 +1085,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ToU-qA-vBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3103" y="-41"/>
+            <point key="canvasLocation" x="1091" y="843"/>
         </scene>
         <!--Main-->
         <scene sceneID="dmR-Za-nhe">
@@ -1093,7 +1093,7 @@
                 <viewControllerPlaceholder storyboardName="Main" id="X0h-A9-ai8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Dg-sk-ZW6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="221" y="-627"/>
+            <point key="canvasLocation" x="276" y="134"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WVi-er-nqH">
@@ -1296,8 +1296,10 @@
                         <outlet property="btnTwitter" destination="IGI-0Q-xZN" id="KLZ-V6-bfj"/>
                         <outlet property="txtEmail" destination="5My-xU-122" id="zht-Hg-ROi"/>
                         <outlet property="txtPassword" destination="y4D-9n-SUU" id="3cv-rB-VoI"/>
-                        <segue destination="X0h-A9-ai8" kind="show" identifier="main" id="Kxn-VB-BfG"/>
-                        <segue destination="iap-hB-W5Z" kind="show" identifier="signup" id="Ef2-WQ-k1x"/>
+                        <segue destination="X0h-A9-ai8" kind="show" identifier="loginToMain" id="Kxn-VB-BfG"/>
+                        <segue destination="iap-hB-W5Z" kind="show" identifier="loginToSignup" id="Ef2-WQ-k1x"/>
+                        <segue destination="bhX-6g-Bb8" kind="show" identifier="loginToPin" id="qkg-yD-kNj"/>
+                        <segue destination="QEv-by-JJk" kind="show" identifier="loginToPackage" id="x3i-Dc-0K8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPX-b9-w6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1323,4 +1325,8 @@
         <image name="ic_twitter" width="36" height="36"/>
         <image name="ic_zip code" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="x3i-Dc-0K8"/>
+        <segue reference="qkg-yD-kNj"/>
+    </inferredMetricsTieBreakers>
 </document>

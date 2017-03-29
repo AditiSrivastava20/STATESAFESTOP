@@ -79,9 +79,6 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     }
     
     
-    
-    
-    
     //MARK:- Image picker action
     @IBAction func btnImagePickerAction(_ sender: Any) {
         
@@ -126,7 +123,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     }
     
     
-    //Mark:- Normal Sign up
+    //Mark:- Sign up Action
     @IBAction func btnSignUpAction(_ sender: Any) {
         print("Sign up")
         ISMessages.hideAlert(animated: true)

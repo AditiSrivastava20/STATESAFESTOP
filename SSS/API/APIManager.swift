@@ -72,7 +72,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
         })
     }
     
-    //MARK: safelist API
+    //MARK: add and remove safelist
     func request(withArray api : Router, array: [String]? , completion : @escaping Completion )  {
         
         if isLoaderNeeded(api: api) {

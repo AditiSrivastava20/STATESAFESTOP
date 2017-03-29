@@ -115,7 +115,7 @@ import UIKit
     
     private func recreateUnderlines() {
         underlines.forEach{ $0.removeFromSuperview() }
-        underlines.removeAll()
+        underlines = []
         characterLimit.times {
             let underline = createUnderline()
             underlines.append(underline)
@@ -125,7 +125,7 @@ import UIKit
     
     private func recreateLabels() {
         labels.forEach{ $0.removeFromSuperview() }
-        labels.removeAll()
+        labels = []
         characterLimit.times {
             let label = createLabel()
             labels.append(label)
@@ -178,15 +178,17 @@ import UIKit
         let totalLabelHeight = font.ascender + font.descender
         let underlineY = bounds.height / 2 + totalLabelHeight / 2 + underlineVMargin
         
-        underlines.forEach{
-            $0.frame = CGRect(x: currentUnderlineX, y: underlineY, width: underlineWidth, height: underlineHeight)
-            currentUnderlineX += underlineWidth + underlineHSpacing
-        }
+        underlines.forEachEnumerated({ (index, item) in
+            
+            item.frame = CGRect(x: currentUnderlineX, y: underlineY, width: self.underlineWidth, height: self.underlineHeight)
+            currentUnderlineX += self.underlineWidth + self.underlineHSpacing
+            
+        })
         
-        labels.forEach {
-            $0.frame = CGRect(x: currentLabelX, y: 0, width: underlineWidth, height: bounds.height)
-            currentLabelX += underlineWidth + underlineHSpacing
-        }
+        labels.forEachEnumerated({ (index, item) in
+            item.frame = CGRect(x: currentLabelX, y: 0, width: self.underlineWidth, height: self.bounds.height)
+            currentLabelX += self.underlineWidth + self.underlineHSpacing
+        })
         
     }
     
