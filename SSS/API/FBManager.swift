@@ -72,7 +72,7 @@ class FBManager {
         
         switch check {
         case .login:
-            APIManager.shared.request(with: LoginEndpoint.login(email: param.email, password: "", facebookId: param.fbId, twitterId: "", accountType: AccountType.facebook.rawValue, deviceToken: Device.token.rawValue), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.login(email: param.email, password: "", facebookId: param.fbId, twitterId: "", accountType: AccountType.facebook.rawValue, deviceToken: MobileDevice.token.rawValue), completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, obj, from: .login)
             })

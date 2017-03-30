@@ -14,12 +14,14 @@ class WriteComplaintViewController: BaseViewController {
 
     @IBOutlet weak var tfTitle: TextField!
     @IBOutlet weak var txtDesc: SZTextView!
+    @IBOutlet weak var btnAddFile: FlatButton!
     
     var media_id:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tfTitle?.placeHolderAtt()
+        tfTitle.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,10 +36,19 @@ class WriteComplaintViewController: BaseViewController {
             if let value = responseValue as? User{
                 print(value.msg ?? "")
             }
+            showPopUp()
             
         case .failure(let str):
             Alerts.shared.show(alert: .oops, message: /str, type: .error)
         }
+        
+    }
+    
+    func showPopUp() {
+        let vc = StoryboardScene.Main.instantiateComplaintDoneViewController()
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        presentVC(vc)
         
     }
     
@@ -51,10 +62,11 @@ class WriteComplaintViewController: BaseViewController {
     @IBAction func actionBtnAddFile(_ sender: Any) {
         
         let vc = StoryboardScene.Main.instantiateRecordingViewController()
+        vc.isFromMediaSelection = true
+        vc.delegateMedia = self
         pushVC(vc)
         
     }
-    
     
     
     @IBAction func btnAddComplaintAction(_ sender: Any) {
@@ -65,7 +77,7 @@ class WriteComplaintViewController: BaseViewController {
         
         switch Validate() {
         case .success:
-            APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: /login["access_token"], title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK", title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { (response) in
                 
                 self.handle(response: response)
             })
@@ -79,4 +91,15 @@ class WriteComplaintViewController: BaseViewController {
     @IBAction func actionBtnBack(_ sender: Any) {
         popVC()
     }
+}
+
+
+extension WriteComplaintViewController  : mediaSelectListner {
+    
+    func getMedia(id : String?,name : String?) {
+        
+        media_id = id
+        btnAddFile.setTitle(name, for: UIControlState.normal)
+    }
+    
 }

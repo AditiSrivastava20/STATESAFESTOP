@@ -43,34 +43,18 @@ enum colors : String {
     case appColor = "0xFDDC2F"
     case sepratorColor = "0xBABABA"
     
-    
     func color() -> UIColor {
         return UIColor(hexString: self.rawValue)!
     }
 }
 
 
-
-
-
-
-
-
-
 enum userPrefrences : String{
     
-    case aybizUserProfile = "aybizUserProfile"
-    case aybizUserHome = "aybizUserHome"
-    case aybizUserSearch = "aybizUserSearch"
-    case aybizCategory = "aybizCategory"
-    case aybizLangId = "aybizLangId"
-    case aybizCurrentLang = "aybizCurrentLang"
+    case aybizUserProfile = "SSSUserProfile"
+
+
 }
-
-
-
-
-
 
 
 
@@ -86,7 +70,7 @@ enum Alert : String{
     case friendsErr = "Number of friends less than 10"
 }
 
-enum Device: String {
+enum MobileDevice: String {
     case token = "iaudhikaskdfh"
 }
 

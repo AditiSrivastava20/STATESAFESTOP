@@ -29,6 +29,7 @@ internal struct APIConstants {
     static let recordingsList = "recordingslist"
     static let complaintList = "complaintlist"
     static let addComplaint = "add-complaint"
+    static let shareMedia = "sharemedia"
     
     
 }
@@ -86,6 +87,11 @@ enum Keys: String {
     case title = "title"
     case description = "description"
     case media_id = "media_id"
+    
+    //share media_id
+    case media = "media"
+    case media_type = "media_type"
+    case thumbnail = "thumbnail_url"
     
 }
 
@@ -168,6 +174,7 @@ struct Parameters {
     static let recordingList: [Keys] = [.accessToken]
     static let complaintList: [Keys] = [.accessToken]
     static let addComplaint: [Keys] = [.accessToken, .title, .description, .media_id]
+    static let shareMedia: [Keys] = [.accessToken, .media_type]
 }
 
 

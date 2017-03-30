@@ -12,42 +12,91 @@ import AVKit
 import EZSwiftExtensions
 
 
+protocol mediaSelectListner : class {
+    
+    func getMedia(id : String?,name : String?)
+}
+
+
+
 class RecordingViewController: BaseViewController {
 
+    weak var delegateMedia : mediaSelectListner?
     
-     @IBOutlet weak var tableView: UITableView!
+    var switchToHome : ((_ isHome: Bool) -> ())?
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    var isFromMediaSelection = false
     var itemInfo = IndicatorInfo(title: "RECORDING")
     
     var arrayRecording:[Recording]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        showPopUp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getRecordings()
     }
     
-    func navbar() {
-        self.navigationItem.title = "RECORDING"
+    func handle(response: Response) {
         
-        let btn1 = UIButton(type: .custom)
-        btn1.setImage(Image(asset: .icBack), for: .normal)
-        btn1.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        btn1.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        let item1 = UIBarButtonItem(customView: btn1)
+        switch response{
+        case .success(let responseValue):
+            if let value = responseValue as? User{
+                print(value.msg ?? "")
+                
+                self.arrayRecording = value.recordings
+                self.setupTableview()
+            }
+            
+        case .failure(let str):
+            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+        }
         
-        self.navigationItem.setLeftBarButtonItems([item1], animated: true)
     }
     
-    func goBack() {
+    
+    func setupTableview() {
+        tableView?.estimatedRowHeight = 84
+        setupTableView(tableView: tableView, cellId: "RecordingTableViewCell", items: arrayRecording)
+        tableView.delegate = self
+        tableView.reloadData()
+    }
+    
+    
+    //MARK: - Back Action
+    @IBAction func backAction(_ sender: Any) {
         popVC()
     }
-
     
     
+    //MARK: - pin password pop up
+    func showPopUp() {
+        let vc = StoryboardScene.Main.instantiatePinValidationViewController()
+        vc.delegatePin = self
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        presentVC(vc)
+    }
+    
+    //MARK: validate pin password
+    func validatePin( value: String?) {
+        
+        if (/value).isEmpty {
+            self.switchToHome?(true)
+        } else {
+            print(value ?? "")
+        }
+        
+    }
+    
+    //MARK: - hit get recording list api
     func getRecordings() {
         
         arrayRecording = []
@@ -56,50 +105,12 @@ class RecordingViewController: BaseViewController {
 //            return
 //        }
 //        
-//        APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: /login["access_token"]), completion: {
-//            (response) in
-//            
-//        })
-       
-        let arrayData = [
-            [
-                "id": 1,
-                "user_id": 3,
-                "media_type": "video",
-                "media_content": "https://s3.ap-south-1.amazonaws.com/safestatestop/media_images/cdc65ff6ba5ea0479682eeb6bPYFZWfJwlE8qyh5tJtgC1zNaj.mp4",
-                "thumbnail_url": "https://s3.ap-south-1.amazonaws.com/safestatestop/media_images/4ce7a359f0a0b2ba04bd2c2f1YXJMiTnMowXllAzAktYwSM7Wq.jpg",
-                "created_at": "2017-03-24 14:10:29",
-                "deleted_at": "0000-00-00 00:00:00",
-                "is_deleted": 0
-            ],
-            [
-                "id": 4,
-                "user_id": 3,
-                "media_type": "video",
-                "media_content": "https://s3.ap-south-1.amazonaws.com/safestatestop/media_images/e09126b82b7a22a3e921efbc52cthLv5dZ2iBMBF6xUnzqqi2U.mp4",
-                "thumbnail_url": "https://s3.ap-south-1.amazonaws.com/safestatestop/media_images/94b1872297965a34564ff18ecNeD6LsRyCRme1D0CPbYdAaDvA.png",
-                "created_at": "2017-03-29 10:42:24",
-                "deleted_at": "0000-00-00 00:00:00",
-                "is_deleted": 0
-            ]
-        ]
-        
-        let json = JSON(arrayData)
-        
-        for dict in json.arrayValue {
+        APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK"), completion: {
+            (response) in
             
-            do {
-                let item = try Recording(attributes: dict.dictionaryValue)
-                arrayRecording?.append(item)
-            } catch {
-                
-            }
-        }
-        
-        tableView?.estimatedRowHeight = 84
-        setupTableView(tableView: tableView, cellId: "RecordingTableViewCell", items: arrayRecording)
-        tableView.delegate = self
-        
+            self.handle(response: response)
+            
+        })
     }
 
 }
@@ -108,6 +119,13 @@ class RecordingViewController: BaseViewController {
 extension RecordingViewController : UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        if isFromMediaSelection {
+            
+            delegateMedia?.getMedia(id: arrayRecording?[indexPath.row].id ,name : arrayRecording?[indexPath.row].media_content)
+            popVC()
+        }else {
         
         guard let urlMedia = arrayRecording?[indexPath.row].media_content else {return}
         
@@ -121,6 +139,7 @@ extension RecordingViewController : UITableViewDelegate{
                 playerViewController.player!.play()
             }
         }
+    }
     }
 }
 
@@ -136,4 +155,14 @@ extension RecordingViewController : IndicatorInfoProvider {
     
 }
 
+//MARK: - pin password listner
+
+extension RecordingViewController  : pinEnteredListner {
+    
+    func getPinCode(pin : String?) {
+        
+        self.validatePin(value: pin)
+    }
+    
+}
 

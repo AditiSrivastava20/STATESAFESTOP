@@ -8,6 +8,7 @@
 
 import UIKit
 import M13Checkbox
+import Kingfisher
 
 class SafelistCell: UITableViewCell {
     
@@ -35,8 +36,12 @@ class SafelistCell: UITableViewCell {
     }
     
     func setupCell() {
-        lblName?.text = /objSafeuser?.fullname
-        lblPhone?.text = /objSafeuser?.phone
+        if let _ = objSafeuser?.image {
+            imgContact.kf.setImage(with: URL(string: /objSafeuser?.image))
+        }
+        
+        lblName?.text = /objSafeuser?.name
+        lblPhone?.text = /objSafeuser?.unformatted_phone
         
         if objSafeuser?.isSelected == 1 {
             checkBoxContact.checkState = .checked

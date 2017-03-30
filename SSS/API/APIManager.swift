@@ -144,6 +144,43 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
         })
     }
     
+    //MARK: APIManager for share media
+    func request(withMedia api : Router , media: Data? , thumbnail : UIImage?  , completion : @escaping Completion )  {
+        
+        if isLoaderNeeded(api: api) {
+            startAnimating(nil, message: nil, messageFont: nil, type: .lineScalePulseOutRapid, color: UIColor.white, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+        }
+        
+        httpClient.postRequestWithMedia(withApi: api, media: media, thumbnail: thumbnail, success: {[weak self] (data) in
+            
+            self?.stopAnimating()
+            guard let response = data else {
+                completion(Response.failure(.none))
+                return
+            }
+            let json = JSON(response)
+            print(json)
+            
+            let responseType = StatusValidation(rawValue: json[APIConstants.statusCode].stringValue) ?? .failure
+            
+            switch responseType {
+            case .success:
+                let object : AnyObject?
+                object = api.handle(parameters: json)
+                completion(Response.success(object))
+                
+            case .failure( _):
+                completion(Response.failure(json[APIConstants.message].stringValue))
+            default : break
+            }
+            
+            }, failure: {[weak self] (message) in
+                
+                self?.stopAnimating()
+                completion(Response.failure(message))
+        })
+    }
+
     
     
     

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DC3BB411E8CE089009C71E1 /* ComplaintDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC3BB401E8CE089009C71E1 /* ComplaintDoneViewController.swift */; };
+		1DC3BB451E8D04E7009C71E1 /* UserDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC3BB441E8D04E7009C71E1 /* UserDataSingleton.swift */; };
 		1DE1265F1E8BB95600DBE5BA /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125A41E8BB95600DBE5BA /* APIConstants.swift */; };
 		1DE126601E8BB95600DBE5BA /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125A51E8BB95600DBE5BA /* APIHandler.swift */; };
 		1DE126611E8BB95600DBE5BA /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125A61E8BB95600DBE5BA /* APIManager.swift */; };
@@ -107,10 +109,6 @@
 		1DE126C51E8BB95600DBE5BA /* PinCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1263F1E8BB95600DBE5BA /* PinCodeTextField.swift */; };
 		1DE126C61E8BB95600DBE5BA /* PinCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE126401E8BB95600DBE5BA /* PinCodeTextFieldDelegate.swift */; };
 		1DE126C71E8BB95600DBE5BA /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE126421E8BB95600DBE5BA /* TextHelper.swift */; };
-		1DE126C81E8BB95600DBE5BA /* NSObject+RMArchivable.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE126451E8BB95600DBE5BA /* NSObject+RMArchivable.m */; };
-		1DE126C91E8BB95600DBE5BA /* NSObject+RMCopyable.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE126471E8BB95600DBE5BA /* NSObject+RMCopyable.m */; };
-		1DE126CA1E8BB95600DBE5BA /* NSUserDefaults+RMSaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE126491E8BB95600DBE5BA /* NSUserDefaults+RMSaveCustomObject.m */; };
-		1DE126CB1E8BB95600DBE5BA /* RMMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1264B1E8BB95600DBE5BA /* RMMapper.m */; };
 		1DE126CC1E8BB95600DBE5BA /* RPCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1264D1E8BB95600DBE5BA /* RPCircularProgress.swift */; };
 		1DE126CD1E8BB95600DBE5BA /* BarPagerTabStripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1264F1E8BB95600DBE5BA /* BarPagerTabStripViewController.swift */; };
 		1DE126CE1E8BB95600DBE5BA /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE126501E8BB95600DBE5BA /* BarView.swift */; };
@@ -138,6 +136,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1DC3BB401E8CE089009C71E1 /* ComplaintDoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplaintDoneViewController.swift; sourceTree = "<group>"; };
+		1DC3BB441E8D04E7009C71E1 /* UserDataSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataSingleton.swift; sourceTree = "<group>"; };
 		1DD216221E6FE34B009E1296 /* SSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE125A41E8BB95600DBE5BA /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		1DE125A51E8BB95600DBE5BA /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
@@ -244,15 +244,6 @@
 		1DE1263F1E8BB95600DBE5BA /* PinCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextField.swift; sourceTree = "<group>"; };
 		1DE126401E8BB95600DBE5BA /* PinCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
 		1DE126421E8BB95600DBE5BA /* TextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
-		1DE126441E8BB95600DBE5BA /* NSObject+RMArchivable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMArchivable.h"; sourceTree = "<group>"; };
-		1DE126451E8BB95600DBE5BA /* NSObject+RMArchivable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMArchivable.m"; sourceTree = "<group>"; };
-		1DE126461E8BB95600DBE5BA /* NSObject+RMCopyable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMCopyable.h"; sourceTree = "<group>"; };
-		1DE126471E8BB95600DBE5BA /* NSObject+RMCopyable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMCopyable.m"; sourceTree = "<group>"; };
-		1DE126481E8BB95600DBE5BA /* NSUserDefaults+RMSaveCustomObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+RMSaveCustomObject.h"; sourceTree = "<group>"; };
-		1DE126491E8BB95600DBE5BA /* NSUserDefaults+RMSaveCustomObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+RMSaveCustomObject.m"; sourceTree = "<group>"; };
-		1DE1264A1E8BB95600DBE5BA /* RMMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMMapper.h; sourceTree = "<group>"; };
-		1DE1264B1E8BB95600DBE5BA /* RMMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMMapper.m; sourceTree = "<group>"; };
-		1DE1264C1E8BB95600DBE5BA /* SSS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SSS-Bridging-Header.h"; sourceTree = "<group>"; };
 		1DE1264D1E8BB95600DBE5BA /* RPCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPCircularProgress.swift; sourceTree = "<group>"; };
 		1DE1264F1E8BB95600DBE5BA /* BarPagerTabStripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarPagerTabStripViewController.swift; sourceTree = "<group>"; };
 		1DE126501E8BB95600DBE5BA /* BarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
@@ -300,6 +291,14 @@
 				2F766C508ABD4F0DAAF6452C /* Pods_SSS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1DC3BB3F1E8CE068009C71E1 /* ComplaintDoneViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1DC3BB401E8CE089009C71E1 /* ComplaintDoneViewController.swift */,
+			);
+			path = ComplaintDoneViewController;
 			sourceTree = "<group>";
 		};
 		1DD216191E6FE34B009E1296 = {
@@ -393,6 +392,7 @@
 		1DE125BC1E8BB95600DBE5BA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1DC3BB441E8D04E7009C71E1 /* UserDataSingleton.swift */,
 				1DE125BD1E8BB95600DBE5BA /* BridgingHeader.h */,
 				1DE125BF1E8BB95600DBE5BA /* Constants.swift */,
 				1DE125C01E8BB95600DBE5BA /* fonts.swift */,
@@ -424,6 +424,7 @@
 		1DE125C81E8BB95600DBE5BA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1DC3BB3F1E8CE068009C71E1 /* ComplaintDoneViewController */,
 				1DE126F01E8BC0FC00DBE5BA /* PinValidationViewController */,
 				1DE126DC1E8BBB2B00DBE5BA /* BaseViewController */,
 				1DE125CB1E8BB95600DBE5BA /* HomeViewController */,
@@ -707,7 +708,6 @@
 				1DE1262B1E8BB95600DBE5BA /* ENSideMenu */,
 				1DE1262E1E8BB95600DBE5BA /* PBJVision */,
 				1DE1263A1E8BB95600DBE5BA /* PinCodeTextfield */,
-				1DE126431E8BB95600DBE5BA /* RMMapper */,
 				1DE1264D1E8BB95600DBE5BA /* RPCircularProgress.swift */,
 				1DE1264E1E8BB95600DBE5BA /* XLPagerTabStrip */,
 			);
@@ -782,22 +782,6 @@
 				1DE126421E8BB95600DBE5BA /* TextHelper.swift */,
 			);
 			path = TextHelper;
-			sourceTree = "<group>";
-		};
-		1DE126431E8BB95600DBE5BA /* RMMapper */ = {
-			isa = PBXGroup;
-			children = (
-				1DE126441E8BB95600DBE5BA /* NSObject+RMArchivable.h */,
-				1DE126451E8BB95600DBE5BA /* NSObject+RMArchivable.m */,
-				1DE126461E8BB95600DBE5BA /* NSObject+RMCopyable.h */,
-				1DE126471E8BB95600DBE5BA /* NSObject+RMCopyable.m */,
-				1DE126481E8BB95600DBE5BA /* NSUserDefaults+RMSaveCustomObject.h */,
-				1DE126491E8BB95600DBE5BA /* NSUserDefaults+RMSaveCustomObject.m */,
-				1DE1264A1E8BB95600DBE5BA /* RMMapper.h */,
-				1DE1264B1E8BB95600DBE5BA /* RMMapper.m */,
-				1DE1264C1E8BB95600DBE5BA /* SSS-Bridging-Header.h */,
-			);
-			path = RMMapper;
 			sourceTree = "<group>";
 		};
 		1DE1264E1E8BB95600DBE5BA /* XLPagerTabStrip */ = {
@@ -1055,15 +1039,14 @@
 			files = (
 				1DE126761E8BB95600DBE5BA /* Storyboards.swift in Sources */,
 				1DE1268F1E8BB95600DBE5BA /* User.swift in Sources */,
-				1DE126CA1E8BB95600DBE5BA /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				1DE126661E8BB95600DBE5BA /* TWManager.swift in Sources */,
 				1DE126D41E8BB95600DBE5BA /* FXPageControl.m in Sources */,
 				1DE1266C1E8BB95600DBE5BA /* SidePanel.swift in Sources */,
+				1DC3BB451E8D04E7009C71E1 /* UserDataSingleton.swift in Sources */,
 				1DE126C31E8BB95600DBE5BA /* IntExtension.swift in Sources */,
 				1DE126D91E8BB95600DBE5BA /* SegmentedPagerTabStripViewController.swift in Sources */,
 				1DE126E01E8BBB2B00DBE5BA /* BaseViewController.swift in Sources */,
 				1DE126C51E8BB95600DBE5BA /* PinCodeTextField.swift in Sources */,
-				1DE126C91E8BB95600DBE5BA /* NSObject+RMCopyable.m in Sources */,
 				1DE126741E8BB95600DBE5BA /* Images.swift in Sources */,
 				1DE126D21E8BB95600DBE5BA /* ButtonBarViewCell.swift in Sources */,
 				1DE1267E1E8BB95600DBE5BA /* HomeViewController.swift in Sources */,
@@ -1085,10 +1068,10 @@
 				1DE1267C1E8BB95600DBE5BA /* ComplaintViewController.swift in Sources */,
 				1DE126651E8BB95600DBE5BA /* LoginEndPoint.swift in Sources */,
 				1DE126941E8BB95600DBE5BA /* ComplaintTableViewCell.swift in Sources */,
+				1DC3BB411E8CE089009C71E1 /* ComplaintDoneViewController.swift in Sources */,
 				1DE126BF1E8BB95600DBE5BA /* PBJVision.m in Sources */,
 				1DE1268E1E8BB95600DBE5BA /* Safelist.swift in Sources */,
 				1DE1268D1E8BB95600DBE5BA /* Profile.swift in Sources */,
-				1DE126CB1E8BB95600DBE5BA /* RMMapper.m in Sources */,
 				1DE126671E8BB95600DBE5BA /* AppDelegate.swift in Sources */,
 				1DE126731E8BB95600DBE5BA /* fonts.swift in Sources */,
 				1DE1267B1E8BB95600DBE5BA /* RecorderViewController.swift in Sources */,
@@ -1102,7 +1085,6 @@
 				1DE126D11E8BB95600DBE5BA /* ButtonBarView.swift in Sources */,
 				1DE126611E8BB95600DBE5BA /* APIManager.swift in Sources */,
 				1DE126BB1E8BB95600DBE5BA /* ENSideMenu.swift in Sources */,
-				1DE126C81E8BB95600DBE5BA /* NSObject+RMArchivable.m in Sources */,
 				1DE126641E8BB95600DBE5BA /* HTTPClient.swift in Sources */,
 				1DE126871E8BB95600DBE5BA /* SidePanelViewController.swift in Sources */,
 				1DE1266B1E8BB95600DBE5BA /* ProfileData.swift in Sources */,

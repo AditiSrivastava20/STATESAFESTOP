@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '27C00598FB1E7C4AFDABF49E76963F87'
-               BlueprintName = 'SZTextView'
+               BlueprintIdentifier = '8318F51A7A57F94DBDCDFC06880A9CA1'
+               BlueprintName = 'RMMapper'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SZTextView.framework'>
+               BuildableName = 'RMMapper.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -32,6 +32,11 @@ class HomeViewController: TwitterPagerTabStripViewController {
         
         let child_1 = StoryboardScene.Main.instantiateRecordingViewController()
         
+        child_1.switchToHome = {[weak self]
+            (isHome) in
+            self?.moveToViewController(at: isHome ? 1 :0)
+        }
+        
         let child_2 = StoryboardScene.Main.instantiateCameraViewController()
         
         child_2.onSwitchVc = {[weak self]

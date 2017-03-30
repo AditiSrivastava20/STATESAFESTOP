@@ -22,6 +22,7 @@ enum LoginEndpoint {
     case recordingList(accessToken: String?)
     case complaintList(accessToken: String?)
     case addComplaint(accessToken: String?, title: String?, description: String?, media_id: String?)
+    case shareMedia(accessToken: String?, media_type: String?)
     
 }
 
@@ -42,6 +43,7 @@ extension LoginEndpoint : Router{
         case .recordingList(_): return APIConstants.recordingsList
         case .complaintList(_): return APIConstants.complaintList
         case .addComplaint(_): return APIConstants.addComplaint
+        case .shareMedia(_): return APIConstants.shareMedia
             
         }
     }
@@ -84,6 +86,9 @@ extension LoginEndpoint : Router{
             
         case .addComplaint(let accessToken, let title, let description, let media_id):
             return Parameters.addComplaint.map(values: [accessToken, title, description, media_id])
+        
+        case .shareMedia(let accessToken, let media_type):
+            return Parameters.shareMedia.map(values: [accessToken, media_type])
         }
     }
     

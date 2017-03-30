@@ -62,7 +62,7 @@ extension LoginViewController {
         let value = Validate()
         switch value {
         case .success:
-            APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: Device.token.rawValue), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: MobileDevice.token.rawValue), completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, self, from: .login)
             })

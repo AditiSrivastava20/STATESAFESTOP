@@ -10,21 +10,19 @@ import Foundation
 
 class Safelist: NSObject {
     
-    var phone: String?
     var id: String?
+    var unformatted_phone: String?
     var image: String?
-    var email: String?
-    var fullname: String?
+    var name: String?
     var isSelected : Int = 0
     
     required init(attributes: OptionalJSON) throws{
         super.init()
         
-        email = .email => attributes
-        fullname = .fullname => attributes
         id = .id => attributes
-        email = .email => attributes
-        phone = .phone => attributes
+        name = .name => attributes
+        image = .image => attributes
+        unformatted_phone = .unformatted_phone => attributes
         
     }
     

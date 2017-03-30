@@ -29,7 +29,7 @@ class CameraViewController: RecorderViewController {
     @IBOutlet weak var btnLocation: UIButton!
     @IBOutlet weak var btnVideo: UIButton!
 
-    let maxCaptureDuration = 11.0
+    let maxCaptureDuration = 31.0
     var paths = [String]()
     
     
@@ -38,10 +38,10 @@ class CameraViewController: RecorderViewController {
     @IBOutlet weak var viewCamera: UIView!
     var isPalyerStopByUser = true
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
          vision.clearAllDirectoryFiles()
-        
         
         setupPreview()
         
@@ -52,11 +52,7 @@ class CameraViewController: RecorderViewController {
     }
 
     
-  
-    
     @IBAction func actionBtnLocation(_ sender: Any) {
-        
-    
         
         
     }
@@ -67,6 +63,8 @@ class CameraViewController: RecorderViewController {
         
         
     }
+    
+    
     @IBAction func actionBtnComplaints(_ sender: Any) {
         
         self.onSwitchVc?(false)
@@ -190,6 +188,7 @@ extension CameraViewController : PBJVisionDelegate {
         //vision.videoRenderingEnabled = true
         vision.exposureMode = .continuousAutoExposure
         //vision.additionalCompressionProperties = [AVVideoProfileLevelKey: AVVideoProfileLevelH264Baseline30]
+        vision.defaultVideoThumbnails = true
         
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
@@ -245,10 +244,6 @@ extension CameraViewController : PBJVisionDelegate {
         }
     }
     
-    
-    
-    
-    
 
     
     
@@ -259,34 +254,35 @@ extension CameraViewController : PBJVisionDelegate {
             statusLabel?.text = "00:00"
             return
         }
-        
+
         
         if error != nil  && videoDict == nil{
             // UtilityFunctions.showAlert(error?.localizedDescription, message: error?.localizedRecoveryOptions?.first, viewController: self)
             return
         }
-        
-        
 
         let urlStr = NSURL(fileURLWithPath: videoDict?["PBJVisionVideoPathKey"] as! String)
+        recordingDone(recordedUrl: urlStr as URL, thumb: (videoDict?["PBJVisionVideoThumbnailKey"] as? UIImage))
         
-        
-                let player = AVPlayerViewController(nibName: nil, bundle: nil)
-                player.player = AVPlayer(url: urlStr as URL )
-                self.present(player, animated: true, completion: nil)
-        
-        
-        
-        
-        
-        //        paths.append((videoDict?[PBJVisionVideoPathKey] as? String) ?? "")
-        //        if paths.count == 2 {
-        //            moveToEditing()
-        //        }
+//        let player = AVPlayerViewController(nibName: nil, bundle: nil)
+//        player.player = AVPlayer(url: urlStr as URL )
+//        self.present(player, animated: true, completion: nil)
         
     }
     
     
+    override func recordingDone(recordedUrl : URL?, thumb: UIImage?){
+        
+        print(recordedUrl ?? "")
+        if let recordedDataUrl = recordedUrl {
+            do {
+                let mediaData = try Data(contentsOf: recordedDataUrl as URL)
+                mediaUploadApi(data: mediaData, type: thumb == nil ?  .audio : .video , thumb: thumb )
+            } catch {
+                print("Unable to load data: \(error)")
+            }
+        }
+    }
     
   
 }

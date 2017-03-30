@@ -99,6 +99,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RMMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SZTextView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -117,17 +122,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>178068A6D1A4AE225024805BEBAEEFAC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1ED7210FC5C9C6ADCEB3CDAD87B99D60</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>20A9DD9ABBF08BC57372A26C35327BF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27C00598FB1E7C4AFDABF49E76963F87</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,17 +167,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B4F65673B26AC439E33E9EE89137600</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6D61A09EED06A72304097360D9D70D72</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>808BF1AAB30340347945199AA24226EB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8318F51A7A57F94DBDCDFC06880A9CA1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -202,6 +202,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C50CE31F828DBC327F917E45B0DF0C4E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CEF3F3FD48F30AE7E6A6674BC46F1068</key>
 		<dict>
 			<key>primary</key>
@@ -213,6 +218,11 @@
 			<true/>
 		</dict>
 		<key>E396A93E4C79B22B7816E9F02F62ECED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FFBA0FE31F288EFDC281C6C44663D105</key>
 		<dict>
 			<key>primary</key>
 			<true/>

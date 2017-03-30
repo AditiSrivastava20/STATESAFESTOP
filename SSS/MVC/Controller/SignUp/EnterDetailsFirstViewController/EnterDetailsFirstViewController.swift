@@ -131,7 +131,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
         switch value {
         case .success:
             
-            APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text, email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: Device.token.rawValue),image: imgProfile.image , completion: { (response) in
+            APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text, email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: MobileDevice.token.rawValue),image: imgProfile.image , completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, self, from: .signup)
                 

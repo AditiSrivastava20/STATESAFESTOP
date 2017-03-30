@@ -9,12 +9,21 @@
 import UIKit
 import Material
 
+protocol pinEnteredListner : class {
+    
+    func getPinCode(pin : String?)
+    
+}
+
 class PinValidationViewController: BaseViewController {
+    
+    weak var delegatePin : pinEnteredListner?
 
     @IBOutlet weak var pinCodeTextField: PinCodeTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pinCodeTextField.delegate = self
         pinCodeTextField.keyboardType = .numberPad
         
     }
@@ -24,29 +33,12 @@ class PinValidationViewController: BaseViewController {
         
     }
     
-    func Validate() -> Valid {
-        return Validation.shared.validate(pinCode: pinCodeTextField.text)
-    }
-    
     @IBAction func btnDoneAction(_ sender: Any) {
         
-        switch Validate() {
-        case .success:
-            guard let login = UserDefaults.standard.value(forKey: "login") as? [String: String] else {
-                return
-            }
-            let pin:String = (login["pin_password"])!
-            
-            if (pinCodeTextField.text?.isEqual(pin))! {
-                print("dismiss")
-                dismiss(animated: true, completion: nil)
-            } else {
-                Alerts.shared.show(alert: .error, message: "Incorrect pin" , type : .warning)
-            }
-            
-        case .failure(let title,let msg):
-            Alerts.shared.show(alert: title, message: msg , type : .info)
-        }
+        delegatePin?.getPinCode(pin : pinCodeTextField.text)
+        
+        dismissVC(completion: nil)
+        
     }
     
     

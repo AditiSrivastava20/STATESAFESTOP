@@ -67,7 +67,7 @@ class TWManager {
         
         switch check {
         case .login:
-            APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: "\(param["id"]!)", accountType: AccountType.twitter.rawValue, deviceToken: Device.token.rawValue), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: "\(param["id"]!)", accountType: AccountType.twitter.rawValue, deviceToken: MobileDevice.token.rawValue), completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, obj, from: .login)
                 

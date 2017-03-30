@@ -35,10 +35,11 @@ class ComplaintViewController: BaseViewController {
         case .success(let responseValue):
             if let value = responseValue as? User{
                 print(value.msg ?? "")
-            }
-            
-            if let value = responseValue as? [Complaint]{
-                self.arrayComplaints = value
+                
+                self.arrayComplaints = value.complaints
+                tableView?.estimatedRowHeight = 84
+                setupTableView(tableView: tableView, cellId: "ComplaintTableViewCell", items: arrayComplaints)
+                tableView.reloadData()
             }
             
         case .failure(let str):
@@ -53,42 +54,15 @@ class ComplaintViewController: BaseViewController {
         
         arrayComplaints = []
         
-//        guard let login = UserDefaults.standard.value(forKey: "login") as? [String: String] else {
-//            return
-//        }
-//        
-//        APIManager.shared.request(with: LoginEndpoint.complaintList(accessToken: /login["access_token"]), completion: {
-//            (response) in
-//            
-//            self.handle(response: response)
-//        })
-        
-        let arrayData = [
-            [
-                "title": "Car Parking Issue",
-                "description": "Car Parking Issue",
-                "created_at": "2017-03-24 12:59:53",
-                "fullname": "Varun",
-                "email": "varunarora@gmail.com",
-                "media_content": "https://s3.ap-south-1.amazonaws.com/safestatestop/media_images/cdc65ff6ba5ea0479682eeb6bPYFZWfJwlE8qyh5tJtgC1zNaj.mp4"
-            ]
-        ]
-        
-        let json = JSON(arrayData)
-        
-        for dict in json.arrayValue {
-            
-            do {
-                let item = try Complaint(attributes: dict.dictionaryValue)
-                arrayComplaints?.append(item)
-            } catch {
-                
-            }
+        guard let login = UserDefaults.standard.value(forKey: "login") as? [String: String] else {
+            return
         }
         
-        tableView?.estimatedRowHeight = 84
-        setupTableView(tableView: tableView, cellId: "ComplaintTableViewCell", items: arrayComplaints)
-        
+        APIManager.shared.request(with: LoginEndpoint.complaintList(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK"), completion: {
+            (response) in
+            
+            self.handle(response: response)
+        })
     }
     
 }

@@ -107,6 +107,62 @@ class HTTPClient {
         }
     }
     
+    func postRequestWithMedia(withApi api : Router , media: Data?, thumbnail: UIImage? , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ) {
+        
+        guard let params = api.parameters else {failure("empty"); return}
+        let fullPath = api.baseURL + api.route
+        print(fullPath)
+        print(params)
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            
+            switch MediaType(rawValue: params["media_type"]! as! String) ?? .none {
+                
+            case .audio:
+                multipartFormData.append(media!, withName: "media", fileName: "audio.mp4", mimeType: "audio/mp4")
+            
+            case .video:
+                multipartFormData.append(media!, withName: "media", fileName: "video.mp4", mimeType: "video/mp4")
+                
+            case .none:
+                return
+                
+            }
+            
+            if let imageData = thumbnail  {
+    
+            multipartFormData.append(UIImageJPEGRepresentation(imageData, 0.5)!, withName: "thumbnail", fileName: "image.jpg", mimeType: "image/jpg")
+            }
+            
+            for (key, value) in params {
+                
+                let tempKey = value as? String ?? ""
+                
+                multipartFormData.append(tempKey.data(using: String.Encoding.utf8)!, withName: key)
+            }
+            
+        }, to: fullPath) { (encodingResult) in
+            switch encodingResult {
+            case .success(let upload,_,_):
+                
+                upload.responseJSON { response in
+                    switch response.result {
+                    case .success(let data):
+                        success(data)
+                    case .failure(let error):
+                        failure(error.localizedDescription)
+                    }
+                }
+                
+            case .failure(let encodingError):
+                print(encodingError)
+            }
+        }
+    }
+
+    
+    
+    
 }
 
 

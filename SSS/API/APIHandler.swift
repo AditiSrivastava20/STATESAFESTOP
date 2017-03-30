@@ -15,7 +15,7 @@ extension LoginEndpoint {
     func handle(parameters : JSON) -> AnyObject? {
         
         switch self {
-        case .login(_),.signup(_),.pinPassword(_),.checkExistEmailOrPhone(_),.addSafelist(_),.removeSafeuser(_),.complaintList(_),.addComplaint(_):
+        case .login(_),.signup(_),.pinPassword(_),.checkExistEmailOrPhone(_),.addSafelist(_),.removeSafeuser(_),.complaintList(_),.addComplaint(_),.recordingList(_), .shareMedia(_):
             
             do {
                 return try User(attributes: parameters.dictionaryValue )
@@ -25,11 +25,6 @@ extension LoginEndpoint {
             
             do {
                 return try Safelist(attributes: parameters.dictionaryValue)
-            } catch _ { return nil }
-        
-        case .recordingList(_):
-            do {
-                return try Recording(attributes: parameters.dictionaryValue)
             } catch _ { return nil }
         
         }

@@ -28,5 +28,5 @@ target 'SSS' do
   pod 'GoogleMaps'
   pod 'EPContactsPicker'
   pod 'SZTextView'
-
+  pod 'RMMapper'
 end

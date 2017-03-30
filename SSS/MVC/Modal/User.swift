@@ -30,10 +30,59 @@ class User: NSObject {
         access_token = .access_token => attributes
         isnewuser = .isnewuser => attributes
         profile = try Profile(attributes: .profile =< attributes)
+        
+        let arrayComplaints = User.parseComplaintArrayToModal(withAttributes : .complaints =| attributes) as? [Complaint]
+        complaints = arrayComplaints
+        
+        let arrayRecordings = User.parseRecordingArrayToModal(withAttributes : .recordings =| attributes) as? [Recording]
+        recordings = arrayRecordings
+        
     }
     
     override init() {
         super.init()
+    }
+    
+    class func parseComplaintArrayToModal(withAttributes attributes : [JSON]?) -> AnyObject? {
+        
+        var arrayComplaints: [Complaint] = []
+        
+        guard let attri = attributes else {
+            return nil
+        }
+        
+        for dict in attri {
+            
+            do {
+                let item = try Complaint(attributes: dict.dictionaryValue)
+                arrayComplaints.append(item)
+            } catch _ {
+            }
+        }
+        
+        return arrayComplaints as AnyObject?
+        
+    }
+    
+    class func parseRecordingArrayToModal(withAttributes attributes : [JSON]?) -> AnyObject? {
+        
+        var arrayRecordings: [Recording] = []
+        
+        guard let attri = attributes else {
+            return nil
+        }
+        
+        for dict in attri {
+            
+            do {
+                let item = try Recording(attributes: dict.dictionaryValue)
+                arrayRecordings.append(item)
+            } catch _ {
+            }
+        }
+        
+        return arrayRecordings as AnyObject?
+        
     }
     
     

@@ -80,7 +80,7 @@ class SafeListViewController: BaseViewController {
         "image" : " ",
         "email" : " ",
         "user_id" : 0,
-        "fullname" : "Aron "
+        "name" : "Aron "
             ],
         ["phone" : "570-928-9144",
          "unformatted_phone" : "5709289144",
@@ -91,7 +91,7 @@ class SafeListViewController: BaseViewController {
          "image" : " ",
          "email" : " ",
          "user_id" : 0,
-         "fullname" : "Paul "
+         "name" : "Paul "
             ]]
         
         let json = JSON(arrayData)

@@ -544,10 +544,54 @@ extension RecorderViewController : AVAudioRecorderDelegate {
         recordBtn.isUserInteractionEnabled = true
         setButtonBackground()
         resetTimer()
+        recordingDone(recordedUrl: self.recorder.url, thumb: nil)
+       
         
         self.recorder = nil
        
     }
+    
+    //MARK: recodrding done
+    func recordingDone(recordedUrl : URL?, thumb: UIImage?){
+        
+        if let recordedDataUrl = recordedUrl {
+            do {
+                let mediaData = try Data(contentsOf: recordedDataUrl as URL)
+                mediaUploadApi(data: mediaData, type: .audio, thumb: Image(asset: .icRecordingPlay))
+            } catch {
+                print("Unable to load data: \(error)")
+            }
+        }
+    }
+    
+    //MARK: - Handle response
+    func handle(response : Response) {
+        
+        switch response{
+        case .success(let responseValue):
+            if let value = responseValue as? User{
+                
+                print(value.msg ?? "")
+            }
+            
+        case .failure(let str):
+            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+        }
+        
+    }
+    
+    //MARK: - media api
+    func mediaUploadApi(data: Data?, type: MediaType?, thumb: UIImage?) {
+        
+        let token: String = "$2y$10$d8ea0fgI6.20.kz42uGohe1WYQBXGMZ6bQDul42Ul9LOMC7/GjzN6"
+        APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: { (response) in
+            
+            self.handle(response: response)
+        })
+        
+    }
+    
+    
     
     func resetTimer(){
         

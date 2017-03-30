@@ -90,6 +90,15 @@ enum StoryboardScene {
       }
       return vc
     }
+    
+    case complaintDoneViewControllerScene = "ComplaintDoneViewController"
+    static func instantiateComplaintDoneViewController() -> SSS.ComplaintDoneViewController {
+        guard let vc = StoryboardScene.Main.complaintDoneViewControllerScene.viewController() as? SSS.ComplaintDoneViewController
+            else {
+                fatalError("ViewController 'ComplaintDoneViewController' is not of the expected class SSS.ComplaintDoneViewController.")
+        }
+        return vc
+    }
 
     case recordingViewControllerScene = "RecordingViewController"
     static func instantiateRecordingViewController() -> SSS.RecordingViewController {
