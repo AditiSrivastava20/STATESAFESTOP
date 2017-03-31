@@ -503,8 +503,8 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrJ-al-TOp" customClass="Button" customModule="Material">
-                                <rect key="frame" x="230" y="482" width="70" height="70"/>
-                                <state key="normal" image="ic_checkin"/>
+                                <rect key="frame" x="244" y="496" width="56" height="56"/>
+                                <state key="normal" image="ic_fab_chek"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -746,7 +746,7 @@
                                         <rect key="frame" x="112" y="17.5" width="56" height="56"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="2qm-Qu-5fK" firstAttribute="centerY" secondItem="6Hi-A1-515" secondAttribute="centerY" id="0bZ-5Z-Wdx"/>
                                     <constraint firstItem="2qm-Qu-5fK" firstAttribute="centerX" secondItem="6Hi-A1-515" secondAttribute="centerX" id="bYC-s3-KUa"/>
@@ -1016,8 +1016,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AN0-MU-okQ">
-                                <rect key="frame" x="230" y="482" width="70" height="70"/>
-                                <state key="normal" image="ic_checkin"/>
+                                <rect key="frame" x="244" y="496" width="56" height="56"/>
+                                <state key="normal" image="ic_fab_chek"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1313,10 +1313,10 @@
         <image name="ic_calender" width="24" height="24"/>
         <image name="ic_card holder" width="24" height="24"/>
         <image name="ic_cent" width="24" height="24"/>
-        <image name="ic_checkin" width="70" height="70"/>
         <image name="ic_clear" width="24" height="24"/>
         <image name="ic_credit card" width="24" height="24"/>
         <image name="ic_edit profile" width="86" height="86"/>
+        <image name="ic_fab_chek" width="56" height="56"/>
         <image name="ic_facebook" width="36" height="36"/>
         <image name="ic_friends" width="56" height="56"/>
         <image name="ic_logo" width="194" height="194"/>
@@ -1326,7 +1326,7 @@
         <image name="ic_zip code" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="x3i-Dc-0K8"/>
+        <segue reference="EhW-Xe-SL8"/>
         <segue reference="qkg-yD-kNj"/>
     </inferredMetricsTieBreakers>
 </document>

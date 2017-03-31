@@ -11,6 +11,8 @@ import Kingfisher
 
 class RecordingTableViewCell: UITableViewCell {
 
+    
+    @IBOutlet weak var btnActionSheet: UIButton!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var imageViewType: UIImageView!
     @IBOutlet weak var imageViewUser: UIImageView!

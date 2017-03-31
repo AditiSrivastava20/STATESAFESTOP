@@ -12,26 +12,37 @@ import SwiftyJSON
 import Material
 import M13Checkbox
 
+protocol contactListner: class {
+    
+    func getUserIds(ids: [String]?)
+}
+
 
 class SafeListViewController: BaseViewController {
     
+    
+    @IBOutlet weak var heightOfAddAndRemove: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnRemove: Button!
+    
+    weak var delegateContact: contactListner?
 
     var login:[String: String]?
-    var items:[Safelist]?
+    var safelistArray:[Safelist]?
     var isFromEdit = false
+    var isFromShare = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let value = UserDefaults.standard.value(forKey: "login") as? [String: String] {
-            login = value
+        if isFromShare {
+            addDoneButton()
+            heightOfAddAndRemove.constant = -10
         }
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         getSafelist()
     }
     
@@ -40,6 +51,27 @@ class SafeListViewController: BaseViewController {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK: - nav bar right button
+    func addDoneButton() {
+        let btnDone = UIButton(type: .custom)
+        btnDone.setTitle("Done", for: .normal)
+        btnDone.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        btnDone.addTarget(self, action: #selector(doneSharing), for: .touchUpInside)
+        let item2 = UIBarButtonItem(customView: btnDone)
+        
+        self.navigationItem.setRightBarButtonItems([item2], animated: true)
+
+    }
+    
+    //MARK: - done sharing
+    func doneSharing() {
+        let array = safelistArray?.filter(){$0.isSelected == 1}
+        delegateContact?.getUserIds(ids: userIds(value: array) )
+        popVC()
+        
+    }
+    
+    
     //MARK: Handle response
     func handle(response: Response) {
         
@@ -47,10 +79,11 @@ class SafeListViewController: BaseViewController {
         case .success(let responseValue):
             if let value = responseValue as? User{
                 print(value.msg ?? "")
-            }
-            
-            if let value = responseValue as? [Safelist]{
-                self.items = value
+                
+                self.safelistArray = value.contacts
+                tableView?.estimatedRowHeight = 89
+                setupTableView(tableView: tableView, cellId: "SafelistTableViewCell", items: safelistArray)
+                tableView.reloadData()
             }
             
         case .failure(let str):
@@ -61,53 +94,14 @@ class SafeListViewController: BaseViewController {
     
     //MARK: get safelist API
     func getSafelist() {
-        items = []
+        safelistArray = []
         
-//        APIManager.shared.request(with: LoginEndpoint.addSafelist(accessToken: /login["access_token"]), completion: { (response) in
-//            
-//            self.handle(response: response)
-//            
-//        })
-        
-        let arrayData = [
-        [
-        "phone" : "077-065-8931",
-        "unformatted_phone" : "0770658931",
-        "reg_id" : " ",
-        "id" : 47,
-        "device_token" : " ",
-        "is_block" : 0,
-        "image" : " ",
-        "email" : " ",
-        "user_id" : 0,
-        "name" : "Aron "
-            ],
-        ["phone" : "570-928-9144",
-         "unformatted_phone" : "5709289144",
-         "reg_id" : " ",
-         "id" : 52,
-         "device_token" : " ",
-         "is_block" : 0,
-         "image" : " ",
-         "email" : " ",
-         "user_id" : 0,
-         "name" : "Paul "
-            ]]
-        
-        let json = JSON(arrayData)
-        
-        for dict in json.arrayValue {
+        APIManager.shared.request(with: LoginEndpoint.safelist(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK"), completion: { (response) in
             
-            do {
-                let item = try Safelist(attributes: dict.dictionaryValue)
-                items?.append(item)
-            } catch {
-                
-            }
-        }
+            self.handle(response: response)
+            
+        })
         
-        tableView?.estimatedRowHeight = 89
-        setupTableView(tableView: tableView, cellId: "SafelistTableViewCell", items: items)
     }
     
     
@@ -136,21 +130,23 @@ class SafeListViewController: BaseViewController {
     //MARK: remove selected safe users
     func removeSafeuser() {
         
-        let array = items?.filter(){$0.isSelected == 1}
-        userIds(value: array)
+        let array = safelistArray?.filter(){$0.isSelected == 1}
+        if !(array?.isEmpty)! {
+            self.ApiSafelist(array: userIds(value: array), check: .remove)
+        }
         
-        items = items?.filter(){$0.isSelected != 1}
-        dataSource?.items = items
+        safelistArray = safelistArray?.filter(){$0.isSelected != 1}
+        dataSource?.items = safelistArray
         tableView.reloadData()
     }
     
     //MARK: get user ids
-    func userIds(value: [Safelist]?) {
+    func userIds(value: [Safelist]?) -> [String] {
         var ids:[String] = []
         for user in value! {
             ids.append(user.id!)
         }
-        self.ApiSafelist(array: ids, check: .remove)
+        return ids
     }
     
     //MARK: Add/Remove safelist
@@ -170,9 +166,9 @@ class SafeListViewController: BaseViewController {
         
         switch check {
         case .add:
-            return LoginEndpoint.addSafelist(accessToken: /login?["access_token"])
+            return LoginEndpoint.addSafelist(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK")
         case .remove:
-            return LoginEndpoint.removeSafeuser(accessToken: /login?["access_token"])
+            return LoginEndpoint.removeSafeuser(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK")
         }
         
     }
@@ -189,19 +185,28 @@ extension SafeListViewController {
         
         dataSource = TableViewDataSource(items: items as Array<AnyObject>? , height: UITableViewAutomaticDimension , tableView: tableView, cellIdentifier:cellId , configureCellBlock: {[unowned self] (cell, item, indexPath) in
             
+            print(cell)
+            
             (cell as? SafelistCell)?.objSafeuser = item as? Safelist
-            (cell as? SafelistCell)?.imageViewStaticPhone.isHidden = self.isFromEdit
-            (cell as? SafelistCell)?.checkBoxContact.isHidden = !(self.isFromEdit)
+            
+            if self.isFromShare {
+                (cell as? SafelistCell)?.imageViewStaticPhone.isHidden = !self.isFromShare
+                (cell as? SafelistCell)?.checkBoxContact.isHidden = (self.isFromShare)
+            } else {
+                (cell as? SafelistCell)?.imageViewStaticPhone.isHidden = self.isFromEdit
+                (cell as? SafelistCell)?.checkBoxContact.isHidden = !(self.isFromEdit)
+            }
+
             
             }, aRowSelectedListener: { (indexPath) in
                 
                 print(indexPath)
                 
-                if self.isFromEdit == true {
-                    if self.items?[indexPath[1]].isSelected == 0 {
-                        self.items?[indexPath[1]].isSelected = 1
+                if self.isFromEdit || self.isFromShare {
+                    if self.safelistArray?[indexPath[1]].isSelected == 0 {
+                        self.safelistArray?[indexPath[1]].isSelected = 1
                     } else {
-                        self.items?[indexPath[1]].isSelected = 0
+                        self.safelistArray?[indexPath[1]].isSelected = 0
                     }
                     
                     tableView?.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)

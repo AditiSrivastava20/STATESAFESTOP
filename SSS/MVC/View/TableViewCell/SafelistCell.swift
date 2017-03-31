@@ -38,6 +38,8 @@ class SafelistCell: UITableViewCell {
     func setupCell() {
         if let _ = objSafeuser?.image {
             imgContact.kf.setImage(with: URL(string: /objSafeuser?.image))
+        } else {
+            imgContact.image = Image(asset: .icProfile )
         }
         
         lblName?.text = /objSafeuser?.name

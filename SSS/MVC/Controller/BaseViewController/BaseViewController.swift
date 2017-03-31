@@ -36,7 +36,6 @@ class BaseViewController: UIViewController {
         
         dataSource = TableViewDataSource(items:items , height: UITableViewAutomaticDimension , tableView: tableView, cellIdentifier:cellId , configureCellBlock: { (cell, item, indexPath) in
             
-            (cell as? RecordingTableViewCell)?.objRecording = item as? Recording
             
             (cell as? ComplaintTableViewCell)?.objComplaint = item as? Complaint
             

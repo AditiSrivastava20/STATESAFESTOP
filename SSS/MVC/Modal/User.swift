@@ -20,6 +20,7 @@ class User: NSObject {
     var msg: String?
     var complaints: [Complaint]?
     var recordings: [Recording]?
+    var contacts: [Safelist]?
     
     required init(attributes: OptionalJSON) throws{
         super.init()
@@ -36,6 +37,9 @@ class User: NSObject {
         
         let arrayRecordings = User.parseRecordingArrayToModal(withAttributes : .recordings =| attributes) as? [Recording]
         recordings = arrayRecordings
+        
+        let arraySafelist = User.parseSafelistArrayToModal(withAttributes: .contacts =| attributes) as? [Safelist]
+        contacts = arraySafelist
         
     }
     
@@ -82,6 +86,27 @@ class User: NSObject {
         }
         
         return arrayRecordings as AnyObject?
+        
+    }
+    
+    class func parseSafelistArrayToModal(withAttributes attributes : [JSON]?) -> AnyObject? {
+        
+        var arraySafelist: [Safelist] = []
+        
+        guard let attri = attributes else {
+            return nil
+        }
+        
+        for dict in attri {
+            
+            do {
+                let item = try Safelist(attributes: dict.dictionaryValue)
+                arraySafelist.append(item)
+            } catch _ {
+            }
+        }
+        
+        return arraySafelist as AnyObject?
         
     }
     

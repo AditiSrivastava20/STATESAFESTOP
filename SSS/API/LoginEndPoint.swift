@@ -18,11 +18,13 @@ enum LoginEndpoint {
     case pinPassword(accessToken: String?, pinPassword: String?)
     case addSafelist(accessToken: String?)
     case removeSafeuser(accessToken: String?)
-    case readContacts(accessToken: String?)
+    case safelist(accessToken: String?)
     case recordingList(accessToken: String?)
     case complaintList(accessToken: String?)
     case addComplaint(accessToken: String?, title: String?, description: String?, media_id: String?)
     case shareMedia(accessToken: String?, media_type: String?)
+    case shareLocation(accessToken: String?, locatiom_name: String?, latitude: String?, longitude: String?)
+    case shareothermedia(accessToken: String?, media_id: String?)
     
 }
 
@@ -39,12 +41,13 @@ extension LoginEndpoint : Router{
         case .pinPassword(_): return APIConstants.pinPassword
         case .addSafelist(_): return APIConstants.addToSafelist
         case .removeSafeuser(_): return APIConstants.removeFromSafelist
-        case .readContacts(_): return APIConstants.readContacts
+        case .safelist(_): return APIConstants.safelist
         case .recordingList(_): return APIConstants.recordingsList
         case .complaintList(_): return APIConstants.complaintList
         case .addComplaint(_): return APIConstants.addComplaint
         case .shareMedia(_): return APIConstants.shareMedia
-            
+        case .shareLocation(_): return APIConstants.shareLocation
+        case .shareothermedia(_): return APIConstants.shareothermedia
         }
     }
     
@@ -75,8 +78,8 @@ extension LoginEndpoint : Router{
         case .removeSafeuser(let accessToken):
             return Parameters.removeSafeUser.map(values: [accessToken])
         
-        case .readContacts(let accessToken):
-            return Parameters.readContacts.map(values: [accessToken])
+        case .safelist(let accessToken):
+            return Parameters.safelist.map(values: [accessToken])
             
         case .recordingList(let accessToken):
             return Parameters.recordingList.map(values: [accessToken])
@@ -89,6 +92,12 @@ extension LoginEndpoint : Router{
         
         case .shareMedia(let accessToken, let media_type):
             return Parameters.shareMedia.map(values: [accessToken, media_type])
+        
+        case .shareLocation(let accessToken, let location_name, let latitude, let longitude):
+            return Parameters.shareLocation.map(values: [accessToken, location_name, latitude, longitude])
+            
+        case .shareothermedia(let accessToken, let media_id):
+            return Parameters.shareothermedia.map(values: [accessToken, media_id])
         }
     }
     

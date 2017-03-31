@@ -17,7 +17,7 @@ class HomeViewController: TwitterPagerTabStripViewController {
         super.viewDidLoad()
         self.moveToViewController(at: 1)
         self.containerView.bounces = false
-    
+        
     }
     
     
@@ -26,6 +26,8 @@ class HomeViewController: TwitterPagerTabStripViewController {
           toggleSideMenuView()
     }
 
+    
+    
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
@@ -51,10 +53,11 @@ class HomeViewController: TwitterPagerTabStripViewController {
     }
     
     
+    
+    
   
     
-    
-
 }
+
 
 

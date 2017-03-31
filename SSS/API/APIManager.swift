@@ -19,11 +19,11 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     
     
     
-    //MARK: Normal API (signin/login, pin setup etc)
+    //MARK: Normal API (signin/login, pin setup, password setup, get recording list  etc)
     func request(with api : Router , completion : @escaping Completion )  {
         
         if isLoaderNeeded(api: api) {
-            startAnimating(nil, message: nil, messageFont: nil, type: .lineScalePulseOutRapid , color: UIColor.white, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
         }
         
         httpClient.postRequest(withApi: api, success: {[weak self] (data) in
@@ -76,7 +76,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     func request(withArray api : Router, array: [String]? , completion : @escaping Completion )  {
         
         if isLoaderNeeded(api: api) {
-            startAnimating(nil, message: nil, messageFont: nil, type: .lineScalePulseOutRapid , color: UIColor.white, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
         }
         
         httpClient.postRequestWithArray(withApi: api, array: array, success: {[weak self] (data) in
@@ -111,7 +111,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     func request(withImages api : Router , image : UIImage?  , completion : @escaping Completion )  {
         
         if isLoaderNeeded(api: api) {
-            startAnimating(nil, message: nil, messageFont: nil, type: .lineScalePulseOutRapid, color: UIColor.white, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate, color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
         }
         
         httpClient.postRequestWithImages(withApi: api, image: image, success: {[weak self] (data) in
@@ -148,7 +148,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     func request(withMedia api : Router , media: Data? , thumbnail : UIImage?  , completion : @escaping Completion )  {
         
         if isLoaderNeeded(api: api) {
-            startAnimating(nil, message: nil, messageFont: nil, type: .lineScalePulseOutRapid, color: UIColor.white, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate, color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
         }
         
         httpClient.postRequestWithMedia(withApi: api, media: media, thumbnail: thumbnail, success: {[weak self] (data) in

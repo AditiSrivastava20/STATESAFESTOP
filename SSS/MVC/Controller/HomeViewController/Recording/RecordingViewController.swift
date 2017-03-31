@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import AVKit
 import EZSwiftExtensions
+import Photos
 
 
 protocol mediaSelectListner : class {
@@ -37,13 +38,14 @@ class RecordingViewController: BaseViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        showPopUp()
+//        showPopUp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getRecordings()
     }
     
+    //MARK: - handle response
     func handle(response: Response) {
         
         switch response{
@@ -101,10 +103,6 @@ class RecordingViewController: BaseViewController {
         
         arrayRecording = []
         
-//        guard let login = UserDefaults.standard.value(forKey: "login") as? [String: String] else {
-//            return
-//        }
-//        
         APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK"), completion: {
             (response) in
             
@@ -112,12 +110,132 @@ class RecordingViewController: BaseViewController {
             
         })
     }
+    
+   
+    
+    
 
 }
 
-//MARK: - Tableview delegate
+
+extension RecordingViewController: UIActionSheetDelegate {
+    
+    //MARK: Action sheet
+    func btnActionSheetAction(sender : UIButton) {
+        
+        let actionSheetController = UIAlertController(title: "Please select", message: nil, preferredStyle: .actionSheet)
+        
+        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            print("Cancel")
+        }
+        actionSheetController.addAction(cancelActionButton)
+        
+        let shareActionButton = UIAlertAction(title: "Share", style: .default) { action -> Void in
+            print("Share")
+            self.shareMediaFromRecordings(media_id: self.arrayRecording?[sender.tag].id)
+        }
+        actionSheetController.addAction(shareActionButton)
+
+        let saveActionButton = UIAlertAction(title: "Save", style: .default) { action -> Void in
+            print("Save")
+            self.downloadVideoFrom(url: self.arrayRecording?[sender.tag].media_content)
+            
+            
+        }
+        actionSheetController.addAction(saveActionButton)
+
+        self.present(actionSheetController, animated: true, completion: nil)
+    }
+    
+    
+    //MARK: - Share media
+    func shareMediaFromRecordings(media_id: String?) {
+        
+        let vc = StoryboardScene.Main.instantiateSafeListViewController()
+        vc.delegateContact = self
+        vc.isFromShare = true
+        pushVC(vc)
+        
+    }
+    
+    
+    //MARK: -  Download media
+    func downloadVideoFrom(url :String?){
+        
+        
+        DispatchQueue.global(qos: .background).async {
+            if let url = URL(string: url ?? ""),
+                let urlData = NSData(contentsOf: url)
+            {
+                let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
+                let filePath="\(documentsPath)/tempFile.mp4";
+                DispatchQueue.main.async {
+                    urlData.write(toFile: filePath, atomically: true)
+                    PHPhotoLibrary.shared().performChanges({
+                        PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: URL(fileURLWithPath: filePath))
+                    }) { completed, error in
+                        if completed {
+                            print("Video is saved!")
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    
+}
+
+extension RecordingViewController : contactListner {
+    
+    func getUserIds(ids: [String]?) {
+        
+        if let _ = ids {
+            print("share")
+        } else {
+            print("none selected")
+        }
+        
+    }
+    
+}
+
+
+
+
+
+
 extension RecordingViewController : UITableViewDelegate{
     
+    //MARK: - tableview datasource
+    override func setupTableView(tableView : UITableView? , cellId : String? , items : [Any]? ) {
+        
+        
+        dataSource = TableViewDataSource(items:items , height: UITableViewAutomaticDimension , tableView: tableView, cellIdentifier:cellId , configureCellBlock: { (cell, item, indexPath) in
+            
+            (cell as? RecordingTableViewCell)?.objRecording = item as? Recording
+            (cell as? RecordingTableViewCell)?.btnActionSheet.tag = ((indexPath as? IndexPath)?.row ?? 0 )
+            (cell as? RecordingTableViewCell)?.btnActionSheet.addTarget(self, action: #selector(self.btnActionSheetAction), for: .touchUpInside)
+            
+            if self.isFromMediaSelection {
+                (cell as? RecordingTableViewCell)?.btnActionSheet.isHidden = true
+            }
+            
+        }, aRowSelectedListener: { (indexPath) in
+            
+        }) { (scrollView) in
+            
+        }
+        
+        tableView?.delegate = dataSource
+        tableView?.dataSource = dataSource
+        
+    }
+
+    
+    
+    //MARK: - Tableview delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         

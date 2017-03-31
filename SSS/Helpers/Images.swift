@@ -13,6 +13,7 @@
 
 // swiftlint:disable type_body_length
 enum Asset: String {
+  case combinedShape = "Combined Shape"
   case icAttach = "ic_attach"
   case icAudioBlack = "ic_audio_black"
   case icAudioWhite = "ic_audio_white"
@@ -24,6 +25,7 @@ enum Asset: String {
   case icCam = "ic_cam"
   case icCardHolder = "ic_card holder"
   case icCent = "ic_cent"
+  case icClear = "ic_clear"
   case icComplaintGray = "ic_complaint gray"
   case icComplaintWhite = "ic_complaint white"
   case icComplaintYellow = "ic_complaint yellow"
@@ -45,6 +47,7 @@ enum Asset: String {
   case icLogout = "ic_logout"
   case icMic = "ic_mic"
   case icMoney = "ic_money"
+  case icMoreVert = "ic_more_vert"
   case icMsg = "ic_msg"
   case icNotification1 = "ic_notification 1"
   case icNotification = "ic_notification"

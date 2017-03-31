@@ -41,7 +41,10 @@ class CameraViewController: RecorderViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         vision.clearAllDirectoryFiles()
+        
+        LocationManager.sharedInstance.setupLocationManger()
+        
+        vision.clearAllDirectoryFiles()
         
         setupPreview()
         
@@ -49,13 +52,24 @@ class CameraViewController: RecorderViewController {
         progressView.updateProgress(0.0)
         setupCamera()
         // Do any additional setup after loading the view.
+        
     }
 
     
     @IBAction func actionBtnLocation(_ sender: Any) {
+   
+        LocationManager.sharedInstance.startTrackingUser { (lat, lng, locationName) in
+            
+            APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK", locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { (response) in
+                
+                self.handle(response: response)
+            })
+            
+        }
         
-        
+       
     }
+
     
     @IBAction func actionBtnRecordings(_ sender: Any) {
         
@@ -211,11 +225,7 @@ extension CameraViewController : PBJVisionDelegate {
         vision.maximumCaptureDuration = CMTimeMakeWithSeconds(maxCaptureDuration, 600)
         vision.startPreview()
     
-        
-}
-    
-
-    
+    }
     
     func visionSessionDidStart(_ vision: PBJVision) {
         if previewView?.superview == nil {
@@ -225,10 +235,6 @@ extension CameraViewController : PBJVisionDelegate {
     }
     
 
-    
-    
-    
-    
     
     func vision(_ vision: PBJVision, didCaptureVideoSampleBuffer sampleBuffer: CMSampleBuffer) {
         

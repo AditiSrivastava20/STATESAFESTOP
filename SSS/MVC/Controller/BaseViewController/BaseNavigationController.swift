@@ -18,6 +18,7 @@ class BaseNavigationController: ENSideMenuNavigationController, ENSideMenuDelega
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let sideMenuVc = storyboard.instantiateViewController(withIdentifier: "SideMenuViewController") as? SideMenuViewController
         
+        
         sideMenu = ENSideMenu(sourceView: self.view, menuViewController: sideMenuVc!, menuPosition:.left)
         
         sideMenu?.delegate = self //optional
@@ -59,11 +60,6 @@ class BaseNavigationController: ENSideMenuNavigationController, ENSideMenuDelega
 
     func changeDimView(isOpen : Bool){
         
-        
-      
-        
-        
-        
         UIView.animate(withDuration: 1.0, animations: {
             self.viewBackground.isHidden = !isOpen
             
@@ -72,3 +68,6 @@ class BaseNavigationController: ENSideMenuNavigationController, ENSideMenuDelega
     }
 
 }
+
+
+

@@ -42,6 +42,7 @@ enum colors : String {
     case mainLabelColor = "0x4B4B4B"
     case appColor = "0xFDDC2F"
     case sepratorColor = "0xBABABA"
+    case loaderColor = "0xF3DC2F"
     
     func color() -> UIColor {
         return UIColor(hexString: self.rawValue)!
@@ -52,7 +53,6 @@ enum colors : String {
 enum userPrefrences : String{
     
     case aybizUserProfile = "SSSUserProfile"
-
 
 }
 

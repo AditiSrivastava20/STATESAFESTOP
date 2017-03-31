@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DACE2DD1E8E3D2C00CEA8C3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DACE2DC1E8E3D2C00CEA8C3 /* LocationManager.swift */; };
 		1DC3BB411E8CE089009C71E1 /* ComplaintDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC3BB401E8CE089009C71E1 /* ComplaintDoneViewController.swift */; };
 		1DC3BB451E8D04E7009C71E1 /* UserDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC3BB441E8D04E7009C71E1 /* UserDataSingleton.swift */; };
 		1DE1265F1E8BB95600DBE5BA /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125A41E8BB95600DBE5BA /* APIConstants.swift */; };
@@ -45,7 +46,6 @@
 		1DE126831E8BB95600DBE5BA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125DC1E8BB95600DBE5BA /* LoginViewController.swift */; };
 		1DE126851E8BB95600DBE5BA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125E01E8BB95600DBE5BA /* ProfileViewController.swift */; };
 		1DE126861E8BB95600DBE5BA /* SafeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125E21E8BB95600DBE5BA /* SafeListViewController.swift */; };
-		1DE126871E8BB95600DBE5BA /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125E41E8BB95600DBE5BA /* SidePanelViewController.swift */; };
 		1DE126881E8BB95600DBE5BA /* EnterDetailsFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125E71E8BB95600DBE5BA /* EnterDetailsFirstViewController.swift */; };
 		1DE126891E8BB95600DBE5BA /* EnterDetailsSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125E91E8BB95600DBE5BA /* EnterDetailsSecondViewController.swift */; };
 		1DE1268A1E8BB95600DBE5BA /* CardTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125EC1E8BB95600DBE5BA /* CardTransactionViewController.swift */; };
@@ -136,6 +136,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1DACE2DC1E8E3D2C00CEA8C3 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1DC3BB401E8CE089009C71E1 /* ComplaintDoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplaintDoneViewController.swift; sourceTree = "<group>"; };
 		1DC3BB441E8D04E7009C71E1 /* UserDataSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataSingleton.swift; sourceTree = "<group>"; };
 		1DD216221E6FE34B009E1296 /* SSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,7 +177,6 @@
 		1DE125DC1E8BB95600DBE5BA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1DE125E01E8BB95600DBE5BA /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1DE125E21E8BB95600DBE5BA /* SafeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeListViewController.swift; sourceTree = "<group>"; };
-		1DE125E41E8BB95600DBE5BA /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		1DE125E71E8BB95600DBE5BA /* EnterDetailsFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterDetailsFirstViewController.swift; sourceTree = "<group>"; };
 		1DE125E91E8BB95600DBE5BA /* EnterDetailsSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterDetailsSecondViewController.swift; sourceTree = "<group>"; };
 		1DE125EC1E8BB95600DBE5BA /* CardTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransactionViewController.swift; sourceTree = "<group>"; };
@@ -392,6 +392,7 @@
 		1DE125BC1E8BB95600DBE5BA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1DACE2DC1E8E3D2C00CEA8C3 /* LocationManager.swift */,
 				1DC3BB441E8D04E7009C71E1 /* UserDataSingleton.swift */,
 				1DE125BD1E8BB95600DBE5BA /* BridgingHeader.h */,
 				1DE125BF1E8BB95600DBE5BA /* Constants.swift */,
@@ -433,7 +434,6 @@
 				1DE125DB1E8BB95600DBE5BA /* LoginViewController */,
 				1DE125DF1E8BB95600DBE5BA /* ProfileViewController */,
 				1DE125E11E8BB95600DBE5BA /* SafeListViewController */,
-				1DE125E31E8BB95600DBE5BA /* SidePanelViewController */,
 				1DE125E51E8BB95600DBE5BA /* SignUp */,
 				1DE125EF1E8BB95600DBE5BA /* SplashViewController */,
 			);
@@ -524,14 +524,6 @@
 				1DE125E21E8BB95600DBE5BA /* SafeListViewController.swift */,
 			);
 			path = SafeListViewController;
-			sourceTree = "<group>";
-		};
-		1DE125E31E8BB95600DBE5BA /* SidePanelViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1DE125E41E8BB95600DBE5BA /* SidePanelViewController.swift */,
-			);
-			path = SidePanelViewController;
 			sourceTree = "<group>";
 		};
 		1DE125E51E8BB95600DBE5BA /* SignUp */ = {
@@ -1086,7 +1078,6 @@
 				1DE126611E8BB95600DBE5BA /* APIManager.swift in Sources */,
 				1DE126BB1E8BB95600DBE5BA /* ENSideMenu.swift in Sources */,
 				1DE126641E8BB95600DBE5BA /* HTTPClient.swift in Sources */,
-				1DE126871E8BB95600DBE5BA /* SidePanelViewController.swift in Sources */,
 				1DE1266B1E8BB95600DBE5BA /* ProfileData.swift in Sources */,
 				1DE126801E8BB95600DBE5BA /* RecordingViewController.swift in Sources */,
 				1DE126751E8BB95600DBE5BA /* ParamKeys.swift in Sources */,
@@ -1117,6 +1108,7 @@
 				1DE126D71E8BB95600DBE5BA /* PagerTabStripError.swift in Sources */,
 				1DE126851E8BB95600DBE5BA /* ProfileViewController.swift in Sources */,
 				1DE126DF1E8BBB2B00DBE5BA /* BaseNavigationController.swift in Sources */,
+				1DACE2DD1E8E3D2C00CEA8C3 /* LocationManager.swift in Sources */,
 				1DE1266D1E8BB95600DBE5BA /* Validation.swift in Sources */,
 				1DE126971E8BB95600DBE5BA /* RecordingTableViewCell.swift in Sources */,
 				1DE126601E8BB95600DBE5BA /* APIHandler.swift in Sources */,

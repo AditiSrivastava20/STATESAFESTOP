@@ -18,7 +18,7 @@ internal struct APIConstants {
     static let phoneNumber = "set/phone-number"
     static let forgotPassword = "forgot-password"
     static let checkExistEmailOrPhone = "checkexist-email-phone"
-    static let readContacts = "readcontacts"
+    static let safelist = "safelist"
     static let addToSafelist = "addsafelist"
     static let removeFromSafelist = "removesafeuser"
     static let statusCode = "status_code"
@@ -30,6 +30,8 @@ internal struct APIConstants {
     static let complaintList = "complaintlist"
     static let addComplaint = "add-complaint"
     static let shareMedia = "sharemedia"
+    static let shareLocation = "sharelocation"
+    static let shareothermedia = "shareothermedia"
     
     
 }
@@ -74,6 +76,8 @@ enum Keys: String {
     //read contacts
     case contacts = "contacts" //array of phone numbers
     
+    //safelist
+    
     //add to safelist
     
     //remove from safelist
@@ -88,10 +92,15 @@ enum Keys: String {
     case description = "description"
     case media_id = "media_id"
     
-    //share media_id
+    //share media
     case media = "media"
     case media_type = "media_type"
     case thumbnail = "thumbnail_url"
+    
+    //share location
+    case location_name = "location_name"
+    case latitude = "latitude"
+    case longitude = "longitude"
     
 }
 
@@ -168,13 +177,15 @@ struct Parameters {
     static let phoneNumber: [Keys] = [.accessToken, .phone]
     static let forgotPassword: [Keys] = [.email]
     static let checkExistEmailOrPhone: [Keys] = [.email, .phone]
-    static let readContacts: [Keys] = [.accessToken]
+    static let safelist: [Keys] = [.accessToken]
     static let addSafelist: [Keys] = [.accessToken, .contacts]
     static let removeSafeUser: [Keys] = [.accessToken, .safeUserIds]
     static let recordingList: [Keys] = [.accessToken]
     static let complaintList: [Keys] = [.accessToken]
     static let addComplaint: [Keys] = [.accessToken, .title, .description, .media_id]
     static let shareMedia: [Keys] = [.accessToken, .media_type]
+    static let shareLocation: [Keys] = [.accessToken, .location_name, .latitude, .longitude]
+    static let shareothermedia: [Keys] = [.accessToken, .safeUserIds, .media_id ]
 }
 
 

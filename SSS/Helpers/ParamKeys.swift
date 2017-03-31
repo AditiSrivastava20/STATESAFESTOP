@@ -31,6 +31,7 @@ enum ParamKeys: String {
     case image_url = "image_url"
     case account_type = "account_type"
     case safe_list = "safe_list"
+    case contacts = "contacts"
     case image = "image"
     case id = "id"
     case complaints = "complaints"

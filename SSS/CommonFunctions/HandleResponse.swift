@@ -29,16 +29,15 @@ class HandleResponse {
         switch response{
         case .success(let responseValue):
             if let value = responseValue as? User{
-                
                 print(value.msg ?? "")
                 
                 switch from {
                 case .login:
-                    ProfileData.shared.store(value)
+                    UserDataSingleton.sharedInstance.loggedInUser = value
                     obj.performSegue(withIdentifier: segue.loginToMain.rawValue, sender: obj)
                     
                 case .signup:
-                    ProfileData.shared.store(value)
+                    UserDataSingleton.sharedInstance.loggedInUser = value
                     obj.performSegue(withIdentifier: segue.signupToPin.rawValue, sender: obj)
                     
                 case .pinPassword:
