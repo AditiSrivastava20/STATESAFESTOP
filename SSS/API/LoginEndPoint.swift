@@ -14,6 +14,7 @@ enum LoginEndpoint {
     
     case login(email : String? , password : String?, facebookId: String?, twitterId: String?, accountType: String?, deviceToken: String?)
     case signup(fullname : String? , email : String?, fullAddress: String?, password: String? , facebookId: String?, twitterId: String?, phone: String?, accountType: String?, deviceToken: String?)
+    case editProfile(accessToken : String?, fullName : String?, address : String?, email :  String?, phone : String?)
     case checkExistEmailOrPhone(email: String?, phone: String?)
     case pinPassword(accessToken: String?, pinPassword: String?)
     case addSafelist(accessToken: String?)
@@ -25,6 +26,8 @@ enum LoginEndpoint {
     case shareMedia(accessToken: String?, media_type: String?)
     case shareLocation(accessToken: String?, locatiom_name: String?, latitude: String?, longitude: String?)
     case shareothermedia(accessToken: String?, media_id: String?)
+    case resetPin(accessToken: String?, pinPassword: String?)
+    case changePassword(accessToken: String?, old_password: String?, new_password: String?)
     
 }
 
@@ -37,6 +40,7 @@ extension LoginEndpoint : Router{
             
         case .login(_): return APIConstants.login
         case .signup(_): return APIConstants.signup
+        case .editProfile(_): return APIConstants.editProfile
         case .checkExistEmailOrPhone(_): return APIConstants.checkExistEmailOrPhone
         case .pinPassword(_): return APIConstants.pinPassword
         case .addSafelist(_): return APIConstants.addToSafelist
@@ -48,6 +52,8 @@ extension LoginEndpoint : Router{
         case .shareMedia(_): return APIConstants.shareMedia
         case .shareLocation(_): return APIConstants.shareLocation
         case .shareothermedia(_): return APIConstants.shareothermedia
+        case .resetPin(_): return APIConstants.resetPin
+        case .changePassword(_): return APIConstants.changePassword
         }
     }
     
@@ -65,6 +71,9 @@ extension LoginEndpoint : Router{
             
         case .signup(let fullname, let email, let fullAddress, let password, let facebookId, let twitterId, let phone, let accountType,  let deviceToken):
             return Parameters.signup.map(values: [fullname , email , fullAddress , password , facebookId, twitterId, phone , accountType ,   deviceToken])
+        
+        case .editProfile(let accessToken, let fullName, let address, let email, let phone):
+            return Parameters.editProfile.map(values: [accessToken, fullName, address, email, phone])
         
         case .checkExistEmailOrPhone(let email, let phone):
             return Parameters.checkExistEmailOrPhone.map(values: [email, phone])
@@ -98,6 +107,12 @@ extension LoginEndpoint : Router{
             
         case .shareothermedia(let accessToken, let media_id):
             return Parameters.shareothermedia.map(values: [accessToken, media_id])
+            
+        case .resetPin(let accessToken, let pinPassword):
+            return Parameters.resetPin.map(values: [accessToken, pinPassword])
+        
+        case .changePassword(let accessToken, let old_password, let new_password):
+            return Parameters.changePassword.map(values: [accessToken, old_password, new_password])
         }
     }
     

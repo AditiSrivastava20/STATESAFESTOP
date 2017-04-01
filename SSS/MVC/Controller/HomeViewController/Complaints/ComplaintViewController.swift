@@ -54,11 +54,11 @@ class ComplaintViewController: BaseViewController {
         
         arrayComplaints = []
         
-//        guard let login = UserDefaults.standard.value(forKey: "login") as? [String: String] else {
-//            return
-//        }
+        guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
+            return
+        }
         
-        APIManager.shared.request(with: LoginEndpoint.complaintList(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK"), completion: {
+        APIManager.shared.request(with: LoginEndpoint.complaintList(accessToken: login.access_token), completion: {
             (response) in
             
             self.handle(response: response)

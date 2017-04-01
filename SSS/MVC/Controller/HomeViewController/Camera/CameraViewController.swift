@@ -57,10 +57,14 @@ class CameraViewController: RecorderViewController {
 
     
     @IBAction func actionBtnLocation(_ sender: Any) {
+        
+        guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
+            return
+        }
    
         LocationManager.sharedInstance.startTrackingUser { (lat, lng, locationName) in
             
-            APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK", locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: login.access_token, locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { (response) in
                 
                 self.handle(response: response)
             })

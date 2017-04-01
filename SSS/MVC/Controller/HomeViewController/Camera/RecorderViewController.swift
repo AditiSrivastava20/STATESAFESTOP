@@ -583,8 +583,11 @@ extension RecorderViewController : AVAudioRecorderDelegate {
     //MARK: - media api
     func mediaUploadApi(data: Data?, type: MediaType?, thumb: UIImage?) {
         
-        let token: String = "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK"
-        APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: { (response) in
+        guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
+            return
+        }
+        
+        APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: login.access_token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: { (response) in
             
             self.handle(response: response)
         })

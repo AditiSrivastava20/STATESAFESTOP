@@ -28,13 +28,21 @@ class RecordingViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var login:User?
     var isFromMediaSelection = false
     var itemInfo = IndicatorInfo(title: "RECORDING")
-    
+    var selectedMediaId:String = ""
     var arrayRecording:[Recording]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let _ = UserDataSingleton.sharedInstance.loggedInUser else {
+            return
+        }
+        
+        login = UserDataSingleton.sharedInstance.loggedInUser
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -103,7 +111,7 @@ class RecordingViewController: BaseViewController {
         
         arrayRecording = []
         
-        APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK"), completion: {
+        APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: login?.access_token), completion: {
             (response) in
             
             self.handle(response: response)
@@ -112,9 +120,6 @@ class RecordingViewController: BaseViewController {
     }
     
    
-    
-    
-
 }
 
 
@@ -139,8 +144,6 @@ extension RecordingViewController: UIActionSheetDelegate {
         let saveActionButton = UIAlertAction(title: "Save", style: .default) { action -> Void in
             print("Save")
             self.downloadVideoFrom(url: self.arrayRecording?[sender.tag].media_content)
-            
-            
         }
         actionSheetController.addAction(saveActionButton)
 
@@ -150,7 +153,7 @@ extension RecordingViewController: UIActionSheetDelegate {
     
     //MARK: - Share media
     func shareMediaFromRecordings(media_id: String?) {
-        
+        self.selectedMediaId = media_id!
         let vc = StoryboardScene.Main.instantiateSafeListViewController()
         vc.delegateContact = self
         vc.isFromShare = true
@@ -187,12 +190,23 @@ extension RecordingViewController: UIActionSheetDelegate {
     
 }
 
+
+//MARK: - User id listner for sharing media
 extension RecordingViewController : contactListner {
     
     func getUserIds(ids: [String]?) {
         
         if let _ = ids {
             print("share")
+            
+            if !(ids?.isEmpty)! {
+                APIManager.shared.request(withArray: LoginEndpoint.shareothermedia(accessToken: login?.access_token, media_id: selectedMediaId), array: ids, completion: { (response) in
+                    
+                    self.handle(response: response)
+                    
+                })
+            }
+            
         } else {
             print("none selected")
         }
@@ -208,7 +222,7 @@ extension RecordingViewController : contactListner {
 
 extension RecordingViewController : UITableViewDelegate{
     
-    //MARK: - tableview datasource
+    //MARK: - Tableview datasource
     override func setupTableView(tableView : UITableView? , cellId : String? , items : [Any]? ) {
         
         

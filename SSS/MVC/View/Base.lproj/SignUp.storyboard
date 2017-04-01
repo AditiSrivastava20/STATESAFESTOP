@@ -24,12 +24,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="nvS-TA-c1e" kind="relationship" relationship="rootViewController" id="S69-JL-WBz"/>
+                        <segue destination="5wd-9J-cRy" kind="relationship" relationship="rootViewController" id="1CY-8D-X3w"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N4a-B3-JKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1397" y="-41"/>
+            <point key="canvasLocation" x="-2678" y="-41"/>
         </scene>
         <!--Enter Details First View Controller-->
         <scene sceneID="X8F-Fs-yzk">
@@ -583,6 +583,38 @@
             </objects>
             <point key="canvasLocation" x="893" y="-41"/>
         </scene>
+        <!--Splash View Controller-->
+        <scene sceneID="IcH-Uz-SWm">
+            <objects>
+                <viewController id="5wd-9J-cRy" customClass="SplashViewController" customModule="SSS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tYA-nr-f6f"/>
+                        <viewControllerLayoutGuide type="bottom" id="3vN-ln-Ohb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ILF-iK-KDy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="v4g-Ay-23M">
+                                <rect key="frame" x="63" y="187" width="194" height="194"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99215686274509807" green="0.86274509803921573" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="v4g-Ay-23M" firstAttribute="centerX" secondItem="ILF-iK-KDy" secondAttribute="centerX" id="8nG-TA-wLr"/>
+                            <constraint firstItem="v4g-Ay-23M" firstAttribute="centerY" secondItem="ILF-iK-KDy" secondAttribute="centerY" id="XGL-m8-t9w"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="I1c-hM-Zf1"/>
+                    <connections>
+                        <segue destination="nvS-TA-c1e" kind="show" identifier="splashToLogin" id="gKq-hs-Bah"/>
+                        <segue destination="X0h-A9-ai8" kind="show" identifier="splashToMain" id="lIN-KG-5Fk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Shr-Gn-x1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1622" y="-41"/>
+        </scene>
         <!--Package View Controller-->
         <scene sceneID="gWP-RR-TNA">
             <objects>
@@ -813,15 +845,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrl-z2-msg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KtI-kU-ogm">
-                                        <rect key="frame" x="0.0" y="20" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="KtI-kU-ogm" secondAttribute="height" multiplier="1:1" id="Vzp-vn-Tpd"/>
-                                        </constraints>
-                                        <state key="normal" image="ic_back"/>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTER DETAILS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0c1-eI-QKW">
-                                        <rect key="frame" x="101" y="33" width="119" height="19"/>
+                                        <rect key="frame" x="101" y="29" width="119" height="19"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" red="0.29411764705882354" green="0.29411764705882354" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -830,11 +855,8 @@
                                 <color key="backgroundColor" red="0.9781145453453064" green="0.87701559066772461" blue="0.2340940535068512" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="0c1-eI-QKW" firstAttribute="centerX" secondItem="hrl-z2-msg" secondAttribute="centerX" id="1N2-X3-Inx"/>
-                                    <constraint firstAttribute="bottom" secondItem="KtI-kU-ogm" secondAttribute="bottom" id="CGa-Co-o8T"/>
-                                    <constraint firstItem="KtI-kU-ogm" firstAttribute="top" secondItem="hrl-z2-msg" secondAttribute="top" constant="20" symbolic="YES" id="MY7-rF-OHq"/>
-                                    <constraint firstItem="KtI-kU-ogm" firstAttribute="centerY" secondItem="0c1-eI-QKW" secondAttribute="centerY" id="Vnu-m8-KvP"/>
+                                    <constraint firstItem="0c1-eI-QKW" firstAttribute="centerY" secondItem="hrl-z2-msg" secondAttribute="centerY" multiplier="1.2" id="7K2-t5-AsS"/>
                                     <constraint firstAttribute="height" constant="64" id="hT7-OC-QZg"/>
-                                    <constraint firstItem="KtI-kU-ogm" firstAttribute="leading" secondItem="hrl-z2-msg" secondAttribute="leading" id="vnw-d3-7ey"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJE-LE-MLb">
@@ -1093,7 +1115,7 @@
                 <viewControllerPlaceholder storyboardName="Main" id="X0h-A9-ai8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Dg-sk-ZW6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="276" y="134"/>
+            <point key="canvasLocation" x="-474" y="-631"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WVi-er-nqH">
@@ -1327,6 +1349,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="EhW-Xe-SL8"/>
-        <segue reference="qkg-yD-kNj"/>
+        <segue reference="tWL-ob-NT2"/>
+        <segue reference="lIN-KG-5Fk"/>
     </inferredMetricsTieBreakers>
 </document>

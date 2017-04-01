@@ -11,7 +11,7 @@ import UIKit
 class ImagePickViewController: UIViewController {
     
     var selectedImage: UIImage? = nil
-    var delegate: DataSentDelegate? = nil
+    var pickImageDelegate: DataSentDelegate? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,9 +60,9 @@ extension ImagePickViewController: UIImagePickerControllerDelegate {
         
         selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-        if delegate != nil {
+        if pickImageDelegate != nil {
             if selectedImage != nil {
-                delegate?.userProfilePicInput(image: selectedImage!)
+                pickImageDelegate?.userProfilePicInput(image: selectedImage!)
             }
         }
         

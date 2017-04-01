@@ -24,10 +24,13 @@ class SafeListViewController: BaseViewController {
     @IBOutlet weak var heightOfAddAndRemove: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnRemove: Button!
+    @IBOutlet weak var btnDone: UIBarButtonItem!
+    @IBOutlet weak var lblSafelist: UILabel!
+    
     
     weak var delegateContact: contactListner?
 
-    var login:[String: String]?
+    var login:User?
     var safelistArray:[Safelist]?
     var isFromEdit = false
     var isFromShare = false
@@ -35,9 +38,18 @@ class SafeListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let _ = UserDataSingleton.sharedInstance.loggedInUser else {
+            return
+        }
+        
+        login = UserDataSingleton.sharedInstance.loggedInUser
+        
+        lblSafelist.isHidden = true
+        
+        btnDone.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         if isFromShare {
-            addDoneButton()
-            heightOfAddAndRemove.constant = -10
+            btnDone.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+            heightOfAddAndRemove.constant = 0
         }
         
     }
@@ -51,25 +63,20 @@ class SafeListViewController: BaseViewController {
         super.didReceiveMemoryWarning()
     }
     
-    //MARK: - nav bar right button
-    func addDoneButton() {
-        let btnDone = UIButton(type: .custom)
-        btnDone.setTitle("Done", for: .normal)
-        btnDone.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        btnDone.addTarget(self, action: #selector(doneSharing), for: .touchUpInside)
-        let item2 = UIBarButtonItem(customView: btnDone)
-        
-        self.navigationItem.setRightBarButtonItems([item2], animated: true)
-
-    }
-    
-    //MARK: - done sharing
-    func doneSharing() {
-        let array = safelistArray?.filter(){$0.isSelected == 1}
-        delegateContact?.getUserIds(ids: userIds(value: array) )
+    @IBAction func btnBackAction(_ sender: UIBarButtonItem) {
         popVC()
         
     }
+    
+    
+    
+    @IBAction func btnDoneAction(_ sender: UIBarButtonItem) {
+        let array = safelistArray?.filter(){$0.isSelected == 1}
+        delegateContact?.getUserIds(ids: userIds(value: array) )
+        popVC()
+
+    }
+    
     
     
     //MARK: Handle response
@@ -81,6 +88,7 @@ class SafeListViewController: BaseViewController {
                 print(value.msg ?? "")
                 
                 self.safelistArray = value.contacts
+                
                 tableView?.estimatedRowHeight = 89
                 setupTableView(tableView: tableView, cellId: "SafelistTableViewCell", items: safelistArray)
                 tableView.reloadData()
@@ -96,7 +104,7 @@ class SafeListViewController: BaseViewController {
     func getSafelist() {
         safelistArray = []
         
-        APIManager.shared.request(with: LoginEndpoint.safelist(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK"), completion: { (response) in
+        APIManager.shared.request(with: LoginEndpoint.safelist(accessToken: login?.access_token), completion: { (response) in
             
             self.handle(response: response)
             
@@ -162,13 +170,12 @@ class SafeListViewController: BaseViewController {
     //MARK: select endpoint
     func endPoint(check: Safeusers) -> Router {
         
-        print(login?["access_token"] ?? "")
         
         switch check {
         case .add:
-            return LoginEndpoint.addSafelist(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK")
+            return LoginEndpoint.addSafelist(accessToken: login?.access_token)
         case .remove:
-            return LoginEndpoint.removeSafeuser(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK")
+            return LoginEndpoint.removeSafeuser(accessToken: login?.access_token)
         }
         
     }
@@ -190,8 +197,8 @@ extension SafeListViewController {
             (cell as? SafelistCell)?.objSafeuser = item as? Safelist
             
             if self.isFromShare {
-                (cell as? SafelistCell)?.imageViewStaticPhone.isHidden = !self.isFromShare
-                (cell as? SafelistCell)?.checkBoxContact.isHidden = (self.isFromShare)
+                (cell as? SafelistCell)?.imageViewStaticPhone.isHidden = true
+                (cell as? SafelistCell)?.checkBoxContact.isHidden = false
             } else {
                 (cell as? SafelistCell)?.imageViewStaticPhone.isHidden = self.isFromEdit
                 (cell as? SafelistCell)?.checkBoxContact.isHidden = !(self.isFromEdit)

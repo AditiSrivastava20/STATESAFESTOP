@@ -117,6 +117,34 @@ enum StoryboardScene {
       }
       return vc
     }
+    
+    case settingsViewControllerScene = "SettingsViewController"
+    static func instantiateSettingsViewController() -> SSS.SettingsViewController {
+        guard let vc = StoryboardScene.Main.settingsViewControllerScene.viewController() as? SSS.SettingsViewController
+            else {
+                fatalError("ViewController 'SettingsViewController' is not of the expected class SSS.SettingsViewController.")
+        }
+        return vc
+    }
+    
+    case editProfileViewControllerScene = "EditProfileViewController"
+    static func instantiateEditProfileViewController() -> SSS.EditProfileViewController {
+        guard let vc = StoryboardScene.Main.editProfileViewControllerScene.viewController() as? SSS.EditProfileViewController
+            else {
+                fatalError("ViewController 'EditProfileViewController' is not of the expected class SSS.EditProfileViewController.")
+        }
+        return vc
+    }
+    
+    
+    case changePasswordViewControllerScene = "ChangePasswordViewController"
+    static func instantiateChangePasswordViewController() -> SSS.ChangePasswordViewController {
+        guard let vc = StoryboardScene.Main.changePasswordViewControllerScene.viewController() as? SSS.ChangePasswordViewController
+            else {
+                fatalError("ViewController 'ChangePasswordViewController' is not of the expected class SSS.ChangePasswordViewController.")
+        }
+        return vc
+    }
 
     case sideMenuViewControllerScene = "SideMenuViewController"
     static func instantiateSideMenuViewController() ->  SSS.SideMenuViewController {

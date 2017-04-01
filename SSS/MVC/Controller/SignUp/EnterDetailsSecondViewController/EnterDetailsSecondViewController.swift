@@ -39,12 +39,12 @@ class EnterDetailsSecondViewController: BaseViewController {
         
         switch Validate() {
         case .success:
-            guard let value = UserDefaults.standard.value(forKey: "login") as? [String:String] else {
+            guard let login = UserDataSingleton.sharedInstance.loggedInUser  else {
                 Alerts.shared.show(alert: .error , message: Alert.error.rawValue , type : .info)
                 return
             }
             
-            APIManager.shared.request(with: LoginEndpoint.pinPassword(accessToken: /value["access_token"], pinPassword: pinCodeTextField.text), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.pinPassword(accessToken: login.access_token, pinPassword: pinCodeTextField.text), completion: { (response) in
                 HandleResponse.shared.handle(response: response, self, from: .pinPassword)
             })
             

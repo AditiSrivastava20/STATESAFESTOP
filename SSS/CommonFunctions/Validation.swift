@@ -114,6 +114,44 @@ class Validation: NSObject {
         return .success
     }
     
+    //MARK: - edit profile validation
+    func validate(edit fullname: String?, address: String?, phone: String?) -> Valid {
+        
+        if (/fullname).isEmpty {
+            return errorMsg(str: "Enter name")
+        }
+        
+        if (/address).isEmpty {
+            return errorMsg(str: "Enter address")
+        }
+        
+        if !isValidPhone((/phone)) {
+            return errorMsg(str: "Enter valid phone number")
+        }
+        
+        return .success
+        
+    }
+    
+    //MARK: - change password
+    func validate(changePassword old: String?, new: String?, confirm: String?) -> Valid {
+        
+        if !isValidPasswd(/old) {
+            return errorMsg(str: "Enter valid Password")
+        }
+        
+        if !isValidPasswd(/new) {
+            return errorMsg(str: "Enter valid new Password")
+        }
+        
+        if !(/confirm).isEqual(/new) {
+            return errorMsg(str: "New and Confirm Passwords do not match")
+        }
+        
+        return .success
+        
+    }
+    
     
     func isValidEmail(_ testStr:String) -> Bool {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", RegexExpresssions.EmailRegex)

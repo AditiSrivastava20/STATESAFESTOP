@@ -44,6 +44,8 @@ class Profile: NSObject{
         pin_password = .pin_password => attributes
         account_type = .account_type => attributes
         is_pin = .is_pin => attributes
+        phone = .phone => attributes
+        unformatted_phone = .unformatted_phone => attributes
         
     }
     

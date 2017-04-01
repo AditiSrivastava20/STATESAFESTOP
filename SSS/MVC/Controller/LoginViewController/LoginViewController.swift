@@ -22,15 +22,8 @@ class LoginViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //checkLogin()
         txtEmail.placeHolderAtt()
         txtPassword.placeHolderAtt()
-    }
-    
-    func checkLogin() {
-        if let _ = UserDefaults.standard.value(forKey: "login") as? [String: String] {
-            performSegue(withIdentifier: segue.loginToMain.rawValue, sender: self)
-        }
     }
     
     func Validate() -> Valid{

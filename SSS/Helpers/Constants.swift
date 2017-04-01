@@ -76,6 +76,8 @@ enum MobileDevice: String {
 
 enum segue: String {
     
+    case splashToMain = "splashToMain"
+    case splashToLogin = "splashToLogin"
     case loginToMain = "loginToMain"
     case loginToSignup = "loginToSignup"
     case loginToPin = "loginToPin"
@@ -83,6 +85,7 @@ enum segue: String {
     case signupToPin = "singupToPin"
     case pinToPackage = "pinToPackage"
     case packageToInAppPurchase = "packageToInAppPurchase"
+    case settingsToResetPin = "settingsToResetPin"
     
 }
 

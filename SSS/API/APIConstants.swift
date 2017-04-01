@@ -32,6 +32,8 @@ internal struct APIConstants {
     static let shareMedia = "sharemedia"
     static let shareLocation = "sharelocation"
     static let shareothermedia = "shareothermedia"
+    static let resetPin = "resetpin"
+    static let changePassword = "changepassword"
     
     
 }
@@ -62,7 +64,6 @@ enum Keys: String {
     
     //edit profile
     case accessToken = "access_token"
-    case profilePic = "profile_pic"
     
     //set pin password
     case pin = "pin_password"
@@ -102,6 +103,13 @@ enum Keys: String {
     case latitude = "latitude"
     case longitude = "longitude"
     
+    //reset pin
+    
+    //edit profile
+    
+    //change password
+    case old_password = "old_password"
+    case new_password = "new_password"
 }
 
 enum Validate: String {
@@ -172,7 +180,7 @@ struct Parameters {
     
     static let login: [Keys] = [.email, .password, .facebookId, .twitterId, .accountType, .deviceToken]
     static let signup: [Keys] = [.fullName, .email, .address, .password, .facebookId, .twitterId, .phone, .accountType, .deviceToken]
-    static let editProfile: [Keys] = [.accessToken, .fullName, .address, .email, .phone, .profilePic]
+    static let editProfile: [Keys] = [.accessToken, .fullName, .address, .email, .phone]
     static let pinPassword: [Keys] = [.accessToken, .pin]
     static let phoneNumber: [Keys] = [.accessToken, .phone]
     static let forgotPassword: [Keys] = [.email]
@@ -185,7 +193,9 @@ struct Parameters {
     static let addComplaint: [Keys] = [.accessToken, .title, .description, .media_id]
     static let shareMedia: [Keys] = [.accessToken, .media_type]
     static let shareLocation: [Keys] = [.accessToken, .location_name, .latitude, .longitude]
-    static let shareothermedia: [Keys] = [.accessToken, .safeUserIds, .media_id ]
+    static let shareothermedia: [Keys] = [.accessToken, .media_id ]
+    static let resetPin: [Keys] = [.accessToken, .pin]
+    static let changePassword: [Keys] = [.accessToken, .old_password, .new_password]
 }
 
 

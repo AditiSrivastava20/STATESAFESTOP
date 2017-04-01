@@ -71,13 +71,13 @@ class WriteComplaintViewController: BaseViewController {
     
     @IBAction func btnAddComplaintAction(_ sender: Any) {
         
-        guard let login = UserDefaults.standard.value(forKey: "login") as? [String: String] else {
+        guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
             return
         }
         
         switch Validate() {
         case .success:
-            APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: "$2y$10$AFo5Pnyf164YOUUlbfq.rO9Nb1HMGu3oBQBKwS56r9sZuwACLHrZK", title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: login.access_token, title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { (response) in
                 
                 self.handle(response: response)
             })

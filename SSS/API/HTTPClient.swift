@@ -40,11 +40,13 @@ class HTTPClient {
         
     }
     
+    
+    //MARK: - Post request with array
     func postRequestWithArray(withApi api : Router, array: [String]? , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ) {
         
         var params = api.parameters
         
-        if api.route == APIConstants.removeFromSafelist {
+        if api.route == APIConstants.removeFromSafelist || api.route == APIConstants.shareothermedia {
             params?[Keys.safeUserIds.rawValue] = array
         } else if api.route == APIConstants.addToSafelist  {
             params?[Keys.contacts.rawValue] = array
@@ -65,7 +67,7 @@ class HTTPClient {
         }
     }
     
-    
+    //MARK: - Post request with image
     func postRequestWithImages(withApi api : Router , image: UIImage? , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ) {
         
         guard let params = api.parameters else {failure("empty"); return}
@@ -107,6 +109,8 @@ class HTTPClient {
         }
     }
     
+    
+    //MARK: - Post request with data
     func postRequestWithMedia(withApi api : Router , media: Data?, thumbnail: UIImage? , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ) {
         
         guard let params = api.parameters else {failure("empty"); return}

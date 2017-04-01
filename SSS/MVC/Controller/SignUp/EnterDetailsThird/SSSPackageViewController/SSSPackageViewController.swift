@@ -49,7 +49,7 @@ class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
     }
     
     
-    //MARK: App invite dialog
+    //MARK: Generate App invite dialog
     func appInviteAction() {
         
         let inviteDialog:FBSDKAppInviteDialog = FBSDKAppInviteDialog()
@@ -68,7 +68,7 @@ class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
         }
     }
     
-    
+    //MARK: - Facebook app invite delegate
     public func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [AnyHashable : Any]!) {
         
         guard let _ = results else {

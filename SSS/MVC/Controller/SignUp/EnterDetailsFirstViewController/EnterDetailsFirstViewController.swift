@@ -43,7 +43,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     
     //MARK:- Go back
     @IBAction func btnBackAction(_ sender: Any) {
-        _ = navigationController?.popViewController(animated: true)
+        popVC()
     }
     
     //MARK:- fetch full address
@@ -67,6 +67,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
         })
     }
     
+    //MARK: - open GMS place picker
     @IBAction func btnPickAddressAction(_ sender: Any) {
         self.fetchAddress()
     }
@@ -85,7 +86,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
         let modalViewController = StoryboardScene.SignUp.instantiateImagePickViewController()
         
         // custom delegate to get image back from addPhotoViewController
-        modalViewController.delegate = self
+        modalViewController.pickImageDelegate = self
         modalViewController.modalPresentationStyle = .overCurrentContext
         modalViewController.modalTransitionStyle = .crossDissolve
         present(modalViewController, animated: true, completion: nil)
