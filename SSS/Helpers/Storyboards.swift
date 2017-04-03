@@ -164,6 +164,17 @@ enum StoryboardScene {
       }
       return vc
     }
+    
+    
+    case splashViewControllerScene = "SplashViewController"
+    static func instantiateSplashViewController() -> SSS.SplashViewController {
+        guard let vc = StoryboardScene.SignUp.splashViewControllerScene.viewController() as? SSS.SplashViewController
+            else {
+                fatalError("ViewController 'SplashViewController' is not of the expected class SSS.SplashViewController.")
+        }
+        return vc
+    }
+    
 
     case imagePickViewControllerScene = "ImagePickViewController"
     static func instantiateImagePickViewController() -> SSS.ImagePickViewController {

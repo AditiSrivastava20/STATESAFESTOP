@@ -46,6 +46,8 @@ class Profile: NSObject{
         is_pin = .is_pin => attributes
         phone = .phone => attributes
         unformatted_phone = .unformatted_phone => attributes
+        access_token = .access_token => attributes
+        
         
     }
     

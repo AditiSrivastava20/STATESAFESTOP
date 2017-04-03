@@ -35,11 +35,13 @@ class RecordingTableViewCell: UITableViewCell {
     
     func updateUI() {
         
+        
         let mediaType = MediaType(rawValue: /objRecording?.media_type ) ?? .none
         
         switch mediaType {
         case .audio:
-            imageViewType.image = Image(asset: .icRecordingPlay)
+            imageViewType.image = Image(asset: .icAudioWhite )
+            imageViewUser.image = Image.blankImage()
             imageViewUser.backgroundColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)
             
         case .video:

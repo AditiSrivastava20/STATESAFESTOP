@@ -44,7 +44,7 @@ class EnterDetailsSecondViewController: BaseViewController {
                 return
             }
             
-            APIManager.shared.request(with: LoginEndpoint.pinPassword(accessToken: login.access_token, pinPassword: pinCodeTextField.text), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.pinPassword(accessToken: login.profile?.access_token, pinPassword: pinCodeTextField.text), completion: { (response) in
                 HandleResponse.shared.handle(response: response, self, from: .pinPassword)
             })
             

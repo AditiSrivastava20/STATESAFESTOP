@@ -11,6 +11,7 @@ import Material
 import Kingfisher
 import ISMessages
 
+
 class EditProfileViewController: BaseViewController {
     
     @IBOutlet weak var imgProfilePic: UIImageView!
@@ -18,7 +19,7 @@ class EditProfileViewController: BaseViewController {
     @IBOutlet weak var txtEmail: TextField!
     @IBOutlet weak var txtPhone: TextField!
     @IBOutlet weak var txtAddress: TextField!
-
+    
     
 
     override func viewDidLoad() {
@@ -65,6 +66,19 @@ class EditProfileViewController: BaseViewController {
         
     }
     
+    @IBAction func btnPickPlaceAction(_ sender: Any) {
+        txtAddress.text = ""
+        fetchFullAddress(completion: {(address) in
+            
+            self.txtAddress.text = address
+        })
+        
+        
+    }
+    
+    
+    
+    
     //MARK: - validate fields
     func validate() -> Valid {
         return Validation.shared.validate(edit: txtFullname.text, address: txtAddress.text, phone: txtPhone.text)
@@ -81,6 +95,7 @@ class EditProfileViewController: BaseViewController {
                 print(value.msg ?? "")
                 Alerts.shared.show(alert: .success, message: /value.msg, type: .success)
                 UserDataSingleton.sharedInstance.loggedInUser = value
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateSidePanel"), object: nil)
                 popVC()
             }
             
@@ -90,6 +105,8 @@ class EditProfileViewController: BaseViewController {
         
     }
     
+
+    
     
     //MARK: - save changes in edit profile
     @IBAction func btnSaveChangesAction(_ sender: UIBarButtonItem) {
@@ -98,7 +115,7 @@ class EditProfileViewController: BaseViewController {
         switch validate() {
         case .success:
             
-            let token = UserDataSingleton.sharedInstance.loggedInUser?.access_token
+            let token = UserDataSingleton.sharedInstance.loggedInUser?.profile?.access_token
             let email = UserDataSingleton.sharedInstance.loggedInUser?.profile?.email
             
             APIManager.shared.request(withImages: LoginEndpoint.editProfile(accessToken: token, fullName: txtFullname.text, address: txtAddress.text, email: email, phone: txtPhone.text), image: imgProfilePic.image, completion: { (response) in

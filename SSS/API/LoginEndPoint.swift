@@ -25,9 +25,11 @@ enum LoginEndpoint {
     case addComplaint(accessToken: String?, title: String?, description: String?, media_id: String?)
     case shareMedia(accessToken: String?, media_type: String?)
     case shareLocation(accessToken: String?, locatiom_name: String?, latitude: String?, longitude: String?)
-    case shareothermedia(accessToken: String?, media_id: String?)
+    case shareothermedia(accessToken: String?)
     case resetPin(accessToken: String?, pinPassword: String?)
     case changePassword(accessToken: String?, old_password: String?, new_password: String?)
+    case logout(accessToken: String?)
+    case forgotPassword(email: String?)
     
 }
 
@@ -54,6 +56,8 @@ extension LoginEndpoint : Router{
         case .shareothermedia(_): return APIConstants.shareothermedia
         case .resetPin(_): return APIConstants.resetPin
         case .changePassword(_): return APIConstants.changePassword
+        case .logout(_): return APIConstants.logout
+        case .forgotPassword(_): return APIConstants.forgotPassword
         }
     }
     
@@ -105,14 +109,22 @@ extension LoginEndpoint : Router{
         case .shareLocation(let accessToken, let location_name, let latitude, let longitude):
             return Parameters.shareLocation.map(values: [accessToken, location_name, latitude, longitude])
             
-        case .shareothermedia(let accessToken, let media_id):
-            return Parameters.shareothermedia.map(values: [accessToken, media_id])
+        case .shareothermedia(let accessToken):
+            return Parameters.shareothermedia.map(values: [accessToken])
             
         case .resetPin(let accessToken, let pinPassword):
             return Parameters.resetPin.map(values: [accessToken, pinPassword])
         
         case .changePassword(let accessToken, let old_password, let new_password):
             return Parameters.changePassword.map(values: [accessToken, old_password, new_password])
+            
+        case .logout(let accessToken):
+            return Parameters.logout.map(values: [accessToken])
+            
+        case .forgotPassword(let email):
+            return Parameters.forgotPassword.map(values: [email])
+    
+        
         }
     }
     

@@ -58,7 +58,7 @@ class ComplaintViewController: BaseViewController {
             return
         }
         
-        APIManager.shared.request(with: LoginEndpoint.complaintList(accessToken: login.access_token), completion: {
+        APIManager.shared.request(with: LoginEndpoint.complaintList(accessToken: login.profile?.access_token), completion: {
             (response) in
             
             self.handle(response: response)

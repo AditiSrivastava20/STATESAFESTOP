@@ -24,6 +24,8 @@ class LoginViewController: BaseViewController {
         super.viewDidLoad()
         txtEmail.placeHolderAtt()
         txtPassword.placeHolderAtt()
+        txtEmail?.text = "abhi.ssj5@gmail.com"
+        txtPassword?.text = "1234512345"
     }
     
     func Validate() -> Valid{
@@ -46,6 +48,7 @@ extension LoginViewController {
     @IBAction func btnForgotPasswordAction(_ sender: Any) {
         
         print("forgot password")
+        performSegue(withIdentifier: segue.loginToForgotPassword.rawValue, sender: self)
     }
     
     @IBAction func btnLoginAction(_ sender: Any) {

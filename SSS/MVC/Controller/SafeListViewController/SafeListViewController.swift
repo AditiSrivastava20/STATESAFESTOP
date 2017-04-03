@@ -38,24 +38,24 @@ class SafeListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //done button for sharing media
+        doneButtonAttributes()
+        
+        //setup tableview
+        safelistArray = []
+        tableView?.estimatedRowHeight = 89
+        setupTableView(tableView: tableView, cellId: "SafelistTableViewCell", items: safelistArray)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         guard let _ = UserDataSingleton.sharedInstance.loggedInUser else {
             return
         }
         
         login = UserDataSingleton.sharedInstance.loggedInUser
-        
-        lblSafelist.isHidden = true
-        
-        btnDone.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-        if isFromShare {
-            btnDone.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-            heightOfAddAndRemove.constant = 0
-        }
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        getSafelist()
+
+        ApiSafelist(array: nil, check: .get)
     }
     
     
@@ -63,13 +63,22 @@ class SafeListViewController: BaseViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
     @IBAction func btnBackAction(_ sender: UIBarButtonItem) {
         popVC()
-        
     }
     
     
+    //MARK: - done button attributes
+    func doneButtonAttributes() {
+        btnDone.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        if isFromShare {
+            btnDone.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+            heightOfAddAndRemove.constant = 0
+        }
+    }
     
+    //MARK: - Done button action for sharing media
     @IBAction func btnDoneAction(_ sender: UIBarButtonItem) {
         let array = safelistArray?.filter(){$0.isSelected == 1}
         delegateContact?.getUserIds(ids: userIds(value: array) )
@@ -80,18 +89,14 @@ class SafeListViewController: BaseViewController {
     
     
     //MARK: Handle response
-    func handle(response: Response) {
+    func handle(response: Response, check: Safeusers) {
         
         switch response{
         case .success(let responseValue):
             if let value = responseValue as? User{
                 print(value.msg ?? "")
                 
-                self.safelistArray = value.contacts
-                
-                tableView?.estimatedRowHeight = 89
-                setupTableView(tableView: tableView, cellId: "SafelistTableViewCell", items: safelistArray)
-                tableView.reloadData()
+                updateTableView(array: value.contacts ,check: check)
             }
             
         case .failure(let str):
@@ -99,18 +104,32 @@ class SafeListViewController: BaseViewController {
         }
     }
     
-    
-    //MARK: get safelist API
-    func getSafelist() {
-        safelistArray = []
+    //MARK: updateTableView
+    func updateTableView(array: [Safelist]? ,check: Safeusers) {
         
-        APIManager.shared.request(with: LoginEndpoint.safelist(accessToken: login?.access_token), completion: { (response) in
+        switch check {
             
-            self.handle(response: response)
+        case .get:
+            self.safelistArray = array
+            dataSource?.items = self.safelistArray
+            tableView.reloadData()
             
-        })
+        case .add, .remove:
+            print("add/removed")
+            
+        }
+        
+        if (safelistArray?.isEmpty)! {
+            lblSafelist.isHidden = false
+            btnRemove.isHidden = true
+        } else {
+            btnRemove.isHidden = false
+            lblSafelist.isHidden = true
+            
+        }
         
     }
+    
     
     
     //MARK: Add safeuser action
@@ -157,25 +176,35 @@ class SafeListViewController: BaseViewController {
         return ids
     }
     
-    //MARK: Add/Remove safelist
-    func ApiSafelist(array: [String], check: Safeusers) {
-        print(array)
+    //MARK: Get/Add/Remove safelist
+    func ApiSafelist(array: [String]?, check: Safeusers) {
+        print(array ?? "")
         
-        APIManager.shared.request(withArray: endPoint(check: check) , array: array, completion: { (response) in
+        switch check {
+        case .get:
+            APIManager.shared.request(with: endPoint(check: check), completion: { (response) in
+                self.handle(response: response, check: check)
+            })
             
-            self.handle(response: response)
-        })
+        case .add, .remove:
+            APIManager.shared.request(withArray: endPoint(check: check) , array: array, completion: { (response) in
+                self.handle(response: response, check: check)
+            })
+            
+        }
+        
     }
     
     //MARK: select endpoint
     func endPoint(check: Safeusers) -> Router {
         
-        
         switch check {
         case .add:
-            return LoginEndpoint.addSafelist(accessToken: login?.access_token)
+            return LoginEndpoint.addSafelist(accessToken: login?.profile?.access_token  )
         case .remove:
-            return LoginEndpoint.removeSafeuser(accessToken: login?.access_token)
+            return LoginEndpoint.removeSafeuser(accessToken: login?.profile?.access_token)
+        case .get:
+            return LoginEndpoint.safelist(accessToken: login?.profile?.access_token)
         }
         
     }

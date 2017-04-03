@@ -34,7 +34,10 @@ class ResetPinViewController: BaseViewController {
             if let value = responseValue as? User{
                 
                 print(value.msg ?? "")
-                UserDataSingleton.sharedInstance.loggedInUser?.profile?.pin_password = pinCodeTextField.text
+                var login = UserDataSingleton.sharedInstance.loggedInUser
+                login?.profile?.pin_password = pinCodeTextField.text
+                UserDataSingleton.sharedInstance.loggedInUser = login
+                
             }
             popVC()
             
@@ -68,7 +71,7 @@ class ResetPinViewController: BaseViewController {
                 return
             }
             
-            APIManager.shared.request(with: LoginEndpoint.resetPin(accessToken: login.access_token, pinPassword: pinCodeTextField.text) , completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.resetPin(accessToken: login.profile?.access_token, pinPassword: pinCodeTextField.text) , completion: { (response) in
                 
                 self.handle(response: response)
             })

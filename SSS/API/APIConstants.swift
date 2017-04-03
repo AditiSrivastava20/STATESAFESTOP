@@ -34,7 +34,7 @@ internal struct APIConstants {
     static let shareothermedia = "shareothermedia"
     static let resetPin = "resetpin"
     static let changePassword = "changepassword"
-    
+    static let logout = "logout"
     
 }
 
@@ -98,6 +98,9 @@ enum Keys: String {
     case media_type = "media_type"
     case thumbnail = "thumbnail_url"
     
+    //share other media
+    case media_id_share = "media ids"
+    
     //share location
     case location_name = "location_name"
     case latitude = "latitude"
@@ -136,6 +139,7 @@ enum StatusValidation: String {
     case none
     case success = "200"
     case failure = "400"
+    case tokenExpire = "401"
     
     func map(response message: String?) -> String? {
         
@@ -143,6 +147,8 @@ enum StatusValidation: String {
         case .success:
             return message
         case .failure:
+            return message
+        case .tokenExpire:
             return message
         default:
             return message
@@ -153,6 +159,7 @@ enum StatusValidation: String {
 enum Safeusers {
     case add
     case remove
+    case get
 }
 
 enum SocialCheck: String {
@@ -173,6 +180,14 @@ enum MediaType: String {
     
 }
 
+enum Recordinglist {
+    
+    case share
+    case populate
+    
+}
+
+
 
 typealias OptionalDictionary = [String: Any]?
 
@@ -186,16 +201,17 @@ struct Parameters {
     static let forgotPassword: [Keys] = [.email]
     static let checkExistEmailOrPhone: [Keys] = [.email, .phone]
     static let safelist: [Keys] = [.accessToken]
-    static let addSafelist: [Keys] = [.accessToken, .contacts]
-    static let removeSafeUser: [Keys] = [.accessToken, .safeUserIds]
+    static let addSafelist: [Keys] = [.accessToken]
+    static let removeSafeUser: [Keys] = [.accessToken]
     static let recordingList: [Keys] = [.accessToken]
     static let complaintList: [Keys] = [.accessToken]
     static let addComplaint: [Keys] = [.accessToken, .title, .description, .media_id]
     static let shareMedia: [Keys] = [.accessToken, .media_type]
     static let shareLocation: [Keys] = [.accessToken, .location_name, .latitude, .longitude]
-    static let shareothermedia: [Keys] = [.accessToken, .media_id ]
+    static let shareothermedia: [Keys] = [.accessToken, .media_id_share ]
     static let resetPin: [Keys] = [.accessToken, .pin]
     static let changePassword: [Keys] = [.accessToken, .old_password, .new_password]
+    static let logout: [Keys] = [.accessToken]
 }
 
 

@@ -13,6 +13,7 @@ import EZSwiftExtensions
 import Photos
 
 
+
 protocol mediaSelectListner : class {
     
     func getMedia(id : String?,name : String?)
@@ -26,6 +27,8 @@ class RecordingViewController: BaseViewController {
     
     var switchToHome : ((_ isHome: Bool) -> ())?
     
+    @IBOutlet weak var lblNoRecordings: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
     
     var login:User?
@@ -33,6 +36,7 @@ class RecordingViewController: BaseViewController {
     var itemInfo = IndicatorInfo(title: "RECORDING")
     var selectedMediaId:String = ""
     var arrayRecording:[Recording]?
+    var askForPin = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,24 +49,19 @@ class RecordingViewController: BaseViewController {
 
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-//        showPopUp()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         getRecordings()
     }
     
     //MARK: - handle response
-    func handle(response: Response) {
+    func handle(response: Response, check: Recordinglist ) {
         
         switch response{
         case .success(let responseValue):
             if let value = responseValue as? User{
                 print(value.msg ?? "")
                 
-                self.arrayRecording = value.recordings
-                self.setupTableview()
+                noRecordingsLabel(array: value.recordings ,check)
             }
             
         case .failure(let str):
@@ -71,7 +70,30 @@ class RecordingViewController: BaseViewController {
         
     }
     
+    //MARK: - populate list / share response
+    func noRecordingsLabel(array: [Recording]?,  _ check: Recordinglist) {
+        
+        switch check {
+            
+        case .populate:
+            arrayRecording = array
+            self.setupTableview()
+            
+            if (arrayRecording?.isEmpty)! {
+                lblNoRecordings.isHidden = false
+            } else {
+                lblNoRecordings.isHidden = true
+            }
+        
+        case .share:
+            Alerts.shared.show(alert: .success, message: /Alert.shared.rawValue , type: .success)
+            
+        }
+        
+    }
     
+    
+    //MARK: - setup tableview
     func setupTableview() {
         tableView?.estimatedRowHeight = 84
         setupTableView(tableView: tableView, cellId: "RecordingTableViewCell", items: arrayRecording)
@@ -88,20 +110,25 @@ class RecordingViewController: BaseViewController {
     
     //MARK: - pin password pop up
     func showPopUp() {
-        let vc = StoryboardScene.Main.instantiatePinValidationViewController()
-        vc.delegatePin = self
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .overCurrentContext
-        presentVC(vc)
+            
+            if askForPin {
+                let vc = StoryboardScene.Main.instantiatePinValidationViewController()
+                vc.delegatePin = self
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .overCurrentContext
+                presentVC(vc)
+        }
+        
     }
     
     //MARK: validate pin password
     func validatePin( value: String?) {
         
-        if (/value).isEmpty {
-            self.switchToHome?(true)
-        } else {
+        if (/value).isEqual(login?.profile?.pin_password) {
+            self.askForPin = false
             print(value ?? "")
+        } else {
+            self.switchToHome?(true)
         }
         
     }
@@ -111,17 +138,16 @@ class RecordingViewController: BaseViewController {
         
         arrayRecording = []
         
-        APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: login?.access_token), completion: {
+        APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: login?.profile?.access_token), completion: {
             (response) in
             
-            self.handle(response: response)
+            self.handle(response: response, check: .populate)
             
         })
     }
     
    
 }
-
 
 extension RecordingViewController: UIActionSheetDelegate {
     
@@ -200,9 +226,9 @@ extension RecordingViewController : contactListner {
             print("share")
             
             if !(ids?.isEmpty)! {
-                APIManager.shared.request(withArray: LoginEndpoint.shareothermedia(accessToken: login?.access_token, media_id: selectedMediaId), array: ids, completion: { (response) in
+                APIManager.shared.request(withArrays: LoginEndpoint.shareothermedia(accessToken: login?.access_token), arrayOne: [selectedMediaId], arrayTwo: ids, completion: { (response) in
                     
-                    self.handle(response: response)
+                    self.handle(response: response, check: .share)
                     
                 })
             }

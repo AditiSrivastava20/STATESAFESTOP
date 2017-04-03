@@ -10,7 +10,6 @@ import UIKit
 import Foundation
 import UIKit
 import CoreLocation
-import PermissionScope
 
 struct Location : CustomStringConvertible {
     
@@ -54,7 +53,6 @@ class LocationManager: NSObject  {
     
     var currentLocation : Location? = Location()
     let locationManager = CLLocationManager()
-     let pscope = PermissionScope()
     
     func startTrackingUser(_ completionHandler:((_ latitude:Double, _ longitude:Double, _ location:String)->())? = nil){
         // For use in foreground
@@ -70,21 +68,6 @@ class LocationManager: NSObject  {
     func setupLocationManger() {
         
         
-        pscope.permissionButtonBorderColor = colors.appColor.color()
-        pscope.closeButtonTextColor = UIColor.black
-        pscope.permissionButtonTextColor = colors.appColor.color()
-        
-        
-        pscope.addPermission(LocationWhileInUsePermission(),
-                             message:"We need your current location" )
-        
-        // Show dialog with callbacks
-        
-        pscope.show({ finished, results in
-            
-        }, cancelled: { (results) -> Void in
-            print("thing was cancelled")
-        })
         
     }
     

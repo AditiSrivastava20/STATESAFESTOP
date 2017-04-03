@@ -10,7 +10,6 @@ import UIKit
 import Material
 import ISMessages
 import Kingfisher
-import GooglePlacePicker
 
 class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     
@@ -46,30 +45,15 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
         popVC()
     }
     
-    //MARK:- fetch full address
-    func fetchAddress() {
-        let config = GMSPlacePickerConfig(viewport: nil)
-        let placePicker = GMSPlacePicker(config: config)
-        
-        placePicker.pickPlace(callback: { (place, error) -> Void in
-            if let error = error {
-                print("Pick Place error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let place = place else {
-                print("No place selected")
-                return
-            }
-            
-            self.txtFullAddress.text = ""
-            self.txtFullAddress.text = "\(place.name)" + " \(place.formattedAddress!)" + " \(place.attributions)"
-        })
-    }
     
     //MARK: - open GMS place picker
     @IBAction func btnPickAddressAction(_ sender: Any) {
-        self.fetchAddress()
+        self.txtFullAddress.text = ""
+        fetchFullAddress(completion: {(address) in
+            self.txtFullAddress.text = address
+        })
+        
+        
     }
     
     
@@ -160,6 +144,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
 extension EnterDetailsFirstViewController:  DataSentDelegate  {
     func userProfilePicInput(image: UIImage) {
         imgProfile.image = image
+        imgProfile.layer.cornerRadius = imgProfile.frame.height / 2
     }
 }
 

@@ -68,6 +68,7 @@ enum Alert : String{
     case error = "Error"
     case logout = "Logged out"
     case friendsErr = "Number of friends less than 10"
+    case shared = "Shared successfully"
 }
 
 enum MobileDevice: String {
@@ -86,6 +87,7 @@ enum segue: String {
     case pinToPackage = "pinToPackage"
     case packageToInAppPurchase = "packageToInAppPurchase"
     case settingsToResetPin = "settingsToResetPin"
+    case loginToForgotPassword = "loginToForgotPassword"
     
 }
 

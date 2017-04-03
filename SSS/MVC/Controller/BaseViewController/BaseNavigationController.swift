@@ -11,7 +11,6 @@ class BaseNavigationController: ENSideMenuNavigationController, ENSideMenuDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         viewBackground.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         viewBackground.isHidden = true
         self.view.addSubview(viewBackground)

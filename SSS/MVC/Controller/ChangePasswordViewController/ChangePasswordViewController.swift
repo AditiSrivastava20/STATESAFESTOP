@@ -67,7 +67,7 @@ class ChangePasswordViewController: UIViewController {
         case .success:
             print("success")
             
-            let token = UserDataSingleton.sharedInstance.loggedInUser?.access_token
+            let token = UserDataSingleton.sharedInstance.loggedInUser?.profile?.access_token
             
             APIManager.shared.request(with: LoginEndpoint.changePassword(accessToken: token, old_password: txtCurrentPassword.text, new_password: txtNewPassword.text), completion: {(response) in
                 

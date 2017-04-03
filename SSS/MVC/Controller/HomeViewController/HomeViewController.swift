@@ -8,15 +8,21 @@
 
 import UIKit
 import Foundation
+import EZSwiftExtensions
 
 
 
 class HomeViewController: TwitterPagerTabStripViewController {
 
+    let child_1 = StoryboardScene.Main.instantiateRecordingViewController()
+   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.moveToViewController(at: 1)
         self.containerView.bounces = false
+        
         
     }
     
@@ -27,12 +33,15 @@ class HomeViewController: TwitterPagerTabStripViewController {
     }
 
     
+    override func indexWasChangedTemp(isTrue : Bool) {
+        child_1.showPopUp()
+    }
+    
     
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
         
-        let child_1 = StoryboardScene.Main.instantiateRecordingViewController()
         
         child_1.switchToHome = {[weak self]
             (isHome) in

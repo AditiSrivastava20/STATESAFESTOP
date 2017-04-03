@@ -587,7 +587,7 @@ extension RecorderViewController : AVAudioRecorderDelegate {
             return
         }
         
-        APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: login.access_token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: { (response) in
+        APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: login.profile?.access_token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: { (response) in
             
             self.handle(response: response)
         })

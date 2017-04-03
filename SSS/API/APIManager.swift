@@ -33,7 +33,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
                 return
             }
             let json = JSON(response)
-            print(json)
+//            print(json)
             
             if api.route == APIConstants.login {
                 
@@ -86,7 +86,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
                 return
             }
             let json = JSON(response)
-            print(json)
+//            print(json)
             
             let responseType = StatusValidation(rawValue: json[APIConstants.statusCode].stringValue) ?? .failure
             if responseType == StatusValidation.success{
@@ -107,6 +107,43 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
         })
     }
     
+    //MARK: - share other media request
+    func request(withArrays api : Router, arrayOne: [String]?, arrayTwo: [String]? , completion : @escaping Completion) {
+        
+        if isLoaderNeeded(api: api) {
+            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+        }
+        
+        httpClient.postRequestWithArray(withApi: api, arrayOne: arrayOne, arrayTwo: arrayTwo, success: {[weak self] (data) in
+            self?.stopAnimating()
+            guard let response = data else {
+                completion(Response.failure(.none))
+                return
+            }
+            let json = JSON(response)
+            //            print(json)
+            
+            let responseType = StatusValidation(rawValue: json[APIConstants.statusCode].stringValue) ?? .failure
+            if responseType == StatusValidation.success{
+                
+                let object : AnyObject?
+                object = api.handle(parameters: json)
+                completion(Response.success(object))
+                return
+            }
+            else{
+                completion(Response.failure(json[APIConstants.message].stringValue))
+            }
+            
+            }, failure: {[weak self] (message) in
+                self?.stopAnimating()
+                completion(Response.failure(message))
+                
+        })
+        
+    }
+    
+    
     //MARK: multipart data API (signup, edit profile)
     func request(withImages api : Router , image : UIImage?  , completion : @escaping Completion )  {
         
@@ -122,7 +159,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
                 return
             }
             let json = JSON(response)
-            print(json)
+//            print(json)
             
             let responseType = StatusValidation(rawValue: json[APIConstants.statusCode].stringValue) ?? .failure
             
@@ -159,7 +196,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
                 return
             }
             let json = JSON(response)
-            print(json)
+//            print(json)
             
             let responseType = StatusValidation(rawValue: json[APIConstants.statusCode].stringValue) ?? .failure
             
@@ -188,6 +225,8 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
         
         switch api.route {
         case APIConstants.login : return true
+        case APIConstants.recordingsList : return false
+        case APIConstants.complaintList : return false
         default: return true
         }
     }

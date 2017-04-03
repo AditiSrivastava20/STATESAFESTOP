@@ -9,6 +9,7 @@
 import UIKit
 import Material
 import EZSwiftExtensions
+import GooglePlacePicker
 
 class BaseViewController: UIViewController {
 
@@ -50,6 +51,25 @@ class BaseViewController: UIViewController {
         
     }
     
+    //MARK:- fetch full address
+    func fetchFullAddress(completion: @escaping (String?) -> ()) {
+        let config = GMSPlacePickerConfig(viewport: nil)
+        let placePicker = GMSPlacePicker(config: config)
+        
+        placePicker.pickPlace(callback: { (place, error) -> Void in
+            if let error = error {
+                print("Pick Place error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let place = place else {
+                print("No place selected")
+                return
+            }
+            
+            completion("\(place.name) \(place.formattedAddress!) \(place.attributions)")
+        })
+    }
     
     
     
@@ -57,6 +77,8 @@ class BaseViewController: UIViewController {
         
         self.view.endEditing(true)
     }
+    
+    
     
 
 }

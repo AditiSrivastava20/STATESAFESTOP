@@ -9,6 +9,7 @@
 import Foundation
 import ISMessages
 import UIKit
+import EZSwiftExtensions
 
 enum HandleCheck {
     

@@ -77,7 +77,7 @@ class WriteComplaintViewController: BaseViewController {
         
         switch Validate() {
         case .success:
-            APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: login.access_token, title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: login.profile?.access_token, title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { (response) in
                 
                 self.handle(response: response)
             })

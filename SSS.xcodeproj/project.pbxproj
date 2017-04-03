@@ -135,6 +135,7 @@
 		1DE126F21E8BC0FC00DBE5BA /* PinValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE126F11E8BC0FC00DBE5BA /* PinValidationViewController.swift */; };
 		1DE126F61E8BC9E500DBE5BA /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE126F51E8BC9E500DBE5BA /* Recording.swift */; };
 		1DE126F81E8BE76600DBE5BA /* Complaint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE126F71E8BE76600DBE5BA /* Complaint.swift */; };
+		1DEEE64E1E92170D00966D4C /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEEE64D1E92170D00966D4C /* ForgotPasswordViewController.swift */; };
 		7F704FA8C94C9CC2CAC7FEC0 /* Pods_SSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F766C508ABD4F0DAAF6452C /* Pods_SSS.framework */; };
 /* End PBXBuildFile section */
 
@@ -274,6 +275,7 @@
 		1DE126F11E8BC0FC00DBE5BA /* PinValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinValidationViewController.swift; sourceTree = "<group>"; };
 		1DE126F51E8BC9E500DBE5BA /* Recording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		1DE126F71E8BE76600DBE5BA /* Complaint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complaint.swift; sourceTree = "<group>"; };
+		1DEEE64D1E92170D00966D4C /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		2F766C508ABD4F0DAAF6452C /* Pods_SSS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SSS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C7908565C4A81C8BDDA6E4 /* Pods-SSS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SSS/Pods-SSS.release.xcconfig"; sourceTree = "<group>"; };
 		DD160A99A039F880F3E47172 /* Pods-SSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SSS/Pods-SSS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 		1DE125C81E8BB95600DBE5BA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1DEEE64C1E9216FB00966D4C /* ForgotPasswordViewController */,
 				1D0A150C1E8FD308003F1F5A /* ChangePasswordViewController */,
 				1D0A15091E8FC3F6003F1F5A /* EditProfileViewController */,
 				1D911C121E8F9857003F2EE7 /* ResetPinViewController */,
@@ -859,6 +862,14 @@
 			path = HomeViewController/PinValidationViewController;
 			sourceTree = "<group>";
 		};
+		1DEEE64C1E9216FB00966D4C /* ForgotPasswordViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1DEEE64D1E92170D00966D4C /* ForgotPasswordViewController.swift */,
+			);
+			path = ForgotPasswordViewController;
+			sourceTree = "<group>";
+		};
 		8F9FEE0F376DDFB87681DD24 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1118,6 +1129,7 @@
 				1DE1267A1E8BB95600DBE5BA /* CameraViewController.swift in Sources */,
 				1DE1268A1E8BB95600DBE5BA /* CardTransactionViewController.swift in Sources */,
 				1DE126F81E8BE76600DBE5BA /* Complaint.swift in Sources */,
+				1DEEE64E1E92170D00966D4C /* ForgotPasswordViewController.swift in Sources */,
 				1DE1266E1E8BB95600DBE5BA /* ViewExtensions.swift in Sources */,
 				1DE1265F1E8BB95600DBE5BA /* APIConstants.swift in Sources */,
 				1D911C111E8F8487003F2EE7 /* SettingsViewController.swift in Sources */,

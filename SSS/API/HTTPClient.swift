@@ -67,6 +67,31 @@ class HTTPClient {
         }
     }
     
+    
+    //MARK: - share media with others
+    func postRequestWithArray(withApi api : Router, arrayOne: [String]?, arrayTwo: [String]? , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ) {
+        
+        var params = api.parameters
+        
+        params?[Keys.media_id_share.rawValue] = arrayOne
+        params?[Keys.safeUserIds.rawValue] = arrayTwo
+        
+        let fullPath = api.baseURL + api.route
+        let method = api.method
+        print(fullPath)
+        print(params)
+        Alamofire.request(fullPath, method: method, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+            
+            switch response.result {
+            case .success(let data):
+                success(data)
+            case .failure(let error):
+                failure(error.localizedDescription)
+            }
+        }
+    }
+    
+    
     //MARK: - Post request with image
     func postRequestWithImages(withApi api : Router , image: UIImage? , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ) {
         

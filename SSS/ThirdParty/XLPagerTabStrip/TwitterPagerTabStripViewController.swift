@@ -88,6 +88,16 @@ open class TwitterPagerTabStripViewController: PagerTabStripViewController, Page
     open func updateIndicator(for viewController: PagerTabStripViewController, fromIndex: Int, toIndex: Int, withProgressPercentage progressPercentage: CGFloat, indexWasChanged: Bool) {
 
         // move indicator scroll view
+        
+        if indexWasChanged && toIndex == 0 {
+            
+            print(fromIndex)
+            print(toIndex)
+            _ = indexWasChangedTemp(isTrue:true)
+            
+        }
+        
+        
         guard let distance = distanceValue else { return }
         var xOffset: CGFloat = 0
         if fromIndex < toIndex {
@@ -107,6 +117,11 @@ open class TwitterPagerTabStripViewController: PagerTabStripViewController, Page
 
         // update page control page
         pageControl.currentPage = currentIndex
+    }
+    
+    func indexWasChangedTemp(isTrue : Bool){
+        
+        
     }
 
     open func updateIndicator(for viewController: PagerTabStripViewController, fromIndex: Int, toIndex: Int) {

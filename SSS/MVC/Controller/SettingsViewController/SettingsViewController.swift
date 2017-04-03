@@ -26,6 +26,17 @@ class SettingsViewController: UIViewController {
         
     }
     
+    
+    @IBAction func btnSendEmailAction(_ sender: Any) {
+
+    }
+    
+    @IBAction func btnCallAction(_ sender: Any) {
+    }
+    
+    
+    
+    //MARK: - Reset pin action
     @IBAction func btnResetPinAction(_ sender: Any) {
         let vc = StoryboardScene.Main.instantiatePinValidationViewController()
         vc.delegatePin = self
@@ -35,6 +46,8 @@ class SettingsViewController: UIViewController {
         
     }
     
+    
+    //MARK: - pin validation
     func validatePin(pin: String?) {
         
         guard let login = UserDataSingleton.sharedInstance.loggedInUser else {

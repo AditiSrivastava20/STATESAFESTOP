@@ -14,7 +14,9 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         
         
-        if let user = UserDataSingleton.sharedInstance.loggedInUser {
+        if UserDataSingleton.sharedInstance.loggedInUser  != nil{
+            
+            let user = UserDataSingleton.sharedInstance.loggedInUser
             
             if validateToken(login: user) {
                 performSegue(withIdentifier: segue.splashToMain.rawValue, sender: self)
