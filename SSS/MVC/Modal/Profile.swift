@@ -31,7 +31,7 @@ class Profile: NSObject{
     var lastLogin: String?
     var fullname: String?
     
-    required init(attributes: OptionalJSON) throws{
+     init(attributes: OptionalJSON) {
         super.init()
         
         email = .email => attributes

@@ -8,9 +8,11 @@
 
 import Foundation
 import TwitterKit
-import Kingfisher
+import NVActivityIndicatorView
+import UIKit
+import SwiftyJSON
 
-class TWManager {
+class TWManager: UIViewController, NVActivityIndicatorViewable {
     
     static let shared = TWManager()
     
@@ -24,10 +26,21 @@ class TWManager {
         }
     }
     
+    
     //MARK:- Twitter login
-    func login(_ obj: UIViewController, check: SocialCheck, completion : @escaping ([String: Any]) -> () ) {
+    func login(_ obj: UIViewController, check: SocialCheck, completion : @escaping (TwitterResponse) -> () ) {
         
-        Twitter.sharedInstance().logIn { (session, error) in
+        self.stopAnimating()
+        
+        //Start twitter session
+        let twObj = Twitter.sharedInstance()
+        let store = twObj.sessionStore
+        if let userID = store.session()?.userID {
+            store.logOutUserID(userID)
+        }
+        
+        twObj.logIn { (session, error) in
+            
             if session != nil {
                 print("signed in as \(session!.userName)")
                 print("\(session?.userID)")
@@ -36,14 +49,27 @@ class TWManager {
                                                 url: "https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true",
                                                 parameters: ["include_email": "true", "skip_status": "true"],
                                                 error: nil)
+                
+                //start loader
+                self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+                
                 client.sendTwitterRequest(request) { response, data, connectionError in
+                    
+                    //Stop loader
+                    self.stopAnimating()
+                    
                     if (connectionError == nil) {
                         do{
                             let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
                             print("\(json["id"]!)")
                             
-                            self.apiHit(param: json, check: check, obj: obj)
-                            completion(json)
+                            let jsonData = JSON(data)
+                            do {
+                                let item = try TwitterResponse(attributes: jsonData.dictionaryValue)
+                                self.apiHit(param: item, check: check, obj: obj)
+                                completion(item)
+                                
+                            }
                             
                         } catch {
                             
@@ -61,15 +87,41 @@ class TWManager {
     }
     
     
+    //MARK: - handle response
+    func handle(response: Response,_ obj: UIViewController, param: TwitterResponse) {
+        
+        switch response {
+            
+        case .success(let responseValue):
+            
+            if let value = responseValue as? User {
+                UserDataSingleton.sharedInstance.loggedInUser = value
+                LoginChecks.shared.check(obj, user: UserDataSingleton.sharedInstance.loggedInUser)
+            }
+            
+        case .failure(let str):
+            
+            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            
+            let vc = StoryboardScene.SignUp.instantiateEnterDetailsFirstViewController()
+            vc.isFromTwitter = true
+            vc.twProfile = param
+            obj.pushVC(vc)
+            
+        }
+        
+    }
+    
+    
     
     //MARK:- login/signup after twitter response
-    func apiHit(param: [String: Any] , check: SocialCheck , obj: UIViewController) {
+    func apiHit(param: TwitterResponse , check: SocialCheck , obj: UIViewController) {
         
         switch check {
         case .login:
-            APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: "\(param["id"]!)", accountType: AccountType.twitter.rawValue, deviceToken: MobileDevice.token.rawValue), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: /param.id, accountType: AccountType.twitter.rawValue, deviceToken: MobileDevice.token.rawValue), completion: { (response) in
                 
-                HandleResponse.shared.handle(response: response, obj, from: .login)
+                self.handle(response: response, obj, param: param)
                 
             })
             

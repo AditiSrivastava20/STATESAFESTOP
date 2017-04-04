@@ -19,7 +19,7 @@ class Complaint: NSObject {
     var email: String?
     var media_content: String?
     
-    required init(attributes: OptionalJSON) throws{
+     init(attributes: OptionalJSON) {
         super.init()
         
         title = .title => attributes

@@ -79,7 +79,7 @@ class HTTPClient {
         let fullPath = api.baseURL + api.route
         let method = api.method
         print(fullPath)
-        print(params)
+//        print(params ?? <#default value#>)
         Alamofire.request(fullPath, method: method, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
             
             switch response.result {

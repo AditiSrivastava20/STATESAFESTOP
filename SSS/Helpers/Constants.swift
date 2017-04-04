@@ -83,11 +83,12 @@ enum segue: String {
     case loginToSignup = "loginToSignup"
     case loginToPin = "loginToPin"
     case loginToPackage = "loginToPackage"
-    case signupToPin = "singupToPin"
+    case signupToPin = "signupToPin"
     case pinToPackage = "pinToPackage"
     case packageToInAppPurchase = "packageToInAppPurchase"
     case settingsToResetPin = "settingsToResetPin"
     case loginToForgotPassword = "loginToForgotPassword"
+    case SSSpackageToMain = "SSSpackageToMain"
     
 }
 

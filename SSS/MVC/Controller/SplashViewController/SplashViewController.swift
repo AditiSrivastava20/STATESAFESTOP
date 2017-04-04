@@ -18,8 +18,9 @@ class SplashViewController: UIViewController {
             
             let user = UserDataSingleton.sharedInstance.loggedInUser
             
-            if validateToken(login: user) {
-                performSegue(withIdentifier: segue.splashToMain.rawValue, sender: self)
+            if validateToken(user) {
+                loginChecks(user!)
+                
             } else {
                 UserDataSingleton.sharedInstance.loggedInUser = nil
                 performSegue(withIdentifier: segue.splashToLogin.rawValue, sender: self)
@@ -38,8 +39,23 @@ class SplashViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func validateToken(login: User?) -> Bool {
+    func validateToken(_ login: User?) -> Bool {
         return true
+    }
+    
+    func loginChecks(_ login: User) {
+        
+        if login.profile?.is_pin == "0" {
+            //go to pin-password setup
+            let vc = StoryboardScene.SignUp.instantiateEnterDetailsSecondViewController()
+            pushVC(vc)
+            
+        } else {
+            //go to main
+            performSegue(withIdentifier: segue.splashToMain.rawValue, sender: self)
+        }
+        
+        
     }
     
 

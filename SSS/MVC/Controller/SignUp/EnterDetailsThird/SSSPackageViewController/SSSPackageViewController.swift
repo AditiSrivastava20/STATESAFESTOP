@@ -35,11 +35,11 @@ class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
     @IBAction func btnAppInviteAction(_ sender: Any) {
         print("Invite button tapped")
         
-        //self.appInviteAction()
-        
-        FBManager.shared.fetchFriendsAction(completion: {(count) in
+        FBManager.shared.login(self, check: .login , graphRequest: .friends, completion: {(count) in
             
-            if count < 10 {
+            let value = count as? Int
+            
+            if value! < 10 {
                 Alerts.shared.show(alert: .oops, message: Alert.friendsErr.rawValue, type: .error)
             } else {
                 self.appInviteAction()
@@ -85,6 +85,7 @@ class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
             }
         } else {
             print("invite sent")
+            self.performSegue(withIdentifier: segue.SSSpackageToMain.rawValue, sender: self)
         }
 
     }

@@ -1,28 +1,26 @@
 //
-//  Safelist.swift
+//  twitter.swift
 //  SSS
 //
-//  Created by Sierra 4 on 28/03/17.
+//  Created by Sierra 4 on 04/04/17.
 //  Copyright © 2017 Codebrew. All rights reserved.
 //
 
 import Foundation
 
-class Safelist: NSObject {
+class TwitterResponse: NSObject {
     
     var id: String?
-    var unformatted_phone: String?
-    var image: String?
+    var image_url: String?
     var name: String?
-    var isSelected : Int = 0
+    var email: String?
     
-     init(attributes: OptionalJSON) {
+    init(attributes: OptionalJSON) {
         super.init()
         
         id = .id => attributes
         name = .name => attributes
-        image = .image => attributes
-        unformatted_phone = .unformatted_phone => attributes
+        image_url = .twitter_image_url => attributes
         
     }
     
@@ -32,3 +30,4 @@ class Safelist: NSObject {
     
     
 }
+

@@ -54,12 +54,10 @@ class SettingsViewController: UIViewController {
             return
         }
         
-        if (pin?.isEmpty)! {
-            print("do nothing")
-        } else if (pin?.isEqual(/login.profile?.pin_password))! {
+        if (pin?.isEqual(/login.profile?.pin_password))! {
             performSegue(withIdentifier: segue.settingsToResetPin.rawValue, sender: self)
         } else {
-            Alerts.shared.show(alert: .oops, message: "Invalid Pin", type: .error)
+            Alerts.shared.show(alert: .oops, message: "Invalid Pin", type: .info)
         }
         
         

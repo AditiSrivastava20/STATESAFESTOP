@@ -18,6 +18,7 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var lblEmail: UILabel!
     @IBOutlet weak var lblPhone: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
+    @IBOutlet weak var btnLogout: UIButton!
     
     var login = UserDataSingleton.sharedInstance.loggedInUser
     

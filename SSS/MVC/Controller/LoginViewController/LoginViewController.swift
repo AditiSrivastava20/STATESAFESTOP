@@ -9,16 +9,19 @@
 import UIKit
 import Material
 import ISMessages
-import FBSDKLoginKit
-import TwitterKit
+//import FBSDKLoginKit
+//import TwitterKit
+import EZSwiftExtensions
 import NVActivityIndicatorView
 
-class LoginViewController: BaseViewController {
+class LoginViewController: BaseViewController, NVActivityIndicatorViewable {
     
     @IBOutlet weak var txtEmail: TextField!
     @IBOutlet weak var txtPassword: TextField!
     @IBOutlet weak var btnFacebook: Button!
     @IBOutlet weak var btnTwitter: Button!
+    @IBOutlet weak var btnLogin: Button!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,10 +82,14 @@ extension LoginViewController {
 extension LoginViewController {
     
     @IBAction func btnFacebookAction(_ sender: Any) {
-        print("facebook login selected")
         
-        FBManager.shared.login(self, check: .login , completion: { (fbProfile) in
-            print(fbProfile.fbId ?? "")
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        FBManager.shared.login(self, check: .login , graphRequest: .me , completion: { (fbProfile) in
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
+            let value = fbProfile as? FacebookResponse
+            print(value?.fbId ?? "")
         })
 
     }
@@ -96,48 +103,20 @@ extension LoginViewController {
 extension LoginViewController {
     
     @IBAction func btnTwitterAction(_ sender: Any) {
-        print("twitter login selected")
         
-        TWManager.shared.login(self, check: .login, completion: { (json) in
-            print("\(json["id"]!)")
+        ez.runThisInMainThread {
+            self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+        }
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        TWManager.shared.login(self, check: .login, completion: { (twProfile) in
+            UIApplication.shared.endIgnoringInteractionEvents()
+            print(/twProfile.id)
         })
+       
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

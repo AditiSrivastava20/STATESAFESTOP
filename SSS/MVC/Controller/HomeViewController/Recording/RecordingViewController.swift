@@ -11,6 +11,7 @@ import SwiftyJSON
 import AVKit
 import EZSwiftExtensions
 import Photos
+import NVActivityIndicatorView
 
 
 
@@ -21,7 +22,7 @@ protocol mediaSelectListner : class {
 
 
 
-class RecordingViewController: BaseViewController {
+class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
 
     weak var delegateMedia : mediaSelectListner?
     
@@ -50,11 +51,19 @@ class RecordingViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        //Loader
+        if isFromMediaSelection {
+            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+        }
+        
         getRecordings()
     }
     
     //MARK: - handle response
     func handle(response: Response, check: Recordinglist ) {
+        
+        self.stopAnimating()
         
         switch response{
         case .success(let responseValue):
@@ -79,12 +88,8 @@ class RecordingViewController: BaseViewController {
             arrayRecording = array
             self.setupTableview()
             
-            if (arrayRecording?.isEmpty)! {
-                lblNoRecordings.isHidden = false
-            } else {
-                lblNoRecordings.isHidden = true
-            }
-        
+            lblNoRecordings.isHidden = arrayRecording?.count != 0
+            
         case .share:
             Alerts.shared.show(alert: .success, message: /Alert.shared.rawValue , type: .success)
             
@@ -138,6 +143,7 @@ class RecordingViewController: BaseViewController {
         
         arrayRecording = []
         
+        //Api
         APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: login?.profile?.access_token), completion: {
             (response) in
             

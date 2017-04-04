@@ -572,6 +572,7 @@ extension RecorderViewController : AVAudioRecorderDelegate {
             if let value = responseValue as? User{
                 
                 print(value.msg ?? "")
+                Alerts.shared.show(alert: .success, message: /value.msg, type: .success)
             }
             
         case .failure(let str):

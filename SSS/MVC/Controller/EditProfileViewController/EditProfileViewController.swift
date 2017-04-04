@@ -47,8 +47,8 @@ class EditProfileViewController: BaseViewController {
             return
         }
         
-        if let imgUrl = login.profile?.image {
-            imgProfilePic.kf.setImage(with: URL(string: imgUrl))
+        if let url = login.profile?.image_url {
+            imgProfilePic.kf.setImage(with: URL(string: url))
         }
         
         txtFullname.text = login.profile?.fullname

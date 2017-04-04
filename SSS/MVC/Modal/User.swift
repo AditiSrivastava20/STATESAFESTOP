@@ -18,11 +18,12 @@ class User: NSObject {
     var access_token: String?
     var isnewuser: String?
     var msg: String?
+    var pin_password: String?
     var complaints: [Complaint]?
     var recordings: [Recording]?
     var contacts: [Safelist]?
     
-    required init(attributes: OptionalJSON) throws{
+     init(attributes: OptionalJSON) {
         super.init()
         
         msg = .msg => attributes
@@ -30,85 +31,28 @@ class User: NSObject {
         is_user_exist = .is_user_exist => attributes
         access_token = .access_token => attributes
         isnewuser = .isnewuser => attributes
-        profile = try Profile(attributes: .profile =< attributes)
+        pin_password = .pin_password => attributes
+        profile =  Profile(attributes: .profile =< attributes)
         
-        let arrayComplaints = User.parseComplaintArrayToModal(withAttributes : .complaints =| attributes) as? [Complaint]
-        complaints = arrayComplaints
+        complaints = []
+        (.complaints =| attributes)?.forEach({ (_,element) in
+            self.complaints?.append(Complaint(attributes: element.dictionaryValue))
+        })
         
-        let arrayRecordings = User.parseRecordingArrayToModal(withAttributes : .recordings =| attributes) as? [Recording]
-        recordings = arrayRecordings
-        
-        let arraySafelist = User.parseSafelistArrayToModal(withAttributes: .contacts =| attributes) as? [Safelist]
-        contacts = arraySafelist
+        recordings = []
+        (.recordings =| attributes)?.forEach({ (_,element) in
+            self.recordings?.append(Recording(attributes: element.dictionaryValue))
+        })
+    
+        contacts = []
+        (.contacts =| attributes)?.forEach({ (_,element) in
+            self.contacts?.append(Safelist(attributes: element.dictionaryValue))
+        })
         
     }
     
     override init() {
         super.init()
     }
-    
-    class func parseComplaintArrayToModal(withAttributes attributes : [JSON]?) -> AnyObject? {
         
-        var arrayComplaints: [Complaint] = []
-        
-        guard let attri = attributes else {
-            return nil
-        }
-        
-        for dict in attri {
-            
-            do {
-                let item = try Complaint(attributes: dict.dictionaryValue)
-                arrayComplaints.append(item)
-            } catch _ {
-            }
-        }
-        
-        return arrayComplaints as AnyObject?
-        
-    }
-    
-    class func parseRecordingArrayToModal(withAttributes attributes : [JSON]?) -> AnyObject? {
-        
-        var arrayRecordings: [Recording] = []
-        
-        guard let attri = attributes else {
-            return nil
-        }
-        
-        for dict in attri {
-            
-            do {
-                let item = try Recording(attributes: dict.dictionaryValue)
-                arrayRecordings.append(item)
-            } catch _ {
-            }
-        }
-        
-        return arrayRecordings as AnyObject?
-        
-    }
-    
-    class func parseSafelistArrayToModal(withAttributes attributes : [JSON]?) -> AnyObject? {
-        
-        var arraySafelist: [Safelist] = []
-        
-        guard let attri = attributes else {
-            return nil
-        }
-        
-        for dict in attri {
-            
-            do {
-                let item = try Safelist(attributes: dict.dictionaryValue)
-                arraySafelist.append(item)
-            } catch _ {
-            }
-        }
-        
-        return arraySafelist as AnyObject?
-        
-    }
-    
-    
 }

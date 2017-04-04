@@ -34,7 +34,7 @@
         <!--Enter Details First View Controller-->
         <scene sceneID="X8F-Fs-yzk">
             <objects>
-                <viewController id="iap-hB-W5Z" customClass="EnterDetailsFirstViewController" customModule="SSS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnterDetailsFirstViewController" id="iap-hB-W5Z" customClass="EnterDetailsFirstViewController" customModule="SSS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kCO-fg-n8g"/>
                         <viewControllerLayoutGuide type="bottom" id="c2i-QZ-GXo"/>
@@ -79,7 +79,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WaV-w0-mdm">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="786"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_edit profile" translatesAutoresizingMaskIntoConstraints="NO" id="uOT-SM-cgX">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_edit profile" translatesAutoresizingMaskIntoConstraints="NO" id="uOT-SM-cgX">
                                                 <rect key="frame" x="117" y="20" width="86" height="86"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="uOT-SM-cgX" secondAttribute="height" multiplier="1:1" id="FAb-an-60e"/>
@@ -308,7 +308,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnFacebook" destination="azQ-4r-Rbh" id="zuj-2X-xi1"/>
+                        <outlet property="btnTwitter" destination="XfK-2J-uGH" id="qaM-vB-jPI"/>
                         <outlet property="imgProfile" destination="uOT-SM-cgX" id="en6-2T-rQP"/>
+                        <outlet property="scrollView" destination="cn1-xp-cME" id="eqO-bN-VU8"/>
                         <outlet property="txtConfirmPassword" destination="Ysn-nE-xQ4" id="ADG-RZ-73J"/>
                         <outlet property="txtEmailAddress" destination="Ccz-WC-P2h" id="xkr-f4-8Ii"/>
                         <outlet property="txtFullAddress" destination="i7n-Vr-bWm" id="meH-gV-0QD"/>
@@ -320,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgs-4q-X1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="894" y="-786"/>
+            <point key="canvasLocation" x="1463" y="-736"/>
         </scene>
         <!--Image Pick View Controller-->
         <scene sceneID="4Mw-93-CzK">
@@ -462,12 +465,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avu-FO-QAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1740" y="-787"/>
+            <point key="canvasLocation" x="2728" y="-41"/>
         </scene>
         <!--Enter Details Second View Controller-->
         <scene sceneID="8Ys-3Q-oUk">
             <objects>
-                <viewController id="bhX-6g-Bb8" customClass="EnterDetailsSecondViewController" customModule="SSS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnterDetailsSecondViewController" id="bhX-6g-Bb8" customClass="EnterDetailsSecondViewController" customModule="SSS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fpC-xs-MCz"/>
                         <viewControllerLayoutGuide type="bottom" id="VFQ-fh-AUZ"/>
@@ -572,7 +575,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YwF-aD-E6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="893" y="-41"/>
+            <point key="canvasLocation" x="1523" y="-20"/>
         </scene>
         <!--Splash View Controller-->
         <scene sceneID="IcH-Uz-SWm">
@@ -604,7 +607,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Shr-Gn-x1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1622" y="-41"/>
+            <point key="canvasLocation" x="-1654" y="-20"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="lqe-1f-s4W">
@@ -725,7 +728,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQn-Tv-qaQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1376" y="757"/>
+            <point key="canvasLocation" x="-1350" y="801"/>
         </scene>
         <!--Package View Controller-->
         <scene sceneID="gWP-RR-TNA">
@@ -936,11 +939,12 @@
                     </view>
                     <connections>
                         <segue destination="C6f-MH-oFE" kind="show" identifier="packageToInAppPurchase" id="40X-59-C1k"/>
+                        <segue destination="X0h-A9-ai8" kind="show" identifier="SSSpackageToMain" id="UQM-xW-N2f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CRo-x7-t0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9" y="813"/>
+            <point key="canvasLocation" x="-366" y="801"/>
         </scene>
         <!--Card Transaction View Controller-->
         <scene sceneID="B0D-Kh-2lJ">
@@ -1219,7 +1223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ToU-qA-vBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1091" y="843"/>
+            <point key="canvasLocation" x="722" y="801"/>
         </scene>
         <!--Main-->
         <scene sceneID="dmR-Za-nhe">
@@ -1227,7 +1231,7 @@
                 <viewControllerPlaceholder storyboardName="Main" id="X0h-A9-ai8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Dg-sk-ZW6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-122" y="-621"/>
+            <point key="canvasLocation" x="246" y="-646"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WVi-er-nqH">
@@ -1413,6 +1417,7 @@
                     <navigationItem key="navigationItem" id="LvY-TX-doI"/>
                     <connections>
                         <outlet property="btnFacebook" destination="Fle-Wg-5IZ" id="zdU-Pg-efE"/>
+                        <outlet property="btnLogin" destination="QJS-m0-7kf" id="IG2-dd-QMG"/>
                         <outlet property="btnTwitter" destination="IGI-0Q-xZN" id="KLZ-V6-bfj"/>
                         <outlet property="txtEmail" destination="5My-xU-122" id="zht-Hg-ROi"/>
                         <outlet property="txtPassword" destination="y4D-9n-SUU" id="3cv-rB-VoI"/>
@@ -1447,8 +1452,8 @@
         <image name="ic_zip code" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lIN-KG-5Fk"/>
         <segue reference="x3i-Dc-0K8"/>
+        <segue reference="UQM-xW-N2f"/>
         <segue reference="tWL-ob-NT2"/>
     </inferredMetricsTieBreakers>
 </document>

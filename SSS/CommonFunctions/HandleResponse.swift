@@ -35,13 +35,18 @@ class HandleResponse {
                 switch from {
                 case .login:
                     UserDataSingleton.sharedInstance.loggedInUser = value
-                    obj.performSegue(withIdentifier: segue.loginToMain.rawValue, sender: obj)
+                    LoginChecks.shared.check(obj, user: UserDataSingleton.sharedInstance.loggedInUser)
                     
                 case .signup:
                     UserDataSingleton.sharedInstance.loggedInUser = value
                     obj.performSegue(withIdentifier: segue.signupToPin.rawValue, sender: obj)
                     
                 case .pinPassword:
+                    let login = UserDataSingleton.sharedInstance.loggedInUser
+                    login?.profile?.is_pin = "1"
+                    login?.profile?.pin_password = value.pin_password
+                    UserDataSingleton.sharedInstance.loggedInUser = login
+                    
                     obj.performSegue(withIdentifier: segue.pinToPackage.rawValue, sender: obj)
                     
                 case .sssPackage,.inAppPurchase:
@@ -58,7 +63,7 @@ class HandleResponse {
     }
     
     
-}
 
+}
 
 

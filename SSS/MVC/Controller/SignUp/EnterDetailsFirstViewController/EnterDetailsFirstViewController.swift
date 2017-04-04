@@ -10,9 +10,12 @@ import UIKit
 import Material
 import ISMessages
 import Kingfisher
+import EZSwiftExtensions
+import NVActivityIndicatorView
 
-class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
+class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var txtFullname: TextField!
     @IBOutlet weak var txtEmailAddress: TextField!
@@ -20,6 +23,14 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var txtConfirmPassword: TextField!
     @IBOutlet weak var txtFullAddress: TextField!
     @IBOutlet weak var txtPhoneNumber: TextField!
+    
+    @IBOutlet weak var btnFacebook: UIButton!
+    @IBOutlet weak var btnTwitter: UIButton!
+    
+    var isFromFacebook = false
+    var isFromTwitter = false
+    var fbProfile:FacebookResponse?
+    var twProfile:TwitterResponse?
     
     var facebookID:String = ""
     var twitterID:String = ""
@@ -39,6 +50,48 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if isFromFacebook {
+            ifFromFacebook(obj: fbProfile)
+        } else if isFromTwitter {
+            ifFromTwitter(obj: twProfile)
+        }
+        
+        
+    }
+    
+    //MARK: pre-fill all fields if from facebook
+    func ifFromFacebook(obj: FacebookResponse?) {
+        
+        if let url = obj?.imageUrl {
+            self.imgProfile.kf.setImage(with: URL(string: url))
+            self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height / 2
+        }
+        self.txtFullname.text = obj?.name ?? ""
+        self.txtEmailAddress.text = obj?.email ?? ""
+        self.facebookID = obj?.fbId ?? ""
+        self.twitterID = ""
+        self.scrollView.scrollToTop()
+    }
+    
+    
+    //MARK: pre-fill all fields if from twitter
+    func ifFromTwitter(obj: TwitterResponse?) {
+        
+        if let url = obj?.image_url {
+            self.imgProfile.kf.setImage(with: URL(string: url))
+            self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height / 2
+        }
+        self.txtFullname.text = /obj?.name
+        self.twitterID = /obj?.id
+        self.facebookID = ""
+        self.scrollView.scrollToTop()
+        
+    }
+    
+    
     
     //MARK:- Go back
     @IBAction func btnBackAction(_ sender: Any) {
@@ -80,16 +133,14 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     //Mark:- Facebook Sign up
     @IBAction func btnFacebokAction(_ sender: Any) {
         
-        FBManager.shared.login(self, check: .signup, completion: { (fbProfile) in
+        FBManager.shared.login(self, check: .signup, graphRequest: .me, completion: { (profile) in
             
-            print(fbProfile.fbId ?? "")
-            if let url = fbProfile.imageUrl {
-                self.imgProfile.kf.setImage(with: URL(string: url))
-            }
-            self.txtFullname.text = fbProfile.name ?? ""
-            self.txtEmailAddress.text = fbProfile.email ?? ""
-            self.facebookID = fbProfile.fbId ?? ""
-            self.twitterID = ""
+            let fbProfile = profile as? FacebookResponse
+            
+            print(fbProfile?.fbId ?? "")
+            
+            self.ifFromFacebook(obj: fbProfile)
+            
         })
     }
     
@@ -97,12 +148,19 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     //Mark:- Twitter Sign up
     @IBAction func btnTwitterAction(_ sender: Any) {
         
-        TWManager.shared.login(self, check: .signup, completion: { (json) in
-            print("\(json["id"]!)")
-            self.imgProfile.kf.setImage(with: URL(string: "\(json["profile_image_url_https"]!)"))
-            self.txtFullname.text = "\(json["name"]!)"
-            self.twitterID = "\(json["id"]!)"
-            self.facebookID = ""
+        ez.runThisInMainThread {
+            self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+        }
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        TWManager.shared.login(self, check: .signup, completion: { (twProfile) in
+            
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
+            print(twProfile.id ?? "")
+            
+            self.ifFromTwitter(obj: twProfile)
+
         })
         
     }
@@ -110,6 +168,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     
     //Mark:- Sign up Action
     @IBAction func btnSignUpAction(_ sender: Any) {
+        
         print("Sign up")
         ISMessages.hideAlert(animated: true)
         let value = Validate()

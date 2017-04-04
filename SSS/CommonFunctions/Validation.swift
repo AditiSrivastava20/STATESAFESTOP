@@ -21,6 +21,7 @@ internal struct RegexExpresssions {
     static let EmailRegex = "[A-Z0-9a-z._%+-]{1,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
     static let PasswordRegex = "[A-Za-z0-9]{6,20}"
     static let PhoneRegex = "[0-9]{6,14}"
+    static let alphabeticRegex = "^[a-zA-Z ]*$"
     
 }
 
@@ -45,7 +46,7 @@ class Validation: NSObject {
     //MARK: - signup validation
     func validate(signup fullname: String?, email: String?, password: String?, confirmPasswd: String?, fulladdress: String?, phoneNo: String?, facebookID: String?, twitterID: String?) -> Valid {
         
-        if (/fullname).isEmpty {
+        if !isValidName((/fullname)) {
             return errorMsg(str: "Enter fullname")
         }
         
@@ -58,12 +59,8 @@ class Validation: NSObject {
         }
         
         if (/facebookID).isEmpty && (/twitterID).isEmpty {
-            if (/password).isEmpty {
-                return errorMsg(str: "Enter password")
-            }
-            
-            if (/password).characters.count <= 7 {
-                return errorMsg(str: "Password should be atleast 8 characters long")
+            if !isValidPasswd(/password) {
+                return errorMsg(str: "Enter valid password")
             }
             
             if (/confirmPasswd).isEmpty {
@@ -169,14 +166,17 @@ class Validation: NSObject {
     }
     
     func isValidName(_ testStr:String) -> Bool {
-        for char in testStr.characters {
-            if !(char <= "Z") && !(char >= "A") {
-                return false
-            } else if !(char <= "z") && !(char >= "a") {
-                return false
-            }
-        }
-        return true
+//        for char in testStr.characters {
+//            if !(char <= "Z") && !(char >= "A") {
+//                return false
+//            } else if !(char <= "z") && !(char >= "a") {
+//                return false
+//            }
+//        }
+//        return true
+        
+        let nameTest = NSPredicate(format:"SELF MATCHES %@", RegexExpresssions.alphabeticRegex)
+        return nameTest.evaluate(with: testStr)
     }
     
     func errorMsg(str : String) -> Valid{

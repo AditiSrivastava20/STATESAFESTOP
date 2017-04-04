@@ -202,6 +202,25 @@ enum StoryboardScene {
       }
       return vc
     }
+    
+    case enterDetailsFirstViewControllerScene = "EnterDetailsFirstViewController"
+    static func instantiateEnterDetailsFirstViewController() -> SSS.EnterDetailsFirstViewController {
+        guard let vc = StoryboardScene.SignUp.enterDetailsFirstViewControllerScene.viewController() as? SSS.EnterDetailsFirstViewController
+            else {
+                fatalError("ViewController 'EnterDetailsFirstViewController' is not of the expected class SSS.EnterDetailsFirstViewController.")
+        }
+        return vc
+    }
+    
+    case enterDetailsSecondViewControllerScene = "EnterDetailsSecondViewController"
+    static func instantiateEnterDetailsSecondViewController() -> SSS.EnterDetailsSecondViewController {
+        guard let vc = StoryboardScene.SignUp.enterDetailsSecondViewControllerScene.viewController() as? SSS.EnterDetailsSecondViewController
+            else {
+                fatalError("ViewController 'EnterDetailsSecondViewController' is not of the expected class SSS.EnterDetailsSecondViewController.")
+        }
+        return vc
+    }
+    
   }
 }
 

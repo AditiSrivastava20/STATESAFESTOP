@@ -17,7 +17,7 @@ class Recording: NSObject {
     var media_type: String?
     var isSelected : Int = 0
     
-    required init(attributes: OptionalJSON) throws{
+     init(attributes: OptionalJSON) {
         super.init()
         
         id = .id => attributes
