@@ -16,14 +16,23 @@ class ComplaintViewController: BaseViewController {
     var itemInfo = IndicatorInfo(title: "COMPLAINT")
     var arrayComplaints:[Complaint]?
     
+    
     @IBOutlet weak internal var tableView: UITableView!
+    @IBOutlet weak var lblNoComplaints: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lblNoComplaints.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        arrayComplaints = []
+        tableView?.estimatedRowHeight = 84
+        setupTableView(tableView: tableView, cellId: "ComplaintTableViewCell", items: arrayComplaints)
+        
         getComplaints()
     }
     
@@ -36,10 +45,14 @@ class ComplaintViewController: BaseViewController {
             if let value = responseValue as? User{
                 print(value.msg ?? "")
                 
-                self.arrayComplaints = value.complaints
-                tableView?.estimatedRowHeight = 84
-                setupTableView(tableView: tableView, cellId: "ComplaintTableViewCell", items: arrayComplaints)
-                tableView.reloadData()
+                if let array = value.complaints {
+                    self.arrayComplaints = array
+                    dataSource?.items = self.arrayComplaints
+                    
+                    lblNoComplaints.isHidden = self.arrayComplaints?.count != 0
+                    
+                    tableView.reloadData()
+                }
             }
             
         case .failure(let str):

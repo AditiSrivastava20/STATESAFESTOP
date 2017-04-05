@@ -8,10 +8,11 @@
 
 import UIKit
 import Material
+import ISMessages
 import EZSwiftExtensions
 import GooglePlacePicker
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, UIApplicationDelegate {
 
     
     var dataSource : TableViewDataSource?
@@ -20,9 +21,15 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont.Font(.HelveticaNeue , type: .Regular , size: 16)]
-
         
         // Do any additional setup after loading the view.
+        
+         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: NSNotification.Name.UIApplicationDidEnterBackground , object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(appTerminated), name: NSNotification.Name.UIApplicationWillTerminate , object: nil)
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,7 +74,16 @@ class BaseViewController: UIViewController {
                 return
             }
             
-            completion("\(place.name) \(place.formattedAddress!) \(place.attributions)")
+            var address = "\(place.name)"
+            if let _ = place.formattedAddress {
+                address += "\(place.formattedAddress)"
+            }
+            
+            if let _ = place.attributions {
+                address += "\(place.attributions)"
+            }
+            
+            completion(address)
         })
     }
     
@@ -75,10 +91,19 @@ class BaseViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        ISMessages.hideAlert(animated: true)
         self.view.endEditing(true)
     }
     
     
+    
+    func appMovedToBackground() {
+        self.view.endEditing(true)
+    }
+    
+    func appTerminated() {
+        
+    }
     
 
 }

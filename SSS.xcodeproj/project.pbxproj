@@ -15,6 +15,7 @@
 		1D74333F1E93D67800ABC797 /* twitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D74333E1E93D67800ABC797 /* twitter.swift */; };
 		1D911C111E8F8487003F2EE7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D911C101E8F8487003F2EE7 /* SettingsViewController.swift */; };
 		1D911C141E8F9862003F2EE7 /* ResetPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D911C131E8F9862003F2EE7 /* ResetPinViewController.swift */; };
+		1D9A39131E94D797009537B9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9A39121E94D797009537B9 /* StringExtensions.swift */; };
 		1DACE2DD1E8E3D2C00CEA8C3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DACE2DC1E8E3D2C00CEA8C3 /* LocationManager.swift */; };
 		1DC3BB411E8CE089009C71E1 /* ComplaintDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC3BB401E8CE089009C71E1 /* ComplaintDoneViewController.swift */; };
 		1DC3BB451E8D04E7009C71E1 /* UserDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC3BB441E8D04E7009C71E1 /* UserDataSingleton.swift */; };
@@ -149,6 +150,7 @@
 		1D74333E1E93D67800ABC797 /* twitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = twitter.swift; sourceTree = "<group>"; };
 		1D911C101E8F8487003F2EE7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1D911C131E8F9862003F2EE7 /* ResetPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPinViewController.swift; sourceTree = "<group>"; };
+		1D9A39121E94D797009537B9 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		1DACE2DC1E8E3D2C00CEA8C3 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1DC3BB401E8CE089009C71E1 /* ComplaintDoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplaintDoneViewController.swift; sourceTree = "<group>"; };
 		1DC3BB441E8D04E7009C71E1 /* UserDataSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataSingleton.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 			children = (
 				1DE125BB1E8BB95600DBE5BA /* TextfieldExtensions.swift */,
 				1D3EA93F1E93776500DF40C6 /* UIScrollViewExtension.swift */,
+				1D9A39121E94D797009537B9 /* StringExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1090,6 +1093,7 @@
 				1DE126C51E8BB95600DBE5BA /* PinCodeTextField.swift in Sources */,
 				1DE126741E8BB95600DBE5BA /* Images.swift in Sources */,
 				1DE126D21E8BB95600DBE5BA /* ButtonBarViewCell.swift in Sources */,
+				1D9A39131E94D797009537B9 /* StringExtensions.swift in Sources */,
 				1DE1267E1E8BB95600DBE5BA /* HomeViewController.swift in Sources */,
 				1DE126CF1E8BB95600DBE5BA /* BaseButtonBarPagerTabStripViewController.swift in Sources */,
 				1DE126691E8BB95600DBE5BA /* HandleResponse.swift in Sources */,

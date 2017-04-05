@@ -19,6 +19,7 @@ class EditProfileViewController: BaseViewController {
     @IBOutlet weak var txtEmail: TextField!
     @IBOutlet weak var txtPhone: TextField!
     @IBOutlet weak var txtAddress: TextField!
+    @IBOutlet weak var backgroundView: UIView!
     
     
 
@@ -32,10 +33,24 @@ class EditProfileViewController: BaseViewController {
         // Do any additional setup after loading the view.
         
         fillAllFields()
+        
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.touchBegan (_:)))
+        backgroundView.addGestureRecognizer(gesture)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    //MARK: - dismiss ISmessages and end editing
+    func touchBegan(_ sender:UITapGestureRecognizer){
+        
+        txtFullname.text = txtFullname.text?.uppercaseFirst
+        
+        ISMessages.hideAlert(animated: true)
+        self.view.endEditing(true)
+        
     }
     
     
@@ -47,9 +62,7 @@ class EditProfileViewController: BaseViewController {
             return
         }
         
-        if let url = login.profile?.image_url {
-            imgProfilePic.kf.setImage(with: URL(string: url))
-        }
+        imgProfilePic.kf.setImage(with: URL(string: (login.profile?.image_url)!), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
         
         txtFullname.text = login.profile?.fullname
         txtEmail.text = login.profile?.email
@@ -66,20 +79,18 @@ class EditProfileViewController: BaseViewController {
         
     }
     
+    //MARK: - Place picker action
     @IBAction func btnPickPlaceAction(_ sender: Any) {
-        txtAddress.text = ""
+        
         fetchFullAddress(completion: {(address) in
             
             self.txtAddress.text = address
         })
-        
-        
     }
     
     
     
-    
-    //MARK: - validate fields
+    //MARK: - Validate fields
     func validate() -> Valid {
         return Validation.shared.validate(edit: txtFullname.text, address: txtAddress.text, phone: txtPhone.text)
         
@@ -108,7 +119,7 @@ class EditProfileViewController: BaseViewController {
 
     
     
-    //MARK: - save changes in edit profile
+    //MARK: - Save changes in edit profile
     @IBAction func btnSaveChangesAction(_ sender: UIBarButtonItem) {
         print("hit api")
         

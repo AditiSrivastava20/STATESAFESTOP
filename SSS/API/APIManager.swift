@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 import NVActivityIndicatorView
+import EZSwiftExtensions
 
 
 class APIManager : UIViewController , NVActivityIndicatorViewable{
@@ -58,6 +59,13 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
                     object = api.handle(parameters: json)
                     completion(Response.success(object))
                     return
+                } else if responseType == StatusValidation.tokenExpire {
+                    completion(Response.failure(json[APIConstants.message].stringValue))
+                    
+                    ez.dispatchDelay(0.3, closure: {
+                        LoginChecks.shared.exitFromMain()
+                    })
+                    
                 }
                 else{
                     completion(Response.failure(json[APIConstants.message].stringValue))
@@ -95,6 +103,13 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
                 object = api.handle(parameters: json)
                 completion(Response.success(object))
                 return
+            } else if responseType == StatusValidation.tokenExpire {
+                
+                completion(Response.failure(json[APIConstants.message].stringValue))
+                
+                ez.dispatchDelay(0.3, closure: {
+                    LoginChecks.shared.exitFromMain()
+                })
             }
             else{
                 completion(Response.failure(json[APIConstants.message].stringValue))
@@ -130,6 +145,13 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
                 object = api.handle(parameters: json)
                 completion(Response.success(object))
                 return
+            } else if responseType == StatusValidation.tokenExpire {
+                
+                completion(Response.failure(json[APIConstants.message].stringValue))
+                
+                ez.dispatchDelay(0.3, closure: {
+                    LoginChecks.shared.exitFromMain()
+                })
             }
             else{
                 completion(Response.failure(json[APIConstants.message].stringValue))
@@ -169,6 +191,13 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
                 object = api.handle(parameters: json)
                 completion(Response.success(object))
                 
+            case .tokenExpire:
+                completion(Response.failure(json[APIConstants.message].stringValue))
+                
+                ez.dispatchDelay(0.3, closure: {
+                    LoginChecks.shared.exitFromMain()
+                })
+                
             case .failure( _):
                 completion(Response.failure(json[APIConstants.message].stringValue))
             default : break
@@ -206,6 +235,13 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
                 object = api.handle(parameters: json)
                 completion(Response.success(object))
                 
+            case .tokenExpire:
+                completion(Response.failure(json[APIConstants.message].stringValue))
+                
+                ez.dispatchDelay(0.3, closure: {
+                    LoginChecks.shared.exitFromMain()
+                })
+                
             case .failure( _):
                 completion(Response.failure(json[APIConstants.message].stringValue))
             default : break
@@ -227,6 +263,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
         case APIConstants.login : return true
         case APIConstants.recordingsList : return false
         case APIConstants.complaintList : return false
+        case APIConstants.addComplaint :  return true
         default: return true
         }
     }

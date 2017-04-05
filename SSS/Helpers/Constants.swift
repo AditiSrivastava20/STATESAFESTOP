@@ -66,9 +66,11 @@ enum Alert : String{
     case ok = "Ok"
     case cancel = "Cancel"
     case error = "Error"
+    case incorrectPin = "Incorrect Pin"
     case logout = "Logged out"
     case friendsErr = "Number of friends less than 10"
     case shared = "Shared successfully"
+    case tokenExp = "Token expired"
 }
 
 enum MobileDevice: String {
@@ -77,18 +79,13 @@ enum MobileDevice: String {
 
 enum segue: String {
     
-    case splashToMain = "splashToMain"
-    case splashToLogin = "splashToLogin"
     case loginToMain = "loginToMain"
     case loginToSignup = "loginToSignup"
-    case loginToPin = "loginToPin"
-    case loginToPackage = "loginToPackage"
     case signupToPin = "signupToPin"
     case pinToPackage = "pinToPackage"
     case packageToInAppPurchase = "packageToInAppPurchase"
     case settingsToResetPin = "settingsToResetPin"
     case loginToForgotPassword = "loginToForgotPassword"
-    case SSSpackageToMain = "SSSpackageToMain"
     
 }
 

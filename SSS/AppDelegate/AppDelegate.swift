@@ -43,7 +43,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //IQ keyboard
         IQKeyboardManager.sharedManager().enable = true
         
+        //checkForSession()
+        
         return true
+    }
+    
+    func checkForSession() {
+        let user = UserDataSingleton.sharedInstance.loggedInUser
+        
+        if  user != nil && user?.profile?.is_pin == "1" {
+            
+            UIApplication.shared.keyWindow?.rootViewController = StoryboardScene.Main.initialViewController()
+            
+        } else {
+            
+            UIApplication.shared.keyWindow?.rootViewController = StoryboardScene.SignUp.initialViewController()
+        }
+
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {

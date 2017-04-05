@@ -13,7 +13,7 @@ import FBSDKShareKit
 import FBSDKLoginKit
 
 
-class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
+class SSSPackageViewController: BaseViewController, FBSDKAppInviteDialogDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,10 @@ class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
     //MARK: In App purchase action
     @IBAction func btnInAppPurchaseAction(_ sender: Any) {
         
+    }
+    
+    override func appTerminated() {
+        UserDataSingleton.sharedInstance.loggedInUser = nil
     }
     
     
@@ -85,7 +89,9 @@ class SSSPackageViewController: UIViewController, FBSDKAppInviteDialogDelegate {
             }
         } else {
             print("invite sent")
-            self.performSegue(withIdentifier: segue.SSSpackageToMain.rawValue, sender: self)
+            
+           self.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
+            
         }
 
     }

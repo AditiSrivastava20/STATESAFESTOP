@@ -52,6 +52,7 @@ class ChangePasswordViewController: UIViewController {
                 print(value.msg ?? "")
                 Alerts.shared.show(alert: .success, message: /value.msg, type: .success)
             }
+            popVC()
             
         case .failure(let str):
             Alerts.shared.show(alert: .oops, message: /str, type: .error)

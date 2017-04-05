@@ -33,6 +33,10 @@ class EnterDetailsSecondViewController: BaseViewController {
         return Validation.shared.validate(pinCode: pinCodeTextField.text)
     }
     
+    override func appTerminated() {
+        UserDataSingleton.sharedInstance.loggedInUser = nil
+    }
+    
     
     //MARK: Button done Action
     @IBAction func btnDoneAction(_ sender: Any) {
@@ -40,7 +44,7 @@ class EnterDetailsSecondViewController: BaseViewController {
         switch Validate() {
         case .success:
             guard let login = UserDataSingleton.sharedInstance.loggedInUser  else {
-                Alerts.shared.show(alert: .error , message: Alert.error.rawValue , type : .info)
+                Alerts.shared.show(alert: .error , message: Alert.error.rawValue , type : .error)
                 return
             }
             
@@ -49,7 +53,7 @@ class EnterDetailsSecondViewController: BaseViewController {
             })
             
         case .failure(let title,let msg):
-            Alerts.shared.show(alert: title, message: msg , type : .info)
+            Alerts.shared.show(alert: title, message: msg , type : .error)
         }
     }
 

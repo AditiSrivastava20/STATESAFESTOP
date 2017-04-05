@@ -30,6 +30,7 @@ class Profile: NSObject{
     var image_url: String?
     var lastLogin: String?
     var fullname: String?
+    var is_payment_complete: String?
     
      init(attributes: OptionalJSON) {
         super.init()
@@ -47,6 +48,7 @@ class Profile: NSObject{
         phone = .phone => attributes
         unformatted_phone = .unformatted_phone => attributes
         access_token = .access_token => attributes
+        is_payment_complete = .is_payment_complete => attributes
         
         
     }

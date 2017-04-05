@@ -39,11 +39,13 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
         
         fbObj.logIn(withReadPermissions: ["email", "public_profile", "user_friends"], from: obj) { (result, err) in
             
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
             if err != nil {
                 print("failed to start graph request: \(err)")
                 return
             } else if (result?.isCancelled)! {
-                UIApplication.shared.endIgnoringInteractionEvents()
+                
             } else {
                 
                 switch graphRequest {

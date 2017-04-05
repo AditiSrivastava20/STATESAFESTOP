@@ -37,7 +37,7 @@ class ResetPinViewController: BaseViewController {
                 var login = UserDataSingleton.sharedInstance.loggedInUser
                 login?.profile?.pin_password = pinCodeTextField.text
                 UserDataSingleton.sharedInstance.loggedInUser = login
-                
+                Alerts.shared.show(alert: .success, message: value.msg!, type: .success)
             }
             popVC()
             

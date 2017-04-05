@@ -11,9 +11,11 @@ import PermissionScope
 import AVKit
 import AVFoundation
 import EZSwiftExtensions
+import ISMessages
+import NVActivityIndicatorView
 
 
-class CameraViewController: RecorderViewController {
+class CameraViewController: RecorderViewController, NVActivityIndicatorViewable {
 
     var onSwitchVc : ((_ isRecording: Bool) -> ())?
     
@@ -51,8 +53,15 @@ class CameraViewController: RecorderViewController {
         paths = []
         progressView.updateProgress(0.0)
         setupCamera()
+        
         // Do any additional setup after loading the view.
         
+    }
+    
+  
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        ISMessages.hideAlert(animated: true)
     }
 
     
@@ -63,7 +72,7 @@ class CameraViewController: RecorderViewController {
         }
    
         LocationManager.sharedInstance.startTrackingUser { (lat, lng, locationName) in
-            
+
             APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: login.access_token, locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { (response) in
                 
                 self.handle(response: response)
@@ -78,7 +87,6 @@ class CameraViewController: RecorderViewController {
     @IBAction func actionBtnRecordings(_ sender: Any) {
         
         self.onSwitchVc?(true)
-        
         
     }
     
@@ -227,6 +235,7 @@ extension CameraViewController : PBJVisionDelegate {
         initailize()
         vision.cameraDevice = .back
         vision.maximumCaptureDuration = CMTimeMakeWithSeconds(maxCaptureDuration, 600)
+        vision.stopPreview()
         vision.startPreview()
     
     }

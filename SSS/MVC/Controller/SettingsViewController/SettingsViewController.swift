@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,7 @@ class SettingsViewController: UIViewController {
         if (pin?.isEqual(/login.profile?.pin_password))! {
             performSegue(withIdentifier: segue.settingsToResetPin.rawValue, sender: self)
         } else {
-            Alerts.shared.show(alert: .oops, message: "Invalid Pin", type: .info)
+            Alerts.shared.show(alert: .error, message: "Invalid Pin", type: .error)
         }
         
         
@@ -73,6 +73,8 @@ extension SettingsViewController  : pinEnteredListner {
         print(pin ?? "")
         if let _ = pin {
             validatePin(pin: pin)
+        } else {
+            validatePin(pin: "")
         }
         
         

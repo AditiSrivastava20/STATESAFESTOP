@@ -47,6 +47,7 @@ class WriteComplaintViewController: BaseViewController {
     
     func showPopUp() {
         let vc = StoryboardScene.Main.instantiateComplaintDoneViewController()
+        vc.obj = self
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
         presentVC(vc)
@@ -84,7 +85,7 @@ class WriteComplaintViewController: BaseViewController {
             })
             
         case .failure(let title,let msg):
-            Alerts.shared.show(alert: title, message: msg , type : .info)
+            Alerts.shared.show(alert: title, message: msg , type : .error)
         }
     }
     

@@ -25,19 +25,29 @@ class LoginViewController: BaseViewController, NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkForSession()
+        
         txtEmail.placeHolderAtt()
         txtPassword.placeHolderAtt()
-        txtEmail?.text = "abhi.ssj5@gmail.com"
-        txtPassword?.text = "1234512345"
+        txtEmail?.text = "bv@gm.com"
+        txtPassword?.text = "1234567"
     }
     
+    
+    func checkForSession(){
+        
+            let user = UserDataSingleton.sharedInstance.loggedInUser
+        
+            if  user != nil && user?.profile?.is_pin == "1" {
+                
+                self.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
+            }
+    }
+    
+    //MARK: - validate fields
     func Validate() -> Valid{
         let value = Validation.shared.validate(login: txtEmail?.text, password: txtPassword?.text)
         return value
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     
@@ -67,7 +77,7 @@ extension LoginViewController {
             })
             
         case .failure(let title,let msg):
-            Alerts.shared.show(alert: title, message: msg , type : .info)
+            Alerts.shared.show(alert: title, message: msg , type : .error)
         }
     }
     
@@ -103,11 +113,7 @@ extension LoginViewController {
 extension LoginViewController {
     
     @IBAction func btnTwitterAction(_ sender: Any) {
-        
-        ez.runThisInMainThread {
-            self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
-        }
-        
+                
         UIApplication.shared.beginIgnoringInteractionEvents()
         TWManager.shared.login(self, check: .login, completion: { (twProfile) in
             UIApplication.shared.endIgnoringInteractionEvents()

@@ -74,7 +74,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ur3-4J-n93">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ur3-4J-n93" customClass="Button" customModule="Material">
                                 <rect key="frame" x="51" y="52" width="219" height="48"/>
                                 <color key="backgroundColor" red="0.95294117649999999" green="0.86274509799999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -89,6 +89,12 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="pulseOpacity">
+                                        <real key="value" value="0.5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -315,21 +321,21 @@
                         <viewControllerLayoutGuide type="bottom" id="ljh-nq-mR5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="r17-Js-IpF">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Waf-7w-gBW">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NotificationTableViewCell" rowHeight="64" id="zzw-mV-aJp" customClass="NotificationTableViewCell" customModule="SSS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="zzw-mV-aJp" id="R00-dY-NNa">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zzw-mV-aJp" id="R00-dY-NNa">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="chris_palmer_profile_11.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hB3-qo-pt1">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chris_palmer_profile_11.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hB3-qo-pt1">
                                                     <rect key="frame" x="16" y="8" width="48" height="48"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -342,13 +348,13 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Your request has been sent to the admin." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuL-KC-IU0">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your request has been sent to the admin." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuL-KC-IU0">
                                                     <rect key="frame" x="72" y="12" width="240" height="14"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.44" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="8 october 3:56 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nR9-T4-Abq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8 october 3:56 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nR9-T4-Abq">
                                                     <rect key="frame" x="72" y="30" width="240" height="14"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.44" colorSpace="custom" customColorSpace="sRGB"/>
@@ -714,6 +720,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Complaints Yet." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DV-Wy-aTB">
+                                <rect key="frame" x="91" y="274" width="138" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.29411764705882354" green="0.29411764705882354" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocl-f8-DqT" customClass="FabButton" customModule="Material">
                                 <rect key="frame" x="248" y="496" width="56" height="56"/>
                                 <state key="normal" image="ic_fab_complatint"/>
@@ -726,13 +738,16 @@
                         <constraints>
                             <constraint firstItem="eGu-Be-z6Y" firstAttribute="leading" secondItem="DVP-Gi-hl9" secondAttribute="leading" id="1c9-6g-Ja6"/>
                             <constraint firstAttribute="trailing" secondItem="ocl-f8-DqT" secondAttribute="trailing" constant="16" id="EPG-y5-qPc"/>
+                            <constraint firstItem="8DV-Wy-aTB" firstAttribute="centerY" secondItem="DVP-Gi-hl9" secondAttribute="centerY" id="GQX-TY-YVU"/>
                             <constraint firstItem="I6B-oc-HLe" firstAttribute="top" secondItem="ocl-f8-DqT" secondAttribute="bottom" constant="16" id="RJq-5W-frT"/>
                             <constraint firstItem="eGu-Be-z6Y" firstAttribute="top" secondItem="DVP-Gi-hl9" secondAttribute="top" id="SfS-L0-7N0"/>
+                            <constraint firstItem="8DV-Wy-aTB" firstAttribute="centerX" secondItem="DVP-Gi-hl9" secondAttribute="centerX" id="a9r-BO-Uc9"/>
                             <constraint firstItem="I6B-oc-HLe" firstAttribute="top" secondItem="eGu-Be-z6Y" secondAttribute="bottom" id="csV-Dj-KaN"/>
                             <constraint firstAttribute="trailing" secondItem="eGu-Be-z6Y" secondAttribute="trailing" id="ziQ-Hr-Rbm"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lblNoComplaints" destination="8DV-Wy-aTB" id="DdW-PT-acg"/>
                         <outlet property="tableView" destination="eGu-Be-z6Y" id="zYH-uJ-XqH"/>
                     </connections>
                 </viewController>
@@ -762,6 +777,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Title"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isClearIconButtonEnabled" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fd5-fc-0hI" customClass="SZTextView">
@@ -899,6 +915,11 @@
                                         <state key="normal" title="OK">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnComplaintDoneAction:" destination="c6F-Wf-yWv" eventType="touchUpInside" id="OmK-2n-R9P"/>
                                         </connections>
@@ -1214,18 +1235,23 @@
                                 <state key="normal" title="Reset Pin">
                                     <color key="titleColor" red="0.29411764705882354" green="0.29411764705882354" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnResetPinAction:" destination="W5A-vz-zZf" eventType="touchUpInside" id="rDR-lZ-dc8"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact us:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uu7-mH-5fH">
-                                <rect key="frame" x="20" y="100" width="73" height="17"/>
+                                <rect key="frame" x="20" y="100" width="72.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.55000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hwE-KS-rJY">
-                                <rect key="frame" x="20" y="125" width="280" height="60"/>
+                                <rect key="frame" x="20" y="124.5" width="280" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOx-cj-sGl">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
@@ -1392,7 +1418,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jY-kk-4c6">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="550"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_profile" translatesAutoresizingMaskIntoConstraints="NO" id="x8x-gB-Awa">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_edit profile" translatesAutoresizingMaskIntoConstraints="NO" id="x8x-gB-Awa">
                                                 <rect key="frame" x="100" y="20" width="120" height="120"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="PLu-7Z-7cC"/>
@@ -1430,7 +1456,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email id"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z2R-fw-EQq" userLabel="phone" customClass="TextField" customModule="Material">
+                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z2R-fw-EQq" userLabel="phone" customClass="TextField" customModule="Material">
                                                 <rect key="frame" x="20" y="294" width="280" height="17"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="textColor"/>
@@ -1540,6 +1566,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="570"/>
                     <connections>
+                        <outlet property="backgroundView" destination="5jY-kk-4c6" id="x7m-0l-4Np"/>
                         <outlet property="imgProfilePic" destination="x8x-gB-Awa" id="KIg-NL-5ML"/>
                         <outlet property="txtAddress" destination="ua4-av-Fdj" id="Q7f-hQ-c65"/>
                         <outlet property="txtEmail" destination="DEh-qT-hxQ" id="r0M-Kf-ZaH"/>
@@ -1609,6 +1636,11 @@
                                 <state key="normal" title="Change Password">
                                     <color key="titleColor" red="0.29411764705882354" green="0.29411764705882354" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnChangePasswordAction:" destination="xo5-1I-9b2" eventType="touchUpInside" id="RU6-Dh-56G"/>
                                 </connections>
@@ -2157,6 +2189,7 @@
         <image name="ic_call dark" width="24" height="24"/>
         <image name="ic_complaint" width="24" height="24"/>
         <image name="ic_edit" width="24" height="24"/>
+        <image name="ic_edit profile" width="86" height="86"/>
         <image name="ic_fab_chek" width="56" height="56"/>
         <image name="ic_fab_complatint" width="56" height="56"/>
         <image name="ic_location" width="32" height="32"/>
@@ -2179,6 +2212,6 @@
         <image name="ic_video play" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nJI-h2-kM0"/>
+        <segue reference="KVc-LI-pyJ"/>
     </inferredMetricsTieBreakers>
 </document>

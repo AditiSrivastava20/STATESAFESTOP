@@ -38,6 +38,9 @@ class SafeListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        lblSafelist.isHidden = true
+        btnRemove.isHidden = true
+        
         //done button for sharing media
         doneButtonAttributes()
         
@@ -278,10 +281,12 @@ extension SafeListViewController: EPPickerDelegate {
         
         var safeuser:[String] = []
         
-        for (index,contact) in contacts.enumerated() {
-            print("\(contact.phoneNumbers[0].phoneNumber)")
-            safeuser.insert("\(contact.phoneNumbers[0].phoneNumber)", at: index)
+        for contact in contacts {
+            if contact.phoneNumbers.count != 0 {
+                safeuser.append("\(contact.phoneNumbers[0].phoneNumber)")
+            }
         }
+
         
         print(safeuser)
         

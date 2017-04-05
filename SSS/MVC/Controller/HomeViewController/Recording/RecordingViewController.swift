@@ -42,6 +42,8 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        lblNoRecordings.isHidden = true
+        
         guard let _ = UserDataSingleton.sharedInstance.loggedInUser else {
             return
         }
@@ -50,7 +52,7 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
 
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         //Loader
         if isFromMediaSelection {
@@ -133,6 +135,7 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
             self.askForPin = false
             print(value ?? "")
         } else {
+            Alerts.shared.show(alert: .error, message: /Alert.incorrectPin.rawValue, type: .error)
             self.switchToHome?(true)
         }
         

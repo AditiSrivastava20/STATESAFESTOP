@@ -39,6 +39,8 @@ class TWManager: UIViewController, NVActivityIndicatorViewable {
             store.logOutUserID(userID)
         }
         
+        UIApplication.shared.endIgnoringInteractionEvents()
+        
         twObj.logIn { (session, error) in
             
             if session != nil {
@@ -60,26 +62,23 @@ class TWManager: UIViewController, NVActivityIndicatorViewable {
                     
                     if (connectionError == nil) {
                         do{
-                            let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
-                            print("\(json["id"]!)")
                             
                             let jsonData = JSON(data)
-                            do {
-                                let item = try TwitterResponse(attributes: jsonData.dictionaryValue)
-                                self.apiHit(param: item, check: check, obj: obj)
-                                completion(item)
-                                
-                            }
+                            let item = try TwitterResponse(attributes: jsonData.dictionaryValue)
+                            self.apiHit(param: item, check: check, obj: obj)
+                            completion(item)
                             
                         } catch {
                             
                         }
                     }
                     else {
+                        
                         print("Error: \(connectionError)")
                     }
                 }
             } else {
+                UIApplication.shared.endIgnoringInteractionEvents()
                 NSLog("Login error: ", error!.localizedDescription);
             }
         }

@@ -17,14 +17,27 @@ class LoginChecks {
         
         if user?.profile?.is_pin == "0" {
             //go to pin-password setup
-            obj.performSegue(withIdentifier: segue.loginToPin.rawValue, sender: obj)
+            
+            obj.pushVC(StoryboardScene.SignUp.instantiateEnterDetailsSecondViewController())
+            
+        } else if user?.profile?.is_payment_complete == "0" {
+            //go to SSS package selection
+            
+            obj.pushVC(StoryboardScene.SignUp.instantiateSSSPackageViewController())
             
         } else {
             //go to main
-            obj.performSegue(withIdentifier: segue.loginToMain.rawValue, sender: obj)
+            
+            obj.presentVC(StoryboardScene.Main.initialViewController())
         }
         
     }
+    
+    func exitFromMain() {
+        UserDataSingleton.sharedInstance.loggedInUser = nil
+        UIApplication.shared.keyWindow?.rootViewController = StoryboardScene.SignUp.initialViewController()
+    }
+
     
     
 }

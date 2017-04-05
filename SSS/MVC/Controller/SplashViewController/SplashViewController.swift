@@ -14,23 +14,7 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         
         
-        if UserDataSingleton.sharedInstance.loggedInUser  != nil{
-            
-            let user = UserDataSingleton.sharedInstance.loggedInUser
-            
-            if validateToken(user) {
-                loginChecks(user!)
-                
-            } else {
-                UserDataSingleton.sharedInstance.loggedInUser = nil
-                performSegue(withIdentifier: segue.splashToLogin.rawValue, sender: self)
-            }
-            
-        } else {
-            
-            performSegue(withIdentifier: segue.splashToLogin.rawValue, sender: self)
-            
-        }
+   
         
 
     }
@@ -52,7 +36,7 @@ class SplashViewController: UIViewController {
             
         } else {
             //go to main
-            performSegue(withIdentifier: segue.splashToMain.rawValue, sender: self)
+            presentVC(StoryboardScene.Main.initialViewController())
         }
         
         

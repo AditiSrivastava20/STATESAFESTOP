@@ -11,11 +11,11 @@ import Material
 import ISMessages
 import Kingfisher
 import EZSwiftExtensions
-import NVActivityIndicatorView
 
-class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
+class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var txtFullname: TextField!
     @IBOutlet weak var txtEmailAddress: TextField!
@@ -24,13 +24,11 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate, 
     @IBOutlet weak var txtFullAddress: TextField!
     @IBOutlet weak var txtPhoneNumber: TextField!
     
-    @IBOutlet weak var btnFacebook: UIButton!
-    @IBOutlet weak var btnTwitter: UIButton!
-    
     var isFromFacebook = false
     var isFromTwitter = false
     var fbProfile:FacebookResponse?
     var twProfile:TwitterResponse?
+    var imageSelected = false
     
     var facebookID:String = ""
     var twitterID:String = ""
@@ -44,6 +42,10 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate, 
         txtConfirmPassword.placeHolderAtt()
         txtFullAddress.placeHolderAtt()
         txtPhoneNumber.placeHolderAtt()
+        
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.touchBegan (_:)))
+        backgroundView.addGestureRecognizer(gesture)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,9 +60,23 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate, 
         } else if isFromTwitter {
             ifFromTwitter(obj: twProfile)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.view.endEditing(true)
+    }
+
+    
+    //MARK: - Action for touch began
+    func touchBegan(_ sender:UITapGestureRecognizer){
         
+        txtFullname.text = txtFullname.text?.uppercaseFirst
+        
+        ISMessages.hideAlert(animated: true)
+        self.view.endEditing(true)
         
     }
+    
     
     //MARK: pre-fill all fields if from facebook
     func ifFromFacebook(obj: FacebookResponse?) {
@@ -68,6 +84,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate, 
         if let url = obj?.imageUrl {
             self.imgProfile.kf.setImage(with: URL(string: url))
             self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height / 2
+            imageSelected = true
         }
         self.txtFullname.text = obj?.name ?? ""
         self.txtEmailAddress.text = obj?.email ?? ""
@@ -83,6 +100,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate, 
         if let url = obj?.image_url {
             self.imgProfile.kf.setImage(with: URL(string: url))
             self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height / 2
+            imageSelected = true
         }
         self.txtFullname.text = /obj?.name
         self.twitterID = /obj?.id
@@ -90,7 +108,6 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate, 
         self.scrollView.scrollToTop()
         
     }
-    
     
     
     //MARK:- Go back
@@ -101,18 +118,16 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate, 
     
     //MARK: - open GMS place picker
     @IBAction func btnPickAddressAction(_ sender: Any) {
-        self.txtFullAddress.text = ""
+        
         fetchFullAddress(completion: {(address) in
             self.txtFullAddress.text = address
         })
-        
-        
     }
     
     
     //MARK:- Validation
     func Validate() -> Valid{
-        let value = Validation.shared.validate(signup: txtFullname.text, email: txtEmailAddress.text, password: txtPassword.text, confirmPasswd: txtConfirmPassword.text, fulladdress: txtFullAddress.text, phoneNo: txtPhoneNumber.text, facebookID: facebookID, twitterID: twitterID)
+        let value = Validation.shared.validate(signup: txtFullname.text , email: txtEmailAddress.text, password: txtPassword.text, confirmPasswd: txtConfirmPassword.text, fulladdress: txtFullAddress.text, phoneNo: txtPhoneNumber.text, facebookID: facebookID, twitterID: twitterID)
         return value
     }
     
@@ -130,42 +145,6 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate, 
     }
     
     
-    //Mark:- Facebook Sign up
-    @IBAction func btnFacebokAction(_ sender: Any) {
-        
-        FBManager.shared.login(self, check: .signup, graphRequest: .me, completion: { (profile) in
-            
-            let fbProfile = profile as? FacebookResponse
-            
-            print(fbProfile?.fbId ?? "")
-            
-            self.ifFromFacebook(obj: fbProfile)
-            
-        })
-    }
-    
-    
-    //Mark:- Twitter Sign up
-    @IBAction func btnTwitterAction(_ sender: Any) {
-        
-        ez.runThisInMainThread {
-            self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
-        }
-        
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        TWManager.shared.login(self, check: .signup, completion: { (twProfile) in
-            
-            UIApplication.shared.endIgnoringInteractionEvents()
-            
-            print(twProfile.id ?? "")
-            
-            self.ifFromTwitter(obj: twProfile)
-
-        })
-        
-    }
-    
-    
     //Mark:- Sign up Action
     @IBAction func btnSignUpAction(_ sender: Any) {
         
@@ -175,16 +154,27 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate, 
         switch value {
         case .success:
             
-            APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text, email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: MobileDevice.token.rawValue),image: imgProfile.image , completion: { (response) in
+            APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text?.uppercaseFirst , email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: MobileDevice.token.rawValue),image: isImageSelected(imageSelected) , completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, self, from: .signup)
                 
             })
             
         case .failure(let title,let msg):
-            Alerts.shared.show(alert: title, message: msg , type : .info)
+            Alerts.shared.show(alert: title, message: msg , type : .error)
         }
     }
+    
+    func isImageSelected(_ val: Bool) -> UIImage? {
+        
+        if val {
+            return imgProfile.image
+        } else {
+            return nil
+        }
+        
+    }
+    
     
     //MARK:- Account type
     func accountType() -> String {
@@ -204,6 +194,7 @@ extension EnterDetailsFirstViewController:  DataSentDelegate  {
     func userProfilePicInput(image: UIImage) {
         imgProfile.image = image
         imgProfile.layer.cornerRadius = imgProfile.frame.height / 2
+        imageSelected = true
     }
 }
 

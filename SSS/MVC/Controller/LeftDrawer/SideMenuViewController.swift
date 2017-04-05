@@ -47,7 +47,7 @@ class SideMenuViewController: UIViewController {
             if let value = responseValue as? User{
                 print(value.msg ?? "")
             }
-            exitMain()
+            LoginChecks.shared.exitFromMain()
             
         case .failure(let str):
             Alerts.shared.show(alert: .oops, message: /str, type: .error)
@@ -61,9 +61,7 @@ class SideMenuViewController: UIViewController {
         
         let login = UserDataSingleton.sharedInstance.loggedInUser
         
-        if let imgUrl = login?.profile?.image_url {
-            imgProfilePic.kf.setImage(with: URL(string: imgUrl))
-        }
+        imgProfilePic.kf.setImage(with: URL(string: (login?.profile?.image_url)!), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
         
         lblFullname.text = login?.profile?.fullname
         lblEmail.text = login?.profile?.email
@@ -109,14 +107,6 @@ class SideMenuViewController: UIViewController {
         
     }
     
-    func exitMain() {
-        UserDataSingleton.sharedInstance.loggedInUser = nil
-        let navController = StoryboardScene.SignUp.initialViewController()
-        let login = StoryboardScene.SignUp.instantiateLogin()
         
-        navController.viewControllers = [login]
-        UIApplication.shared.keyWindow?.rootViewController = navController
-    }
-    
     
 }

@@ -79,7 +79,7 @@ class HTTPClient {
         let fullPath = api.baseURL + api.route
         let method = api.method
         print(fullPath)
-//        print(params ?? <#default value#>)
+//        print(params)
         Alamofire.request(fullPath, method: method, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
             
             switch response.result {
@@ -102,17 +102,20 @@ class HTTPClient {
     
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             
-            guard let imageData = UIImageJPEGRepresentation(image!, 0.5) else {
-                return }
             
-            multipartFormData.append(imageData, withName: "image", fileName: "image.jpg", mimeType: "image/jpg")
+            if let _ = image {
+                guard let imageData = UIImageJPEGRepresentation(image!, 0.5) else {
+                    return
+                }
+                multipartFormData.append(imageData, withName: "image", fileName: "image.jpg", mimeType: "image/jpg")
+            }
+            
             
             for (key, value) in params {
                 
                 let tempKey = value as? String ?? ""
                 
                 multipartFormData.append(tempKey.data(using: String.Encoding.utf8)!, withName: key)
-               // multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
             }
             
         }, to: fullPath) { (encodingResult) in
@@ -159,7 +162,6 @@ class HTTPClient {
             }
             
             if let imageData = thumbnail  {
-    
             multipartFormData.append(UIImageJPEGRepresentation(imageData, 0.5)!, withName: "thumbnail", fileName: "image.jpg", mimeType: "image/jpg")
             }
             

@@ -43,5 +43,6 @@ enum ParamKeys: String {
     case complaintDescription = "description"
     case created_at = "created_at"
     case twitter_image_url = "profile_image_url_https"
+    case is_payment_complete = "is_payment_complete"
     
 }

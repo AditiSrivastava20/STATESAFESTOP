@@ -9,6 +9,8 @@
 import UIKit
 
 class ComplaintDoneViewController: UIViewController {
+    
+    var obj:UIViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +22,9 @@ class ComplaintDoneViewController: UIViewController {
     }
     
     @IBAction func btnComplaintDoneAction(_ sender: Any) {
-        dismissVC(completion: nil)
+        dismissVC { 
+            self.obj?.popVC()
+        }
         
     }
     
