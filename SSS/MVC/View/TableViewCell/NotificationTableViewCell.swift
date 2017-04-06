@@ -23,5 +23,22 @@ class NotificationTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    var objNotification:NotificationData? {
+        
+        didSet {
+            updateUI()
+        }
+    }
+    
+    func updateUI() {
+        
+        labelTitle.text = /objNotification?.username + " " + /objNotification?.message
+        labelSubTitle.text = /objNotification?.created_at
+        imageViewUser.kf.setImage(with: URL(string: ""), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
+        
+    }
+
+    
 
 }

@@ -15,8 +15,17 @@ class NotificationTableviewDataSource: TableViewDataSource {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-       
-        let identifier = indexPath.row <= 1 ? "NotificationTableViewCell" : "NotificationAttachmentTableViewCell"
+        let item = items?[indexPath.row] as? NotificationData
+        
+        let type = MediaType(rawValue: (item?.media_type)!) ?? .none
+        var identifier = ""
+        
+        switch type {
+        case .audio, .video:
+            identifier = "NotificationAttachmentTableViewCell"
+        default:
+            identifier = "NotificationTableViewCell"
+        }
         
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier , for: indexPath) as UITableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none

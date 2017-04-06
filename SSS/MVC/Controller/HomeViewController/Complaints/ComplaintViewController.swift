@@ -25,13 +25,12 @@ class ComplaintViewController: BaseViewController {
         super.viewDidLoad()
         
         lblNoComplaints.isHidden = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
         arrayComplaints = []
         tableView?.estimatedRowHeight = 84
         setupTableView(tableView: tableView, cellId: "ComplaintTableViewCell", items: arrayComplaints)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
         getComplaints()
     }
@@ -65,7 +64,6 @@ class ComplaintViewController: BaseViewController {
     //MARK: - get complaints list
     func getComplaints() {
         
-        arrayComplaints = []
         
         guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
             return

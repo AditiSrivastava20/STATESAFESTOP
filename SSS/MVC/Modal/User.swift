@@ -22,6 +22,7 @@ class User: NSObject {
     var complaints: [Complaint]?
     var recordings: [Recording]?
     var contacts: [Safelist]?
+    var notifications: [NotificationData]?
     
      init(attributes: OptionalJSON) {
         super.init()

@@ -60,6 +60,8 @@ class BaseViewController: UIViewController, UIApplicationDelegate {
     
     //MARK:- fetch full address
     func fetchFullAddress(completion: @escaping (String?) -> ()) {
+        view.endEditing(true)
+        
         let config = GMSPlacePickerConfig(viewport: nil)
         let placePicker = GMSPlacePicker(config: config)
         
@@ -74,9 +76,16 @@ class BaseViewController: UIViewController, UIApplicationDelegate {
                 return
             }
             
-            var address = "\(place.name)"
+            var address = ""
+            
+            if "\(place.name)".isEqual("\(place.coordinate)") {
+                completion(address)
+            } else {
+                address = "\(place.name)"
+            }
+            
             if let _ = place.formattedAddress {
-                address += "\(place.formattedAddress)"
+                address += "\(place.formattedAddress!)"
             }
             
             if let _ = place.attributions {
@@ -111,6 +120,7 @@ class BaseViewController: UIViewController, UIApplicationDelegate {
 extension BaseViewController: PinCodeTextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: PinCodeTextField) -> Bool {
+        ISMessages.hideAlert(animated: true)
         return true
     }
     

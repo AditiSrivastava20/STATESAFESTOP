@@ -7,11 +7,10 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NotificationAttachmentTableViewCell: UITableViewCell {
 
-    
-    
     @IBOutlet weak var imageViewUser: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelSubTitle: UILabel!
@@ -29,5 +28,39 @@ class NotificationAttachmentTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    var objNotification:NotificationData? {
+        
+        didSet {
+            updateUI()
+        }
+    }
+    
+    func updateUI() {
+        
+        labelTitle.text = /objNotification?.username + " " + /objNotification?.message
+        labelSubTitle.text = /objNotification?.created_at
+        imageViewUser.kf.setImage(with: URL(string: ""), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
+        
+        let mediaType = MediaType(rawValue: /objNotification?.media_type ) ?? .none
+        
+        switch mediaType {
+        case .audio:
+            imageViewType.image = Image(asset: .icRecordingPlay)
+            imageViewThumb.image = UIImage.blankImage()
+            imageViewThumb.backgroundColor = colors.loaderColor.color()
+        
+        case .video:
+            imageViewType.image = Image(asset: .icVideoPlay)
+            imageViewThumb.kf.setImage(with: URL(string: /objNotification?.thumbnail_url), placeholder: Image.blankImage(), options: nil, progressBlock: nil, completionHandler: nil)
+            
+        default:
+            print("none")
+        }
+        
+        
+    }
+    
+    
 
 }

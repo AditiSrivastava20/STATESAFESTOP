@@ -12,6 +12,7 @@ import AVKit
 import EZSwiftExtensions
 import Photos
 import NVActivityIndicatorView
+import ISMessages
 
 
 
@@ -52,15 +53,17 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
 
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
+    override func viewWillAppear(_ animated: Bool) {
         //Loader
         if isFromMediaSelection {
-            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+            ez.runThisInMainThread {
+                self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: 0, minimumDisplayTime: nil)
+            }
         }
-        
+
         getRecordings()
     }
+    
     
     //MARK: - handle response
     func handle(response: Response, check: Recordinglist ) {
@@ -162,6 +165,7 @@ extension RecordingViewController: UIActionSheetDelegate {
     
     //MARK: Action sheet
     func btnActionSheetAction(sender : UIButton) {
+        ISMessages.hideAlert(animated: true)
         
         let actionSheetController = UIAlertController(title: "Please select", message: nil, preferredStyle: .actionSheet)
         
@@ -170,19 +174,41 @@ extension RecordingViewController: UIActionSheetDelegate {
         }
         actionSheetController.addAction(cancelActionButton)
         
-        let shareActionButton = UIAlertAction(title: "Share", style: .default) { action -> Void in
-            print("Share")
-            self.shareMediaFromRecordings(media_id: self.arrayRecording?[sender.tag].id)
-        }
-        actionSheetController.addAction(shareActionButton)
+        if isFromMediaSelection {
+            
+            let selectActionButton = UIAlertAction(title: "Select", style: .default) { action -> Void in
+                print("Share")
+                self.selectMediaFromRecordings(index: sender.tag)
+            }
+            actionSheetController.addAction(selectActionButton)
 
-        let saveActionButton = UIAlertAction(title: "Save", style: .default) { action -> Void in
-            print("Save")
-            self.downloadVideoFrom(url: self.arrayRecording?[sender.tag].media_content)
+        } else {
+            
+            let shareActionButton = UIAlertAction(title: "Share", style: .default) { action -> Void in
+                print("Share")
+                self.shareMediaFromRecordings(media_id: self.arrayRecording?[sender.tag].id)
+            }
+            actionSheetController.addAction(shareActionButton)
+            
+            let saveActionButton = UIAlertAction(title: "Save", style: .default) { action -> Void in
+                print("Save")
+                self.downloadVideoFrom(url: self.arrayRecording?[sender.tag].media_content)
+            }
+            actionSheetController.addAction(saveActionButton)
+            
         }
-        actionSheetController.addAction(saveActionButton)
-
+        
         self.present(actionSheetController, animated: true, completion: nil)
+        
+    }
+    
+    
+    //MARK: - Select media for complaint
+    func selectMediaFromRecordings(index: Int) {
+        
+        delegateMedia?.getMedia(id: self.arrayRecording?[index].id , name : arrayRecording?[index].media_content)
+        popVC()
+        
     }
     
     
@@ -200,25 +226,7 @@ extension RecordingViewController: UIActionSheetDelegate {
     //MARK: -  Download media
     func downloadVideoFrom(url :String?){
         
-        
-        DispatchQueue.global(qos: .background).async {
-            if let url = URL(string: url ?? ""),
-                let urlData = NSData(contentsOf: url)
-            {
-                let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
-                let filePath="\(documentsPath)/tempFile.mp4";
-                DispatchQueue.main.async {
-                    urlData.write(toFile: filePath, atomically: true)
-                    PHPhotoLibrary.shared().performChanges({
-                        PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: URL(fileURLWithPath: filePath))
-                    }) { completed, error in
-                        if completed {
-                            print("Video is saved!")
-                        }
-                    }
-                }
-            }
-        }
+        Download.shared.downloadMediaFrom(url: url)
         
     }
     
@@ -253,8 +261,6 @@ extension RecordingViewController : contactListner {
 
 
 
-
-
 extension RecordingViewController : UITableViewDelegate{
     
     //MARK: - Tableview datasource
@@ -267,9 +273,6 @@ extension RecordingViewController : UITableViewDelegate{
             (cell as? RecordingTableViewCell)?.btnActionSheet.tag = ((indexPath as? IndexPath)?.row ?? 0 )
             (cell as? RecordingTableViewCell)?.btnActionSheet.addTarget(self, action: #selector(self.btnActionSheetAction), for: .touchUpInside)
             
-            if self.isFromMediaSelection {
-                (cell as? RecordingTableViewCell)?.btnActionSheet.isHidden = true
-            }
             
         }, aRowSelectedListener: { (indexPath) in
             
@@ -287,13 +290,6 @@ extension RecordingViewController : UITableViewDelegate{
     //MARK: - Tableview delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
-        if isFromMediaSelection {
-            
-            delegateMedia?.getMedia(id: arrayRecording?[indexPath.row].id ,name : arrayRecording?[indexPath.row].media_content)
-            popVC()
-        }else {
-        
         guard let urlMedia = arrayRecording?[indexPath.row].media_content else {return}
         
         let videoURL = URL(string: urlMedia)
@@ -306,7 +302,6 @@ extension RecordingViewController : UITableViewDelegate{
                 playerViewController.player!.play()
             }
         }
-    }
     }
 }
 

@@ -34,9 +34,7 @@ class ComplaintTableViewCell: UITableViewCell {
     
     func updateUI() {
         
-        if let login = UserDefaults.standard.value(forKey: "login") as? [String: String] {
-            imageViewUser.kf.setImage(with: URL(string: /login["image_url"]))
-        }
+        imageViewUser.kf.setImage(with: URL(string: (/UserDataSingleton.sharedInstance.loggedInUser?.profile?.image_url)), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
         
         labelTitle.text = /objComplaint?.title
         labelSubTitle.text = /objComplaint?.complaintDescription

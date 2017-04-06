@@ -8,9 +8,10 @@
 
 import UIKit
 import Material
+import ISMessages
 import SZTextView
 
-class WriteComplaintViewController: BaseViewController {
+class WriteComplaintViewController: BaseViewController, TextFieldDelegate {
 
     @IBOutlet weak var tfTitle: TextField!
     @IBOutlet weak var txtDesc: SZTextView!
@@ -28,9 +29,23 @@ class WriteComplaintViewController: BaseViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        sideMenuController()?.sideMenu?.allowRightSwipe = false
+        sideMenuController()?.sideMenu?.allowPanGesture = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        sideMenuController()?.sideMenu?.allowRightSwipe = true
+        sideMenuController()?.sideMenu?.allowPanGesture = true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: TextField)  {
+        ISMessages.hideAlert(animated: true)
+    }
+    
     //MARK: - Handle response 
     func handle(response: Response) {
-        
+        UIApplication.shared.endIgnoringInteractionEvents()
         switch response{
         case .success(let responseValue):
             if let value = responseValue as? User{
@@ -73,18 +88,24 @@ class WriteComplaintViewController: BaseViewController {
     
     @IBAction func btnAddComplaintAction(_ sender: Any) {
         
+        ISMessages.hideAlert(animated: true)
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        
         guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
             return
         }
         
         switch Validate() {
         case .success:
+
             APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: login.profile?.access_token, title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { (response) in
                 
                 self.handle(response: response)
             })
             
         case .failure(let title,let msg):
+            UIApplication.shared.endIgnoringInteractionEvents()
             Alerts.shared.show(alert: title, message: msg , type : .error)
         }
     }

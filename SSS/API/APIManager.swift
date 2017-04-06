@@ -23,11 +23,14 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     //MARK: Normal API (signin/login, pin setup, password setup, get recording list  etc)
     func request(with api : Router , completion : @escaping Completion )  {
         
+        
         if isLoaderNeeded(api: api) {
             startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
         }
+        UIApplication.shared.endIgnoringInteractionEvents()
         
         httpClient.postRequest(withApi: api, success: {[weak self] (data) in
+            
             self?.stopAnimating()
             guard let response = data else {
                 completion(Response.failure(.none))

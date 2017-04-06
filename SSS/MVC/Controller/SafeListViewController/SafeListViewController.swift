@@ -38,6 +38,8 @@ class SafeListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         lblSafelist.isHidden = true
         btnRemove.isHidden = true
         
@@ -49,6 +51,16 @@ class SafeListViewController: BaseViewController {
         tableView?.estimatedRowHeight = 89
         setupTableView(tableView: tableView, cellId: "SafelistTableViewCell", items: safelistArray)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        sideMenuController()?.sideMenu?.allowRightSwipe = false
+        sideMenuController()?.sideMenu?.allowPanGesture = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        sideMenuController()?.sideMenu?.allowRightSwipe = true
+        sideMenuController()?.sideMenu?.allowPanGesture = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -283,7 +295,11 @@ extension SafeListViewController: EPPickerDelegate {
         
         for contact in contacts {
             if contact.phoneNumbers.count != 0 {
-                safeuser.append("\(contact.phoneNumbers[0].phoneNumber)")
+                
+                for number in contact.phoneNumbers {
+                    let num = "\(number)".digits
+                    safeuser.append("\(num)")
+                }
             }
         }
 

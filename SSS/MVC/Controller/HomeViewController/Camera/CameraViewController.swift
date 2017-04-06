@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PermissionScope
 import AVKit
 import AVFoundation
 import EZSwiftExtensions
@@ -30,6 +29,8 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     @IBOutlet weak var btnAudio: UIButton!
     @IBOutlet weak var btnLocation: UIButton!
     @IBOutlet weak var btnVideo: UIButton!
+    @IBOutlet weak var imgMic: UIImageView!
+    
 
     let maxCaptureDuration = 31.0
     var paths = [String]()
@@ -43,6 +44,8 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imgMic.isHidden = true
         
         LocationManager.sharedInstance.setupLocationManger()
         
@@ -66,10 +69,12 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
 
     
     @IBAction func actionBtnLocation(_ sender: Any) {
+        ISMessages.hideAlert(animated: true)
         
         guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
             return
         }
+        UIApplication.shared.beginIgnoringInteractionEvents()
    
         LocationManager.sharedInstance.startTrackingUser { (lat, lng, locationName) in
 
@@ -85,6 +90,7 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
 
     
     @IBAction func actionBtnRecordings(_ sender: Any) {
+        ISMessages.hideAlert(animated: true)
         
         self.onSwitchVc?(true)
         
@@ -92,12 +98,15 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     
     
     @IBAction func actionBtnComplaints(_ sender: Any) {
+        ISMessages.hideAlert(animated: true)
         
         self.onSwitchVc?(false)
     }
 
     @IBAction func actionBtnAudio(_ sender: Any) {
+        ISMessages.hideAlert(animated: true)
         
+        imgMic.isHidden = false
         isPalyerStopByUser = false
         btnVideo.backgroundColor = UIColor.black
         btnAudio.backgroundColor = colors.appColor.color()
@@ -115,7 +124,9 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
    
    
     @IBAction func actionBtnVideo(_ sender: Any) {
+        ISMessages.hideAlert(animated: true)
         
+        imgMic.isHidden = true
         btnVideo.backgroundColor = colors.appColor.color()
         btnAudio.backgroundColor = UIColor.black
         btnAudio.isSelected = false
@@ -132,6 +143,7 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
   
     
     @IBAction func actionBtnRecord(_ sender: UIButton) {
+        ISMessages.hideAlert(animated: true)
         
      
         if sender.isSelected {

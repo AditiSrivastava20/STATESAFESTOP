@@ -57,7 +57,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGNUP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwF-EL-BSQ">
-                                        <rect key="frame" x="130.5" y="33" width="60.5" height="19"/>
+                                        <rect key="frame" x="130" y="33" width="61" height="19"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" red="0.29408872130000002" green="0.2941361368" blue="0.29407840969999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -99,7 +99,7 @@
                                                 <rect key="frame" x="20" y="138" width="280" height="14"/>
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Full Name"/>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
@@ -110,6 +110,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isClearIconButtonEnabled" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="iap-hB-W5Z" id="O9u-zN-a0T"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ccz-WC-P2h" userLabel="Email" customClass="TextField" customModule="Material">
                                                 <rect key="frame" x="20" y="192" width="280" height="14"/>
@@ -126,6 +129,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isClearIconButtonEnabled" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="iap-hB-W5Z" id="GZg-RJ-sM8"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d6b-9d-1Uz" userLabel="password" customClass="TextField" customModule="Material">
                                                 <rect key="frame" x="20" y="246" width="280" height="14"/>
@@ -143,6 +149,9 @@
                                                         <real key="value" value="6"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="iap-hB-W5Z" id="lmU-Oe-RPm"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ysn-nE-xQ4" userLabel="confirmPassword" customClass="TextField" customModule="Material">
                                                 <rect key="frame" x="20" y="300" width="280" height="14"/>
@@ -160,6 +169,9 @@
                                                         <real key="value" value="6"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="iap-hB-W5Z" id="Lun-n3-LeI"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i7n-Vr-bWm" userLabel="fullAddress" customClass="TextField" customModule="Material">
                                                 <rect key="frame" x="20" y="354" width="280" height="14"/>
@@ -177,6 +189,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isClearIconButtonEnabled" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="iap-hB-W5Z" id="lSg-x3-bTA"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwz-KI-4gj" customClass="Button" customModule="Material">
                                                 <rect key="frame" x="20" y="338" width="253" height="30"/>
@@ -208,6 +223,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isClearIconButtonEnabled" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="iap-hB-W5Z" id="GMO-3X-hvk"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xqs-CL-eMa" customClass="Button" customModule="Material">
                                                 <rect key="frame" x="20" y="560" width="280" height="48"/>
@@ -626,6 +644,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="Jcu-vl-1eP" id="z3e-bc-tZJ"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNB-3e-IxS">
                                         <rect key="frame" x="20" y="37" width="280" height="48"/>
@@ -813,22 +834,22 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You wanna pay ¢99 per month?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgf-YG-p0q">
-                                <rect key="frame" x="48" y="178.5" width="224" height="37.5"/>
+                                <rect key="frame" x="48" y="178" width="224" height="38"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.38431372549019605" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose 10 friends from facebook" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTP-r0-SGA">
-                                <rect key="frame" x="48" y="422.5" width="224" height="37.5"/>
+                                <rect key="frame" x="48" y="422" width="224" height="38"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.38431372549019605" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pch-rx-Xdc">
-                                <rect key="frame" x="20" y="84" width="280" height="94.5"/>
+                                <rect key="frame" x="20" y="84" width="280" height="94"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_money" translatesAutoresizingMaskIntoConstraints="NO" id="RCT-tD-8zD">
-                                        <rect key="frame" x="112" y="19.5" width="56" height="56"/>
+                                        <rect key="frame" x="112" y="19" width="56" height="56"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -838,10 +859,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Hi-A1-515">
-                                <rect key="frame" x="20" y="332" width="280" height="90.5"/>
+                                <rect key="frame" x="20" y="332" width="280" height="90"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_friends" translatesAutoresizingMaskIntoConstraints="NO" id="2qm-Qu-5fK">
-                                        <rect key="frame" x="112" y="17.5" width="56" height="56"/>
+                                        <rect key="frame" x="112" y="17" width="56" height="56"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1195,11 +1216,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="fHE-rj-RYU">
-                                <rect key="frame" x="63" y="28" width="194" height="194"/>
-                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhR-Rm-uQT">
+                                <rect key="frame" x="0.0" y="20" width="320" height="231"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="fHE-rj-RYU">
+                                        <rect key="frame" x="63" y="19" width="194" height="194"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="fHE-rj-RYU" firstAttribute="centerX" secondItem="RhR-Rm-uQT" secondAttribute="centerX" id="3A0-qz-Ger"/>
+                                    <constraint firstItem="fHE-rj-RYU" firstAttribute="centerY" secondItem="RhR-Rm-uQT" secondAttribute="centerY" id="Vga-l5-SGC"/>
+                                </constraints>
+                            </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="5My-xU-122" userLabel="Email id" customClass="TextField" customModule="Material">
-                                <rect key="frame" x="20" y="262" width="280" height="14"/>
+                                <rect key="frame" x="20" y="271" width="280" height="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.55000000000000004" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
@@ -1221,9 +1252,12 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email ID"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isClearIconButtonEnabled" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="nvS-TA-c1e" id="cpN-Ye-Gj0"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="y4D-9n-SUU" userLabel="password" customClass="TextField" customModule="Material">
-                                <rect key="frame" x="20" y="308" width="280" height="15"/>
+                                <rect key="frame" x="20" y="317" width="280" height="15"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIText-Light" family="SF UI Text" pointSize="12"/>
@@ -1233,9 +1267,12 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isVisibilityIconButtonAutoHandled" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Password"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="nvS-TA-c1e" id="YaR-qk-jyF"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbG-ak-1ab" customClass="Button" customModule="Material">
-                                <rect key="frame" x="208" y="331" width="92" height="26"/>
+                                <rect key="frame" x="208" y="340" width="92" height="26"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <state key="normal" title="Forgot Password">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.77000000000000002" colorSpace="calibratedRGB"/>
@@ -1253,7 +1290,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJS-m0-7kf" customClass="Button" customModule="Material">
-                                <rect key="frame" x="20" y="389" width="280" height="48"/>
+                                <rect key="frame" x="20" y="398" width="280" height="48"/>
                                 <color key="backgroundColor" red="0.97811454529999997" green="0.87701559070000001" blue="0.23409405350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="bkX-y5-Qmj"/>
@@ -1278,7 +1315,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2a6-FP-Tfk" customClass="Button" customModule="Material">
-                                <rect key="frame" x="231" y="449" width="69" height="29"/>
+                                <rect key="frame" x="231" y="458" width="69" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="or Sign Up">
                                     <color key="titleColor" red="0.0" green="0.090196078430000007" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1333,9 +1370,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="RhR-Rm-uQT" secondAttribute="trailing" id="053-wN-l4J"/>
                             <constraint firstItem="y4D-9n-SUU" firstAttribute="top" secondItem="5My-xU-122" secondAttribute="bottom" constant="32" id="0PJ-2b-QqB"/>
-                            <constraint firstItem="5My-xU-122" firstAttribute="top" secondItem="fHE-rj-RYU" secondAttribute="bottom" constant="40" id="87b-LA-c0L"/>
-                            <constraint firstItem="fHE-rj-RYU" firstAttribute="top" secondItem="O1s-wW-h4f" secondAttribute="bottom" constant="8" symbolic="YES" id="ESe-Tt-FZh"/>
+                            <constraint firstItem="5My-xU-122" firstAttribute="top" secondItem="RhR-Rm-uQT" secondAttribute="bottom" constant="20" id="C5h-3r-AT0"/>
+                            <constraint firstItem="RhR-Rm-uQT" firstAttribute="leading" secondItem="BvL-2o-duw" secondAttribute="leading" id="DZq-9n-rfb"/>
                             <constraint firstItem="y4D-9n-SUU" firstAttribute="leading" secondItem="QJS-m0-7kf" secondAttribute="leading" id="EpX-fk-esK"/>
                             <constraint firstItem="5B5-Lo-Cdq" firstAttribute="centerX" secondItem="BvL-2o-duw" secondAttribute="centerX" id="F1e-cs-Yvl"/>
                             <constraint firstItem="y4D-9n-SUU" firstAttribute="trailing" secondItem="5My-xU-122" secondAttribute="trailing" id="H7T-IN-xFV"/>
@@ -1344,16 +1382,15 @@
                             <constraint firstItem="QJS-m0-7kf" firstAttribute="trailing" secondItem="2a6-FP-Tfk" secondAttribute="trailing" id="Msw-g1-JmE"/>
                             <constraint firstItem="y4D-9n-SUU" firstAttribute="trailing" secondItem="QJS-m0-7kf" secondAttribute="trailing" id="OGU-Us-Y5G"/>
                             <constraint firstItem="y4D-9n-SUU" firstAttribute="leading" secondItem="5My-xU-122" secondAttribute="leading" id="Vyz-OH-o7g"/>
-                            <constraint firstItem="fHE-rj-RYU" firstAttribute="centerX" secondItem="BvL-2o-duw" secondAttribute="centerX" id="XfI-DY-TVj"/>
                             <constraint firstItem="QJS-m0-7kf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cbG-ak-1ab" secondAttribute="bottom" constant="12" id="bXP-aK-AVQ"/>
                             <constraint firstItem="UCr-MZ-nIw" firstAttribute="top" secondItem="5B5-Lo-Cdq" secondAttribute="bottom" constant="24" id="d6s-GX-CQY"/>
                             <constraint firstItem="y4D-9n-SUU" firstAttribute="leading" secondItem="BvL-2o-duw" secondAttribute="leading" constant="20" symbolic="YES" id="eAn-JW-Nvq"/>
-                            <constraint firstItem="fHE-rj-RYU" firstAttribute="top" relation="lessThanOrEqual" secondItem="O1s-wW-h4f" secondAttribute="bottom" constant="8" id="kRW-U3-Z21"/>
                             <constraint firstItem="y4D-9n-SUU" firstAttribute="trailing" secondItem="cbG-ak-1ab" secondAttribute="trailing" id="kbN-yM-a5F"/>
+                            <constraint firstItem="RhR-Rm-uQT" firstAttribute="top" secondItem="O1s-wW-h4f" secondAttribute="bottom" id="oi6-R7-MLQ"/>
                             <constraint firstItem="cbG-ak-1ab" firstAttribute="top" secondItem="y4D-9n-SUU" secondAttribute="bottom" constant="8" symbolic="YES" id="rXp-Jh-J8Z"/>
                             <constraint firstAttribute="trailing" secondItem="y4D-9n-SUU" secondAttribute="trailing" constant="20" symbolic="YES" id="rfg-sw-cOS"/>
-                            <constraint firstItem="5B5-Lo-Cdq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2a6-FP-Tfk" secondAttribute="bottom" constant="12" id="t9S-tM-sOy"/>
                             <constraint firstItem="2a6-FP-Tfk" firstAttribute="top" secondItem="QJS-m0-7kf" secondAttribute="bottom" constant="12" id="wOt-ZE-C3N"/>
+                            <constraint firstItem="y4D-9n-SUU" firstAttribute="centerY" secondItem="BvL-2o-duw" secondAttribute="centerY" multiplier="1.14" id="z0E-9P-KvW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LvY-TX-doI"/>
@@ -1370,7 +1407,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPX-b9-w6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-968" y="-20"/>
+            <point key="canvasLocation" x="-969.375" y="-20.070422535211268"/>
         </scene>
     </scenes>
     <resources>

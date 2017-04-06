@@ -44,7 +44,7 @@ class HandleResponse {
                 case .pinPassword:
                     let login = UserDataSingleton.sharedInstance.loggedInUser
                     login?.profile?.is_pin = "1"
-                    login?.profile?.pin_password = value.pin_password
+                    login?.profile?.pin_password = value.profile?.pin_password
                     UserDataSingleton.sharedInstance.loggedInUser = login
                     
                     obj.performSegue(withIdentifier: segue.pinToPackage.rawValue, sender: obj)

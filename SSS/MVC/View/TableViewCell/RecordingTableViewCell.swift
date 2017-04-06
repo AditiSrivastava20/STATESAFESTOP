@@ -35,7 +35,6 @@ class RecordingTableViewCell: UITableViewCell {
     
     func updateUI() {
         
-        
         let mediaType = MediaType(rawValue: /objRecording?.media_type ) ?? .none
         
         switch mediaType {

@@ -24,7 +24,7 @@ class Alerts: NSObject {
     
     func show(alert title : Alert , message : String , type : ISAlertType){
         
-        ISMessages.showCardAlert(withTitle: title.rawValue, message: message, duration: 0.2, hideOnSwipe: true, hideOnTap: true, alertType: type, alertPosition: .top, didHide: nil)
+        ISMessages.showCardAlert(withTitle: title.rawValue, message: message, duration: 0.01, hideOnSwipe: true, hideOnTap: true, alertType: type, alertPosition: .top, didHide: nil)
     }
     
 }

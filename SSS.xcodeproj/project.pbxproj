@@ -19,6 +19,9 @@
 		1DACE2DD1E8E3D2C00CEA8C3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DACE2DC1E8E3D2C00CEA8C3 /* LocationManager.swift */; };
 		1DC3BB411E8CE089009C71E1 /* ComplaintDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC3BB401E8CE089009C71E1 /* ComplaintDoneViewController.swift */; };
 		1DC3BB451E8D04E7009C71E1 /* UserDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC3BB441E8D04E7009C71E1 /* UserDataSingleton.swift */; };
+		1DC5FA2D1E96011800E8FE30 /* ic_Mic.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5FA2C1E96011800E8FE30 /* ic_Mic.png */; };
+		1DC5FA2F1E96068700E8FE30 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5FA2E1E96068700E8FE30 /* Notification.swift */; };
+		1DC5FA311E96236600E8FE30 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5FA301E96236600E8FE30 /* Download.swift */; };
 		1DE1265F1E8BB95600DBE5BA /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125A41E8BB95600DBE5BA /* APIConstants.swift */; };
 		1DE126601E8BB95600DBE5BA /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125A51E8BB95600DBE5BA /* APIHandler.swift */; };
 		1DE126611E8BB95600DBE5BA /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125A61E8BB95600DBE5BA /* APIManager.swift */; };
@@ -154,6 +157,9 @@
 		1DACE2DC1E8E3D2C00CEA8C3 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1DC3BB401E8CE089009C71E1 /* ComplaintDoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplaintDoneViewController.swift; sourceTree = "<group>"; };
 		1DC3BB441E8D04E7009C71E1 /* UserDataSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataSingleton.swift; sourceTree = "<group>"; };
+		1DC5FA2C1E96011800E8FE30 /* ic_Mic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_Mic.png; sourceTree = "<group>"; };
+		1DC5FA2E1E96068700E8FE30 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		1DC5FA301E96236600E8FE30 /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		1DD216221E6FE34B009E1296 /* SSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE125A41E8BB95600DBE5BA /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		1DE125A51E8BB95600DBE5BA /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
@@ -370,9 +376,9 @@
 				1DE125A31E8BB95600DBE5BA /* API */,
 				1DE125AC1E8BB95600DBE5BA /* AppDelegate */,
 				1DE125AE1E8BB95600DBE5BA /* CommonFunctions */,
-				1DE125B61E8BB95600DBE5BA /* Datasource */,
 				1DE125BA1E8BB95600DBE5BA /* Extensions */,
 				1DE125BC1E8BB95600DBE5BA /* Helpers */,
+				1DE125B61E8BB95600DBE5BA /* Datasource */,
 				1DE125C41E8BB95600DBE5BA /* Images */,
 				1DE125C71E8BB95600DBE5BA /* MVC */,
 				1DE126031E8BB95600DBE5BA /* Resources */,
@@ -413,6 +419,7 @@
 				1DE125B41E8BB95600DBE5BA /* Validation.swift */,
 				1DE125B51E8BB95600DBE5BA /* ViewExtensions.swift */,
 				1D3EA93D1E9361E400DF40C6 /* LoginChecks.swift */,
+				1DC5FA301E96236600E8FE30 /* Download.swift */,
 			);
 			path = CommonFunctions;
 			sourceTree = "<group>";
@@ -453,6 +460,7 @@
 		1DE125C41E8BB95600DBE5BA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1DC5FA2C1E96011800E8FE30 /* ic_Mic.png */,
 				1DE125C51E8BB95600DBE5BA /* chris_palmer_profile_11.jpg */,
 			);
 			path = Images;
@@ -637,6 +645,7 @@
 				1DE125F41E8BB95600DBE5BA /* User.swift */,
 				1DE126F51E8BC9E500DBE5BA /* Recording.swift */,
 				1DE126F71E8BE76600DBE5BA /* Complaint.swift */,
+				1DC5FA2E1E96068700E8FE30 /* Notification.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -984,6 +993,7 @@
 				1DE126A61E8BB95600DBE5BA /* SF-UI-Display-Black.otf in Resources */,
 				1DE126A91E8BB95600DBE5BA /* SF-UI-Display-Light.otf in Resources */,
 				1DE126B31E8BB95600DBE5BA /* SF-UI-Text-Light.otf in Resources */,
+				1DC5FA2D1E96011800E8FE30 /* ic_Mic.png in Resources */,
 				1DE126B91E8BB95600DBE5BA /* SF-UI-Text-Semibold.otf in Resources */,
 				1DE126A31E8BB95600DBE5BA /* HelveticaNeue-UltraLightItalic.otf in Resources */,
 				1DE126AF1E8BB95600DBE5BA /* SF-UI-Text-Bold.otf in Resources */,
@@ -1102,6 +1112,7 @@
 				1DE126711E8BB95600DBE5BA /* TextfieldExtensions.swift in Sources */,
 				1DE126CE1E8BB95600DBE5BA /* BarView.swift in Sources */,
 				1DE126F61E8BC9E500DBE5BA /* Recording.swift in Sources */,
+				1DC5FA311E96236600E8FE30 /* Download.swift in Sources */,
 				1DE126DB1E8BB95600DBE5BA /* TwitterPagerTabStripViewController.swift in Sources */,
 				1D3EA93E1E9361E400DF40C6 /* LoginChecks.swift in Sources */,
 				1DE1268B1E8BB95600DBE5BA /* SSSPackageViewController.swift in Sources */,
@@ -1140,6 +1151,7 @@
 				1DE1268A1E8BB95600DBE5BA /* CardTransactionViewController.swift in Sources */,
 				1DE126F81E8BE76600DBE5BA /* Complaint.swift in Sources */,
 				1DEEE64E1E92170D00966D4C /* ForgotPasswordViewController.swift in Sources */,
+				1DC5FA2F1E96068700E8FE30 /* Notification.swift in Sources */,
 				1DE1266E1E8BB95600DBE5BA /* ViewExtensions.swift in Sources */,
 				1DE1265F1E8BB95600DBE5BA /* APIConstants.swift in Sources */,
 				1D3EA9401E93776500DF40C6 /* UIScrollViewExtension.swift in Sources */,

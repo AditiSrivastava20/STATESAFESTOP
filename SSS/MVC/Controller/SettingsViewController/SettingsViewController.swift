@@ -21,6 +21,18 @@ class SettingsViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        sideMenuController()?.sideMenu?.allowRightSwipe = false
+        sideMenuController()?.sideMenu?.allowPanGesture = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        sideMenuController()?.sideMenu?.allowRightSwipe = true
+        sideMenuController()?.sideMenu?.allowPanGesture = true
+    }
+    
+    
     @IBAction func btnBackAction(_ sender: UIBarButtonItem) {
         popVC()
         

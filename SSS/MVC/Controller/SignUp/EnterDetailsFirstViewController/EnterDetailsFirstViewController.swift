@@ -12,7 +12,7 @@ import ISMessages
 import Kingfisher
 import EZSwiftExtensions
 
-class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
+class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundView: UIView!
@@ -64,6 +64,31 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.view.endEditing(true)
+    }
+    
+
+    
+    func textFieldDidBeginEditing(_ textField: TextField)  {
+        ISMessages.hideAlert(animated: true)
+        
+        if textField == txtFullAddress {
+            
+            UIApplication.shared.sendAction(#selector(resignFirstResponder), to:nil, from:nil, for:nil)
+            
+            ez.dispatchDelay(0.3, closure: {
+                self.fetchFullAddress(completion: {(address) in
+                    
+                    self.txtFullAddress.text = address
+                })
+            })
+            
+            
+        }
+    }
+    
+    
+    override func appTerminated() {
+        
     }
 
     
@@ -118,7 +143,7 @@ class EnterDetailsFirstViewController: BaseViewController, UITextFieldDelegate {
     
     //MARK: - open GMS place picker
     @IBAction func btnPickAddressAction(_ sender: Any) {
-        
+        ISMessages.hideAlert(animated: true)
         fetchFullAddress(completion: {(address) in
             self.txtFullAddress.text = address
         })

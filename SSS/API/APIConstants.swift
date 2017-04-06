@@ -35,6 +35,7 @@ internal struct APIConstants {
     static let resetPin = "resetpin"
     static let changePassword = "changepassword"
     static let logout = "logout"
+    static let notification = "notification"
     
 }
 
@@ -212,6 +213,7 @@ struct Parameters {
     static let resetPin: [Keys] = [.accessToken, .pin]
     static let changePassword: [Keys] = [.accessToken, .old_password, .new_password]
     static let logout: [Keys] = [.accessToken]
+    static let notification: [Keys] = [.accessToken]
 }
 
 

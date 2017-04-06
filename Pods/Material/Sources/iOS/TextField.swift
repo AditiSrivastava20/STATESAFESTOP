@@ -278,7 +278,7 @@ open class TextField: UITextField {
             }
             
             clearIconButton = IconButton(image: Icon.cm.clear, tintColor: placeholderNormalColor)
-            clearIconButton?.frame.size = CGSize(width: 30, height: 30)
+            clearIconButton?.frame.size = CGSize(width: 40, height: 40)
             clearIconButton!.contentEdgeInsetsPreset = .none
             clearIconButton!.pulseAnimation = .none
             clearButtonMode = .never
@@ -325,7 +325,7 @@ open class TextField: UITextField {
             }
             
             visibilityIconButton = IconButton(image: Icon.visibility, tintColor: placeholderNormalColor.withAlphaComponent(isSecureTextEntry ? 0.38 : 0.54))
-            visibilityIconButton?.frame.size = CGSize(width: 30, height: 30)
+            visibilityIconButton?.frame.size = CGSize(width: 40, height: 40)
             visibilityIconButton!.contentEdgeInsetsPreset = .none
             visibilityIconButton!.pulseAnimation = .none
             isSecureTextEntry = true

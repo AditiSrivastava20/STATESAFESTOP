@@ -9,12 +9,10 @@
 import UIKit
 import Material
 import ISMessages
-//import FBSDKLoginKit
-//import TwitterKit
 import EZSwiftExtensions
 import NVActivityIndicatorView
 
-class LoginViewController: BaseViewController, NVActivityIndicatorViewable {
+class LoginViewController: BaseViewController, NVActivityIndicatorViewable, TextFieldDelegate {
     
     @IBOutlet weak var txtEmail: TextField!
     @IBOutlet weak var txtPassword: TextField!
@@ -29,8 +27,7 @@ class LoginViewController: BaseViewController, NVActivityIndicatorViewable {
         
         txtEmail.placeHolderAtt()
         txtPassword.placeHolderAtt()
-        txtEmail?.text = "bv@gm.com"
-        txtPassword?.text = "1234567"
+
     }
     
     
@@ -51,6 +48,10 @@ class LoginViewController: BaseViewController, NVActivityIndicatorViewable {
     }
     
     
+    func textFieldDidBeginEditing(_ textField: TextField)  {
+        ISMessages.hideAlert(animated: true)
+    }
+    
 }
 
 
@@ -59,12 +60,14 @@ class LoginViewController: BaseViewController, NVActivityIndicatorViewable {
 extension LoginViewController {
     
     @IBAction func btnForgotPasswordAction(_ sender: Any) {
+        ISMessages.hideAlert(animated: true)
         
         print("forgot password")
         performSegue(withIdentifier: segue.loginToForgotPassword.rawValue, sender: self)
     }
     
     @IBAction func btnLoginAction(_ sender: Any) {
+        ISMessages.hideAlert(animated: true)
         
         print("login")
         ISMessages.hideAlert(animated: true)
@@ -82,6 +85,7 @@ extension LoginViewController {
     }
     
     @IBAction func btnSignUpAction(_ sender: Any) {
+        ISMessages.hideAlert(animated: true)
         performSegue(withIdentifier: segue.loginToSignup.rawValue, sender: nil)
     }
     
@@ -92,6 +96,7 @@ extension LoginViewController {
 extension LoginViewController {
     
     @IBAction func btnFacebookAction(_ sender: Any) {
+        ISMessages.hideAlert(animated: true)
         
         UIApplication.shared.beginIgnoringInteractionEvents()
         
@@ -113,6 +118,7 @@ extension LoginViewController {
 extension LoginViewController {
     
     @IBAction func btnTwitterAction(_ sender: Any) {
+        ISMessages.hideAlert(animated: true)
                 
         UIApplication.shared.beginIgnoringInteractionEvents()
         TWManager.shared.login(self, check: .login, completion: { (twProfile) in

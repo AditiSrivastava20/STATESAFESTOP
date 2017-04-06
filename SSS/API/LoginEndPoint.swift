@@ -30,6 +30,7 @@ enum LoginEndpoint {
     case changePassword(accessToken: String?, old_password: String?, new_password: String?)
     case logout(accessToken: String?)
     case forgotPassword(email: String?)
+    case notification(accessToken: String?)
     
 }
 
@@ -58,6 +59,8 @@ extension LoginEndpoint : Router{
         case .changePassword(_): return APIConstants.changePassword
         case .logout(_): return APIConstants.logout
         case .forgotPassword(_): return APIConstants.forgotPassword
+        case .notification(_): return APIConstants.notification
+            
         }
     }
     
@@ -123,6 +126,9 @@ extension LoginEndpoint : Router{
             
         case .forgotPassword(let email):
             return Parameters.forgotPassword.map(values: [email])
+            
+        case .notification(let accessToken):
+            return Parameters.notification.map(values: [accessToken])
     
         
         }

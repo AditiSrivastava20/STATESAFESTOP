@@ -26,6 +26,17 @@ class ResetPinViewController: BaseViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        sideMenuController()?.sideMenu?.allowRightSwipe = false
+        sideMenuController()?.sideMenu?.allowPanGesture = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        sideMenuController()?.sideMenu?.allowRightSwipe = true
+        sideMenuController()?.sideMenu?.allowPanGesture = true
+    }
+    
+    
     //MARK: - handle api response
     func handle(response : Response) {
         

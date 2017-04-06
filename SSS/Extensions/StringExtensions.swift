@@ -19,4 +19,9 @@ extension String {
     var uppercaseFirst: String {
         return first.uppercased() + String(characters.dropFirst())
     }
+    
+    var digits: String {
+        return components(separatedBy: CharacterSet.decimalDigits.inverted)
+            .joined()
+    }
 }

@@ -10,7 +10,7 @@ import UIKit
 import Material
 import ISMessages
 
-class ForgotPasswordViewController: BaseViewController {
+class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
     
     @IBOutlet weak var txtEmail: TextField!
     
@@ -25,6 +25,10 @@ class ForgotPasswordViewController: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldDidBeginEditing(_ textField: TextField)  {
+        ISMessages.hideAlert(animated: true)
     }
     
     //MARK: validate

@@ -56,8 +56,8 @@ class LocationManager: NSObject  {
     
     func startTrackingUser(_ completionHandler:((_ latitude:Double, _ longitude:Double, _ location:String)->())? = nil){
         // For use in foreground
-        
-         self.completionHandler = completionHandler
+        UIApplication.shared.endIgnoringInteractionEvents()
+        self.completionHandler = completionHandler
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.startUpdatingLocation()
