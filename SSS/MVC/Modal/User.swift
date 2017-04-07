@@ -50,6 +50,12 @@ class User: NSObject {
             self.contacts?.append(Safelist(attributes: element.dictionaryValue))
         })
         
+        notifications = []
+        (.data =| attributes)?.forEach({ (_,element) in
+            self.notifications?.append(NotificationData(attributes: element.dictionaryValue))
+        })
+        
+        
     }
     
     override init() {

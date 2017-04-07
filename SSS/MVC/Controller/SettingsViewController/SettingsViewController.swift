@@ -43,8 +43,6 @@ class SettingsViewController: BaseViewController {
 
     }
     
-    @IBAction func btnCallAction(_ sender: Any) {
-    }
     
     
     

@@ -67,7 +67,7 @@ class LocationManager: NSObject  {
     
     func setupLocationManger() {
         
-        
+        locationManager.requestWhenInUseAuthorization()
         
     }
     

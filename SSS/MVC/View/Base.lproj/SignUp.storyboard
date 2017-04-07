@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kxi-FM-8xz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kxi-FM-8xz">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,12 +24,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="nvS-TA-c1e" kind="relationship" relationship="rootViewController" id="kdH-yS-j6K"/>
+                        <segue destination="SUb-Gg-M4W" kind="relationship" relationship="rootViewController" id="ObW-9j-Fp2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N4a-B3-JKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1924" y="-20"/>
+            <point key="canvasLocation" x="-2494" y="10"/>
         </scene>
         <!--Enter Details First View Controller-->
         <scene sceneID="X8F-Fs-yzk">
@@ -909,292 +909,10 @@
                             <constraint firstItem="lP2-Wt-tzY" firstAttribute="centerX" secondItem="mAi-YS-0Ov" secondAttribute="centerX" id="zt9-N8-nJt"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <segue destination="C6f-MH-oFE" kind="show" identifier="packageToInAppPurchase" id="40X-59-C1k"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CRo-x7-t0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1986" y="-20"/>
-        </scene>
-        <!--Card Transaction View Controller-->
-        <scene sceneID="B0D-Kh-2lJ">
-            <objects>
-                <viewController id="C6f-MH-oFE" customClass="CardTransactionViewController" customModule="SSS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="RPe-dg-E6d"/>
-                        <viewControllerLayoutGuide type="bottom" id="458-bz-7jx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cs3-Du-GOg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrl-z2-msg">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTER DETAILS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0c1-eI-QKW">
-                                        <rect key="frame" x="101" y="29" width="119" height="19"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                        <color key="textColor" red="0.29411764705882354" green="0.29411764705882354" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.9781145453453064" green="0.87701559066772461" blue="0.2340940535068512" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="0c1-eI-QKW" firstAttribute="centerX" secondItem="hrl-z2-msg" secondAttribute="centerX" id="1N2-X3-Inx"/>
-                                    <constraint firstItem="0c1-eI-QKW" firstAttribute="centerY" secondItem="hrl-z2-msg" secondAttribute="centerY" multiplier="1.2" id="7K2-t5-AsS"/>
-                                    <constraint firstAttribute="height" constant="64" id="hT7-OC-QZg"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJE-LE-MLb">
-                                <rect key="frame" x="20" y="64" width="280" height="120"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_payment" translatesAutoresizingMaskIntoConstraints="NO" id="bD8-Om-xe5">
-                                        <rect key="frame" x="112" y="29" width="56" height="63"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="bD8-Om-xe5" firstAttribute="centerX" secondItem="NJE-LE-MLb" secondAttribute="centerX" id="QSC-FS-nlx"/>
-                                    <constraint firstItem="bD8-Om-xe5" firstAttribute="centerY" secondItem="NJE-LE-MLb" secondAttribute="centerY" id="c4E-WS-mBe"/>
-                                    <constraint firstAttribute="height" constant="120" id="p29-u9-gBI"/>
-                                </constraints>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_credit card" translatesAutoresizingMaskIntoConstraints="NO" id="AcF-TX-OAW">
-                                <rect key="frame" x="20" y="200" width="24" height="24"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JMT-wx-olR" customClass="TextField" customModule="Material">
-                                <rect key="frame" x="52" y="200" width="248" height="24"/>
-                                <color key="textColor" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="selectedLineHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                        <color key="value" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="0.66000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                        <color key="value" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Card Number"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="dividerNormalHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="dividerActiveHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fJ3-Cb-R2E">
-                                <rect key="frame" x="20" y="224" width="280" height="1"/>
-                                <color key="backgroundColor" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="0.66000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calender" translatesAutoresizingMaskIntoConstraints="NO" id="QKh-XI-bLU">
-                                <rect key="frame" x="20" y="257" width="24" height="24"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RWG-dS-MYK" customClass="TextField" customModule="Material">
-                                <rect key="frame" x="52" y="257" width="76" height="24"/>
-                                <color key="textColor" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="selectedLineHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                        <color key="value" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="MM/YY"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="dividerNormalHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="dividerActiveHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRA-b5-gja">
-                                <rect key="frame" x="20" y="281" width="108" height="1"/>
-                                <color key="backgroundColor" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="0.66000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="QjU-rh-bh6"/>
-                                </constraints>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_zip code" translatesAutoresizingMaskIntoConstraints="NO" id="29e-Mz-2tO">
-                                <rect key="frame" x="192" y="257" width="24" height="24"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uRa-f1-Vce" customClass="TextField" customModule="Material">
-                                <rect key="frame" x="224" y="257" width="76" height="24"/>
-                                <color key="textColor" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="selectedLineHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                        <color key="value" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Zip Code"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="dividerNormalHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="dividerActiveHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nNh-9z-7nM">
-                                <rect key="frame" x="192" y="281" width="108" height="1"/>
-                                <color key="backgroundColor" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="0.66000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="CsQ-M6-7Ud"/>
-                                </constraints>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_card holder" translatesAutoresizingMaskIntoConstraints="NO" id="PJw-pK-Pql">
-                                <rect key="frame" x="20" y="314" width="24" height="24"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sf1-ff-jHM" customClass="TextField" customModule="Material">
-                                <rect key="frame" x="52" y="314" width="248" height="24"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="selectedLineHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                        <color key="value" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="0.6705882353" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Card holder name"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="dividerNormalHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="dividerActiveHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcm-Ml-3ex">
-                                <rect key="frame" x="20" y="338" width="280" height="1"/>
-                                <color key="backgroundColor" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="0.66000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="eFw-Tt-MEx"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caB-CQ-ibW">
-                                <rect key="frame" x="20" y="371" width="43" height="17"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_cent" translatesAutoresizingMaskIntoConstraints="NO" id="ZQy-uH-zxV">
-                                <rect key="frame" x="71" y="367" width="24" height="24"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6w-pE-Bz2">
-                                <rect key="frame" x="95" y="367" width="23" height="24"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AN0-MU-okQ">
-                                <rect key="frame" x="244" y="496" width="56" height="56"/>
-                                <state key="normal" image="ic_fab_chek"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="RWG-dS-MYK" firstAttribute="top" secondItem="fJ3-Cb-R2E" secondAttribute="bottom" constant="32" id="0YX-Ih-BG1"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="leading" secondItem="PJw-pK-Pql" secondAttribute="leading" id="446-yY-UDO"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="top" secondItem="PJw-pK-Pql" secondAttribute="bottom" id="5Uf-cp-T7X"/>
-                            <constraint firstItem="fJ3-Cb-R2E" firstAttribute="top" secondItem="JMT-wx-olR" secondAttribute="bottom" id="7po-zf-Jke"/>
-                            <constraint firstItem="sf1-ff-jHM" firstAttribute="leading" secondItem="PJw-pK-Pql" secondAttribute="trailing" constant="8" symbolic="YES" id="9wc-Mo-xva"/>
-                            <constraint firstItem="hrl-z2-msg" firstAttribute="top" secondItem="cs3-Du-GOg" secondAttribute="top" id="AYL-ZS-auE"/>
-                            <constraint firstItem="NJE-LE-MLb" firstAttribute="top" secondItem="hrl-z2-msg" secondAttribute="bottom" id="AnQ-nD-pCC"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="height" secondItem="fJ3-Cb-R2E" secondAttribute="height" id="DJr-mC-dOU"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="trailing" secondItem="sf1-ff-jHM" secondAttribute="trailing" id="DZ5-FQ-vgy"/>
-                            <constraint firstItem="PJw-pK-Pql" firstAttribute="top" secondItem="sf1-ff-jHM" secondAttribute="top" id="DoS-Jg-b4g"/>
-                            <constraint firstItem="caB-CQ-ibW" firstAttribute="centerY" secondItem="ZQy-uH-zxV" secondAttribute="centerY" id="Dyd-5h-dUJ"/>
-                            <constraint firstItem="caB-CQ-ibW" firstAttribute="top" secondItem="hcm-Ml-3ex" secondAttribute="bottom" constant="32" id="ELd-T6-B73"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="trailing" secondItem="fJ3-Cb-R2E" secondAttribute="trailing" id="Fbw-er-Mit"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="leading" secondItem="caB-CQ-ibW" secondAttribute="leading" id="GaY-Ar-S31"/>
-                            <constraint firstItem="JMT-wx-olR" firstAttribute="leading" secondItem="AcF-TX-OAW" secondAttribute="trailing" constant="8" symbolic="YES" id="Gd5-70-576"/>
-                            <constraint firstItem="ZQy-uH-zxV" firstAttribute="leading" secondItem="caB-CQ-ibW" secondAttribute="trailing" constant="8" symbolic="YES" id="IIK-yV-1jq"/>
-                            <constraint firstItem="RWG-dS-MYK" firstAttribute="leading" secondItem="QKh-XI-bLU" secondAttribute="trailing" constant="8" symbolic="YES" id="Jcq-2L-jPR"/>
-                            <constraint firstItem="29e-Mz-2tO" firstAttribute="top" secondItem="uRa-f1-Vce" secondAttribute="top" id="K1c-dQ-VAR"/>
-                            <constraint firstItem="nNh-9z-7nM" firstAttribute="trailing" secondItem="uRa-f1-Vce" secondAttribute="trailing" id="NGK-nT-fJB"/>
-                            <constraint firstItem="458-bz-7jx" firstAttribute="top" secondItem="AN0-MU-okQ" secondAttribute="bottom" constant="16" id="Nck-xJ-Tib"/>
-                            <constraint firstItem="hrl-z2-msg" firstAttribute="leading" secondItem="cs3-Du-GOg" secondAttribute="leading" id="ODh-LY-6IQ"/>
-                            <constraint firstAttribute="trailing" secondItem="hcm-Ml-3ex" secondAttribute="trailing" constant="20" symbolic="YES" id="Phj-sD-6Rx"/>
-                            <constraint firstItem="gRA-b5-gja" firstAttribute="bottom" secondItem="nNh-9z-7nM" secondAttribute="bottom" id="QlV-py-Plc"/>
-                            <constraint firstItem="caB-CQ-ibW" firstAttribute="centerY" secondItem="V6w-pE-Bz2" secondAttribute="centerY" id="RHr-Tu-QVP"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="leading" secondItem="gRA-b5-gja" secondAttribute="leading" id="TmN-hs-tVJ"/>
-                            <constraint firstItem="gRA-b5-gja" firstAttribute="top" secondItem="RWG-dS-MYK" secondAttribute="bottom" id="VHC-d4-Aog"/>
-                            <constraint firstItem="JMT-wx-olR" firstAttribute="top" secondItem="NJE-LE-MLb" secondAttribute="bottom" constant="16" id="WWy-0S-dU3"/>
-                            <constraint firstAttribute="trailing" secondItem="hrl-z2-msg" secondAttribute="trailing" id="WYr-35-YUI"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="centerX" secondItem="cs3-Du-GOg" secondAttribute="centerX" id="XJr-7L-5bi"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="leading" secondItem="cs3-Du-GOg" secondAttribute="leading" constant="20" symbolic="YES" id="YP0-hm-lPq"/>
-                            <constraint firstItem="gRA-b5-gja" firstAttribute="top" secondItem="QKh-XI-bLU" secondAttribute="bottom" id="ZhC-qE-2jl"/>
-                            <constraint firstItem="nNh-9z-7nM" firstAttribute="top" secondItem="uRa-f1-Vce" secondAttribute="bottom" id="a6O-YL-g2I"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="leading" secondItem="NJE-LE-MLb" secondAttribute="leading" id="bpf-aZ-pzv"/>
-                            <constraint firstItem="V6w-pE-Bz2" firstAttribute="leading" secondItem="ZQy-uH-zxV" secondAttribute="trailing" id="c5v-AT-gxK"/>
-                            <constraint firstItem="nNh-9z-7nM" firstAttribute="leading" secondItem="29e-Mz-2tO" secondAttribute="leading" id="cDM-nG-xKX"/>
-                            <constraint firstItem="fJ3-Cb-R2E" firstAttribute="top" secondItem="AcF-TX-OAW" secondAttribute="bottom" id="dL4-NS-LOj"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="trailing" secondItem="NJE-LE-MLb" secondAttribute="trailing" id="eT7-Oj-8Mo"/>
-                            <constraint firstItem="gRA-b5-gja" firstAttribute="trailing" secondItem="RWG-dS-MYK" secondAttribute="trailing" id="hSW-6i-2iT"/>
-                            <constraint firstItem="uRa-f1-Vce" firstAttribute="leading" secondItem="29e-Mz-2tO" secondAttribute="trailing" constant="8" symbolic="YES" id="iWu-eh-4eP"/>
-                            <constraint firstItem="AcF-TX-OAW" firstAttribute="top" secondItem="JMT-wx-olR" secondAttribute="top" id="iho-wd-Ozh"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="trailing" secondItem="nNh-9z-7nM" secondAttribute="trailing" id="jym-TU-zTS"/>
-                            <constraint firstItem="gRA-b5-gja" firstAttribute="width" secondItem="nNh-9z-7nM" secondAttribute="width" id="k8P-g9-zjJ"/>
-                            <constraint firstItem="nNh-9z-7nM" firstAttribute="leading" secondItem="gRA-b5-gja" secondAttribute="trailing" constant="64" id="lle-0Z-Jqx"/>
-                            <constraint firstItem="sf1-ff-jHM" firstAttribute="top" secondItem="gRA-b5-gja" secondAttribute="bottom" constant="32" id="mzd-OB-Fjc"/>
-                            <constraint firstAttribute="trailing" secondItem="AN0-MU-okQ" secondAttribute="trailing" constant="20" symbolic="YES" id="nNL-Cd-gzU"/>
-                            <constraint firstItem="gRA-b5-gja" firstAttribute="leading" secondItem="QKh-XI-bLU" secondAttribute="leading" id="ptF-Wo-p2F"/>
-                            <constraint firstItem="QKh-XI-bLU" firstAttribute="top" secondItem="RWG-dS-MYK" secondAttribute="top" id="puu-mi-ihM"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="leading" secondItem="fJ3-Cb-R2E" secondAttribute="leading" id="rP7-bA-QFr"/>
-                            <constraint firstItem="fJ3-Cb-R2E" firstAttribute="trailing" secondItem="JMT-wx-olR" secondAttribute="trailing" id="rjL-Zj-fGW"/>
-                            <constraint firstItem="hcm-Ml-3ex" firstAttribute="top" secondItem="sf1-ff-jHM" secondAttribute="bottom" id="unt-II-a0A"/>
-                            <constraint firstItem="nNh-9z-7nM" firstAttribute="top" secondItem="29e-Mz-2tO" secondAttribute="bottom" id="vX6-h7-s6Z"/>
-                            <constraint firstItem="fJ3-Cb-R2E" firstAttribute="leading" secondItem="AcF-TX-OAW" secondAttribute="leading" id="yCo-gC-5q7"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="txtCardName" destination="sf1-ff-jHM" id="o4N-qZ-CRZ"/>
-                        <outlet property="txtCardNo" destination="JMT-wx-olR" id="ATk-WK-s3E"/>
-                        <outlet property="txtExpDate" destination="RWG-dS-MYK" id="mtf-UZ-yHJ"/>
-                        <outlet property="txtZipCode" destination="uRa-f1-Vce" id="RHQ-ax-0Wg"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ToU-qA-vBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2854" y="-20"/>
         </scene>
         <!--Main-->
         <scene sceneID="dmR-Za-nhe">
@@ -1203,6 +921,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Dg-sk-ZW6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-396" y="-530"/>
+        </scene>
+        <!--Splash View Controller-->
+        <scene sceneID="uWS-B0-pSs">
+            <objects>
+                <viewController id="SUb-Gg-M4W" customClass="SplashViewController" customModule="SSS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="plj-Eo-xP1"/>
+                        <viewControllerLayoutGuide type="bottom" id="O4n-TQ-4Hh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="II9-om-hSS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="bot-Yc-VA4">
+                                <rect key="frame" x="63" y="187" width="194" height="194"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99215686274509807" green="0.86274509803921573" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="bot-Yc-VA4" firstAttribute="centerY" secondItem="II9-om-hSS" secondAttribute="centerY" id="sbk-c5-CU3"/>
+                            <constraint firstItem="bot-Yc-VA4" firstAttribute="centerX" secondItem="II9-om-hSS" secondAttribute="centerX" id="zf5-OE-7be"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="4IQ-Qj-JNz"/>
+                    <connections>
+                        <segue destination="nvS-TA-c1e" kind="show" identifier="" id="BLI-RJ-EmL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rRm-xV-xEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1748" y="10"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WVi-er-nqH">
@@ -1414,19 +1163,13 @@
     <resources>
         <image name="Combined Shape" width="340" height="516"/>
         <image name="ic_back" width="24" height="24"/>
-        <image name="ic_calender" width="24" height="24"/>
-        <image name="ic_card holder" width="24" height="24"/>
-        <image name="ic_cent" width="24" height="24"/>
         <image name="ic_clear" width="24" height="24"/>
-        <image name="ic_credit card" width="24" height="24"/>
         <image name="ic_edit profile" width="86" height="86"/>
         <image name="ic_fab_chek" width="56" height="56"/>
         <image name="ic_facebook" width="36" height="36"/>
         <image name="ic_friends" width="56" height="56"/>
         <image name="ic_logo" width="194" height="194"/>
         <image name="ic_money" width="56" height="56"/>
-        <image name="ic_payment" width="56" height="63"/>
         <image name="ic_twitter" width="36" height="36"/>
-        <image name="ic_zip code" width="24" height="24"/>
     </resources>
 </document>

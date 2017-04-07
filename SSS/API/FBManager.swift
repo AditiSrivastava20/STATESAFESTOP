@@ -148,7 +148,12 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
         
         switch check {
         case .login:
-            APIManager.shared.request(with: LoginEndpoint.login(email: param.email, password: "", facebookId: param.fbId, twitterId: "", accountType: AccountType.facebook.rawValue, deviceToken: MobileDevice.token.rawValue), completion: { (response) in
+            
+            guard let FCM = UserDefaults.standard.value(forKey: "FCM") as? String else {
+                return
+            }
+            
+            APIManager.shared.request(with: LoginEndpoint.login(email: param.email, password: "", facebookId: param.fbId, twitterId: "", accountType: AccountType.facebook.rawValue, deviceToken: FCM), completion: { (response) in
                 
                 self.handle(response: response, obj, param: param)
             })

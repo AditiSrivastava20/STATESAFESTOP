@@ -181,7 +181,11 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
         switch value {
         case .success:
             
-            APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text?.uppercaseFirst , email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: MobileDevice.token.rawValue),image: isImageSelected(imageSelected) , completion: { (response) in
+            guard let FCM = UserDefaults.standard.value(forKey: "FCM") as? String else {
+                return
+            }
+            
+            APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text?.uppercaseFirst , email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: FCM),image: isImageSelected(imageSelected) , completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, self, from: .signup)
                 

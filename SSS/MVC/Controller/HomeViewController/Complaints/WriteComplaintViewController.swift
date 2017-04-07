@@ -10,8 +10,9 @@ import UIKit
 import Material
 import ISMessages
 import SZTextView
+import NVActivityIndicatorView
 
-class WriteComplaintViewController: BaseViewController, TextFieldDelegate {
+class WriteComplaintViewController: BaseViewController, TextFieldDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var tfTitle: TextField!
     @IBOutlet weak var txtDesc: SZTextView!
@@ -111,6 +112,7 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate {
     @IBAction func btnAddComplaintAction(_ sender: Any) {
         
         ISMessages.hideAlert(animated: true)
+        startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
         
         

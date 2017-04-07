@@ -61,7 +61,7 @@ class SideMenuViewController: UIViewController {
         
         let login = UserDataSingleton.sharedInstance.loggedInUser
         
-        imgProfilePic.kf.setImage(with: URL(string: (login?.profile?.image_url)!), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
+        imgProfilePic.kf.setImage(with: URL(string: (/login?.profile?.image_url)), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
         
         lblFullname.text = login?.profile?.fullname
         lblEmail.text = login?.profile?.email

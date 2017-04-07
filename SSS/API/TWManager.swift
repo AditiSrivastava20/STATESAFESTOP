@@ -118,7 +118,12 @@ class TWManager: UIViewController, NVActivityIndicatorViewable {
         
         switch check {
         case .login:
-            APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: /param.id, accountType: AccountType.twitter.rawValue, deviceToken: MobileDevice.token.rawValue), completion: { (response) in
+            
+            guard let FCM = UserDefaults.standard.value(forKey: "FCM") as? String else {
+                return
+            }
+            
+            APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: /param.id, accountType: AccountType.twitter.rawValue, deviceToken: FCM), completion: { (response) in
                 
                 self.handle(response: response, obj, param: param)
                 

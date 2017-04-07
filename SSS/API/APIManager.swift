@@ -25,7 +25,8 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
         
         
         if isLoaderNeeded(api: api) {
-            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+           // startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+            startAnimating(type: .ballClipRotate , color: colors.loaderColor.color())
         }
         UIApplication.shared.endIgnoringInteractionEvents()
         

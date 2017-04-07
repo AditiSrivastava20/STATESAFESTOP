@@ -32,7 +32,7 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     @IBOutlet weak var imgMic: UIImageView!
     
 
-    let maxCaptureDuration = 31.0
+    let maxCaptureDuration = 60.0
     var paths = [String]()
     
     
@@ -46,8 +46,6 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
         super.viewDidLoad()
         
         imgMic.isHidden = true
-        
-        LocationManager.sharedInstance.setupLocationManger()
         
         vision.clearAllDirectoryFiles()
         
@@ -70,6 +68,8 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     
     @IBAction func actionBtnLocation(_ sender: Any) {
         ISMessages.hideAlert(animated: true)
+        
+//        startAnimating()
         
         guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
             return

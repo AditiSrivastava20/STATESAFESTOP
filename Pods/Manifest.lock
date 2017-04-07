@@ -61,6 +61,7 @@ PODS:
   - Protobuf (3.2.0)
   - RMMapper (1.1.5)
   - SwiftyJSON (3.1.4)
+  - SwiftyStoreKit (0.8.4)
   - SZTextView (1.2.2)
   - TwitterCore (2.8.0):
     - Fabric
@@ -89,6 +90,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - RMMapper
   - SwiftyJSON
+  - SwiftyStoreKit
   - SZTextView
   - TwitterKit
 
@@ -120,10 +122,11 @@ SPEC CHECKSUMS:
   Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
   RMMapper: 21122d753c736d975f6c61e674afce8db73579af
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SwiftyStoreKit: b235756bd6e541cafbed6e75d28b29b8a1c1caef
   SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 73ef7205d47d04394971233808461d3d87fd59c6
+PODFILE CHECKSUM: 203231348cd26625537b2382d7c9ebc653b78bf6
 
 COCOAPODS: 1.2.0

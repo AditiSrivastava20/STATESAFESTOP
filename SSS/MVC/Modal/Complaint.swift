@@ -26,7 +26,6 @@ class Complaint: NSObject {
         complaintDescription = .complaintDescription => attributes
         created_at = .created_at => attributes
         fullname = .fullname => attributes
-        complaintDescription = .thumbnail_url => attributes
         email = .email => attributes
         media_content = .media_content => attributes
         

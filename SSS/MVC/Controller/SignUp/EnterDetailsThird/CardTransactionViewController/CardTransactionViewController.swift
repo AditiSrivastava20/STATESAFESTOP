@@ -8,6 +8,7 @@
 
 import UIKit
 import Material
+import SwiftyStoreKit
 
 class CardTransactionViewController: UIViewController {
     
@@ -24,10 +25,21 @@ class CardTransactionViewController: UIViewController {
         txtExpDate.placeHolderAtt()
         txtZipCode.placeHolderAtt()
         txtCardName.placeHolderAtt()
+        
+        
     }
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func btnPayAction(_ sender: Any) {
+        
+        
+    }
+    
+    
+    
 }

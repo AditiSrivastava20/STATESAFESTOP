@@ -13,8 +13,16 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let user = UserDataSingleton.sharedInstance.loggedInUser
         
-   
+        if  user != nil && user?.profile?.is_pin == "1" {
+            self.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
+        } else {
+            
+            let vc = StoryboardScene.SignUp.instantiateLogin()
+            pushVC(vc)
+            
+        }
         
 
     }
@@ -25,21 +33,6 @@ class SplashViewController: UIViewController {
     
     func validateToken(_ login: User?) -> Bool {
         return true
-    }
-    
-    func loginChecks(_ login: User) {
-        
-        if login.profile?.is_pin == "0" {
-            //go to pin-password setup
-            let vc = StoryboardScene.SignUp.instantiateEnterDetailsSecondViewController()
-            pushVC(vc)
-            
-        } else {
-            //go to main
-            presentVC(StoryboardScene.Main.initialViewController())
-        }
-        
-        
     }
     
 

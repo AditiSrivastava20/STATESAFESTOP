@@ -38,8 +38,8 @@ class NotificationAttachmentTableViewCell: UITableViewCell {
     
     func updateUI() {
         
-//        labelTitle.text = 
-//        labelSubTitle.text =
+        labelTitle.text = /objNotification?.notification_message
+        labelSubTitle.text = /objNotification?.created_at
         imageViewUser.kf.setImage(with: URL(string: /objNotification?.sender_image), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
         
         let mediaType = MediaType(rawValue: /objNotification?.media_type ) ?? .none

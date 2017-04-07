@@ -30,4 +30,6 @@ target 'SSS' do
   pod 'RMMapper'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'SwiftyStoreKit'
+
 end

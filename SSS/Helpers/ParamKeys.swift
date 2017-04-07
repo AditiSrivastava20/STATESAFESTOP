@@ -54,6 +54,7 @@ enum ParamKeys: String {
     case longitude = "longitude"
     case notification_message = "notification_message"
     case notification_type = "notification_type"
+    case data = "data"
     
     
     

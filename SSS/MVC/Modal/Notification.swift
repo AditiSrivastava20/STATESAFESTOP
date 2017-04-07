@@ -24,6 +24,7 @@ class NotificationData: NSObject {
     var thumbnail_url: String?
     var media_type: String?
     var created_at: String?
+    var media_content: String?
     
     init(attributes: OptionalJSON) {
         super.init()
@@ -40,7 +41,7 @@ class NotificationData: NSObject {
         thumbnail_url = .thumbnail_url => attributes
         media_type = .media_type => attributes
         created_at = .created_at => attributes
-        
+        media_content = .media_content => attributes
         
     }
     

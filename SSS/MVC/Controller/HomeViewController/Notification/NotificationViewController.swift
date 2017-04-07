@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import MapKit
 
 class NotificationViewController: UIViewController {
 
@@ -96,9 +97,30 @@ class NotificationViewController: UIViewController {
     
     func btnDownloadAction(sender: UIButton) {
         
-//        let url = arrayNotifications[sender.tag].media_content
-//        
-//        Download.shared.downloadMediaFrom(url: url)
+        let url = arrayNotifications[sender.tag].media_content
+        
+        Download.shared.downloadMediaFrom(url: url) 
+        
+    }
+    
+    func openMaps(sender: UIButton) {
+        print("open map")
+        
+        let latitude: CLLocationDegrees = Double(arrayNotifications[sender.tag].latitude!)!
+        let longitude: CLLocationDegrees = Double(arrayNotifications[sender.tag].longitude!)!
+        
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "Place Name"
+        mapItem.openInMaps(launchOptions: options)
+        
         
     }
     
@@ -123,6 +145,8 @@ extension NotificationViewController {
                 
             default:
                 (cell as? NotificationTableViewCell)?.objNotification = item as! NotificationData?
+                (cell as? NotificationTableViewCell)?.btnGoToMaps.tag = ((indexPath as? IndexPath)?.row ?? 0 )
+                (cell as? NotificationTableViewCell)?.btnGoToMaps.addTarget(self, action: #selector(self.openMaps), for: .touchUpInside)
                 
             }
             

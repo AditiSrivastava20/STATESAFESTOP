@@ -26,10 +26,6 @@ class LoginViewController: BaseViewController, NVActivityIndicatorViewable, Text
     override func viewDidLoad() {
         
         
-        ez.runThisInMainThread {
-            self.checkForSession()
-        }
-        
         super.viewDidLoad()
         
         txtEmail.placeHolderAtt()
@@ -38,15 +34,15 @@ class LoginViewController: BaseViewController, NVActivityIndicatorViewable, Text
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+
+        super.viewWillAppear(animated)
+    }
+    
     
     func checkForSession(){
         
-        let user = UserDataSingleton.sharedInstance.loggedInUser
         
-        if  user != nil && user?.profile?.is_pin == "1" {
-            
-            self.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
-        } 
     }
     
     //MARK: - validate fields
@@ -82,7 +78,12 @@ extension LoginViewController {
         let value = Validate()
         switch value {
         case .success:
-            APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: MobileDevice.token.rawValue), completion: { (response) in
+            
+            guard let FCM = UserDefaults.standard.value(forKey: "FCM") as? String else {
+                return
+            }
+            
+            APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: FCM), completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, self, from: .login)
             })

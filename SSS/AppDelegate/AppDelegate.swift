@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                                name: .firInstanceIDTokenRefresh,
                                                object: nil)
         // [END add_token_refresh_observer]
-        
+        LocationManager.sharedInstance.setupLocationManger()
         
         
         return true
@@ -131,8 +131,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             print("InstanceID token: \(refreshedToken)")
             
+            
         }
-        
+
         // Connect to FCM since connection may have failed when attempted before having a token.
         connectToFcm()
     }
@@ -145,6 +146,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return
         }
         
+        UserDefaults.standard.set(FIRInstanceID.instanceID().token(), forKey: "FCM")
         // Disconnect previous FCM connection if it exists.
         FIRMessaging.messaging().disconnect()
         
