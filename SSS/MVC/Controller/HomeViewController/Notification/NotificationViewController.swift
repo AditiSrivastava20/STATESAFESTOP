@@ -96,9 +96,9 @@ class NotificationViewController: UIViewController {
     
     func btnDownloadAction(sender: UIButton) {
         
-        let url = arrayNotifications[sender.tag].media_content
-        
-        Download.shared.downloadMediaFrom(url: url)
+//        let url = arrayNotifications[sender.tag].media_content
+//        
+//        Download.shared.downloadMediaFrom(url: url)
         
     }
     

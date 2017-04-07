@@ -13,6 +13,9 @@ class NotificationTableViewCell: UITableViewCell {
     @IBOutlet weak var imageViewUser: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelSubTitle: UILabel!
+    @IBOutlet weak var btnGoToMaps: UIButton!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -33,9 +36,9 @@ class NotificationTableViewCell: UITableViewCell {
     
     func updateUI() {
         
-        labelTitle.text = /objNotification?.username + " " + /objNotification?.message
-        labelSubTitle.text = /objNotification?.created_at
-        imageViewUser.kf.setImage(with: URL(string: ""), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
+//        labelTitle.text = /objNotification?.username + " " + /objNotification?.message
+//        labelSubTitle.text = /objNotification?.created_at
+//        imageViewUser.kf.setImage(with: URL(string: ""), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
         
     }
 

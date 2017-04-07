@@ -46,6 +46,7 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
         let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.touchBegan (_:)))
         backgroundView.addGestureRecognizer(gesture)
         
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,6 +71,7 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: TextField)  {
         ISMessages.hideAlert(animated: true)
+        
         
         if textField == txtFullAddress {
             

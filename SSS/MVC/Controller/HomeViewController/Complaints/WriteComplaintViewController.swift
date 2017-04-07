@@ -16,13 +16,35 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate {
     @IBOutlet weak var tfTitle: TextField!
     @IBOutlet weak var txtDesc: SZTextView!
     @IBOutlet weak var btnAddFile: FlatButton!
+    @IBOutlet weak var btnAddComplaint: FlatButton!
     
     var media_id:String?
+    var ShowComplaintDescription = false
+    var complaint:Complaint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tfTitle?.placeHolderAtt()
-        tfTitle.becomeFirstResponder()
+        
+        if ShowComplaintDescription {
+            self.navigationItem.title = "Complaint Detail"
+            tfTitle.text = /complaint?.title
+            tfTitle.isEnabled = false
+            
+            txtDesc.text = /complaint?.complaintDescription
+            txtDesc.isEditable = false
+            
+            btnAddFile.setTitle(/complaint?.media_content, for: .normal)
+            btnAddFile.isEnabled = false
+            
+            btnAddComplaint.isHidden = true
+            
+        } else {
+            
+            tfTitle.becomeFirstResponder()
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

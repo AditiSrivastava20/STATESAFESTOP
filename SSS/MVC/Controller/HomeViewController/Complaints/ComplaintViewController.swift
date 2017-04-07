@@ -28,7 +28,11 @@ class ComplaintViewController: BaseViewController {
         arrayComplaints = []
         tableView?.estimatedRowHeight = 84
         setupTableView(tableView: tableView, cellId: "ComplaintTableViewCell", items: arrayComplaints)
+        tableView.delegate = self
+        
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -77,6 +81,26 @@ class ComplaintViewController: BaseViewController {
     }
     
 }
+
+
+extension ComplaintViewController: UITableViewDelegate {
+    
+    
+    //MARK: - Tableview delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let obj = arrayComplaints?[indexPath.row] else {return}
+        
+        let vc = StoryboardScene.Main.instantiateWriteComplaintViewController()
+        vc.ShowComplaintDescription = true
+        vc.complaint = obj
+        self.pushVC(vc)
+        
+    }
+    
+    
+}
+
 
 
 // MARK: - IndicatorInfoProvider

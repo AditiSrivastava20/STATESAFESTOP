@@ -8,12 +8,14 @@
 
 import UIKit
 import Material
+import Firebase
 import ISMessages
 import EZSwiftExtensions
 import NVActivityIndicatorView
 
 class LoginViewController: BaseViewController, NVActivityIndicatorViewable, TextFieldDelegate {
     
+    @IBOutlet weak var logoView: UIView!
     @IBOutlet weak var txtEmail: TextField!
     @IBOutlet weak var txtPassword: TextField!
     @IBOutlet weak var btnFacebook: Button!
@@ -22,23 +24,29 @@ class LoginViewController: BaseViewController, NVActivityIndicatorViewable, Text
     
     
     override func viewDidLoad() {
+        
+        
+        ez.runThisInMainThread {
+            self.checkForSession()
+        }
+        
         super.viewDidLoad()
-        checkForSession()
         
         txtEmail.placeHolderAtt()
         txtPassword.placeHolderAtt()
+        
 
     }
     
     
     func checkForSession(){
         
-            let user = UserDataSingleton.sharedInstance.loggedInUser
+        let user = UserDataSingleton.sharedInstance.loggedInUser
         
-            if  user != nil && user?.profile?.is_pin == "1" {
-                
-                self.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
-            }
+        if  user != nil && user?.profile?.is_pin == "1" {
+            
+            self.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
+        } 
     }
     
     //MARK: - validate fields

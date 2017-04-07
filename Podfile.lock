@@ -17,6 +17,24 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.19.0):
     - FBSDKCoreKit
+  - Firebase/Core (3.14.0):
+    - FirebaseAnalytics (= 3.7.0)
+    - FirebaseCore (= 3.5.1)
+  - Firebase/Messaging (3.14.0):
+    - Firebase/Core
+    - FirebaseMessaging (= 1.2.2)
+  - FirebaseAnalytics (3.7.0):
+    - FirebaseCore (~> 3.5)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.5.1):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.9)
+  - FirebaseMessaging (1.2.2):
+    - FirebaseAnalytics (~> 3.7)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
   - GoogleMaps (2.2.0):
     - GoogleMaps/Maps (= 2.2.0)
   - GoogleMaps/Base (2.2.0)
@@ -27,6 +45,11 @@ PODS:
     - GooglePlaces (= 2.2.0)
   - GooglePlaces (2.2.0):
     - GoogleMaps/Base (= 2.2.0)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/Logger (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - IQKeyboardManagerSwift (4.0.8)
   - ISMessages (1.2)
   - Kingfisher (3.5.0)
@@ -35,6 +58,7 @@ PODS:
     - Material/Core (= 2.5.0)
   - Material/Core (2.5.0)
   - NVActivityIndicatorView (3.5)
+  - Protobuf (3.2.0)
   - RMMapper (1.1.5)
   - SwiftyJSON (3.1.4)
   - SZTextView (1.2.2)
@@ -52,6 +76,8 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - Firebase/Core
+  - Firebase/Messaging
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
@@ -76,21 +102,28 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
   FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
   FBSDKShareKit: 5953758366278430dc322d5cdc906db361ed7f81
+  Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
+  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
+  FirebaseCore: 225d40532489835a034b8f4e2c9c87fbf4f615a2
+  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
+  FirebaseMessaging: df8267f378580a24174ce7861233aa11d5c90109
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
   GooglePlacePicker: 345b1aabd42c9d6d9bf2369c1bae1234d903e764
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
   ISMessages: d39098b48672813d69d30f44da06260b9920fed4
   Kingfisher: 7c62087039d93d26c54c8dd9b0b588d2ce55cef6
   M13Checkbox: c132a7e0eb964731855eff67b883a0b21b7c0977
   Material: 878cdefe31685a2b16352a6cfa8c5decc40f75c3
   NVActivityIndicatorView: e5252b082f93885f0bfc24c318719b4eaabcd37b
+  Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
   RMMapper: 21122d753c736d975f6c61e674afce8db73579af
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: d5170cae8fad9191bc6f68ff927f19462b02fc6a
+PODFILE CHECKSUM: 73ef7205d47d04394971233808461d3d87fd59c6
 
 COCOAPODS: 1.2.0

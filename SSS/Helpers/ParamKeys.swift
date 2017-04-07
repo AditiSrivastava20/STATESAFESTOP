@@ -46,5 +46,15 @@ enum ParamKeys: String {
     case is_payment_complete = "is_payment_complete"
     case username = "username"
     case message = "message"
+    case sender_name = "sender_name"
+    case sender_image = "sender_image"
+    case sender_id = "sender_id"
+    case loc_name = "loc_name"
+    case latitude = "latitude"
+    case longitude = "longitude"
+    case notification_message = "notification_message"
+    case notification_type = "notification_type"
+    
+    
     
 }

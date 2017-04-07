@@ -145,6 +145,16 @@ enum StoryboardScene {
         }
         return vc
     }
+    
+    case writeComplaintViewControllerScene = "WriteComplaintViewController"
+    static func instantiateWriteComplaintViewController() -> SSS.WriteComplaintViewController {
+        guard let vc = StoryboardScene.Main.writeComplaintViewControllerScene.viewController() as? SSS.WriteComplaintViewController
+            else {
+                fatalError("ViewController 'WriteComplaintViewController' is not of the expected class SSS.WriteComplaintViewController.")
+        }
+        return vc
+    }
+    
 
     case sideMenuViewControllerScene = "SideMenuViewController"
     static func instantiateSideMenuViewController() ->  SSS.SideMenuViewController {

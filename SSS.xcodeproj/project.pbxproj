@@ -141,6 +141,7 @@
 		1DE126F61E8BC9E500DBE5BA /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE126F51E8BC9E500DBE5BA /* Recording.swift */; };
 		1DE126F81E8BE76600DBE5BA /* Complaint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE126F71E8BE76600DBE5BA /* Complaint.swift */; };
 		1DEEE64E1E92170D00966D4C /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEEE64D1E92170D00966D4C /* ForgotPasswordViewController.swift */; };
+		1DFCBF4B1E9771B3007175B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DFCBF4A1E9771B3007175B5 /* GoogleService-Info.plist */; };
 		7F704FA8C94C9CC2CAC7FEC0 /* Pods_SSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F766C508ABD4F0DAAF6452C /* Pods_SSS.framework */; };
 /* End PBXBuildFile section */
 
@@ -287,6 +288,8 @@
 		1DE126F51E8BC9E500DBE5BA /* Recording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		1DE126F71E8BE76600DBE5BA /* Complaint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complaint.swift; sourceTree = "<group>"; };
 		1DEEE64D1E92170D00966D4C /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		1DFCBF4A1E9771B3007175B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1DFCBF4C1E97ADDC007175B5 /* SSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SSS.entitlements; sourceTree = "<group>"; };
 		2F766C508ABD4F0DAAF6452C /* Pods_SSS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SSS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C7908565C4A81C8BDDA6E4 /* Pods-SSS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SSS/Pods-SSS.release.xcconfig"; sourceTree = "<group>"; };
 		DD160A99A039F880F3E47172 /* Pods-SSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SSS/Pods-SSS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -373,6 +376,7 @@
 		1DE125A21E8BB95600DBE5BA /* SSS */ = {
 			isa = PBXGroup;
 			children = (
+				1DFCBF4C1E97ADDC007175B5 /* SSS.entitlements */,
 				1DE125A31E8BB95600DBE5BA /* API */,
 				1DE125AC1E8BB95600DBE5BA /* AppDelegate */,
 				1DE125AE1E8BB95600DBE5BA /* CommonFunctions */,
@@ -676,6 +680,7 @@
 		1DE126031E8BB95600DBE5BA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1DFCBF4A1E9771B3007175B5 /* GoogleService-Info.plist */,
 				1DE125C61E8BB95600DBE5BA /* Info.plist */,
 				1DE126041E8BB95600DBE5BA /* Assets.xcassets */,
 				1DE126051E8BB95600DBE5BA /* Fonts */,
@@ -936,6 +941,11 @@
 						DevelopmentTeam = 4W9H67AC5E;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -972,6 +982,7 @@
 				1DE126A51E8BB95600DBE5BA /* HelveticaNeue.dfont in Resources */,
 				1DE126C21E8BB95600DBE5BA /* Shader.vsh in Resources */,
 				1DE126901E8BB95600DBE5BA /* LaunchScreen.storyboard in Resources */,
+				1DFCBF4B1E9771B3007175B5 /* GoogleService-Info.plist in Resources */,
 				1DE126B21E8BB95600DBE5BA /* SF-UI-Text-HeavyItalic.otf in Resources */,
 				1DE126A01E8BB95600DBE5BA /* HelveticaNeue-LightItalic.otf in Resources */,
 				1DE126B71E8BB95600DBE5BA /* SF-UI-Text-Regular.otf in Resources */,
@@ -1307,6 +1318,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SSS/SSS.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4W9H67AC5E;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1339,6 +1351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SSS/SSS.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4W9H67AC5E;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -28,4 +28,6 @@ target 'SSS' do
   pod 'EPContactsPicker'
   pod 'SZTextView'
   pod 'RMMapper'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 end
