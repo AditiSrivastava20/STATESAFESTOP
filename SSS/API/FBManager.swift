@@ -95,25 +95,28 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
     //MARK: -  get facebook friends count
     func requestFriends(completion : @escaping (Int) -> ()) {
         //start loader
-        self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
         
         
-        FBSDKGraphRequest(graphPath: "/me/taggable_friends", parameters: ["fields": "id"]).start {(connection, result , error) -> Void in
-            
-            //Stop loader
-            self.stopAnimating()
-            
-            if error != nil {
-                print("failed to start graph request: \(error)")
-                return
-            }
-            
-            let resultdict = result as! NSDictionary
-            let friends = resultdict.object(forKey: "data") as! NSArray
-            //print("Found \(friends.count) friends")
-            
-            completion(friends.count)
-        }
+        completion(1)
+//        self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+//        
+//        
+//        FBSDKGraphRequest(graphPath: "/me/taggable_friends", parameters: ["fields": "id"]).start {(connection, result , error) -> Void in
+//            
+//            //Stop loader
+//            self.stopAnimating()
+//            
+//            if error != nil {
+//                print("failed to start graph request: \(error)")
+//                return
+//            }
+//            
+//            let resultdict = result as! NSDictionary
+//            let friends = resultdict.object(forKey: "data") as! NSArray
+//            //print("Found \(friends.count) friends")
+//            
+//            completion(friends.count)
+//        }
         
     }
     
@@ -130,7 +133,7 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
             }
         
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+//            Alerts.shared.show(alert: .oops, message: /str, type: .error)
             
             let vc = StoryboardScene.SignUp.instantiateEnterDetailsFirstViewController()
             vc.fbProfile = param

@@ -24,6 +24,7 @@ class SafeListViewController: BaseViewController {
     @IBOutlet weak var heightOfAddAndRemove: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnRemove: Button!
+    @IBOutlet weak var btnAdd: Button!
     @IBOutlet weak var btnDone: UIBarButtonItem!
     @IBOutlet weak var lblSafelist: UILabel!
     
@@ -39,7 +40,7 @@ class SafeListViewController: BaseViewController {
         super.viewDidLoad()
         
         
-        
+        btnAdd.isHidden = true
         lblSafelist.isHidden = true
         btnRemove.isHidden = true
         
@@ -105,6 +106,8 @@ class SafeListViewController: BaseViewController {
     
     //MARK: Handle response
     func handle(response: Response, check: Safeusers) {
+        
+        btnAdd.isHidden = false
         
         switch response{
         case .success(let responseValue):

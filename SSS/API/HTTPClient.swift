@@ -34,7 +34,7 @@ class HTTPClient {
             case .success(let data):
                 success(data)
             case .failure(let error):
-                failure(error.localizedDescription)
+                failure("Please check your internet connection")//failure(error.localizedDescription)
             }
         }
         
@@ -62,7 +62,7 @@ class HTTPClient {
             case .success(let data):
                 success(data)
             case .failure(let error):
-                failure(error.localizedDescription)
+                failure("Please check your internet connection")//failure(error.localizedDescription)
             }
         }
     }
@@ -86,7 +86,7 @@ class HTTPClient {
             case .success(let data):
                 success(data)
             case .failure(let error):
-                failure(error.localizedDescription)
+                failure("Please check your internet connection")//failure(error.localizedDescription)
             }
         }
     }
@@ -127,7 +127,7 @@ class HTTPClient {
                     case .success(let data):
                         success(data)
                     case .failure(let error):
-                        failure(error.localizedDescription)
+                        failure("Please check your internet connection")//failure(error.localizedDescription)
                     }
                 }
                 
@@ -181,7 +181,7 @@ class HTTPClient {
                     case .success(let data):
                         success(data)
                     case .failure(let error):
-                        failure(error.localizedDescription)
+                        failure("Please check your internet connection")//failure(error.localizedDescription)
                     }
                 }
                 

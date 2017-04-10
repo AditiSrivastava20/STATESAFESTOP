@@ -46,7 +46,10 @@ class RecordingTableViewCell: UITableViewCell {
             imageViewUser.backgroundColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)
             
         case .video:
-            imageViewUser.kf.setImage(with: URL(string: /objRecording?.thumbnail_url ))
+            
+            imageViewUser.image = Image.blankImage()
+            imageViewUser.backgroundColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)
+//            imageViewUser.kf.setImage(with: URL(string: /objRecording?.thumbnail_url ))
             
         case .none:
             imageViewUser.backgroundColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)

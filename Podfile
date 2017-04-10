@@ -31,5 +31,6 @@ target 'SSS' do
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'SwiftyStoreKit'
+  pod 'PermissionScope'
 
 end

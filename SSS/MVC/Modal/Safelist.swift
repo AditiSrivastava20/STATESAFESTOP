@@ -20,7 +20,7 @@ class Safelist: NSObject {
         super.init()
         
         id = .id => attributes
-        name = .name => attributes
+        name = .fullname => attributes
         image = .image => attributes
         unformatted_phone = .unformatted_phone => attributes
         

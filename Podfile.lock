@@ -58,6 +58,7 @@ PODS:
     - Material/Core (= 2.5.0)
   - Material/Core (2.5.0)
   - NVActivityIndicatorView (3.5)
+  - PermissionScope (1.1.1)
   - Protobuf (3.2.0)
   - RMMapper (1.1.5)
   - SwiftyJSON (3.1.4)
@@ -88,6 +89,7 @@ DEPENDENCIES:
   - M13Checkbox
   - Material (~> 2.0)
   - NVActivityIndicatorView
+  - PermissionScope
   - RMMapper
   - SwiftyJSON
   - SwiftyStoreKit
@@ -119,6 +121,7 @@ SPEC CHECKSUMS:
   M13Checkbox: c132a7e0eb964731855eff67b883a0b21b7c0977
   Material: 878cdefe31685a2b16352a6cfa8c5decc40f75c3
   NVActivityIndicatorView: e5252b082f93885f0bfc24c318719b4eaabcd37b
+  PermissionScope: a30c16e015779ba27c97c124e7539e27b5829de2
   Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
   RMMapper: 21122d753c736d975f6c61e674afce8db73579af
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
@@ -127,6 +130,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 203231348cd26625537b2382d7c9ebc653b78bf6
+PODFILE CHECKSUM: 835fc802fed5a66af379141249d8ea00a3871bb0
 
 COCOAPODS: 1.2.0

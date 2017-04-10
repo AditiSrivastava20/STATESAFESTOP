@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import ISMessages
+import EZSwiftExtensions
 
 typealias AlertBlock = (_ success: AlertTag) -> ()
 
@@ -25,6 +26,10 @@ class Alerts: NSObject {
     func show(alert title : Alert , message : String , type : ISAlertType){
         
         ISMessages.showCardAlert(withTitle: title.rawValue, message: message, duration: 0.01, hideOnSwipe: true, hideOnTap: true, alertType: type, alertPosition: .top, didHide: nil)
+        
+        ez.dispatchDelay(1.5, closure: {
+            ISMessages.hideAlert(animated: true)
+        })
     }
     
 }

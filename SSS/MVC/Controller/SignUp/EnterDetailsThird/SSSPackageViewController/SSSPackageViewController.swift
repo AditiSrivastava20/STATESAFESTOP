@@ -15,7 +15,10 @@ import SwiftyStoreKit
 import NVActivityIndicatorView
 import EZSwiftExtensions
 
-class SSSPackageViewController: BaseViewController, FBSDKAppInviteDialogDelegate, NVActivityIndicatorViewable {
+class SSSPackageViewController: BaseViewController, FBSDKGameRequestDialogDelegate , NVActivityIndicatorViewable {
+    //FBSDKGameRequestDialogDelegate
+
+    var totalInvitesSent = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +34,7 @@ class SSSPackageViewController: BaseViewController, FBSDKAppInviteDialogDelegate
     @IBAction func btnInAppPurchaseAction(_ sender: Any) {
         
         
-        let actionSheetController = UIAlertController(title: "Subscription", message: "Are you sure you want to subscribe to State safe stop for 99¢ ", preferredStyle: .alert)
+        let actionSheetController = UIAlertController(title: "Subscription", message: "Are you sure you want to subscribe to State safe stop for 99¢ ?", preferredStyle: .alert)
         
         let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
             print("Cancel")
@@ -57,8 +60,6 @@ class SSSPackageViewController: BaseViewController, FBSDKAppInviteDialogDelegate
         ez.dispatchDelay(3) {
             self.stopAnimating()
         }
-        
-        
         
         SwiftyStoreKit.purchaseProduct("statesafestop99", atomically: true) { result in
             switch result {
@@ -94,17 +95,12 @@ class SSSPackageViewController: BaseViewController, FBSDKAppInviteDialogDelegate
     @IBAction func btnAppInviteAction(_ sender: Any) {
         print("Invite button tapped")
         
-        FBManager.shared.login(self, check: .login , graphRequest: .me, completion: {(count) in
+        FBManager.shared.login(self, check: .login , graphRequest: .friends , completion: {(count) in
             
             let value = count as? Int
             
             self.appInviteAction()
             
-//            if value! < 10 {
-//                Alerts.shared.show(alert: .oops, message: Alert.friendsErr.rawValue, type: .error)
-//            } else {
-//                self.appInviteAction()
-//            }
         })
         
     }
@@ -113,45 +109,103 @@ class SSSPackageViewController: BaseViewController, FBSDKAppInviteDialogDelegate
     //MARK: Generate App invite dialog
     func appInviteAction() {
         
-        let inviteDialog:FBSDKAppInviteDialog = FBSDKAppInviteDialog()
+//        let inviteDialog:FBSDKAppInviteDialog = FBSDKAppInviteDialog()
+//        if(inviteDialog.canShow()){
+//            
+//            let appLinkUrl:NSURL = NSURL(string: FacebookInvite.app_link_url)!
+//            let previewImageUrl:NSURL = NSURL(string: FacebookInvite.image_url)!
+//            
+//            let inviteContent:FBSDKAppInviteContent = FBSDKAppInviteContent()
+//            inviteContent.appLinkURL = appLinkUrl as URL!
+//            inviteContent.appInvitePreviewImageURL = previewImageUrl as URL!
+//            
+//            inviteDialog.content = inviteContent
+//            inviteDialog.delegate = self
+//            inviteDialog.show()
+//        }
+        
+        let inviteDialog:FBSDKGameRequestDialog = FBSDKGameRequestDialog()
         if(inviteDialog.canShow()){
             
             let appLinkUrl:NSURL = NSURL(string: FacebookInvite.app_link_url)!
             let previewImageUrl:NSURL = NSURL(string: FacebookInvite.image_url)!
             
-            let inviteContent:FBSDKAppInviteContent = FBSDKAppInviteContent()
-            inviteContent.appLinkURL = appLinkUrl as URL!
-            inviteContent.appInvitePreviewImageURL = previewImageUrl as URL!
+            let inviteContent:FBSDKGameRequestContent = FBSDKGameRequestContent()
+            inviteContent.message = "SSS App"
+            inviteContent.data = "State Safe Stop"
+            inviteContent.title = "State Safe Stop"
             
+            inviteContent.actionType = .none
             inviteDialog.content = inviteContent
+            
             inviteDialog.delegate = self
             inviteDialog.show()
         }
+        
+        
+        
     }
     
-    //MARK: - Facebook app invite delegate
-    public func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [AnyHashable : Any]!) {
-        guard let _ = results else {
-            return
-        }
-        
+//    //MARK: - Facebook app invite delegate
+//    public func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [AnyHashable : Any]!) {
+//        guard let _ = results else {
+//            return
+//        }
+//        
+//        let resultObject = NSDictionary(dictionary: results)
+//        
+//        if let didCancel = resultObject.value(forKey: "completionGesture")
+//        {
+//            if (didCancel as AnyObject).caseInsensitiveCompare("Cancel") == ComparisonResult.orderedSame
+//            {
+//                print("User Canceled invitation dialog")
+//            }
+//        } else {
+//            print("invite sent")
+//           self.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
+//        }
+//    }
+//    
+//    
+//    func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: Error!) {
+//        print("Error tool place in appInviteDialog \(error)")
+//    }
+    
+    
+
+    public func gameRequestDialog(_ gameRequestDialog: FBSDKGameRequestDialog!, didCompleteWithResults results: [AnyHashable : Any]!) {
         let resultObject = NSDictionary(dictionary: results)
         
-        if let didCancel = resultObject.value(forKey: "completionGesture")
-        {
-            if (didCancel as AnyObject).caseInsensitiveCompare("Cancel") == ComparisonResult.orderedSame
-            {
-                print("User Canceled invitation dialog")
+        print(resultObject)
+        
+        if let invites = resultObject.value(forKey: "to") {
+            print((invites as AnyObject).count)
+            self.totalInvitesSent = (invites as AnyObject).count
+            
+            if self.totalInvitesSent >= 10 {
+                self.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
+            } else {
+                
+                Alerts.shared.show(alert: .error, message: "\(10 - self.totalInvitesSent) \(Alert.invitesRequired.rawValue)", type: .error)
+                
             }
-        } else {
-            print("invite sent")
-           self.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
         }
     }
     
-    
-    func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: Error!) {
-        print("Error tool place in appInviteDialog \(error)")
+
+    public func gameRequestDialog(_ gameRequestDialog: FBSDKGameRequestDialog!, didFailWithError error: Error!) {
+        
+        print(error.localizedDescription)
+        
     }
+    
+
+    public func gameRequestDialogDidCancel(_ gameRequestDialog: FBSDKGameRequestDialog!) {
+        
+        print("canceled")
+        
+    }
+    
+    
 
 }

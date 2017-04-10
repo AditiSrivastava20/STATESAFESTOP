@@ -112,7 +112,7 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate, NVAct
     @IBAction func btnAddComplaintAction(_ sender: Any) {
         
         ISMessages.hideAlert(animated: true)
-        startAnimating()
+        startAnimating(type: .ballClipRotate , color: colors.loaderColor.color())
         UIApplication.shared.beginIgnoringInteractionEvents()
         
         

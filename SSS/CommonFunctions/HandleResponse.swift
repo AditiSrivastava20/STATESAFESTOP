@@ -58,6 +58,7 @@ class HandleResponse {
             
         case .failure(let str):
             Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            
         }
         
     }

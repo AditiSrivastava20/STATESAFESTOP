@@ -60,17 +60,18 @@ enum userPrefrences : String{
 
 enum Alert : String{
     case success = "Success"
-    case oops = "Oops Something went wrong !"
+    case oops = ""
     case login = "Login Successfull"
     case signup = "Sign Up Successfull"
     case ok = "Ok"
     case cancel = "Cancel"
-    case error = "Error"
+    case error = " "
     case incorrectPin = "Incorrect Pin"
     case logout = "Logged out"
     case friendsErr = "Number of friends less than 10"
     case shared = "Shared successfully"
     case tokenExp = "Token expired"
+    case invitesRequired = "more Invites were Required"
 }
 
 enum MobileDevice: String {

@@ -12,6 +12,7 @@ import AVFoundation
 import EZSwiftExtensions
 import ISMessages
 import NVActivityIndicatorView
+import PermissionScope
 
 
 class CameraViewController: RecorderViewController, NVActivityIndicatorViewable {
@@ -31,6 +32,7 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     @IBOutlet weak var btnVideo: UIButton!
     @IBOutlet weak var imgMic: UIImageView!
     
+//    let pscope = PermissionScope()
 
     let maxCaptureDuration = 60.0
     var paths = [String]()
@@ -56,7 +58,11 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
         setupCamera()
         
         // Do any additional setup after loading the view.
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        statusLabel?.text = "0:00"
+        self.endVideoRecording()
     }
     
   
@@ -69,16 +75,17 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     @IBAction func actionBtnLocation(_ sender: Any) {
         ISMessages.hideAlert(animated: true)
         
-//        startAnimating()
         
         guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
             return
         }
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        
    
         LocationManager.sharedInstance.startTrackingUser { (lat, lng, locationName) in
+            
+            UIApplication.shared.beginIgnoringInteractionEvents()
 
-            APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: login.access_token, locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: login.profile?.access_token, locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { (response) in
                 
                 self.handle(response: response)
             })
@@ -106,6 +113,9 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     @IBAction func actionBtnAudio(_ sender: Any) {
         ISMessages.hideAlert(animated: true)
         
+        self.endVideoRecording()
+        
+        viewCamera.isHidden = true
         imgMic.isHidden = false
         isPalyerStopByUser = false
         btnVideo.backgroundColor = UIColor.black
@@ -126,6 +136,7 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     @IBAction func actionBtnVideo(_ sender: Any) {
         ISMessages.hideAlert(animated: true)
         
+        viewCamera.isHidden = false
         imgMic.isHidden = true
         btnVideo.backgroundColor = colors.appColor.color()
         btnAudio.backgroundColor = UIColor.black
@@ -139,36 +150,64 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     }
    
     
+    override func appMovedToBackground() {
+        
+        if recordButton.isSelected {
+            statusLabel?.text = "0:00"
+            self.endVideoRecording()
+        }
+        
+    }
+    
+    
+    func endVideoRecording() {
+        UIApplication.shared.isIdleTimerDisabled = false
+        statusLabel?.text = "0:00"
+        recordButton.tintColor = UIColor(red:1.0, green:1.0, blue:1.0, alpha:1.0)
+        
+        progressView.updateProgress(0.0)
+        vision.endVideoCapture()
+        recordButton.isSelected = false
+        
+    }
     
   
     
     @IBAction func actionBtnRecord(_ sender: UIButton) {
         ISMessages.hideAlert(animated: true)
         
-     
-        if sender.isSelected {
-             progressView.updateProgress(0.0)
-           vision.endVideoCapture()
-            sender.isSelected = false
-            statusLabel?.text = "00:00"
-        }
-        else{
-            // start video
-          
-            sender.isSelected = true
-            vision.startVideoCapture()
-           
-            progressView.updateProgress(1.0, animated: true, initialDelay: 0, duration: maxCaptureDuration, completion: {
+        switch PermissionScope().statusCamera() {
+        case .authorized:
+            
+            if sender.isSelected {
                 
-               if sender.isSelected == true {
+                btnAudio.isEnabled = true
+                self.endVideoRecording()
                 
-                    self.vision.endVideoCapture()
-                }
+            }
+            else{
+                // start video
+                sender.isSelected = true
+                btnAudio.isEnabled = false
+                vision.startVideoCapture()
+                recordButton.tintColor = UIColor(red:0.61, green:0.00, blue:0.00, alpha:1.0)
+                UIApplication.shared.isIdleTimerDisabled = true
+                
+                progressView.updateProgress(1.0, animated: true, initialDelay: 0, duration: maxCaptureDuration, completion: {
+                    
+                    if sender.isSelected == true {
+                        
+                        self.vision.endVideoCapture()
+                    }
+                    
+                })
+            }
 
-              
-            })
+            
+        default:
+            Alerts.shared.show(alert: .error, message: "Permission requied for camera", type: .error)
+            return
         }
-        
         
     }
     
@@ -270,7 +309,7 @@ extension CameraViewController : PBJVisionDelegate {
         if vision.capturedVideoSeconds >= maxCaptureDuration - 1 {
     
              progressView.updateProgress(0.0)
-            statusLabel?.text = "00:00"
+            statusLabel?.text = "0:00"
             vision.endVideoCapture()
         }
     }
@@ -282,7 +321,7 @@ extension CameraViewController : PBJVisionDelegate {
         
         
         if !isPalyerStopByUser {
-            statusLabel?.text = "00:00"
+            statusLabel?.text = "0:00"
             return
         }
 

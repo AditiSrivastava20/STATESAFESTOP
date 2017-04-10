@@ -24,6 +24,7 @@ class SplashViewController: UIViewController {
             
         }
         
+        
 
     }
 
@@ -31,9 +32,6 @@ class SplashViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func validateToken(_ login: User?) -> Bool {
-        return true
-    }
     
 
 }

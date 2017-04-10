@@ -14,6 +14,7 @@ class NotificationTableViewCell: UITableViewCell {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelSubTitle: UILabel!
     @IBOutlet weak var btnGoToMaps: UIButton!
+    @IBOutlet weak var btnGoToMapsHeight: NSLayoutConstraint!
     
     
     override func awakeFromNib() {
@@ -39,6 +40,7 @@ class NotificationTableViewCell: UITableViewCell {
         labelTitle.text = /objNotification?.notification_message
         labelSubTitle.text = /objNotification?.created_at
         imageViewUser.kf.setImage(with: URL(string: /objNotification?.sender_image), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
+        
         
     }
 

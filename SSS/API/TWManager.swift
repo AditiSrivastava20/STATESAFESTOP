@@ -100,7 +100,7 @@ class TWManager: UIViewController, NVActivityIndicatorViewable {
             
         case .failure(let str):
             
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+//            Alerts.shared.show(alert: .oops, message: /str, type: .error)
             
             let vc = StoryboardScene.SignUp.instantiateEnterDetailsFirstViewController()
             vc.isFromTwitter = true

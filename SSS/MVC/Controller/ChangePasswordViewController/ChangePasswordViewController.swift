@@ -9,6 +9,8 @@
 import UIKit
 import Material
 import ISMessages
+import EZSwiftExtensions
+
 
 class ChangePasswordViewController: UIViewController, TextFieldDelegate {
     
@@ -68,6 +70,8 @@ class ChangePasswordViewController: UIViewController, TextFieldDelegate {
                 
                 print(value.msg ?? "")
                 Alerts.shared.show(alert: .success, message: /value.msg, type: .success)
+
+                
             }
             popVC()
             

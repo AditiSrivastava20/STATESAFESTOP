@@ -9,21 +9,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>852976061471-slp25a1s8gjshsle1n99uvpvohp9shrq.apps.googleusercontent.com</string>
+	<string>1035120755847-27cjbvd8lrgh393htdnk3t65kajrpntm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.852976061471-slp25a1s8gjshsle1n99uvpvohp9shrq</string>
+	<string>com.googleusercontent.apps.1035120755847-27cjbvd8lrgh393htdnk3t65kajrpntm</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBeYfbDZjyzqw_Pen4NFhD3Iu8BDZcZa7Q</string>
+	<string>AIzaSyCn5Gc4BSl4eJAoZeOV7JjAqQu50EpIcAo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>852976061471</string>
+	<string>1035120755847</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.statesafestop</string>
 	<key>PROJECT_ID</key>
-	<string>statesafestop-1490269892250</string>
+	<string>state-safe-stop-470ea</string>
 	<key>STORAGE_BUCKET</key>
-	<string>statesafestop-1490269892250.appspot.com</string>
+	<string>state-safe-stop-470ea.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -35,8 +35,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:852976061471:ios:5c9ffda0408e9fdd</string>
+	<string>1:1035120755847:ios:5c9ffda0408e9fdd</string>
 	<key>DATABASE_URL</key>
-	<string>https://statesafestop-1490269892250.firebaseio.com</string>
+	<string>https://state-safe-stop-470ea.firebaseio.com</string>
 </dict>
 </plist>

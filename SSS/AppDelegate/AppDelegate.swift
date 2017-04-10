@@ -82,8 +82,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // [END add_token_refresh_observer]
         LocationManager.sharedInstance.setupLocationManger()
         
+        checkForSession()
+        
         
         return true
+    }
+    
+    func checkForSession() {
+        
+        if UserDataSingleton.sharedInstance.loggedInUser != nil {
+            
+            UIApplication.shared.keyWindow?.rootViewController = StoryboardScene.Main.initialViewController()
+        }
+        
+        
+        
     }
     
     

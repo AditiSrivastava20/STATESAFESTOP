@@ -13,6 +13,7 @@ import EZSwiftExtensions
 import Photos
 import NVActivityIndicatorView
 import ISMessages
+import Kingfisher
 
 
 
@@ -37,8 +38,10 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
     var isFromMediaSelection = false
     var itemInfo = IndicatorInfo(title: "RECORDING")
     var selectedMediaId:String = ""
-    var arrayRecording:[Recording]?
+    var arrayRecording:[Recording] = []
     var askForPin = true
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +56,8 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
 
     }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         //Loader
         if isFromMediaSelection {
@@ -62,6 +67,34 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
         }
 
         getRecordings()
+    }
+    
+    
+    //MARK: - Tap on name
+    func tappedOnName(_ sender: UITapGestureRecognizer) {
+        
+        print("select")
+        
+        if let lbl = sender.view as? UILabel {
+            
+            print(lbl.tag)
+            selectMediaFromRecordings(index: lbl.tag)
+        }
+    }
+    
+    //MARK: - Tap on image
+    func tappedOnImage(_ sender: UITapGestureRecognizer) {
+        print("play")
+        
+        if let img = sender.view as? UIImageView {
+            
+            print(img.tag)
+            guard let urlMedia = arrayRecording[img.tag].media_content else {return}
+            playMedia(urlMedia: urlMedia)
+            
+        }
+        
+
     }
     
     
@@ -90,10 +123,10 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
         switch check {
             
         case .populate:
-            arrayRecording = array
+            arrayRecording = array!
             self.setupTableview()
             
-            lblNoRecordings.isHidden = arrayRecording?.count != 0
+            lblNoRecordings.isHidden = arrayRecording.count != 0
             
         case .share:
             Alerts.shared.show(alert: .success, message: /Alert.shared.rawValue , type: .success)
@@ -147,8 +180,6 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
     //MARK: - hit get recording list api
     func getRecordings() {
         
-        arrayRecording = []
-        
         //Api
         APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: login?.profile?.access_token), completion: {
             (response) in
@@ -158,12 +189,30 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
         })
     }
     
+    //MARK: - Play media from URL
+    func playMedia(urlMedia: String?) {
+        
+        let videoURL = URL(string: urlMedia!)
+        let player = AVPlayer(url: videoURL!)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        ez.runThisInMainThread {
+            
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+            }
+        }
+        
+    }
+    
    
 }
 
+
+//MARK: Action sheet
 extension RecordingViewController: UIActionSheetDelegate {
     
-    //MARK: Action sheet
+    
     func btnActionSheetAction(sender : UIButton) {
         ISMessages.hideAlert(animated: true)
         
@@ -174,39 +223,70 @@ extension RecordingViewController: UIActionSheetDelegate {
         }
         actionSheetController.addAction(cancelActionButton)
         
-        if isFromMediaSelection {
-            
-            let selectActionButton = UIAlertAction(title: "Select", style: .default) { action -> Void in
-                print("Share")
-                self.selectMediaFromRecordings(index: sender.tag)
-            }
-            actionSheetController.addAction(selectActionButton)
-
-        } else {
-            
-            let shareActionButton = UIAlertAction(title: "Share", style: .default) { action -> Void in
-                print("Share")
-                self.shareMediaFromRecordings(media_id: self.arrayRecording?[sender.tag].id)
-            }
-            actionSheetController.addAction(shareActionButton)
-            
-            let saveActionButton = UIAlertAction(title: "Save", style: .default) { action -> Void in
-                print("Save")
-                self.downloadVideoFrom(url: self.arrayRecording?[sender.tag].media_content)
-            }
-            actionSheetController.addAction(saveActionButton)
-            
+        
+        let shareActionButton = UIAlertAction(title: "Share", style: .default) { action -> Void in
+            print("Share")
+            self.shareMediaFromRecordings(media_id: self.arrayRecording[sender.tag].id)
         }
+        actionSheetController.addAction(shareActionButton)
+            
+        let shareViaActionButton = UIAlertAction(title: "Share via..", style: .default) { action -> Void in
+            print("Share")
+            self.shareMediaFromRecordingsVia(media: self.arrayRecording[sender.tag])
+        }
+        actionSheetController.addAction(shareViaActionButton)
+            
+        let saveActionButton = UIAlertAction(title: "Save", style: .default) { action -> Void in
+            print("Save")
+            self.downloadVideoFrom(url: self.arrayRecording[sender.tag].media_content)
+        }
+        actionSheetController.addAction(saveActionButton)
+        
         
         self.present(actionSheetController, animated: true, completion: nil)
         
     }
     
     
+    //MARK: - share via social media
+    func shareMediaFromRecordingsVia(media: Recording?) {
+        
+        let firstActivityItem = "Share media "
+        let secondActivityItem : NSURL = NSURL(string: /media?.media_content )!
+        // If you want to put an image
+        
+        var image:UIImageView?
+        image?.image = Image.blankImage()
+        
+        image?.kf.setImage(with: URL(string: /media?.media_content), placeholder: Image.blankImage(), options: nil, progressBlock: nil, completionHandler: nil)
+        
+        
+        let activityViewController : UIActivityViewController = UIActivityViewController(
+            activityItems: [firstActivityItem, secondActivityItem, image?.image], applicationActivities: nil)
+        
+        
+        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+        
+        
+        // Anything you want to exclude
+        activityViewController.excludedActivityTypes = [
+            UIActivityType.print,
+            UIActivityType.assignToContact,
+            UIActivityType.saveToCameraRoll,
+            UIActivityType.addToReadingList,
+
+        ]
+        
+        self.present(activityViewController, animated: true, completion: nil)
+        
+    }
+    
+    
+    
     //MARK: - Select media for complaint
     func selectMediaFromRecordings(index: Int) {
         
-        delegateMedia?.getMedia(id: self.arrayRecording?[index].id , name : arrayRecording?[index].media_content)
+        delegateMedia?.getMedia(id: self.arrayRecording[index].id , name : arrayRecording[index].media_content)
         popVC()
         
     }
@@ -260,7 +340,6 @@ extension RecordingViewController : contactListner {
 
 
 
-
 extension RecordingViewController : UITableViewDelegate{
     
     //MARK: - Tableview datasource
@@ -270,8 +349,21 @@ extension RecordingViewController : UITableViewDelegate{
         dataSource = TableViewDataSource(items:items , height: UITableViewAutomaticDimension , tableView: tableView, cellIdentifier:cellId , configureCellBlock: { (cell, item, indexPath) in
             
             (cell as? RecordingTableViewCell)?.objRecording = item as? Recording
+            (cell as? RecordingTableViewCell)?.labelName.tag = ((indexPath as? IndexPath)?.row ?? 0 )
+            (cell as? RecordingTableViewCell)?.imageViewUser.tag = ((indexPath as? IndexPath)?.row ?? 0 )
             (cell as? RecordingTableViewCell)?.btnActionSheet.tag = ((indexPath as? IndexPath)?.row ?? 0 )
             (cell as? RecordingTableViewCell)?.btnActionSheet.addTarget(self, action: #selector(self.btnActionSheetAction), for: .touchUpInside)
+            (cell as? RecordingTableViewCell)?.btnActionSheet.isHidden = self.isFromMediaSelection
+            
+            if self.isFromMediaSelection {
+                
+                let tapToPlay = UITapGestureRecognizer(target: self, action:  #selector(self.tappedOnImage(_:)))
+                let tapToSelect = UITapGestureRecognizer(target: self, action: #selector(self.tappedOnName(_:)))
+                
+                (cell as? RecordingTableViewCell)?.labelName.addGestureRecognizer(tapToSelect)
+                (cell as? RecordingTableViewCell)?.imageViewUser.addGestureRecognizer(tapToPlay)
+                
+            }
             
             
         }, aRowSelectedListener: { (indexPath) in
@@ -290,19 +382,15 @@ extension RecordingViewController : UITableViewDelegate{
     //MARK: - Tableview delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let urlMedia = arrayRecording?[indexPath.row].media_content else {return}
-        
-        let videoURL = URL(string: urlMedia)
-        let player = AVPlayer(url: videoURL!)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        ez.runThisInMainThread {
+        if !isFromMediaSelection {
             
-            self.present(playerViewController, animated: true) {
-                playerViewController.player!.play()
-            }
+            guard let urlMedia = arrayRecording[indexPath.row].media_content else {return}
+            
+            self.playMedia(urlMedia: urlMedia)
         }
+        
     }
+    
 }
 
 

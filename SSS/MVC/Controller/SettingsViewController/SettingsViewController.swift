@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EZSwiftExtensions
 
 class SettingsViewController: BaseViewController {
 
@@ -65,7 +66,12 @@ class SettingsViewController: BaseViewController {
         }
         
         if (pin?.isEqual(/login.profile?.pin_password))! {
-            performSegue(withIdentifier: segue.settingsToResetPin.rawValue, sender: self)
+            
+            ez.dispatchDelay(0.5, closure: {
+                self.performSegue(withIdentifier: segue.settingsToResetPin.rawValue, sender: nil)
+            })
+            
+            
         } else {
             Alerts.shared.show(alert: .error, message: "Invalid Pin", type: .error)
         }

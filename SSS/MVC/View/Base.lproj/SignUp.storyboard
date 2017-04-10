@@ -24,12 +24,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="SUb-Gg-M4W" kind="relationship" relationship="rootViewController" id="ObW-9j-Fp2"/>
+                        <segue destination="SUb-Gg-M4W" kind="relationship" relationship="rootViewController" id="k24-rr-n9H"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N4a-B3-JKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2494" y="10"/>
+            <point key="canvasLocation" x="-2873" y="-20"/>
         </scene>
         <!--Enter Details First View Controller-->
         <scene sceneID="X8F-Fs-yzk">
@@ -833,7 +833,7 @@
                                     <action selector="btnAppInviteAction:" destination="QEv-by-JJk" eventType="touchUpInside" id="MLq-kp-PbE"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You wanna pay ¢99 per month?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgf-YG-p0q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You wanna pay one time subscription fee of ¢99 ?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgf-YG-p0q">
                                 <rect key="frame" x="48" y="178.5" width="224" height="37.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.38431372549019605" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -849,7 +849,7 @@
                                 <rect key="frame" x="20" y="84" width="280" height="94.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_money" translatesAutoresizingMaskIntoConstraints="NO" id="RCT-tD-8zD">
-                                        <rect key="frame" x="112" y="19.5" width="56" height="56"/>
+                                        <rect key="frame" x="112" y="20" width="56" height="56"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -946,12 +946,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="4IQ-Qj-JNz"/>
                     <connections>
-                        <segue destination="nvS-TA-c1e" kind="show" identifier="" id="BLI-RJ-EmL"/>
+                        <segue destination="nvS-TA-c1e" kind="show" id="Xhx-mB-a4A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rRm-xV-xEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1748" y="10"/>
+            <point key="canvasLocation" x="-1946" y="-20"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WVi-er-nqH">

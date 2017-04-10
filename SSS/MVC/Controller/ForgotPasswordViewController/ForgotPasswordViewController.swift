@@ -35,7 +35,7 @@ class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
     func validate() -> Bool {
         
         if txtEmail.isEmpty {
-            Alerts.shared.show(alert: .oops, message: "Enter email", type: .info)
+            Alerts.shared.show(alert: .oops, message: "Enter email", type: .error)
             return false
         } else {
             return true

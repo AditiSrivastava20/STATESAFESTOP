@@ -78,7 +78,7 @@ class BaseViewController: UIViewController, UIApplicationDelegate {
             
             var address = ""
             
-            if "\(place.name)".isEqual("\(place.coordinate)") {
+            if "\(place.name)".lowercased().range(of:"\(place.coordinate.latitude)") != nil {
                 completion(address)
             } else {
                 address = "\(place.name)"

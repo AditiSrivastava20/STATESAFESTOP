@@ -3,6 +3,7 @@
 
 import UIKit
 import AVFoundation
+import PermissionScope
 
 class RecorderViewController: UIViewController {
     
@@ -30,6 +31,9 @@ class RecorderViewController: UIViewController {
         setSessionPlayback()
         askForNotifications()
         checkHeadphones()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: NSNotification.Name.UIApplicationDidEnterBackground , object: nil)
+        
     }
     
     func updateAudioMeter(_ timer:Timer) {
@@ -54,6 +58,13 @@ class RecorderViewController: UIViewController {
         player = nil
     }
     
+    func appMovedToBackground() {
+        
+        self.stop(stopButton)
+        
+    }
+    
+    
     @IBAction func removeAll(_ sender: AnyObject) {
         deleteAllRecordings()
     }
@@ -75,14 +86,29 @@ class RecorderViewController: UIViewController {
         }
         
        else if recorder.isRecording == false {
-            print("recording")
-            setButtonBackground()
-            recordBtn.backgroundColor = colors.appColor.color()
-            playButton.isUserInteractionEnabled = true
-            stopButton.isUserInteractionEnabled = true
             
-             recorder.record()
-            recordWithPermission(false)
+            switch PermissionScope().statusMicrophone() {
+                
+            case .authorized:
+                
+                UIApplication.shared.isIdleTimerDisabled = true
+                
+                print("recording")
+                setButtonBackground()
+                recordBtn.backgroundColor = colors.appColor.color()
+                playButton.isUserInteractionEnabled = true
+                stopButton.isUserInteractionEnabled = true
+                
+                recorder.record()
+                recordWithPermission(false)
+                
+            default:
+                
+                Alerts.shared.show(alert: .error, message: "Microphone permission required", type: .error)
+                return
+                
+            }
+            
         }
     }
     
@@ -111,6 +137,8 @@ class RecorderViewController: UIViewController {
     
     @IBAction func stop(_ sender: UIButton) {
         print("stop")
+        
+        UIApplication.shared.isIdleTimerDisabled = false
         
         setButtonBackground()
         playButton.backgroundColor = colors.appColor.color()
@@ -554,6 +582,8 @@ extension RecorderViewController : AVAudioRecorderDelegate {
     //MARK: recodrding done
     func recordingDone(recordedUrl : URL?, thumb: UIImage?){
         
+        UIApplication.shared.isIdleTimerDisabled = false
+        
         if let recordedDataUrl = recordedUrl {
             do {
                 let mediaData = try Data(contentsOf: recordedDataUrl as URL)
@@ -572,7 +602,7 @@ extension RecorderViewController : AVAudioRecorderDelegate {
             if let value = responseValue as? User{
                 
                 print(value.msg ?? "")
-                Alerts.shared.show(alert: .success, message: "Success", type: .success)
+                Alerts.shared.show(alert: .success, message: /value.msg, type: .success)
             }
             
         case .failure(let str):
@@ -600,7 +630,7 @@ extension RecorderViewController : AVAudioRecorderDelegate {
     func resetTimer(){
         
          meterTimer?.invalidate()
-          statusLabel?.text = "00:00"
+          statusLabel?.text = "0:00"
         
     }
     

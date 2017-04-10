@@ -47,7 +47,7 @@ class Validation: NSObject {
     func validate(signup fullname: String?, email: String?, password: String?, confirmPasswd: String?, fulladdress: String?, phoneNo: String?, facebookID: String?, twitterID: String?) -> Valid {
         
         if !isValidName((/fullname)) {
-            return errorMsg(str: "Enter fullname")
+            return errorMsg(str: "Enter a valid fullname")
         }
         
         if (/email).isEmpty {

@@ -9,6 +9,9 @@
 import UIKit
 import SwiftyJSON
 import MapKit
+import AVKit
+import EZSwiftExtensions
+
 
 class NotificationViewController: UIViewController {
 
@@ -23,7 +26,7 @@ class NotificationViewController: UIViewController {
         didSet{
             
          tableView?.dataSource = dataSource
-         tableView?.delegate = dataSource
+         tableView?.delegate = self
             
         }
     }
@@ -73,6 +76,7 @@ class NotificationViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        
         sideMenuController()?.sideMenu?.allowRightSwipe = true
         sideMenuController()?.sideMenu?.allowPanGesture = true
     }
@@ -128,7 +132,7 @@ class NotificationViewController: UIViewController {
     
 }
 
-extension NotificationViewController {
+extension NotificationViewController: UITableViewDelegate {
     
     func setupTableView(tableView : UITableView? , items : [Any]?){
         
@@ -146,11 +150,23 @@ extension NotificationViewController {
             default:
                 (cell as? NotificationTableViewCell)?.objNotification = item as! NotificationData?
                 (cell as? NotificationTableViewCell)?.btnGoToMaps.tag = ((indexPath as? IndexPath)?.row ?? 0 )
-                (cell as? NotificationTableViewCell)?.btnGoToMaps.addTarget(self, action: #selector(self.openMaps), for: .touchUpInside)
+                
+                let type = self.arrayNotifications[((indexPath as? IndexPath)?.row ?? 0 )].notification_type
+                
+                if type == "3" {
+                    (cell as? NotificationTableViewCell)?.btnGoToMapsHeight.constant = 0
+                    (cell as? NotificationTableViewCell)?.btnGoToMaps.isHidden = true
+                    
+                } else {
+                    (cell as? NotificationTableViewCell)?.btnGoToMaps.addTarget(self, action: #selector(self.openMaps), for: .touchUpInside)
+                }
+                
+                
                 
             }
             
         }, aRowSelectedListener: { (indexPath) in
+            
             
         }, DidScrollListener: { (scrollView) in
             
@@ -158,5 +174,31 @@ extension NotificationViewController {
         })
         
     }
+    
+    //MARK: - Tableview delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if arrayNotifications[indexPath.row].notification_type == "2" {
+            
+            guard let urlMedia = arrayNotifications[indexPath.row].media_content else {return}
+            
+            let videoURL = URL(string: urlMedia)
+            let player = AVPlayer(url: videoURL!)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            ez.runThisInMainThread {
+                
+                self.present(playerViewController, animated: true) {
+                    playerViewController.player!.play()
+                }
+            }
+            
+            
+        }
+        
+        
+        
+    }
+    
     
 }
