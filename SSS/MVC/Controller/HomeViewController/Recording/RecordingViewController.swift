@@ -42,9 +42,22 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
     var askForPin = true
     
     
+    let viewTemp = UIView(frame: UIScreen.main.bounds)
+    
+    var loader : NVActivityIndicatorView?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let keyWindow = UIApplication.shared.keyWindow else { return }
+        
+        loader = NVActivityIndicatorView(frame: CGRect(x: view.center.x-22, y: view.center.y-22, w: 44, h: 44) , type: .ballClipRotate, color: colors.loaderColor.color() , padding: nil)
+        
+        viewTemp.addSubview(loader!)
+        keyWindow.addSubview(viewTemp)
+        viewTemp.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        viewTemp.isHidden = true
         
         lblNoRecordings.isHidden = true
         
@@ -64,9 +77,10 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
     
     override func viewWillAppear(_ animated: Bool) {
         //Loader
-//        if isFromMediaSelection {
-//            self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: 0, minimumDisplayTime: nil)
-//        }
+        if isFromMediaSelection {
+            loader?.startAnimating()
+            viewTemp.isHidden = false
+        }
 
         getRecordings()
     }
@@ -196,10 +210,13 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
     func getRecordings() {
         
         //Api
-        APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: login?.profile?.access_token), completion: {
+        APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: login?.profile?.access_token), completion: { [weak self]
             (response) in
             
-            self.handle(response: response, check: .populate)
+            self?.loader?.stopAnimating()
+            self?.viewTemp.isHidden = true
+            
+            self?.handle(response: response, check: .populate)
             
         })
     }

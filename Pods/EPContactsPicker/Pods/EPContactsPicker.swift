@@ -153,9 +153,9 @@ open class EPContactsPicker: UITableViewController, UISearchResultsUpdating, UIS
             case CNAuthorizationStatus.denied, CNAuthorizationStatus.restricted:
                 //User has denied the current app to access the contacts.
                 
-                let productName = Bundle.main.infoDictionary!["CFBundleName"]!
+                let productName = Bundle.main.infoDictionary?["CFBundleName"]
                 
-                let alert = UIAlertController(title: "Unable to access contacts", message: "\(productName) does not have access to contacts. Kindly enable it in privacy settings ", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "Unable to access contacts", message: "\(String(describing: productName)) does not have access to contacts. Kindly enable it in privacy settings ", preferredStyle: UIAlertControllerStyle.alert)
                 let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {  action in
                     self.contactDelegate?.epContactPicker(self, didContactFetchFailed: error)
                     completion([], error)
@@ -170,7 +170,7 @@ open class EPContactsPicker: UITableViewController, UISearchResultsUpdating, UIS
                     //At this point an alert is provided to the user to provide access to contacts. This will get invoked if a user responds to the alert
                     if  (!granted ){
                         DispatchQueue.main.async(execute: { () -> Void in
-                            completion([], error! as NSError?)
+                            completion([], error as NSError?)
                         })
                     }
                     else{
@@ -250,7 +250,7 @@ open class EPContactsPicker: UITableViewController, UISearchResultsUpdating, UIS
     // MARK: - Table View Delegates
 
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EPContactCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? EPContactCell else {return UITableViewCell()}
         cell.accessoryType = UITableViewCellAccessoryType.none
         //Convert CNContact to EPContact
 		let contact: EPContact
@@ -276,8 +276,8 @@ open class EPContactsPicker: UITableViewController, UISearchResultsUpdating, UIS
     
     override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRow(at: indexPath) as! EPContactCell
-        let selectedContact =  cell.contact!
+        guard let cell = tableView.cellForRow(at: indexPath) as? EPContactCell else {return }
+        guard let selectedContact =  cell.contact else {return}
         if multiSelectEnabled {
             //Keeps track of enable=ing and disabling contacts
             if cell.accessoryType == UITableViewCellAccessoryType.checkmark {
@@ -309,7 +309,7 @@ open class EPContactsPicker: UITableViewController, UISearchResultsUpdating, UIS
     override open func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         if resultSearchController.isActive { return 0 }
         tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: UITableViewScrollPosition.top , animated: false)        
-        return sortedContactKeys.index(of: title)!
+        return sortedContactKeys.index(of: title) ?? 0
     }
     
     override  open func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -344,7 +344,7 @@ open class EPContactsPicker: UITableViewController, UISearchResultsUpdating, UIS
             if searchText.characters.count > 0 {
                 predicate = CNContact.predicateForContacts(matchingName: searchText)
             } else {
-                predicate = CNContact.predicateForContactsInContainer(withIdentifier: contactsStore!.defaultContainerIdentifier())
+                predicate = CNContact.predicateForContactsInContainer(withIdentifier: contactsStore?.defaultContainerIdentifier() ?? "")
             }
             
             let store = CNContactStore()

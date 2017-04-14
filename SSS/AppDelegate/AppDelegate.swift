@@ -244,7 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Print full message.
         print(userInfo)
         
-//        UserDefaults.standard.set("1", forKey: "notification_tapped")
+        //Notification tapped observer
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification"), object: nil)
         
         

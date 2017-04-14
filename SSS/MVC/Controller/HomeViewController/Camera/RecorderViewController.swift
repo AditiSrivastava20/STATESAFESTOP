@@ -7,12 +7,13 @@ import PermissionScope
 import NVActivityIndicatorView
 import EZSwiftExtensions
 
-class RecorderViewController: UIViewController, NVActivityIndicatorViewable {
+class RecorderViewController: UIViewController {
     
     var recorder: AVAudioRecorder!
     
     var player:AVAudioPlayer!
     
+  
     @IBOutlet var recordBtn: UIButton!
     
     @IBOutlet var stopButton: UIButton!
@@ -21,15 +22,29 @@ class RecorderViewController: UIViewController, NVActivityIndicatorViewable {
     
     @IBOutlet var statusLabel: UILabel!
     
+    let viewTemp = UIView(frame: UIScreen.main.bounds)
+    
+    var loader : NVActivityIndicatorView?
+    
+    
     var meterTimer:Timer!
     
     var soundFileURL:URL!
     
     var login:User?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let keyWindow = UIApplication.shared.keyWindow else { return }
+        
+        loader = NVActivityIndicatorView(frame: CGRect(x: view.center.x-22, y: view.center.y-22, w: 44, h: 44) , type: .ballClipRotate, color: colors.loaderColor.color() , padding: nil)
+        
+        viewTemp.addSubview(loader!)
+        keyWindow.addSubview(viewTemp)
+        viewTemp.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        viewTemp.isHidden = true
         stopButton.isUserInteractionEnabled = false
         playButton.isUserInteractionEnabled = false
         setSessionPlayback()
@@ -634,11 +649,16 @@ extension RecorderViewController : AVAudioRecorderDelegate {
     //MARK: - media api
     func mediaUploadApi(data: Data?, type: MediaType?, thumb: UIImage?) {
         
-        APIManager.shared.startLoader()
-        
-        APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: login?.profile?.access_token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: { (response) in
+        loader?.startAnimating()
+        viewTemp.isHidden = false
+  
+     
+        APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: login?.profile?.access_token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: {[weak self] (response) in
             
-            self.handle(response: response)
+            self?.loader?.stopAnimating()
+            self?.viewTemp.isHidden = true
+            
+            self?.handle(response: response)
         })
         
     }

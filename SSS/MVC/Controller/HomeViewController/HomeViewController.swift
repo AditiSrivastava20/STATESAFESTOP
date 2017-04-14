@@ -45,6 +45,7 @@ class HomeViewController: TwitterPagerTabStripViewController {
         
     }
     
+    //MARK: - Open notifications
     func openNotification() {
         
         if let val = UserDefaults.standard.value(forKey: "notification_tapped") as? String {
@@ -66,6 +67,8 @@ class HomeViewController: TwitterPagerTabStripViewController {
 
     }
     
+    
+    //MARK: - Navbar button image
     func setBtnImage() {
         
         guard let user = UserDataSingleton.sharedInstance.loggedInUser else {
@@ -138,7 +141,17 @@ class HomeViewController: TwitterPagerTabStripViewController {
         
         child_2.onSwitchVc = {[weak self]
             (isRecoding) in
-             self?.moveToViewController(at: isRecoding ? 0 :2)
+            
+            if isRecoding {
+                
+                ez.dispatchDelay(0.2, closure: {
+                    self?.child_1.showPopUp()
+                })
+                
+            }
+            
+            self?.moveToViewController(at: isRecoding ? 0 :2)
+            
         }
         
         let child_3 = StoryboardScene.Main.instantiateComplaintViewController()

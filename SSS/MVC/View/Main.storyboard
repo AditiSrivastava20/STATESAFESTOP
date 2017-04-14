@@ -80,33 +80,53 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ur3-4J-n93" customClass="Button" customModule="Material">
-                                <rect key="frame" x="50.5" y="52" width="219" height="48"/>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.86274509799999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBJ-DZ-vT4">
+                                <rect key="frame" x="16" y="52" width="288" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ur3-4J-n93" customClass="Button" customModule="Material">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="48"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.86274509799999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="ru1-R9-s6D"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <inset key="contentEdgeInsets" minX="32" minY="0.0" maxX="32" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Send Your Location" image="ic_location">
+                                            <color key="titleColor" red="0.29411764705882354" green="0.29411764705882354" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="24"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="pulseOpacity">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="actionBtnLocation:" destination="ci8-pJ-yvd" eventType="touchUpInside" id="Jly-MS-Mkt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wy4-z2-P6z">
+                                        <rect key="frame" x="240" y="0.0" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="48" id="IaD-K4-SqR"/>
+                                            <constraint firstAttribute="width" secondItem="Wy4-z2-P6z" secondAttribute="height" multiplier="1:1" id="jqa-Ef-Lvn"/>
+                                        </constraints>
+                                        <state key="normal" image="Ic_cam_change"/>
+                                        <state key="selected" image="Ic_cam_change"/>
+                                        <connections>
+                                            <action selector="actionBtnChangeCamera:" destination="ci8-pJ-yvd" eventType="touchUpInside" id="7mS-Lv-1tt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="ru1-R9-s6D"/>
+                                    <constraint firstAttribute="height" constant="48" id="hHt-0o-ith"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <inset key="contentEdgeInsets" minX="32" minY="0.0" maxX="32" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Send Your Location" image="ic_location">
-                                    <color key="titleColor" red="0.29411764705882354" green="0.29411764705882354" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="24"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="pulseOpacity">
-                                        <real key="value" value="0.5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="actionBtnLocation:" destination="ci8-pJ-yvd" eventType="touchUpInside" id="Jly-MS-Mkt"/>
-                                </connections>
-                            </button>
+                            </stackView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbj-eJ-QEq">
                                 <rect key="frame" x="128" y="414" width="64" height="64"/>
                                 <constraints>
@@ -281,10 +301,9 @@
                         <constraints>
                             <constraint firstItem="PJE-eh-DQr" firstAttribute="bottom" secondItem="Jbj-eJ-QEq" secondAttribute="bottom" constant="2" id="1td-NE-SZz"/>
                             <constraint firstItem="M8e-Pt-2vF" firstAttribute="top" secondItem="6so-Dk-Qch" secondAttribute="top" id="3Fr-ss-iZN"/>
+                            <constraint firstAttribute="trailing" secondItem="IBJ-DZ-vT4" secondAttribute="trailing" constant="16" id="3Oc-wJ-AKe"/>
                             <constraint firstItem="mjB-DN-bZc" firstAttribute="centerX" secondItem="6so-Dk-Qch" secondAttribute="centerX" id="57v-1H-w61"/>
-                            <constraint firstItem="ur3-4J-n93" firstAttribute="top" secondItem="jos-zG-bBY" secondAttribute="bottom" constant="32" id="88b-ek-40P"/>
                             <constraint firstItem="C4z-LI-rnS" firstAttribute="top" secondItem="Beh-Nm-3dx" secondAttribute="bottom" constant="24" id="8UK-qE-vcf"/>
-                            <constraint firstItem="ur3-4J-n93" firstAttribute="centerX" secondItem="6so-Dk-Qch" secondAttribute="centerX" id="9YW-Lk-b2y"/>
                             <constraint firstItem="8a1-Lo-RPY" firstAttribute="centerX" secondItem="6so-Dk-Qch" secondAttribute="centerX" id="9eg-b6-Y2m"/>
                             <constraint firstItem="jwM-Qp-00y" firstAttribute="leading" secondItem="Beh-Nm-3dx" secondAttribute="leading" constant="8" id="IFQ-pP-tkz"/>
                             <constraint firstAttribute="trailing" secondItem="gZ0-Lf-gkb" secondAttribute="trailing" constant="4" id="MVI-gA-aLv"/>
@@ -296,8 +315,10 @@
                             <constraint firstItem="PJE-eh-DQr" firstAttribute="leading" secondItem="Jbj-eJ-QEq" secondAttribute="leading" constant="-2" id="buo-RK-VSo"/>
                             <constraint firstItem="Jbj-eJ-QEq" firstAttribute="centerX" secondItem="6so-Dk-Qch" secondAttribute="centerX" id="d8d-Pw-s9z"/>
                             <constraint firstItem="ucf-ur-Mfn" firstAttribute="centerY" secondItem="Beh-Nm-3dx" secondAttribute="centerY" id="eK7-YD-c3Y"/>
+                            <constraint firstItem="IBJ-DZ-vT4" firstAttribute="leading" secondItem="6so-Dk-Qch" secondAttribute="leading" constant="16" id="fhe-cc-e25"/>
                             <constraint firstAttribute="bottom" secondItem="M8e-Pt-2vF" secondAttribute="bottom" id="fjh-BC-2ye"/>
                             <constraint firstItem="PJE-eh-DQr" firstAttribute="top" secondItem="8a1-Lo-RPY" secondAttribute="bottom" id="hos-yu-9Yy"/>
+                            <constraint firstItem="IBJ-DZ-vT4" firstAttribute="top" secondItem="jos-zG-bBY" secondAttribute="bottom" constant="32" id="i0t-0W-b2u"/>
                             <constraint firstItem="ucf-ur-Mfn" firstAttribute="leading" secondItem="6so-Dk-Qch" secondAttribute="leading" constant="4" id="m2w-BJ-9ft"/>
                             <constraint firstItem="Beh-Nm-3dx" firstAttribute="centerX" secondItem="6so-Dk-Qch" secondAttribute="centerX" id="nfU-01-M23"/>
                             <constraint firstItem="jwM-Qp-00y" firstAttribute="trailing" secondItem="Beh-Nm-3dx" secondAttribute="trailing" constant="-8" id="pof-WG-oQK"/>
@@ -309,6 +330,7 @@
                     </view>
                     <connections>
                         <outlet property="btnAudio" destination="eDk-q0-ipM" id="kSu-tt-9Yg"/>
+                        <outlet property="btnChangeCamera" destination="Wy4-z2-P6z" id="IZJ-U1-kAH"/>
                         <outlet property="btnLocation" destination="ur3-4J-n93" id="hWg-VO-zPf"/>
                         <outlet property="btnVideo" destination="ixl-fX-tjQ" id="Few-Em-cSN"/>
                         <outlet property="imgMic" destination="mjB-DN-bZc" id="2W9-oe-z4O"/>
@@ -335,11 +357,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ljh-nq-mR5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="r17-Js-IpF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Waf-7w-gBW">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NotificationTableViewCell" rowHeight="116" id="zzw-mV-aJp" customClass="NotificationTableViewCell" customModule="SSS" customModuleProvider="target">
@@ -510,7 +532,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No notifications yet." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KN-Q5-RWk">
-                                <rect key="frame" x="88.5" y="274.5" width="143" height="19"/>
+                                <rect key="frame" x="88.5" y="242.5" width="143" height="19"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.29411764705882354" green="0.29411764705882354" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2346,6 +2368,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Ic_cam_change" width="24" height="24"/>
         <image name="chris_palmer_profile_11.jpg" width="300" height="300"/>
         <image name="ic_Mic.png" width="124" height="218"/>
         <image name="ic_Stop" width="24" height="24"/>
@@ -2377,6 +2400,6 @@
         <image name="ic_video play" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KVc-LI-pyJ"/>
+        <segue reference="nJI-h2-kM0"/>
     </inferredMetricsTieBreakers>
 </document>

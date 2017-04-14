@@ -12,6 +12,7 @@ import AVFoundation
 import EZSwiftExtensions
 import ISMessages
 import PermissionScope
+import NVActivityIndicatorView
 
 
 class CameraViewController: RecorderViewController {
@@ -30,8 +31,9 @@ class CameraViewController: RecorderViewController {
     @IBOutlet weak var btnLocation: UIButton!
     @IBOutlet weak var btnVideo: UIButton!
     @IBOutlet weak var imgMic: UIImageView!
-    
+    @IBOutlet weak var btnChangeCamera: UIButton!
 
+    
     let maxCaptureDuration = 61.0
     var paths = [String]()
     
@@ -87,22 +89,47 @@ class CameraViewController: RecorderViewController {
             
         default:
             
-            UIApplication.shared.beginIgnoringInteractionEvents()
-            APIManager.shared.startLoader()
+            loader?.startAnimating()
+            viewTemp.isHidden = false
             
-            LocationManager.sharedInstance.startTrackingUser { (lat, lng, locationName) in
+            LocationManager.sharedInstance.startTrackingUser { [weak self] (lat, lng, locationName) in
                 
-                APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: self.login?.profile?.access_token, locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { (response) in
+                APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: self?.login?.profile?.access_token, locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { [weak self] (response) in
                     
-                    self.handle(response: response)
+                    self?.loader?.stopAnimating()
+                    self?.viewTemp.isHidden = true
+                    
+                    self?.handle(response: response)
                 })
                 
             }
             
         }
    
-       
     }
+    
+    
+    //MARK: - Switch between front/back camera action
+    @IBAction func actionBtnChangeCamera(_ sender: UIButton) {
+        
+        if sender.isSelected {
+            
+            sender.isSelected = false
+            vision.cameraDevice = .back
+            self.endVideoRecording()
+            
+            
+        } else {
+            
+            sender.isSelected = true
+            vision.cameraDevice = .front
+            self.endVideoRecording()
+            
+        }
+        
+    }
+    
+    
 
     
     @IBAction func actionBtnRecordings(_ sender: Any) {
@@ -127,7 +154,8 @@ class CameraViewController: RecorderViewController {
         
         self.endVideoRecording()
         
-        ez.dispatchDelay(0.2) { 
+        ez.dispatchDelay(0.2) {
+            self.btnChangeCamera.isHidden = true
             self.viewCamera.isHidden = true
             self.imgMic.isHidden = false
             self.isPalyerStopByUser = false
@@ -149,6 +177,7 @@ class CameraViewController: RecorderViewController {
     @IBAction func actionBtnVideo(_ sender: Any) {
         ISMessages.hideAlert(animated: true)
         
+        self.btnChangeCamera.isHidden = false
         viewCamera.isHidden = false
         imgMic.isHidden = true
         btnVideo.backgroundColor = colors.appColor.color()
@@ -171,7 +200,7 @@ class CameraViewController: RecorderViewController {
         
     }
     
-    
+    //MARK: -  End Video recording
     func endVideoRecording() {
         UIApplication.shared.isIdleTimerDisabled = false
         
@@ -187,7 +216,7 @@ class CameraViewController: RecorderViewController {
     }
     
   
-    
+    //MARK: - Recording button action
     @IBAction func actionBtnRecord(_ sender: UIButton) {
         ISMessages.hideAlert(animated: true)
         
@@ -324,6 +353,7 @@ extension CameraViewController : PBJVisionDelegate {
             
             self.recordButton.tintColor = UIColor(red:1.0, green:1.0, blue:1.0, alpha:1.0)
             progressView.updateProgress(0.0)
+            recordButton.isSelected = false
             statusLabel?.text = "00:00"
             vision.endVideoCapture()
         }

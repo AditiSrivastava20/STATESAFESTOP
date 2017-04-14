@@ -23,8 +23,23 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate, NVAct
     var ShowComplaintDescription = false
     var complaint:Complaint?
     
+    var loader : NVActivityIndicatorView?
+    let viewTemp = UIView(frame: UIScreen.main.bounds)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        guard let keyWindow = UIApplication.shared.keyWindow else { return }
+        
+        loader = NVActivityIndicatorView(frame: CGRect(x: view.center.x-22, y: view.center.y-22, w: 44, h: 44) , type: .ballClipRotate, color: colors.loaderColor.color() , padding: nil)
+        
+        viewTemp.addSubview(loader!)
+        keyWindow.addSubview(viewTemp)
+        viewTemp.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        viewTemp.isHidden = true
+        
+        
         tfTitle?.placeHolderAtt()
         
         if ShowComplaintDescription {
@@ -114,8 +129,8 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate, NVAct
     @IBAction func btnAddComplaintAction(_ sender: Any) {
         
         ISMessages.hideAlert(animated: true)
-        startAnimating(type: .ballClipRotate , color: colors.loaderColor.color())
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        loader?.startAnimating()
+        viewTemp.isHidden = false
         
         
         guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
@@ -125,14 +140,17 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate, NVAct
         switch Validate() {
         case .success:
 
-            APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: login.profile?.access_token, title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: login.profile?.access_token, title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { [weak self] (response) in
                 
-                self.handle(response: response)
+                self?.loader?.stopAnimating()
+                self?.viewTemp.isHidden = true
+                
+                self?.handle(response: response)
             })
             
         case .failure( _ ,let msg):
-            UIApplication.shared.endIgnoringInteractionEvents()
-            self.stopAnimating()
+            self.loader?.stopAnimating()
+            self.viewTemp.isHidden = true
             Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
     }

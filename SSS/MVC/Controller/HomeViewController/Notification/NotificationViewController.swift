@@ -17,7 +17,7 @@ class NotificationViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblNoNotifications: UILabel!
-    
+    var showLoader = true
     
     var arrayNotifications:[NotificationData] = []
     
@@ -99,6 +99,12 @@ class NotificationViewController: UIViewController {
     //MARK: - Get Notifications api
     func getNotificationList() {
         
+        if showLoader {
+            showLoader = false
+            APIManager.shared.startLoader()
+            
+        }
+        
         APIManager.shared.request(with: LoginEndpoint.notification(accessToken: UserDataSingleton.sharedInstance.loggedInUser?.profile?.access_token) , completion: {(response) in
             
             self.handle(response: response)
@@ -106,7 +112,7 @@ class NotificationViewController: UIViewController {
         
     }
     
-    
+    //MARK: - Download media
     func btnDownloadAction(sender: UIButton) {
         
         let url = arrayNotifications[sender.tag].media_content
@@ -115,6 +121,7 @@ class NotificationViewController: UIViewController {
         
     }
     
+    //MARK: - Open map
     func openMaps(sender: UIButton) {
         print("open map")
         

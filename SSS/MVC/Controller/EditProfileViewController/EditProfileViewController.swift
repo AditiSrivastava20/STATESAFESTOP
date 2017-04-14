@@ -11,6 +11,7 @@ import Material
 import Kingfisher
 import ISMessages
 import EZSwiftExtensions
+import NVActivityIndicatorView
 
 
 class EditProfileViewController: BaseViewController, TextFieldDelegate {
@@ -23,6 +24,9 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var btnChangePassword: UIButton!
     
+    let viewTemp = UIView(frame: UIScreen.main.bounds)
+    
+    var loader : NVActivityIndicatorView?
     
     var fullname:String?
     var address:String?
@@ -31,6 +35,17 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        guard let keyWindow = UIApplication.shared.keyWindow else { return }
+        
+        loader = NVActivityIndicatorView(frame: CGRect(x: view.center.x-22, y: view.center.y-22, w: 44, h: 44) , type: .ballClipRotate, color: colors.loaderColor.color() , padding: nil)
+        
+        viewTemp.addSubview(loader!)
+        keyWindow.addSubview(viewTemp)
+        viewTemp.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        viewTemp.isHidden = true
+        
         
         txtFullname.placeHolderAtt()
         txtEmail.placeHolderAtt()
@@ -171,22 +186,33 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
             return
         }
         
+        self.loader?.startAnimating()
+        self.viewTemp.isHidden = false
+        
+        
         switch validate() {
         case .success:
             
             let token = UserDataSingleton.sharedInstance.loggedInUser?.profile?.access_token
             let email = UserDataSingleton.sharedInstance.loggedInUser?.profile?.email
             
-            APIManager.shared.request(withImages: LoginEndpoint.editProfile(accessToken: token, fullName: txtFullname.text, address: txtAddress.text, email: email, phone: txtPhone.text), image: imgProfilePic.image, completion: { (response) in
+            APIManager.shared.request(withImages: LoginEndpoint.editProfile(accessToken: token, fullName: txtFullname.text, address: txtAddress.text, email: email, phone: txtPhone.text), image: imgProfilePic.image, completion: {[weak self] (response) in
                 
-                self.handle(response: response)
+                self?.loader?.stopAnimating()
+                self?.viewTemp.isHidden = true
+                
+                self?.handle(response: response)
             })
             
-        case .failure(let title,let msg):
+        case .failure( _ ,let msg):
+            self.loader?.stopAnimating()
+            self.viewTemp.isHidden = true
+            
             Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
         
     }
+    
     
     func changesDone() -> Bool {
         

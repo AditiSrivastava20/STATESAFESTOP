@@ -11,6 +11,7 @@ import EPContactsPicker
 import SwiftyJSON
 import Material
 import M13Checkbox
+import EZSwiftExtensions
 
 protocol contactListner: class {
     
@@ -115,18 +116,20 @@ class SafeListViewController: BaseViewController {
             if let value = responseValue as? User{
                 print(value.msg ?? "")
                 
-                if let array = value.skip_numbers {
+                if let _ = value.skip_numbers {
                     
-                    if value.type == "1" {
-                        let str = array.joined(separator: ", ")
+                    if value.type == "0" {
+                        
+                        Alerts.shared.show(alert: .success, message: "Successfully added", type: .success)
+                        
+                    } else if value.type == "1" {
+                        
                         Alerts.shared.show(alert: .alert, message: "User already exist", type: .error)
                     } else if value.type == "2" {
                         
                         Alerts.shared.show(alert: .alert, message: "Cannot add your own number", type: .error)
                     }
-                    
                 }
-                
                 
                 updateTableView(array: value.contacts ,check: check)
             }
@@ -144,9 +147,11 @@ class SafeListViewController: BaseViewController {
         case .get:
             self.safelistArray = array
             dataSource?.items = self.safelistArray
+            
             tableView.reloadData()
             
         case .add, .remove:
+            ApiSafelist(array: nil, check: .get)
             print("add/removed")
             
         }

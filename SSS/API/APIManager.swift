@@ -217,11 +217,11 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     //MARK: APIManager for share media
     func request(withMedia api : Router , media: Data? , thumbnail : UIImage?  , completion : @escaping Completion )  {
         
-        
-        
+ 
         httpClient.postRequestWithMedia(withApi: api, media: media, thumbnail: thumbnail, success: {[weak self] (data) in
             
-            self?.stopAnimating()
+           
+            
             guard let response = data else {
                 completion(Response.failure(.none))
                 return
@@ -251,7 +251,6 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
             
             }, failure: {[weak self] (message) in
                 
-                self?.stopAnimating()
                 completion(Response.failure(message))
         })
     }
@@ -276,8 +275,11 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
         case APIConstants.login : return true
         case APIConstants.recordingsList : return false
         case APIConstants.complaintList : return false
-        case APIConstants.addComplaint :  return true
+        case APIConstants.addComplaint :  return false
         case APIConstants.pushDeviceToken: return false
+        case APIConstants.notification: return false
+        case APIConstants.shareLocation: return false
+        case APIConstants.editProfile: return false
         default: return true
         }
     }

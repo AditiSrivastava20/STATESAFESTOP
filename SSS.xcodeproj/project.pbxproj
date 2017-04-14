@@ -1064,7 +1064,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\"${PODS_ROOT}/Fabric/run\" 5d13c0820d02feea96358c1e301bb612078a9a53 448e6cdf6770d300a814ec155c0c4bd0db0c27ad3ed7d7ac48bc5cb99e9581d0\n\n\"${PODS_ROOT}/Fabric/run\" f0c02c0ca0823958451ad35d488a5b511bea011d 317ed24dbbcf36d8ee491285da12435f90c0a2a1791a3cb8381dd22f19471344";
+			shellScript = "#\"${PODS_ROOT}/Fabric/run\" ca6ea18ead128b67bb6ae1157da76505854a8740 3360ca1d025e61feafcc20c7426c8ce69881de17cc29f9c1c4103aa057ece756\n\n\"${PODS_ROOT}/Fabric/run\" f0c02c0ca0823958451ad35d488a5b511bea011d 317ed24dbbcf36d8ee491285da12435f90c0a2a1791a3cb8381dd22f19471344\n";
 		};
 		1DBC2A031E718D010090BCFA /* Swiftgen */ = {
 			isa = PBXShellScriptBuildPhase;
