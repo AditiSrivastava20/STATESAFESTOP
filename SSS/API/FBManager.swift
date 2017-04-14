@@ -15,7 +15,7 @@ import NVActivityIndicatorView
 internal struct FacebookInvite {
     
     static let image_url = "https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/17522662_979563635512365_8880744625037125330_n.png?oh=83d47d30912cf94ac8b422111fc988d3&oe=59640C01"
-    static let app_link_url = "https://fb.me/1809174539335259"
+    static let app_link_url = "https://fb.me/1302560886505500"
 }
 
 enum GraphRequest {
@@ -36,6 +36,8 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
         
         let fbObj = FBSDKLoginManager()
             fbObj.logOut()
+        
+        fbObj.loginBehavior = .native
         
         fbObj.logIn(withReadPermissions: ["email", "public_profile", "user_friends"], from: obj) { (result, err) in
             
@@ -152,11 +154,11 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
         switch check {
         case .login:
             
-            guard let FCM = UserDefaults.standard.value(forKey: "FCM") as? String else {
-                return
-            }
+//            guard let FCM = UserDefaults.standard.value(forKey: "FCM") as? String else {
+//                return
+//            }
             
-            APIManager.shared.request(with: LoginEndpoint.login(email: param.email, password: "", facebookId: param.fbId, twitterId: "", accountType: AccountType.facebook.rawValue, deviceToken: FCM), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.login(email: param.email, password: "", facebookId: param.fbId, twitterId: "", accountType: AccountType.facebook.rawValue, deviceToken: ""), completion: { (response) in
                 
                 self.handle(response: response, obj, param: param)
             })

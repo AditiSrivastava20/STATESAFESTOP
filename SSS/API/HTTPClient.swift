@@ -24,7 +24,16 @@ class HTTPClient {
     func postRequest(withApi api : Router  , success : @escaping HttpClientSuccess , failure : @escaping HttpClientFailure ){
         
         let params = api.parameters!
-        let fullPath = api.baseURL + api.route
+        var fullPath = ""
+        if api.route.isEqual("devicetoken") {
+            
+            fullPath = "http://35.167.142.176/api/set/" + api.route
+            
+        } else {
+            fullPath = api.baseURL + api.route
+        }
+        
+        
         let method = api.method
         print(fullPath)
         print(params)
@@ -34,7 +43,8 @@ class HTTPClient {
             case .success(let data):
                 success(data)
             case .failure(let error):
-                failure("Please check your internet connection")//failure(error.localizedDescription)
+                //failure("Please check your internet connection")
+                failure(error.localizedDescription)
             }
         }
         
@@ -126,7 +136,7 @@ class HTTPClient {
                     switch response.result {
                     case .success(let data):
                         success(data)
-                    case .failure(let error):
+                    case .failure(let _):
                         failure("Please check your internet connection")//failure(error.localizedDescription)
                     }
                 }

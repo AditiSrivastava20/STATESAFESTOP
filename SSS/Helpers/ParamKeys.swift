@@ -55,7 +55,8 @@ enum ParamKeys: String {
     case notification_message = "notification_message"
     case notification_type = "notification_type"
     case data = "data"
-    
+    case skip_numbers = "skip_numbers"
+    case type = "type"
     
     
 }

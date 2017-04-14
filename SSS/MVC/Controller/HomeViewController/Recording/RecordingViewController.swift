@@ -53,6 +53,10 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
         }
         
         login = UserDataSingleton.sharedInstance.loggedInUser
+        
+        tableView?.estimatedRowHeight = 84
+        setupTableView(tableView: tableView, cellId: "RecordingTableViewCell", items: arrayRecording)
+        tableView.delegate = self
 
     }
     
@@ -60,11 +64,9 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
     
     override func viewWillAppear(_ animated: Bool) {
         //Loader
-        if isFromMediaSelection {
-            ez.runThisInMainThread {
-                self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: 0, minimumDisplayTime: nil)
-            }
-        }
+//        if isFromMediaSelection {
+//            self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: 0, minimumDisplayTime: nil)
+//        }
 
         getRecordings()
     }
@@ -93,8 +95,6 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
             playMedia(urlMedia: urlMedia)
             
         }
-        
-
     }
     
     
@@ -112,7 +112,7 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
             }
             
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
         }
         
     }
@@ -138,9 +138,8 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
     
     //MARK: - setup tableview
     func setupTableview() {
-        tableView?.estimatedRowHeight = 84
-        setupTableView(tableView: tableView, cellId: "RecordingTableViewCell", items: arrayRecording)
-        tableView.delegate = self
+        
+        dataSource?.items = arrayRecording
         tableView.reloadData()
     }
     
@@ -170,9 +169,25 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
         if (/value).isEqual(login?.profile?.pin_password) {
             self.askForPin = false
             print(value ?? "")
+        } else if (/value).isEmpty {
+            
+            Alerts.shared.show(alert: .alert, message: /Alert.noPinEntered.rawValue, type: .error)
+            
+            if isFromMediaSelection {
+                popVC()
+            } else {
+                self.switchToHome?(true)
+            }
+            
         } else {
-            Alerts.shared.show(alert: .error, message: /Alert.incorrectPin.rawValue, type: .error)
-            self.switchToHome?(true)
+            Alerts.shared.show(alert: .alert, message: /Alert.incorrectPin.rawValue, type: .error)
+            
+            if isFromMediaSelection {
+                popVC()
+            } else {
+                self.switchToHome?(true)
+            }
+            
         }
         
     }

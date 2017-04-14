@@ -11,11 +11,10 @@ import AVKit
 import AVFoundation
 import EZSwiftExtensions
 import ISMessages
-import NVActivityIndicatorView
 import PermissionScope
 
 
-class CameraViewController: RecorderViewController, NVActivityIndicatorViewable {
+class CameraViewController: RecorderViewController {
 
     var onSwitchVc : ((_ isRecording: Bool) -> ())?
     
@@ -32,9 +31,8 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     @IBOutlet weak var btnVideo: UIButton!
     @IBOutlet weak var imgMic: UIImageView!
     
-//    let pscope = PermissionScope()
 
-    let maxCaptureDuration = 60.0
+    let maxCaptureDuration = 61.0
     var paths = [String]()
     
     
@@ -57,11 +55,17 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
         progressView.updateProgress(0.0)
         setupCamera()
         
+        
+        if let _ = UserDataSingleton.sharedInstance.loggedInUser {
+            
+            login = UserDataSingleton.sharedInstance.loggedInUser
+            
+        }
         // Do any additional setup after loading the view.
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        statusLabel?.text = "0:00"
+        statusLabel?.text = "00:00"
         self.endVideoRecording()
     }
     
@@ -71,27 +75,32 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
         ISMessages.hideAlert(animated: true)
     }
 
-    
+    //MARK: -
     @IBAction func actionBtnLocation(_ sender: Any) {
         ISMessages.hideAlert(animated: true)
         
-        
-        guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
-            return
-        }
-        
-   
-        LocationManager.sharedInstance.startTrackingUser { (lat, lng, locationName) in
+        switch PermissionScope().statusLocationInUse() {
+            
+        case .unauthorized:
+            
+            Alerts.shared.show(alert: .alert, message: /permissions.location.rawValue, type: .error)
+            
+        default:
             
             UIApplication.shared.beginIgnoringInteractionEvents()
-
-            APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: login.profile?.access_token, locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { (response) in
+            APIManager.shared.startLoader()
+            
+            LocationManager.sharedInstance.startTrackingUser { (lat, lng, locationName) in
                 
-                self.handle(response: response)
-            })
+                APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: self.login?.profile?.access_token, locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { (response) in
+                    
+                    self.handle(response: response)
+                })
+                
+            }
             
         }
-        
+   
        
     }
 
@@ -110,29 +119,33 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
         self.onSwitchVc?(false)
     }
 
+    
+    //MARK: - Audio Button action
     @IBAction func actionBtnAudio(_ sender: Any) {
         ISMessages.hideAlert(animated: true)
         
+        
         self.endVideoRecording()
         
-        viewCamera.isHidden = true
-        imgMic.isHidden = false
-        isPalyerStopByUser = false
-        btnVideo.backgroundColor = UIColor.black
-        btnAudio.backgroundColor = colors.appColor.color()
-        btnAudio.isSelected = true
-        btnVideo.isSelected = false
-        recordButton.isHidden = true
-        viewRecorder.isHidden = false
-        recordButton.isSelected = false
-         progressView.updateProgress(0.0)
-        resetTimer()
-       
+        ez.dispatchDelay(0.2) { 
+            self.viewCamera.isHidden = true
+            self.imgMic.isHidden = false
+            self.isPalyerStopByUser = false
+            self.btnVideo.backgroundColor = UIColor.black
+            self.btnAudio.backgroundColor = colors.appColor.color()
+            self.btnAudio.isSelected = true
+            self.btnVideo.isSelected = false
+            self.viewRecorder.isHidden = false
+            self.recordButton.isSelected = false
+            self.recordButton.isHidden = true
+            self.progressView.updateProgress(0.0)
+            self.resetTimer()
+        }
         
     }
     
    
-   
+   //MARK: - Video Button Action
     @IBAction func actionBtnVideo(_ sender: Any) {
         ISMessages.hideAlert(animated: true)
         
@@ -153,7 +166,6 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     override func appMovedToBackground() {
         
         if recordButton.isSelected {
-            statusLabel?.text = "0:00"
             self.endVideoRecording()
         }
         
@@ -162,12 +174,15 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
     
     func endVideoRecording() {
         UIApplication.shared.isIdleTimerDisabled = false
-        statusLabel?.text = "0:00"
-        recordButton.tintColor = UIColor(red:1.0, green:1.0, blue:1.0, alpha:1.0)
         
+        recordButton.tintColor = UIColor(red:1.0, green:1.0, blue:1.0, alpha:1.0)
+        recordButton.isSelected = false
         progressView.updateProgress(0.0)
         vision.endVideoCapture()
-        recordButton.isSelected = false
+        
+        ez.dispatchDelay(0.3) {
+            self.statusLabel?.text = "00:00"
+        }
         
     }
     
@@ -180,15 +195,14 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
         case .authorized:
             
             if sender.isSelected {
-                
-                btnAudio.isEnabled = true
+                //end video
                 self.endVideoRecording()
                 
             }
             else{
                 // start video
                 sender.isSelected = true
-                btnAudio.isEnabled = false
+                
                 vision.startVideoCapture()
                 recordButton.tintColor = UIColor(red:0.61, green:0.00, blue:0.00, alpha:1.0)
                 UIApplication.shared.isIdleTimerDisabled = true
@@ -205,7 +219,7 @@ class CameraViewController: RecorderViewController, NVActivityIndicatorViewable 
 
             
         default:
-            Alerts.shared.show(alert: .error, message: "Permission requied for camera", type: .error)
+            Alerts.shared.show(alert: .alert, message: /permissions.camera.rawValue, type: .error)
             return
         }
         
@@ -307,9 +321,10 @@ extension CameraViewController : PBJVisionDelegate {
         let s = String(format: "%02d:%02d", min, sec)
         statusLabel.text = s
         if vision.capturedVideoSeconds >= maxCaptureDuration - 1 {
-    
-             progressView.updateProgress(0.0)
-            statusLabel?.text = "0:00"
+            
+            self.recordButton.tintColor = UIColor(red:1.0, green:1.0, blue:1.0, alpha:1.0)
+            progressView.updateProgress(0.0)
+            statusLabel?.text = "00:00"
             vision.endVideoCapture()
         }
     }
@@ -321,7 +336,7 @@ extension CameraViewController : PBJVisionDelegate {
         
         
         if !isPalyerStopByUser {
-            statusLabel?.text = "0:00"
+            statusLabel?.text = "00:00"
             return
         }
 

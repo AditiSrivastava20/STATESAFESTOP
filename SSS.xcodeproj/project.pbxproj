@@ -950,7 +950,7 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 4W9H67AC5E;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1337,7 +1337,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SSS/SSS.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4W9H67AC5E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1356,7 +1357,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.statesafestop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "01d9e39f-d795-47e0-993b-1cd33eb0bd1c";
+				PROVISIONING_PROFILE_SPECIFIER = SSS4April2017AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = SSS/Helpers/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1371,7 +1373,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SSS/SSS.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4W9H67AC5E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1390,7 +1393,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.statesafestop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "01d9e39f-d795-47e0-993b-1cd33eb0bd1c";
+				PROVISIONING_PROFILE_SPECIFIER = SSS4April2017AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = SSS/Helpers/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;

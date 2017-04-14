@@ -26,7 +26,7 @@ class NotificationViewController: UIViewController {
         didSet{
             
          tableView?.dataSource = dataSource
-         tableView?.delegate = self
+         tableView?.delegate = dataSource
             
         }
     }
@@ -41,6 +41,9 @@ class NotificationViewController: UIViewController {
         setupTableView(tableView: tableView, items: arrayNotifications)
         
         // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(getNotificationList), name: NSNotification.Name(rawValue: "reload_notification") , object: nil)
+        
     }
     
     
@@ -62,7 +65,7 @@ class NotificationViewController: UIViewController {
             }
         
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
             
         }
         
@@ -71,11 +74,16 @@ class NotificationViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         getNotificationList()
+        
+        UserDefaults.standard.set("1", forKey: "notification_tapped")
+        
         sideMenuController()?.sideMenu?.allowRightSwipe = false
         sideMenuController()?.sideMenu?.allowPanGesture = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        
+        UserDefaults.standard.set("0", forKey: "notification_tapped")
         
         sideMenuController()?.sideMenu?.allowRightSwipe = true
         sideMenuController()?.sideMenu?.allowPanGesture = true
@@ -162,10 +170,29 @@ extension NotificationViewController: UITableViewDelegate {
                 }
                 
                 
-                
             }
             
         }, aRowSelectedListener: { (indexPath) in
+            
+            
+            if self.arrayNotifications[indexPath.row].notification_type == "2" {
+                
+                guard let urlMedia = self.arrayNotifications[indexPath.row].media_content else {return}
+                
+                let videoURL = URL(string: urlMedia)
+                let player = AVPlayer(url: videoURL!)
+                let playerViewController = AVPlayerViewController()
+                playerViewController.player = player
+                ez.runThisInMainThread {
+                    
+                    self.present(playerViewController, animated: true) {
+                        playerViewController.player!.play()
+                    }
+                }
+                
+                
+            }
+
             
             
         }, DidScrollListener: { (scrollView) in

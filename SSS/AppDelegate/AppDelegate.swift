@@ -19,6 +19,8 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 import FirebaseInstanceID
+import ISMessages
+import EZSwiftExtensions
 
 
 @UIApplicationMain
@@ -95,8 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             UIApplication.shared.keyWindow?.rootViewController = StoryboardScene.Main.initialViewController()
         }
         
-        
-        
     }
     
     
@@ -159,7 +159,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return
         }
         
-        UserDefaults.standard.set(FIRInstanceID.instanceID().token(), forKey: "FCM")
+        deviceTokenApi(FIRInstanceID.instanceID().token())
+        
         // Disconnect previous FCM connection if it exists.
         FIRMessaging.messaging().disconnect()
         
@@ -172,6 +173,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     // [END connect_to_fcm]
+    
+    func deviceTokenApi(_ deviceToken: String?) {
+        
+        guard let user = UserDataSingleton.sharedInstance.loggedInUser else {
+            return
+        }
+        
+        
+        APIManager.shared.request(with: LoginEndpoint.pushDeviceToken(accessToken: user.profile?.access_token, deviceToken: deviceToken)) { (response) in
+            
+            self.handle(response: response)
+            
+        }
+        
+    }
+    
+    func handle(response: Response) {
+        
+        switch response{
+        case .success(let responseValue):
+            if let value = responseValue as? User{
+                print(/value.msg)
+            }
+            
+        case .failure(let str):
+            print(/str)
+        }
+    }
     
     
     /// The callback to handle data message received via FCM for devices running iOS 10 or above.
@@ -192,6 +221,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Print full message.
         print(userInfo)
+        
+    }
+    
+    
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        
+        print("hello")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -208,6 +244,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Print full message.
         print(userInfo)
         
+//        UserDefaults.standard.set("1", forKey: "notification_tapped")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification"), object: nil)
+        
+        
+        //Show Notification in iOS 9.0
+//        if #available(iOS 9.0, *) {
+//            // use the feature only available in iOS 9
+//            
+//            let resultObject = NSDictionary(dictionary: userInfo)
+//            print(resultObject)
+//            
+//            ISMessages.showCardAlert(withTitle: "State Safe Stop", message: "", duration: 0.2, hideOnSwipe: true, hideOnTap: true, alertType: .custom , alertPosition: .top, didHide: nil)
+//            
+//            ez.dispatchDelay(0.5, closure: {
+//                ISMessages.hideAlert(animated: true)
+//            })
+//            
+//        } else {
+//            // or use some work around
+//            
+//            
+//            
+//        }
+        
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
@@ -216,15 +276,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-        completionHandler(UNNotificationPresentationOptions.alert)
-        
+        completionHandler([UNNotificationPresentationOptions.alert,
+                           UNNotificationPresentationOptions.sound,
+                           UNNotificationPresentationOptions.badge])
     }
     
+
     
-    //
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .sandbox)
+        //For production
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .prod )
+        
+        //For Testing
+//        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .sandbox )
     }
     
 

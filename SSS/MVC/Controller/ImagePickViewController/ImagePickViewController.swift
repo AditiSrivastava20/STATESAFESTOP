@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PermissionScope
 
 class ImagePickViewController: UIViewController {
     
@@ -40,13 +41,24 @@ class ImagePickViewController: UIViewController {
     }
     
     @IBAction func btnCameraAction(_ sender: Any) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
-            imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
+        
+        switch PermissionScope().statusCamera() {
+            
+        case .unauthorized:
+            
+            Alerts.shared.show(alert: .alert, message: /permissions.camera.rawValue, type: .error)
+            
+        default:
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
+                imagePicker.allowsEditing = true
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+
         }
+        
     }
     
 }

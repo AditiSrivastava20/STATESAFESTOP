@@ -50,7 +50,7 @@ class SideMenuViewController: UIViewController {
             LoginChecks.shared.exitFromMain()
             
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
         }
     }
     
@@ -101,14 +101,25 @@ class SideMenuViewController: UIViewController {
     //MARK: logout action
     @IBAction func btnLogoutAction(_ sender: Any) {
         
-        let vc = StoryboardScene.Main.instantiateLogOutPopUpViewController()
-        vc.obj = self
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .overCurrentContext
-        presentVC(vc)
+        
+        let alert = UIAlertController(title: "Log Out", message: "Are you sure you want to logout?", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
+            
+            switch action.style {
+                
+            default:
+                self.logOutApi()
+            }
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
         
     }
     
+    
+    //MARK: - logout api action
     func logOutApi() {
         APIManager.shared.request(with: LoginEndpoint.logout(accessToken: login?.profile?.access_token), completion: { (response) in
             self.handle(response: response)

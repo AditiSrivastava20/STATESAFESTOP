@@ -59,7 +59,7 @@ class ComplaintViewController: BaseViewController {
             }
             
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
         }
         
     }

@@ -30,19 +30,15 @@ class LoginViewController: BaseViewController, NVActivityIndicatorViewable, Text
         
         txtEmail.placeHolderAtt()
         txtPassword.placeHolderAtt()
-        
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated)
-    }
-    
-    
-    func checkForSession(){
         
-        
+        txtEmail.text = ""
+        txtPassword.text = ""
     }
     
     //MARK: - validate fields
@@ -59,17 +55,20 @@ class LoginViewController: BaseViewController, NVActivityIndicatorViewable, Text
 }
 
 
-//MARK: Normal login action
+
 
 extension LoginViewController {
     
+    //MARK: Forgot password action
     @IBAction func btnForgotPasswordAction(_ sender: Any) {
         ISMessages.hideAlert(animated: true)
         
         print("forgot password")
-        performSegue(withIdentifier: segue.loginToForgotPassword.rawValue, sender: self)
+        performSegue(withIdentifier: segues.loginToForgotPassword.rawValue, sender: self)
     }
     
+    
+    //MARK: Normal login action
     @IBAction func btnLoginAction(_ sender: Any) {
         ISMessages.hideAlert(animated: true)
         
@@ -79,23 +78,31 @@ extension LoginViewController {
         switch value {
         case .success:
             
-            guard let FCM = UserDefaults.standard.value(forKey: "FCM") as? String else {
-                return
-            }
             
-            APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: FCM), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: ""), completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, self, from: .login)
             })
             
         case .failure(let title,let msg):
-            Alerts.shared.show(alert: title, message: msg , type : .error)
+            Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
     }
     
+    //MARK: Sign up action
     @IBAction func btnSignUpAction(_ sender: Any) {
         ISMessages.hideAlert(animated: true)
-        performSegue(withIdentifier: segue.loginToSignup.rawValue, sender: nil)
+        performSegue(withIdentifier: segues.loginToSignup.rawValue, sender: nil)
+    }
+    
+    //MARK: Sending email to forgot screen
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == segues.loginToForgotPassword.rawValue {
+            
+            let destVC = segue.destination as? ForgotPasswordViewController
+            destVC?.email = txtEmail.text
+        }
     }
     
 }

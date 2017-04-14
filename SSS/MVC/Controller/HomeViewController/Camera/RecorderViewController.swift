@@ -4,8 +4,10 @@
 import UIKit
 import AVFoundation
 import PermissionScope
+import NVActivityIndicatorView
+import EZSwiftExtensions
 
-class RecorderViewController: UIViewController {
+class RecorderViewController: UIViewController, NVActivityIndicatorViewable {
     
     var recorder: AVAudioRecorder!
     
@@ -23,6 +25,8 @@ class RecorderViewController: UIViewController {
     
     var soundFileURL:URL!
     
+    var login:User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,20 +38,35 @@ class RecorderViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: NSNotification.Name.UIApplicationDidEnterBackground , object: nil)
         
+        if let _ = UserDataSingleton.sharedInstance.loggedInUser {
+            login = UserDataSingleton.sharedInstance.loggedInUser
+        } else {
+            return
+        }
+        
     }
     
     func updateAudioMeter(_ timer:Timer) {
         
-        if recorder?.isRecording == true {
-            print(recorder.currentTime)
-            let min = Int(recorder.currentTime / 60)
-            let sec = Int(recorder.currentTime.truncatingRemainder(dividingBy: 60))
-            let s = String(format: "%02d:%02d", min, sec)
-            statusLabel.text = s
-            recorder.updateMeters()
-            // if you want to draw some graphics...
-            //var apc0 = recorder.averagePowerForChannel(0)
-            //var peak0 = recorder.peakPowerForChannel(0)
+        if (statusLabel.text?.isEqual("01:00"))! {
+            
+            stop(stopButton)
+            
+        } else {
+            
+            if recorder?.isRecording == true {
+                print(recorder.currentTime)
+                let min = Int(recorder.currentTime / 60)
+                let sec = Int(recorder.currentTime.truncatingRemainder(dividingBy: 60))
+                let s = String(format: "%02d:%02d", min, sec)
+                statusLabel.text = s
+                recorder.updateMeters()
+                // if you want to draw some graphics...
+                //var apc0 = recorder.averagePowerForChannel(0)
+                //var peak0 = recorder.peakPowerForChannel(0)
+            }
+
+            
         }
     }
     
@@ -64,6 +83,10 @@ class RecorderViewController: UIViewController {
         
     }
     
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        stop(stopButton)
+    }
     
     @IBAction func removeAll(_ sender: AnyObject) {
         deleteAllRecordings()
@@ -86,28 +109,17 @@ class RecorderViewController: UIViewController {
         }
         
        else if recorder.isRecording == false {
-            
-            switch PermissionScope().statusMicrophone() {
                 
-            case .authorized:
+            UIApplication.shared.isIdleTimerDisabled = true
                 
-                UIApplication.shared.isIdleTimerDisabled = true
+            print("recording")
+            setButtonBackground()
+            recordBtn.backgroundColor = colors.appColor.color()
+            playButton.isUserInteractionEnabled = true
+            stopButton.isUserInteractionEnabled = true
                 
-                print("recording")
-                setButtonBackground()
-                recordBtn.backgroundColor = colors.appColor.color()
-                playButton.isUserInteractionEnabled = true
-                stopButton.isUserInteractionEnabled = true
-                
-                recorder.record()
-                recordWithPermission(false)
-                
-            default:
-                
-                Alerts.shared.show(alert: .error, message: "Microphone permission required", type: .error)
-                return
-                
-            }
+            recorder.record()
+            recordWithPermission(false)
             
         }
     }
@@ -161,6 +173,13 @@ class RecorderViewController: UIViewController {
             print("could not make session inactive")
             print(error.localizedDescription)
         }
+        
+        ez.dispatchDelay(0.1) {
+            
+            self.playButton.backgroundColor = colors.appColor.color()
+        }
+        
+        
         
         //recorder = nil
     }
@@ -248,6 +267,7 @@ class RecorderViewController: UIViewController {
                    
                 } else {
                     print("Permission to record not granted")
+                    Alerts.shared.show(alert: .alert, message: /permissions.microphone.rawValue, type: .error)
                 }
             })
         } else {
@@ -606,7 +626,7 @@ extension RecorderViewController : AVAudioRecorderDelegate {
             }
             
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
         }
         
     }
@@ -614,11 +634,9 @@ extension RecorderViewController : AVAudioRecorderDelegate {
     //MARK: - media api
     func mediaUploadApi(data: Data?, type: MediaType?, thumb: UIImage?) {
         
-        guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
-            return
-        }
+        APIManager.shared.startLoader()
         
-        APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: login.profile?.access_token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: { (response) in
+        APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: login?.profile?.access_token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: { (response) in
             
             self.handle(response: response)
         })
@@ -630,7 +648,7 @@ extension RecorderViewController : AVAudioRecorderDelegate {
     func resetTimer(){
         
          meterTimer?.invalidate()
-          statusLabel?.text = "0:00"
+          statusLabel?.text = "00:00"
         
     }
     

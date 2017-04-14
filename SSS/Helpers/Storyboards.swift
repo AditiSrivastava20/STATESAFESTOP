@@ -170,10 +170,22 @@ enum StoryboardScene {
     static func instantiateSideMenuViewController() ->  SSS.SideMenuViewController {
       guard let vc = StoryboardScene.Main.sideMenuViewControllerScene.viewController() as?  SSS.SideMenuViewController
       else {
-        fatalError("ViewController 'SideMenuViewController' is not of the expected class SSSCAM.SideMenuViewController.")
+        fatalError("ViewController 'SideMenuViewController' is not of the expected class SSS.SideMenuViewController.")
       }
       return vc
     }
+    
+    case notificationViewControllerScene = "NotificationViewController"
+    static func instantiateNotificationViewController() -> SSS.NotificationViewController {
+        guard let vc = StoryboardScene.Main.notificationViewControllerScene.viewController() as?  SSS.NotificationViewController
+            else {
+                fatalError("ViewController 'NotificationViewController' is not of the expected class SSS.NotificationViewController.")
+        }
+        return vc
+        
+    }
+    
+    
   }
   enum SignUp: String, StoryboardSceneType {
     static let storyboardName = "SignUp"

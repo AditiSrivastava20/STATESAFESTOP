@@ -46,7 +46,13 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
         let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.touchBegan (_:)))
         backgroundView.addGestureRecognizer(gesture)
         
-        
+        if isFromFacebook {
+            ifFromFacebook(obj: fbProfile)
+            hidePasswordFields()
+        } else if isFromTwitter {
+            ifFromTwitter(obj: twProfile)
+            hidePasswordFields()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,21 +60,13 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        if isFromFacebook {
-            ifFromFacebook(obj: fbProfile)
-        } else if isFromTwitter {
-            ifFromTwitter(obj: twProfile)
-        }
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.view.endEditing(true)
     }
     
 
-    
+    //textfield begin editing
     func textFieldDidBeginEditing(_ textField: TextField)  {
         ISMessages.hideAlert(animated: true)
         
@@ -83,9 +81,14 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
                     self.txtFullAddress.text = address
                 })
             })
-            
-            
         }
+    }
+    
+    func hidePasswordFields() {
+        
+        txtPassword.isHidden = true
+        txtConfirmPassword.isHidden = true
+        
     }
     
     
@@ -125,7 +128,11 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
     func ifFromTwitter(obj: TwitterResponse?) {
         
         if let url = obj?.image_url {
-            self.imgProfile.kf.setImage(with: URL(string: url))
+            
+            let newUrl = url.replacingOccurrences(of: "_normal", with: "", options: .literal, range: nil)
+            
+            self.imgProfile.kf.setImage(with: URL(string: newUrl))
+            
             self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height / 2
             imageSelected = true
         }
@@ -140,15 +147,6 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
     //MARK:- Go back
     @IBAction func btnBackAction(_ sender: Any) {
         popVC()
-    }
-    
-    
-    //MARK: - open GMS place picker
-    @IBAction func btnPickAddressAction(_ sender: Any) {
-        ISMessages.hideAlert(animated: true)
-        fetchFullAddress(completion: {(address) in
-            self.txtFullAddress.text = address
-        })
     }
     
     
@@ -172,6 +170,26 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
     }
     
     
+    //MARk: - handle response for check-exsiting-phone/email
+    func handle(response: Response) {
+        
+        switch response {
+        case .success(let responseValue):
+            
+            if let value = responseValue as? User{
+                print(value.msg ?? "")
+                
+                self.SignupApiAction()
+                
+            }
+            
+        case .failure(let str ):
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
+            
+        }
+        
+    }
+    
     //Mark:- Sign up Action
     @IBAction func btnSignUpAction(_ sender: Any) {
         
@@ -181,20 +199,31 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
         switch value {
         case .success:
             
-            guard let FCM = UserDefaults.standard.value(forKey: "FCM") as? String else {
-                return
-            }
             
-            APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text?.uppercaseFirst , email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: FCM),image: isImageSelected(imageSelected) , completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.checkExistEmailOrPhone(email: "", phone: txtPhoneNumber.text), completion: { (response) in
                 
-                HandleResponse.shared.handle(response: response, self, from: .signup)
+                self.handle(response: response)
                 
             })
             
-        case .failure(let title,let msg):
-            Alerts.shared.show(alert: title, message: msg , type : .error)
+        case .failure( _,let msg):
+            Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
     }
+    
+    
+    //MARK: - Hit sign up api
+    func SignupApiAction() {
+        
+        APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text?.uppercaseFirst , email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: ""),image: isImageSelected(imageSelected) , completion: { (response) in
+            
+            HandleResponse.shared.handle(response: response, self, from: .signup)
+            
+        })
+        
+    }
+    
+    
     
     func isImageSelected(_ val: Bool) -> UIImage? {
         
@@ -221,6 +250,8 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
     
 }
 
+
+//MARK: - image picker delegate
 extension EnterDetailsFirstViewController:  DataSentDelegate  {
     func userProfilePicInput(image: UIImage) {
         imgProfile.image = image

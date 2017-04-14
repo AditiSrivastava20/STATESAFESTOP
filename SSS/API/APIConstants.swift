@@ -36,6 +36,7 @@ internal struct APIConstants {
     static let changePassword = "changepassword"
     static let logout = "logout"
     static let notification = "notification"
+    static let pushDeviceToken = "devicetoken"
     
 }
 
@@ -114,6 +115,8 @@ enum Keys: String {
     //change password
     case old_password = "old_password"
     case new_password = "new_password"
+    
+
 }
 
 enum Validate: String {
@@ -214,6 +217,7 @@ struct Parameters {
     static let changePassword: [Keys] = [.accessToken, .old_password, .new_password]
     static let logout: [Keys] = [.accessToken]
     static let notification: [Keys] = [.accessToken]
+    static let pushDeviceToken: [Keys] = [.accessToken, .deviceToken]
 }
 
 

@@ -76,7 +76,7 @@ class ChangePasswordViewController: UIViewController, TextFieldDelegate {
             popVC()
             
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
         }
         
     }
@@ -98,7 +98,7 @@ class ChangePasswordViewController: UIViewController, TextFieldDelegate {
             
             
         case .failure(let title,let msg):
-            Alerts.shared.show(alert: title, message: msg , type : .info)
+            Alerts.shared.show(alert: title, message: msg , type : .error)
             
             
         }

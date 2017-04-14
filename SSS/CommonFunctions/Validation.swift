@@ -46,8 +46,13 @@ class Validation: NSObject {
     //MARK: - signup validation
     func validate(signup fullname: String?, email: String?, password: String?, confirmPasswd: String?, fulladdress: String?, phoneNo: String?, facebookID: String?, twitterID: String?) -> Valid {
         
+        if (/fullname).isEmpty {
+            return errorMsg(str: "Please enter Full Name")
+        }
+        
+        
         if !isValidName((/fullname)) {
-            return errorMsg(str: "Enter a valid fullname")
+            return errorMsg(str: "For Full Name use Alphanumeric characters only")
         }
         
         if (/email).isEmpty {
@@ -98,7 +103,7 @@ class Validation: NSObject {
     }
     
     //MARK: - add complaint validation
-    func validate(complaint title: String?, description: String?) -> Valid {
+    func validate(complaint title: String?, description: String?, media_id: String?) -> Valid {
         
         if (/title).isEmpty {
             return errorMsg(str: "Enter complaint title")
@@ -108,6 +113,10 @@ class Validation: NSObject {
             return errorMsg(str: "Enter complaint description")
         }
         
+        if (/media_id).isEmpty {
+            return errorMsg(str: "Media field is required")
+        }
+        
         return .success
     }
     
@@ -115,7 +124,11 @@ class Validation: NSObject {
     func validate(edit fullname: String?, address: String?, phone: String?) -> Valid {
         
         if (/fullname).isEmpty {
-            return errorMsg(str: "Enter name")
+            return errorMsg(str: "Enter Full Name")
+        }
+        
+        if !isValidName(/fullname) {
+            return errorMsg(str: "For Full Name use Alphanumeric characters only ")
         }
         
         if (/address).isEmpty {
@@ -166,14 +179,6 @@ class Validation: NSObject {
     }
     
     func isValidName(_ testStr:String) -> Bool {
-//        for char in testStr.characters {
-//            if !(char <= "Z") && !(char >= "A") {
-//                return false
-//            } else if !(char <= "z") && !(char >= "a") {
-//                return false
-//            }
-//        }
-//        return true
         
         let nameTest = NSPredicate(format:"SELF MATCHES %@", RegexExpresssions.alphabeticRegex)
         return nameTest.evaluate(with: testStr)

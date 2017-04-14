@@ -20,7 +20,9 @@ class SplashViewController: UIViewController {
         } else {
             
             let vc = StoryboardScene.SignUp.instantiateLogin()
-            pushVC(vc)
+//            pushVC(vc)
+            navigationController?.pushViewController(vc, animated: false)
+            
             
         }
         

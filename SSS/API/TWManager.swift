@@ -45,7 +45,7 @@ class TWManager: UIViewController, NVActivityIndicatorViewable {
             
             if session != nil {
                 print("signed in as \(session!.userName)")
-                print("\(session?.userID)")
+                print("\(String(describing: session?.userID))")
                 let client = TWTRAPIClient.withCurrentUser()
                 let request = client.urlRequest(withMethod: "GET",
                                                 url: "https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true",
@@ -53,7 +53,7 @@ class TWManager: UIViewController, NVActivityIndicatorViewable {
                                                 error: nil)
                 
                 //start loader
-                self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+                self.startAnimating(CGSize(width:44 , height: 44), message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
                 
                 client.sendTwitterRequest(request) { response, data, connectionError in
                     
@@ -74,10 +74,14 @@ class TWManager: UIViewController, NVActivityIndicatorViewable {
                     }
                     else {
                         
-                        print("Error: \(connectionError)")
+                        print("Error: \(String(describing: connectionError))")
                     }
                 }
             } else {
+                
+                //Stop loader
+                self.stopAnimating()
+                
                 UIApplication.shared.endIgnoringInteractionEvents()
                 NSLog("Login error: ", error!.localizedDescription);
             }
@@ -98,9 +102,7 @@ class TWManager: UIViewController, NVActivityIndicatorViewable {
                 LoginChecks.shared.check(obj, user: UserDataSingleton.sharedInstance.loggedInUser)
             }
             
-        case .failure(let str):
-            
-//            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+        case .failure( _):
             
             let vc = StoryboardScene.SignUp.instantiateEnterDetailsFirstViewController()
             vc.isFromTwitter = true
@@ -119,11 +121,7 @@ class TWManager: UIViewController, NVActivityIndicatorViewable {
         switch check {
         case .login:
             
-            guard let FCM = UserDefaults.standard.value(forKey: "FCM") as? String else {
-                return
-            }
-            
-            APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: /param.id, accountType: AccountType.twitter.rawValue, deviceToken: FCM), completion: { (response) in
+            APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: /param.id, accountType: AccountType.twitter.rawValue, deviceToken: ""), completion: { (response) in
                 
                 self.handle(response: response, obj, param: param)
                 

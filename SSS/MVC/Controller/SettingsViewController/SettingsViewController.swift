@@ -8,8 +8,9 @@
 
 import UIKit
 import EZSwiftExtensions
+import MessageUI
 
-class SettingsViewController: BaseViewController {
+class SettingsViewController: BaseViewController, MFMailComposeViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +42,38 @@ class SettingsViewController: BaseViewController {
     
     
     @IBAction func btnSendEmailAction(_ sender: Any) {
-
+        
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+        
     }
     
+    //MARK: Compose email
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+       let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+            
+        mailComposerVC.setToRecipients(["support@mediaopp.com"])
+        mailComposerVC.setSubject("Subject..")
+        mailComposerVC.setMessageBody("", isHTML: false)
+            
+        return mailComposerVC
+    }
     
+    //MARK: MFMail composer alert
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+        
+    // MARK: MFMailComposeViewControllerDelegate Method
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
     
     
     //MARK: - Reset pin action
@@ -65,15 +94,19 @@ class SettingsViewController: BaseViewController {
             return
         }
         
-        if (pin?.isEqual(/login.profile?.pin_password))! {
+        if (pin?.isEmpty)! {
             
-            ez.dispatchDelay(0.5, closure: {
-                self.performSegue(withIdentifier: segue.settingsToResetPin.rawValue, sender: nil)
+            Alerts.shared.show(alert: .alert, message: /Alert.noPinEntered.rawValue, type: .error)
+            
+        } else if (pin?.isEqual(/login.profile?.pin_password))! {
+            
+            ez.dispatchDelay(0.3, closure: {
+                self.performSegue(withIdentifier: segues.settingsToResetPin.rawValue, sender: nil)
             })
             
             
         } else {
-            Alerts.shared.show(alert: .error, message: "Invalid Pin", type: .error)
+            Alerts.shared.show(alert: .alert, message: /Alert.incorrectPin.rawValue, type: .error)
         }
         
         

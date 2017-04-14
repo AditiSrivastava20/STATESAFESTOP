@@ -42,7 +42,15 @@ class SafelistCell: UITableViewCell {
             }
         }
         
-        lblName?.text = /objSafeuser?.name
+        if let name = objSafeuser?.name {
+            
+                lblName?.text = name
+            
+        } else {
+            lblName.isHidden = true
+        }
+        
+//        lblName?.text = /objSafeuser?.name
         lblPhone?.text = /objSafeuser?.unformatted_phone
         
         if objSafeuser?.isSelected == 1 {

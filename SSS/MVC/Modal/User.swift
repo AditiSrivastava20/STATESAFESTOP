@@ -23,6 +23,8 @@ class User: NSObject {
     var recordings: [Recording]?
     var contacts: [Safelist]?
     var notifications: [NotificationData]?
+    var skip_numbers: [String]?
+    var type: String?
     
      init(attributes: OptionalJSON) {
         super.init()
@@ -33,6 +35,7 @@ class User: NSObject {
         access_token = .access_token => attributes
         isnewuser = .isnewuser => attributes
         pin_password = .pin_password => attributes
+        type = .type => attributes
         profile =  Profile(attributes: .profile =< attributes)
         
         complaints = []
@@ -55,7 +58,14 @@ class User: NSObject {
             self.notifications?.append(NotificationData(attributes: element.dictionaryValue))
         })
         
-        
+        if let phones = attributes?["skip_numbers"]?.array {
+            
+            skip_numbers = []
+            
+            for value in phones {
+                skip_numbers?.append(value.stringValue)
+            }
+        }
     }
     
     override init() {

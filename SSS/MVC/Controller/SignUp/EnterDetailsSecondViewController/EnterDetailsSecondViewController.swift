@@ -44,7 +44,7 @@ class EnterDetailsSecondViewController: BaseViewController {
         switch Validate() {
         case .success:
             guard let login = UserDataSingleton.sharedInstance.loggedInUser  else {
-                Alerts.shared.show(alert: .error , message: Alert.error.rawValue , type : .error)
+                Alerts.shared.show(alert: .alert , message: Alert.error.rawValue , type : .error)
                 return
             }
             
@@ -52,8 +52,8 @@ class EnterDetailsSecondViewController: BaseViewController {
                 HandleResponse.shared.handle(response: response, self, from: .pinPassword)
             })
             
-        case .failure(let title,let msg):
-            Alerts.shared.show(alert: title, message: msg , type : .error)
+        case .failure(_ ,let msg):
+            Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
     }
 

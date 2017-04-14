@@ -78,11 +78,12 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate, NVAct
             showPopUp()
             
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
         }
         
     }
     
+    //MARK: - Show Success Popup
     func showPopUp() {
         let vc = StoryboardScene.Main.instantiateComplaintDoneViewController()
         vc.obj = self
@@ -94,11 +95,11 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate, NVAct
     
     //MARK: - Validate
     func Validate() -> Valid{
-        return Validation.shared.validate(complaint: tfTitle.text, description: txtDesc.text)
+        return Validation.shared.validate(complaint: tfTitle.text, description: txtDesc.text, media_id: media_id)
     }
     
     
-    
+    //MARK: - Attach media file
     @IBAction func actionBtnAddFile(_ sender: Any) {
         
         let vc = StoryboardScene.Main.instantiateRecordingViewController()
@@ -109,6 +110,7 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate, NVAct
     }
     
     
+    //MARK: - Add Complaitn button action
     @IBAction func btnAddComplaintAction(_ sender: Any) {
         
         ISMessages.hideAlert(animated: true)
@@ -128,9 +130,10 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate, NVAct
                 self.handle(response: response)
             })
             
-        case .failure(let title,let msg):
+        case .failure( _ ,let msg):
             UIApplication.shared.endIgnoringInteractionEvents()
-            Alerts.shared.show(alert: title, message: msg , type : .error)
+            self.stopAnimating()
+            Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
     }
     

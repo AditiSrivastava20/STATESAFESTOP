@@ -53,7 +53,7 @@ class ResetPinViewController: BaseViewController {
             popVC()
             
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
         }
         
     }
@@ -87,8 +87,8 @@ class ResetPinViewController: BaseViewController {
                 self.handle(response: response)
             })
             
-        case .failure(let title,let msg):
-            Alerts.shared.show(alert: title, message: msg , type : .info)
+        case .failure( _,let msg):
+            Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
         
     }

@@ -24,7 +24,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     func request(with api : Router , completion : @escaping Completion )  {
         
         if isLoaderNeeded(api: api) {
-            startAnimating(type: .ballClipRotate , color: colors.loaderColor.color())
+            startLoader()
         }
         
         
@@ -88,7 +88,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     func request(withArray api : Router, array: [String]? , completion : @escaping Completion )  {
         
         if isLoaderNeeded(api: api) {
-            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+            startLoader()
         }
         
         httpClient.postRequestWithArray(withApi: api, array: array, success: {[weak self] (data) in
@@ -130,7 +130,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     func request(withArrays api : Router, arrayOne: [String]?, arrayTwo: [String]? , completion : @escaping Completion) {
         
         if isLoaderNeeded(api: api) {
-            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+            startLoader()
         }
         
         httpClient.postRequestWithArray(withApi: api, arrayOne: arrayOne, arrayTwo: arrayTwo, success: {[weak self] (data) in
@@ -174,7 +174,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     func request(withImages api : Router , image : UIImage?  , completion : @escaping Completion )  {
         
         if isLoaderNeeded(api: api) {
-            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate, color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+            startLoader()
         }
         
         httpClient.postRequestWithImages(withApi: api, image: image, success: {[weak self] (data) in
@@ -217,9 +217,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     //MARK: APIManager for share media
     func request(withMedia api : Router , media: Data? , thumbnail : UIImage?  , completion : @escaping Completion )  {
         
-        if isLoaderNeeded(api: api) {
-            startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate, color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
-        }
+        
         
         httpClient.postRequestWithMedia(withApi: api, media: media, thumbnail: thumbnail, success: {[weak self] (data) in
             
@@ -259,6 +257,17 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
     }
 
     
+    func startLoader() {
+        
+        startAnimating(CGSize(width:44 , height: 44), message: nil, type: .ballClipRotate, color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
+
+    }
+    
+    func stopLoader() {
+        
+        stopAnimating()
+        
+    }
     
     
     func isLoaderNeeded(api : Router) -> Bool{
@@ -268,6 +277,7 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
         case APIConstants.recordingsList : return false
         case APIConstants.complaintList : return false
         case APIConstants.addComplaint :  return true
+        case APIConstants.pushDeviceToken: return false
         default: return true
         }
     }

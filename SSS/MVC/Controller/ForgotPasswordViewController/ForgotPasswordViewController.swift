@@ -9,23 +9,26 @@
 import UIKit
 import Material
 import ISMessages
+import EZSwiftExtensions
+
 
 class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
     
     @IBOutlet weak var txtEmail: TextField!
     
+    var email:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let _ = email {
+            txtEmail.text = email
+        }
         
         txtEmail.placeHolderAtt()
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func textFieldDidBeginEditing(_ textField: TextField)  {
         ISMessages.hideAlert(animated: true)
@@ -35,7 +38,7 @@ class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
     func validate() -> Bool {
         
         if txtEmail.isEmpty {
-            Alerts.shared.show(alert: .oops, message: "Enter email", type: .error)
+            Alerts.shared.show(alert: .alert, message: "Enter email", type: .error)
             return false
         } else {
             return true
@@ -50,10 +53,14 @@ class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
             if let value = responseValue as? User{
                 print(value.msg ?? "")
                 Alerts.shared.show(alert: .success, message: /value.msg, type: .success)
+                
+                ez.dispatchDelay(0.3, closure: {
+                    self.popVC()
+                })
             }
             
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
         }
     }
     

@@ -56,7 +56,7 @@ class LocationManager: NSObject  {
     
     func startTrackingUser(_ completionHandler:((_ latitude:Double, _ longitude:Double, _ location:String)->())? = nil){
         // For use in foreground
-        UIApplication.shared.endIgnoringInteractionEvents()
+        
         self.completionHandler = completionHandler
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -73,7 +73,7 @@ class LocationManager: NSObject  {
     
 }
 
- extension LocationManager : CLLocationManagerDelegate{
+ extension LocationManager : CLLocationManagerDelegate {
     
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         
@@ -98,6 +98,14 @@ class LocationManager: NSObject  {
        
         
         CLGeocoder().reverseGeocodeLocation(firstLocation) {[unowned self] (placemarks, error) in
+            
+            if error != nil {
+                print("eror")
+                UIApplication.shared.endIgnoringInteractionEvents()
+                APIManager.shared.stopLoader()
+                Alerts.shared.show(alert: .alert, message: "Check your internet connection", type: .error)
+            }
+            
             self.currentLocation?.current_lat = "\(firstLocation.coordinate.latitude)"
             self.currentLocation?.current_lng = "\(firstLocation.coordinate.longitude)"
             guard let bestPlacemark = placemarks?.first else{return}

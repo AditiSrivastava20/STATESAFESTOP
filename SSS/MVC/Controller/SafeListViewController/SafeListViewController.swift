@@ -33,6 +33,7 @@ class SafeListViewController: BaseViewController {
 
     var login:User?
     var safelistArray:[Safelist]?
+    var skipList:String = ""
     var isFromEdit = false
     var isFromShare = false
     
@@ -114,11 +115,24 @@ class SafeListViewController: BaseViewController {
             if let value = responseValue as? User{
                 print(value.msg ?? "")
                 
+                if let array = value.skip_numbers {
+                    
+                    if value.type == "1" {
+                        let str = array.joined(separator: ", ")
+                        Alerts.shared.show(alert: .alert, message: "User already exist", type: .error)
+                    } else if value.type == "2" {
+                        
+                        Alerts.shared.show(alert: .alert, message: "Cannot add your own number", type: .error)
+                    }
+                    
+                }
+                
+                
                 updateTableView(array: value.contacts ,check: check)
             }
             
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
         }
     }
     
@@ -137,15 +151,8 @@ class SafeListViewController: BaseViewController {
             
         }
         
-        if (safelistArray?.isEmpty)! {
-            lblSafelist.isHidden = false
-            btnRemove.isHidden = true
-        } else {
-            btnRemove.isHidden = false
-            lblSafelist.isHidden = true
-            
-        }
-        
+        lblSafelist.isHidden = safelistArray?.count != 0
+        btnRemove.isHidden = safelistArray?.count == 0
     }
     
     
@@ -301,7 +308,10 @@ extension SafeListViewController: EPPickerDelegate {
                 
                 for number in contact.phoneNumbers {
                     let num = "\(number)".digits
-                    safeuser.append("\(num)")
+                    
+                    if !safeuser.contains(num) {
+                        safeuser.append("\(num)")
+                    }
                 }
             }
         }

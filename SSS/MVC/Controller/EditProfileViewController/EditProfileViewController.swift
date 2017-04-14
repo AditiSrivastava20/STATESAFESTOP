@@ -21,6 +21,8 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
     @IBOutlet weak var txtPhone: TextField!
     @IBOutlet weak var txtAddress: TextField!
     @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var btnChangePassword: UIButton!
+    
     
     var fullname:String?
     var address:String?
@@ -94,6 +96,7 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
             return
         }
         
+        imgProfilePic.clipsToBounds = true
         imgProfilePic.kf.setImage(with: URL(string: (login.profile?.image_url)!), placeholder: Image(asset: .icEditProfile), options: nil, progressBlock: nil, completionHandler: nil)
         
         if Image(asset: .icEditProfile) != imgProfilePic.image {
@@ -107,6 +110,8 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
         txtAddress.text = login.profile?.fulladdress
         address = login.profile?.fulladdress
         image = imgProfilePic.image
+        
+        btnChangePassword.isHidden = login.profile?.account_type != "1"
         
     }
     
@@ -150,7 +155,7 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
             }
             
         case .failure(let str):
-            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+            Alerts.shared.show(alert: .alert, message: /str, type: .error)
         }
         
     }
@@ -178,7 +183,7 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
             })
             
         case .failure(let title,let msg):
-            Alerts.shared.show(alert: title, message: msg , type : .info)
+            Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
         
     }

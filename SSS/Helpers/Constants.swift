@@ -56,9 +56,18 @@ enum userPrefrences : String{
 
 }
 
+enum permissions: String {
+    
+    case location = "Permission for \'Location when in use\' not granted"
+    case microphone = "This App does not have access to your microphone"
+    case camera = "This App does not have access to your camera"
+
+}
+
 
 
 enum Alert : String{
+    case alert = "Alert"
     case success = "Success"
     case oops = ""
     case login = "Login Successfull"
@@ -67,6 +76,7 @@ enum Alert : String{
     case cancel = "Cancel"
     case error = " "
     case incorrectPin = "Incorrect Pin"
+    case noPinEntered = "No pin entered"
     case logout = "Logged out"
     case friendsErr = "Number of friends less than 10"
     case shared = "Shared successfully"
@@ -78,7 +88,7 @@ enum MobileDevice: String {
     case token = "iaudhikaskdfh"
 }
 
-enum segue: String {
+enum segues: String {
     
     case loginToMain = "loginToMain"
     case loginToSignup = "loginToSignup"
