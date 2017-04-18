@@ -10,6 +10,7 @@ import UIKit
 import Material
 import ISMessages
 import EZSwiftExtensions
+import NVActivityIndicatorView
 
 
 class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
@@ -17,9 +18,11 @@ class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
     @IBOutlet weak var txtEmail: TextField!
     
     var email:String?
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         if let _ = email {
             txtEmail.text = email
@@ -74,8 +77,14 @@ class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
         ISMessages.hideAlert(animated: true)
         
         if validate() {
-            APIManager.shared.request(with: LoginEndpoint.forgotPassword(email: txtEmail.text), completion: {(response) in
-                self.handle(response: response)
+            
+            startLoader()
+            
+            APIManager.shared.request(with: LoginEndpoint.forgotPassword(email: txtEmail.text), completion: { [weak self] (response) in
+                
+                self?.stopLoader()
+                
+                self?.handle(response: response)
             })
         }
         

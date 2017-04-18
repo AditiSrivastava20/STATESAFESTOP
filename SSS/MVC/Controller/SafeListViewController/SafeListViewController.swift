@@ -12,6 +12,7 @@ import SwiftyJSON
 import Material
 import M13Checkbox
 import EZSwiftExtensions
+import EVContactsPicker
 
 protocol contactListner: class {
     
@@ -38,9 +39,9 @@ class SafeListViewController: BaseViewController {
     var isFromEdit = false
     var isFromShare = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         btnAdd.isHidden = true
         lblSafelist.isHidden = true
@@ -53,6 +54,8 @@ class SafeListViewController: BaseViewController {
         safelistArray = []
         tableView?.estimatedRowHeight = 89
         setupTableView(tableView: tableView, cellId: "SafelistTableViewCell", items: safelistArray)
+        
+        startLoader()
         
     }
     
@@ -125,6 +128,7 @@ class SafeListViewController: BaseViewController {
                     } else if value.type == "1" {
                         
                         Alerts.shared.show(alert: .alert, message: "User already exist", type: .error)
+                        
                     } else if value.type == "2" {
                         
                         Alerts.shared.show(alert: .alert, message: "Cannot add your own number", type: .error)
@@ -164,10 +168,21 @@ class SafeListViewController: BaseViewController {
     
     //MARK: Add safeuser action
     @IBAction func btnAddAction(_ sender: Any) {
-        let contactPickerScene = EPContactsPicker(delegate: self, multiSelection:true, subtitleCellType: SubtitleCellValue.email)
-        let navigationController = UINavigationController(rootViewController: contactPickerScene)
-        self.present(navigationController, animated: true, completion: nil)
+        
+  
+        let contactPicker = EVContactsPickerViewController()
+        contactPicker.delegate = self
+        
+        self.navigationController?.pushViewController(contactPicker, animated: true)
+        
+        
+//        let contactPickerScene = EPContactsPicker(delegate: self, multiSelection:true, subtitleCellType: SubtitleCellValue.email)
+//        let navigationController = UINavigationController(rootViewController: contactPickerScene)
+//        self.present(navigationController, animated: true, completion: nil)
     }
+    
+    
+   
     
     //MARK: Remove safe user action
     @IBAction func btnRemoveAction(_ sender: Any) {
@@ -212,13 +227,22 @@ class SafeListViewController: BaseViewController {
         
         switch check {
         case .get:
-            APIManager.shared.request(with: endPoint(check: check), completion: { (response) in
-                self.handle(response: response, check: check)
+            APIManager.shared.request(with: endPoint(check: check), completion: { [weak self] (response) in
+
+                self?.stopLoader()
+                
+                self?.handle(response: response, check: check)
             })
             
         case .add, .remove:
-            APIManager.shared.request(withArray: endPoint(check: check) , array: array, completion: { (response) in
-                self.handle(response: response, check: check)
+            
+            startLoader()
+            
+            APIManager.shared.request(withArray: endPoint(check: check) , array: array, completion: { [weak self] (response) in
+                
+                self?.stopLoader()
+                
+                self?.handle(response: response, check: check)
             })
             
         }
@@ -290,38 +314,25 @@ extension SafeListViewController {
 }
 
 
-extension SafeListViewController: EPPickerDelegate {
+extension SafeListViewController: EVContactsPickerDelegate {
     
-    //MARK: EPContactsPicker delegates
-    func epContactPicker(_: EPContactsPicker, didContactFetchFailed error : NSError)
-    {
-        print("Failed with error \(error.description)")
-    }
-    
-    func epContactPicker(_: EPContactsPicker, didCancel error : NSError)
-    {
-        print("User canceled the selection");
-    }
-    
-    func epContactPicker(_: EPContactsPicker, didSelectMultipleContacts contacts: [EPContact]) {
-        print("The following contacts are selected")
-        
+   
+    func didChooseContacts(_ contacts: [EVContactProtocol]?) {
         var safeuser:[String] = []
         
-        for contact in contacts {
-            if contact.phoneNumbers.count != 0 {
+        if let cons = contacts {
+            for con in cons {
                 
-                for number in contact.phoneNumbers {
-                    let num = "\(number)".digits
-                    
-                    if !safeuser.contains(num) {
-                        safeuser.append("\(num)")
-                    }
+                let num = "\(con.phone)".digits
+                
+                if !safeuser.contains(num) {
+                    safeuser.append("\(num)")
                 }
+                
+                print("\(String(describing: con.phone))")
             }
         }
-
-        
+        self.navigationController?.popViewController(animated: true)
         print(safeuser)
         
         if !safeuser.isEmpty {
@@ -329,5 +340,7 @@ extension SafeListViewController: EPPickerDelegate {
         }
         
     }
-    
+
 }
+    
+

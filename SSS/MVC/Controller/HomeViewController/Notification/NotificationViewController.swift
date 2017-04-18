@@ -11,6 +11,7 @@ import SwiftyJSON
 import MapKit
 import AVKit
 import EZSwiftExtensions
+import NVActivityIndicatorView
 
 
 class NotificationViewController: UIViewController {
@@ -21,7 +22,7 @@ class NotificationViewController: UIViewController {
     
     var arrayNotifications:[NotificationData] = []
     
-    var dataSource : NotificationTableviewDataSource?{
+    var dataSource : NotificationTableviewDataSource? {
         
         didSet{
             
@@ -31,9 +32,23 @@ class NotificationViewController: UIViewController {
         }
     }
     
+    let viewTemp = UIView(frame: UIScreen.main.bounds)
+    
+    var loader : NVActivityIndicatorView?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let keyWindow = UIApplication.shared.keyWindow else { return }
+        
+        loader = NVActivityIndicatorView(frame: CGRect(x: view.center.x-22, y: view.center.y-22, w: 44, h: 44) , type: .ballClipRotate, color: colors.loaderColor.color() , padding: nil)
+        
+        viewTemp.addSubview(loader!)
+        keyWindow.addSubview(viewTemp)
+        viewTemp.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        viewTemp.isHidden = true
+
         lblNoNotifications.isHidden = true
         tableView.isHidden = true
         
@@ -75,15 +90,11 @@ class NotificationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         getNotificationList()
         
-        UserDefaults.standard.set("1", forKey: "notification_tapped")
-        
         sideMenuController()?.sideMenu?.allowRightSwipe = false
         sideMenuController()?.sideMenu?.allowPanGesture = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        
-        UserDefaults.standard.set("0", forKey: "notification_tapped")
         
         sideMenuController()?.sideMenu?.allowRightSwipe = true
         sideMenuController()?.sideMenu?.allowPanGesture = true
@@ -101,13 +112,17 @@ class NotificationViewController: UIViewController {
         
         if showLoader {
             showLoader = false
-            APIManager.shared.startLoader()
+            loader?.startAnimating()
+            viewTemp.isHidden = false
             
         }
         
-        APIManager.shared.request(with: LoginEndpoint.notification(accessToken: UserDataSingleton.sharedInstance.loggedInUser?.profile?.access_token) , completion: {(response) in
+        APIManager.shared.request(with: LoginEndpoint.notification(accessToken: UserDataSingleton.sharedInstance.loggedInUser?.profile?.access_token) , completion: {[weak self] (response) in
             
-            self.handle(response: response)
+            self?.loader?.stopAnimating()
+            self?.viewTemp.isHidden = true
+            
+            self?.handle(response: response)
         })
         
     }

@@ -24,7 +24,7 @@ protocol mediaSelectListner : class {
 
 
 
-class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
+class RecordingViewController: BaseViewController {
 
     weak var delegateMedia : mediaSelectListner?
     
@@ -42,22 +42,8 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
     var askForPin = true
     
     
-    let viewTemp = UIView(frame: UIScreen.main.bounds)
-    
-    var loader : NVActivityIndicatorView?
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let keyWindow = UIApplication.shared.keyWindow else { return }
-        
-        loader = NVActivityIndicatorView(frame: CGRect(x: view.center.x-22, y: view.center.y-22, w: 44, h: 44) , type: .ballClipRotate, color: colors.loaderColor.color() , padding: nil)
-        
-        viewTemp.addSubview(loader!)
-        keyWindow.addSubview(viewTemp)
-        viewTemp.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        viewTemp.isHidden = true
         
         lblNoRecordings.isHidden = true
         
@@ -70,18 +56,18 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
         tableView?.estimatedRowHeight = 84
         setupTableView(tableView: tableView, cellId: "RecordingTableViewCell", items: arrayRecording)
         tableView.delegate = self
+        
+        //Loader
+        if isFromMediaSelection {
+            startLoader()
+        }
 
     }
     
     
     
     override func viewWillAppear(_ animated: Bool) {
-        //Loader
-        if isFromMediaSelection {
-            loader?.startAnimating()
-            viewTemp.isHidden = false
-        }
-
+        
         getRecordings()
     }
     
@@ -114,8 +100,6 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
     
     //MARK: - handle response
     func handle(response: Response, check: Recordinglist ) {
-        
-        self.stopAnimating()
         
         switch response{
         case .success(let responseValue):
@@ -213,8 +197,8 @@ class RecordingViewController: BaseViewController, NVActivityIndicatorViewable {
         APIManager.shared.request(with: LoginEndpoint.recordingList(accessToken: login?.profile?.access_token), completion: { [weak self]
             (response) in
             
-            self?.loader?.stopAnimating()
-            self?.viewTemp.isHidden = true
+
+            self?.stopLoader()
             
             self?.handle(response: response, check: .populate)
             
@@ -355,7 +339,12 @@ extension RecordingViewController : contactListner {
             print("share")
             
             if !(ids?.isEmpty)! {
-                APIManager.shared.request(withArrays: LoginEndpoint.shareothermedia(accessToken: login?.access_token), arrayOne: [selectedMediaId], arrayTwo: ids, completion: { (response) in
+                
+                startLoader()
+                
+                APIManager.shared.request(withArrays: LoginEndpoint.shareothermedia(accessToken: login?.profile?.access_token), arrayOne: [selectedMediaId], arrayTwo: ids, completion: { (response) in
+                    
+                    self.stopLoader()
                     
                     self.handle(response: response, check: .share)
                     

@@ -273,14 +273,9 @@ class APIManager : UIViewController , NVActivityIndicatorViewable{
         
         switch api.route {
         case APIConstants.login : return true
-        case APIConstants.recordingsList : return false
-        case APIConstants.complaintList : return false
-        case APIConstants.addComplaint :  return false
-        case APIConstants.pushDeviceToken: return false
-        case APIConstants.notification: return false
-        case APIConstants.shareLocation: return false
-        case APIConstants.editProfile: return false
-        default: return true
+
+            
+        default: return false
         }
     }
     

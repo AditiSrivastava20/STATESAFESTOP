@@ -9,6 +9,8 @@ PODS:
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - EPContactsPicker (2.0.1)
+  - EVContactsPicker (0.5.9):
+    - Nuke (~> 4.1.2)
   - EZSwiftExtensions (1.8)
   - Fabric (1.6.11)
   - FBSDKCoreKit (4.19.0):
@@ -57,6 +59,7 @@ PODS:
   - Material (2.5.0):
     - Material/Core (= 2.5.0)
   - Material/Core (2.5.0)
+  - Nuke (4.1.2)
   - NVActivityIndicatorView (3.5)
   - PermissionScope (1.1.1)
   - Protobuf (3.2.0)
@@ -73,6 +76,7 @@ DEPENDENCIES:
   - Alamofire
   - Crashlytics
   - EPContactsPicker
+  - EVContactsPicker
   - EZSwiftExtensions
   - Fabric
   - FBSDKCoreKit
@@ -101,6 +105,7 @@ SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   EPContactsPicker: 6f91fc9d5e585480cc169ab27d97b392c79f95d2
+  EVContactsPicker: 5e3e0c56ccbd651f383d44f32750c2e333d27760
   EZSwiftExtensions: b58e0fe7702e30c4f01bd039658fe84b4fdf5bd5
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
@@ -120,6 +125,7 @@ SPEC CHECKSUMS:
   Kingfisher: 7c62087039d93d26c54c8dd9b0b588d2ce55cef6
   M13Checkbox: c132a7e0eb964731855eff67b883a0b21b7c0977
   Material: 878cdefe31685a2b16352a6cfa8c5decc40f75c3
+  Nuke: 7cfd2acdf90c36f66e6ea40795bac0d851a9afe0
   NVActivityIndicatorView: e5252b082f93885f0bfc24c318719b4eaabcd37b
   PermissionScope: a30c16e015779ba27c97c124e7539e27b5829de2
   Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
@@ -130,6 +136,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 835fc802fed5a66af379141249d8ea00a3871bb0
+PODFILE CHECKSUM: b1f8dc602c7789b8524056497f65455fe7d2a407
 
 COCOAPODS: 1.2.0

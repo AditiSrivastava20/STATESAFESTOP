@@ -78,13 +78,12 @@ extension LoginViewController {
         switch value {
         case .success:
             
-            
             APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: ""), completion: { (response) in
                 
                 HandleResponse.shared.handle(response: response, self, from: .login)
             })
             
-        case .failure(let title,let msg):
+        case .failure( _,let msg):
             Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
     }

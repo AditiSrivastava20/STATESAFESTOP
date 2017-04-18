@@ -54,16 +54,6 @@ enum StoryboardScene {
       }
       return vc
     }
-    
-    
-    case logOutPopUpViewControllerScene = "LogOutPopUpViewController"
-    static func instantiateLogOutPopUpViewController() -> SSS.LogOutPopUpViewController {
-        guard let vc = StoryboardScene.Main.logOutPopUpViewControllerScene.viewController() as? SSS.LogOutPopUpViewController
-            else {
-                fatalError("ViewController 'LogOutPopUpViewController' is not of the expected class SSS.LogOutPopUpViewController.")
-        }
-        return vc
-    }
 
     case cameraViewControllerScene = "CameraViewController"
     static func instantiateCameraViewController() -> SSS.CameraViewController {
@@ -261,6 +251,17 @@ enum StoryboardScene {
         }
         return vc
     }
+    
+    case tutorialViewControllerScene = "TutorialViewController"
+    static func instantiateTutorialViewController() -> SSS.TutorialViewController {
+        guard let vc = StoryboardScene.SignUp.tutorialViewControllerScene.viewController() as? SSS.TutorialViewController
+            else {
+                fatalError("ViewController 'TutorialViewController' is not of the expected class TutorialViewController.")
+        }
+        return vc
+    }
+    
+    
     
   }
 }

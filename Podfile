@@ -32,5 +32,6 @@ target 'SSS' do
   pod 'Firebase/Messaging'
   pod 'SwiftyStoreKit'
   pod 'PermissionScope'
+  pod "EVContactsPicker"
 
 end

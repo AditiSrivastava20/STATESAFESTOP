@@ -34,6 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         //let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         //statusBar.backgroundColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)
+        
+        
+       
+        
+        
         UINavigationBar.appearance().barTintColor = UIColor(red:0.99, green:0.86, blue:0.18, alpha:1.0)
         
         UINavigationBar.appearance().tintColor = UIColor(red:0.0, green:0.0, blue:0.0, alpha:1.0)
@@ -85,6 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         LocationManager.sharedInstance.setupLocationManger()
         
         checkForSession()
+        
+        if let remoteNotif =  launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [String : Any]{
+            UserDefaults.standard.set(remoteNotif, forKey: "dict")
+        }
         
         
         return true
@@ -245,28 +254,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print(userInfo)
         
         //Notification tapped observer
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification"), object: nil)
         
-        
-        //Show Notification in iOS 9.0
-//        if #available(iOS 9.0, *) {
-//            // use the feature only available in iOS 9
-//            
-//            let resultObject = NSDictionary(dictionary: userInfo)
-//            print(resultObject)
-//            
-//            ISMessages.showCardAlert(withTitle: "State Safe Stop", message: "", duration: 0.2, hideOnSwipe: true, hideOnTap: true, alertType: .custom , alertPosition: .top, didHide: nil)
-//            
-//            ez.dispatchDelay(0.5, closure: {
-//                ISMessages.hideAlert(animated: true)
-//            })
-//            
-//        } else {
-//            // or use some work around
-//            
-//            
-//            
-//        }
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -286,10 +276,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         //For production
-        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .prod )
+        //FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .prod )
         
         //For Testing
-//        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .sandbox )
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .sandbox )
     }
     
 

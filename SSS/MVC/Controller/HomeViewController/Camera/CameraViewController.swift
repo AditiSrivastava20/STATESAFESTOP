@@ -89,15 +89,13 @@ class CameraViewController: RecorderViewController {
             
         default:
             
-            loader?.startAnimating()
-            viewTemp.isHidden = false
+            startLoader()
             
             LocationManager.sharedInstance.startTrackingUser { [weak self] (lat, lng, locationName) in
                 
                 APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: self?.login?.profile?.access_token, locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { [weak self] (response) in
                     
-                    self?.loader?.stopAnimating()
-                    self?.viewTemp.isHidden = true
+                    self?.stopLoader()
                     
                     self?.handle(response: response)
                 })

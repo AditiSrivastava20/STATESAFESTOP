@@ -98,28 +98,8 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
     func requestFriends(completion : @escaping (Int) -> ()) {
         //start loader
         
-        
         completion(1)
-//        self.startAnimating(nil, message: nil, messageFont: nil, type: .ballClipRotate , color: colors.loaderColor.color(), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil)
-//        
-//        
-//        FBSDKGraphRequest(graphPath: "/me/taggable_friends", parameters: ["fields": "id"]).start {(connection, result , error) -> Void in
-//            
-//            //Stop loader
-//            self.stopAnimating()
-//            
-//            if error != nil {
-//                print("failed to start graph request: \(error)")
-//                return
-//            }
-//            
-//            let resultdict = result as! NSDictionary
-//            let friends = resultdict.object(forKey: "data") as! NSArray
-//            //print("Found \(friends.count) friends")
-//            
-//            completion(friends.count)
-//        }
-        
+
     }
     
     //MARK:- Handle
@@ -134,8 +114,7 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
                 LoginChecks.shared.check(obj, user: UserDataSingleton.sharedInstance.loggedInUser)
             }
         
-        case .failure(let str):
-//            Alerts.shared.show(alert: .oops, message: /str, type: .error)
+        case .failure( _ ):
             
             let vc = StoryboardScene.SignUp.instantiateEnterDetailsFirstViewController()
             vc.fbProfile = param
@@ -153,10 +132,6 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
         
         switch check {
         case .login:
-            
-//            guard let FCM = UserDefaults.standard.value(forKey: "FCM") as? String else {
-//                return
-//            }
             
             APIManager.shared.request(with: LoginEndpoint.login(email: param.email, password: "", facebookId: param.fbId, twitterId: "", accountType: AccountType.facebook.rawValue, deviceToken: ""), completion: { (response) in
                 

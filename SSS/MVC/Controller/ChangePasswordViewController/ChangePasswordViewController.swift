@@ -12,7 +12,7 @@ import ISMessages
 import EZSwiftExtensions
 
 
-class ChangePasswordViewController: UIViewController, TextFieldDelegate {
+class ChangePasswordViewController: BaseViewController, TextFieldDelegate {
     
     @IBOutlet weak var txtCurrentPassword: TextField!
     @IBOutlet weak var txtNewPassword: TextField!
@@ -71,7 +71,6 @@ class ChangePasswordViewController: UIViewController, TextFieldDelegate {
                 print(value.msg ?? "")
                 Alerts.shared.show(alert: .success, message: /value.msg, type: .success)
 
-                
             }
             popVC()
             
@@ -89,11 +88,15 @@ class ChangePasswordViewController: UIViewController, TextFieldDelegate {
         case .success:
             print("success")
             
+            startLoader()
+            
             let token = UserDataSingleton.sharedInstance.loggedInUser?.profile?.access_token
             
-            APIManager.shared.request(with: LoginEndpoint.changePassword(accessToken: token, old_password: txtCurrentPassword.text, new_password: txtNewPassword.text), completion: {(response) in
+            APIManager.shared.request(with: LoginEndpoint.changePassword(accessToken: token, old_password: txtCurrentPassword.text, new_password: txtNewPassword.text), completion: { [weak self] (response) in
                 
-                self.handle(response: response)
+                self?.stopLoader()
+                
+                self?.handle(response: response)
             })
             
             

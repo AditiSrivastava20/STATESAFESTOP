@@ -9,9 +9,10 @@
 import UIKit
 import Kingfisher
 import EZSwiftExtensions
+import NVActivityIndicatorView
 
 
-class SideMenuViewController: UIViewController {
+class SideMenuViewController: BaseViewController {
     
     @IBOutlet weak var imgProfilePic: UIImageView!
     @IBOutlet weak var lblFullname: UILabel!
@@ -21,8 +22,6 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var btnLogout: UIButton!
     
     var login = UserDataSingleton.sharedInstance.loggedInUser
-    
-    var logout : (() -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,8 +120,14 @@ class SideMenuViewController: UIViewController {
     
     //MARK: - logout api action
     func logOutApi() {
-        APIManager.shared.request(with: LoginEndpoint.logout(accessToken: login?.profile?.access_token), completion: { (response) in
-            self.handle(response: response)
+        
+        startLoader()
+        
+        APIManager.shared.request(with: LoginEndpoint.logout(accessToken: login?.profile?.access_token), completion: { [weak self] (response) in
+            
+            self?.stopLoader()
+            
+            self?.handle(response: response)
         })
         
     }

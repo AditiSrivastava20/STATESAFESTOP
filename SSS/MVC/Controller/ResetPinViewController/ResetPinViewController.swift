@@ -8,10 +8,12 @@
 
 import UIKit
 import ISMessages
+import NVActivityIndicatorView
 
 class ResetPinViewController: BaseViewController {
 
     @IBOutlet weak var pinCodeTextField: PinCodeTextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,12 +84,19 @@ class ResetPinViewController: BaseViewController {
                 return
             }
             
-            APIManager.shared.request(with: LoginEndpoint.resetPin(accessToken: login.profile?.access_token, pinPassword: pinCodeTextField.text) , completion: { (response) in
+            startLoader()
+            
+            APIManager.shared.request(with: LoginEndpoint.resetPin(accessToken: login.profile?.access_token, pinPassword: pinCodeTextField.text) , completion: { [weak self] (response) in
                 
-                self.handle(response: response)
+
+                self?.stopLoader()
+                
+                self?.handle(response: response)
             })
             
         case .failure( _,let msg):
+            
+            self.stopLoader()
             Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
         

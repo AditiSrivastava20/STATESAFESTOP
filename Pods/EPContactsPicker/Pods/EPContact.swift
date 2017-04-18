@@ -42,7 +42,7 @@ open class EPContact {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = EPGlobalConstants.Strings.birdtdayDateFormat
             //Example Date Formats:  Oct 4, Sep 18, Mar 9
-            birthdayString = dateFormatter.string(from: birthday!)
+            birthdayString = dateFormatter.string(from: birthday ?? Date())
         }
         
 		for phoneNumber in contact.phoneNumbers {

@@ -7,7 +7,7 @@ import PermissionScope
 import NVActivityIndicatorView
 import EZSwiftExtensions
 
-class RecorderViewController: UIViewController {
+class RecorderViewController: BaseViewController {
     
     var recorder: AVAudioRecorder!
     
@@ -22,10 +22,7 @@ class RecorderViewController: UIViewController {
     
     @IBOutlet var statusLabel: UILabel!
     
-    let viewTemp = UIView(frame: UIScreen.main.bounds)
-    
-    var loader : NVActivityIndicatorView?
-    
+
     
     var meterTimer:Timer!
     
@@ -37,14 +34,6 @@ class RecorderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let keyWindow = UIApplication.shared.keyWindow else { return }
-        
-        loader = NVActivityIndicatorView(frame: CGRect(x: view.center.x-22, y: view.center.y-22, w: 44, h: 44) , type: .ballClipRotate, color: colors.loaderColor.color() , padding: nil)
-        
-        viewTemp.addSubview(loader!)
-        keyWindow.addSubview(viewTemp)
-        viewTemp.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        viewTemp.isHidden = true
         stopButton.isUserInteractionEnabled = false
         playButton.isUserInteractionEnabled = false
         setSessionPlayback()
@@ -92,7 +81,7 @@ class RecorderViewController: UIViewController {
         player = nil
     }
     
-    func appMovedToBackground() {
+    override func appMovedToBackground() {
         
         self.stop(stopButton)
         
@@ -649,14 +638,11 @@ extension RecorderViewController : AVAudioRecorderDelegate {
     //MARK: - media api
     func mediaUploadApi(data: Data?, type: MediaType?, thumb: UIImage?) {
         
-        loader?.startAnimating()
-        viewTemp.isHidden = false
-  
+        startLoader()
      
         APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: login?.profile?.access_token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: {[weak self] (response) in
             
-            self?.loader?.stopAnimating()
-            self?.viewTemp.isHidden = true
+            self?.stopLoader()
             
             self?.handle(response: response)
         })

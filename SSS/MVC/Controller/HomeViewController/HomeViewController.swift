@@ -37,6 +37,10 @@ class HomeViewController: TwitterPagerTabStripViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(openNotification), name: NSNotification.Name(rawValue: "notification") , object: nil)
         
+        
+        self.perform(#selector(checkForNotification), with: nil, afterDelay: 0.2)
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,22 +49,28 @@ class HomeViewController: TwitterPagerTabStripViewController {
         
     }
     
+    func checkForNotification(){
+         if UserDefaults.standard.object(forKey: "dict") != nil {
+            let vc = StoryboardScene.Main.instantiateNotificationViewController()
+            navigationController?.pushViewController(vc, animated: false)
+            
+              UserDefaults.standard.removeObject(forKey: "dict")
+        }
+    }
+    
+    
     //MARK: - Open notifications
     func openNotification() {
         
-        if let val = UserDefaults.standard.value(forKey: "notification_tapped") as? String {
+        if self.navigationController?.topViewController is NotificationViewController {
             
-            if val == "1" {
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload_notification"), object: nil)
-                
-                
-            } else {
-                
-                let vc = StoryboardScene.Main.instantiateNotificationViewController()
-                navigationController?.pushViewController(vc, animated: false)
-                
-            }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload_notification"), object: nil)
+            
+        } else {
+            
+            hideSideMenuView()
+            let vc = StoryboardScene.Main.instantiateNotificationViewController()
+            navigationController?.pushViewController(vc, animated: false)
             
         }
         
