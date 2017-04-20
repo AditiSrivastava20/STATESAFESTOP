@@ -56,32 +56,64 @@ class SSSPackageViewController: BaseViewController, FBSDKGameRequestDialogDelega
     
     
     func pay() {
-        self.startAnimating()
+        Loader.shared.start()
         
         ez.dispatchDelay(3) {
-            self.stopAnimating()
+            Loader.shared.stop()
         }
         
-        SwiftyStoreKit.purchaseProduct("statesafestop99", atomically: true) { result in
+        SwiftyStoreKit.purchaseProduct("com.statesafestop.product99", atomically: true) { result in
+            Loader.shared.start()
+            
             switch result {
             case .success(let product):
                 print("Purchase Success: \(product.productId)")
+                Loader.shared.stop()
                 
                 UserDefaults.standard.set("1", forKey: "FirstSignUp")
                 self.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
                 
             case .error(let error):
-                switch error.code {
-                case .unknown: print("Unknown error. Please contact support")
-                case .clientInvalid: print("Not allowed to make the payment")
-                case .paymentCancelled: break
-                case .paymentInvalid: print("The purchase identifier was invalid")
-                case .paymentNotAllowed: print("The device is not allowed to make the payment")
-                case .storeProductNotAvailable: print("The product is not available in the current storefront")
-                case .cloudServicePermissionDenied: print("Access to cloud service information is not allowed")
-                case .cloudServiceNetworkConnectionFailed: print("Could not connect to the network")
-                default:break
-                }
+                
+                Loader.shared.stop()
+                print(error.localizedDescription)
+                Alerts.shared.show(alert: .alert, message: /error.localizedDescription, type: .error)
+                
+//                switch error.code {
+//                case .unknown:
+//                    print("Unknown error. Please contact support")
+//                    Alerts.shared.show(alert: .alert, message: "Unknown error. Please contact support", type: .error)
+//                    
+//                case .clientInvalid:
+//                    print("Not allowed to make the payment")
+//                    
+//                    
+//                case .paymentCancelled:
+//                    Alerts.shared.show(alert: .alert, message: "Payment Cancelled", type: .error)
+//                    break
+//                    
+//                case .paymentInvalid:
+//                    print("The purchase identifier was invalid")
+//                    Alerts.shared.show(alert: .alert, message: "The purchase identifier was invalid", type: .error)
+//                    
+//                case .paymentNotAllowed:
+//                    print("The device is not allowed to make the payment")
+//                    Alerts.shared.show(alert: .alert, message: "The device is not allowed to make the payment", type: .error)
+//                    
+//                case .storeProductNotAvailable:
+//                    print("The product is not available in the current storefront")
+//                    Alerts.shared.show(alert: .alert, message: "The product is not available in the current storefront", type: .error)
+//                    
+//                case .cloudServicePermissionDenied:
+//                    print("Access to cloud service information is not allowed")
+//                    Alerts.shared.show(alert: .alert, message: "Access to cloud service information is not allowed", type: .error)
+//                    
+//                case .cloudServiceNetworkConnectionFailed:
+//                    print("Could not connect to the network")
+//                    Alerts.shared.show(alert: .alert, message: "Could not connect to the network", type: .error)
+//                    
+//                default:break
+//                }
                 
             }
         }
@@ -131,7 +163,7 @@ class SSSPackageViewController: BaseViewController, FBSDKGameRequestDialogDelega
         if(inviteDialog.canShow()){
             
             let inviteContent:FBSDKGameRequestContent = FBSDKGameRequestContent()
-            inviteContent.message = "SSS App"
+            inviteContent.message = "State Safe Stop App"
             inviteContent.data = "State Safe Stop"
             inviteContent.title = "State Safe Stop"
             

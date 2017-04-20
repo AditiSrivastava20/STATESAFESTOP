@@ -30,6 +30,8 @@ class ImagePickViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    
+    //MARK: - Gallery selected
     @IBAction func btnGalleryAction(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
             let imagePicker = UIImagePickerController()
@@ -40,6 +42,8 @@ class ImagePickViewController: UIViewController {
         }
     }
     
+    
+    //MARK: - Gallery selected
     @IBAction func btnCameraAction(_ sender: Any) {
         
         switch PermissionScope().statusCamera() {

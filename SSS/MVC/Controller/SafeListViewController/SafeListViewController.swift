@@ -55,7 +55,7 @@ class SafeListViewController: BaseViewController {
         tableView?.estimatedRowHeight = 89
         setupTableView(tableView: tableView, cellId: "SafelistTableViewCell", items: safelistArray)
         
-        startLoader()
+        Loader.shared.start()
         
     }
     
@@ -229,18 +229,18 @@ class SafeListViewController: BaseViewController {
         case .get:
             APIManager.shared.request(with: endPoint(check: check), completion: { [weak self] (response) in
 
-                self?.stopLoader()
+                Loader.shared.stop()
                 
                 self?.handle(response: response, check: check)
             })
             
         case .add, .remove:
             
-            startLoader()
+            Loader.shared.start()
             
             APIManager.shared.request(withArray: endPoint(check: check) , array: array, completion: { [weak self] (response) in
                 
-                self?.stopLoader()
+                Loader.shared.stop()
                 
                 self?.handle(response: response, check: check)
             })

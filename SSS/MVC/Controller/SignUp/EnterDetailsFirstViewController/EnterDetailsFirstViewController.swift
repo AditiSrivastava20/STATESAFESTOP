@@ -199,11 +199,11 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
         switch value {
         case .success:
             
-            startLoader()
+            Loader.shared.start()
             
             APIManager.shared.request(with: LoginEndpoint.checkExistEmailOrPhone(email: "", phone: txtPhoneNumber.text), completion: { (response) in
                 
-                self.stopLoader()
+                Loader.shared.stop()
                 self.handle(response: response)
                 
             })
@@ -217,11 +217,11 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
     //MARK: - Hit sign up api
     func SignupApiAction() {
         
-        startLoader()
+        Loader.shared.start()
         
         APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text?.uppercaseFirst , email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: ""),image: isImageSelected(imageSelected) , completion: { (response) in
             
-            self.stopLoader()
+            Loader.shared.stop()
             HandleResponse.shared.handle(response: response, self, from: .signup)
             
         })

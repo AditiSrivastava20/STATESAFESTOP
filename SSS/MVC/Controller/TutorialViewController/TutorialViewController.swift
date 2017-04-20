@@ -19,6 +19,10 @@ class TutorialViewController: UIViewController {
         }
     }
     @IBOutlet weak var pageControlTut: UIPageControl!
+    
+    @IBOutlet weak var btnSkip: UIButton!
+    
+    
     var arrayImage = [Asset.tut1.image,Asset.tut2.image,Asset.tut3.image]
     var arrayTitle = ["Record the audio and\nvideo and send your location to your safelist","Send your complaints to the\nauthorities without any interference","Manage your contacts\nin the safelist",""]
     
@@ -73,6 +77,28 @@ extension TutorialViewController : UICollectionViewDelegate , UICollectionViewDa
         
         return cell
         
+        
+    }
+    
+    
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        var visible = CGRect()
+        visible.origin = targetContentOffset.pointee
+        visible.size = collectionView.bounds.size
+        let visiblePoint = CGPoint(x: visible.midX, y: visible.midY)
+        let visibleIndexPath  = collectionView.indexPathForItem(at: visiblePoint)
+        
+        if visibleIndexPath![1] == 2 {
+            
+            self.btnSkip.setTitle("Ready to Go",for: .normal)
+            
+        } else {
+            
+            self.btnSkip.setTitle("SKIP",for: .normal)
+            
+        }
         
     }
     

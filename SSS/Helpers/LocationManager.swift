@@ -101,7 +101,7 @@ class LocationManager: NSObject  {
             
             if error != nil {
                 print("eror")
-                
+                Loader.shared.stop()
                 Alerts.shared.show(alert: .alert, message: "Check your internet connection", type: .error)
             }
             

@@ -89,13 +89,13 @@ class CameraViewController: RecorderViewController {
             
         default:
             
-            startLoader()
+            Loader.shared.start()
             
             LocationManager.sharedInstance.startTrackingUser { [weak self] (lat, lng, locationName) in
                 
                 APIManager.shared.request(with: LoginEndpoint.shareLocation(accessToken: self?.login?.profile?.access_token, locatiom_name: locationName, latitude: "\(lat)", longitude: "\(lng)"), completion: { [weak self] (response) in
                     
-                    self?.stopLoader()
+                    Loader.shared.stop()
                     
                     self?.handle(response: response)
                 })

@@ -88,13 +88,13 @@ class ChangePasswordViewController: BaseViewController, TextFieldDelegate {
         case .success:
             print("success")
             
-            startLoader()
+            Loader.shared.start()
             
             let token = UserDataSingleton.sharedInstance.loggedInUser?.profile?.access_token
             
             APIManager.shared.request(with: LoginEndpoint.changePassword(accessToken: token, old_password: txtCurrentPassword.text, new_password: txtNewPassword.text), completion: { [weak self] (response) in
                 
-                self?.stopLoader()
+                Loader.shared.stop()
                 
                 self?.handle(response: response)
             })

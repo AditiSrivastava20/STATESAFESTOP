@@ -36,21 +36,12 @@ class SafelistCell: UITableViewCell {
     }
     
     func setupCell() {
-        if let _ = objSafeuser?.image {
-            if !(objSafeuser?.image?.isBlank)! {
-                imgContact.kf.setImage(with: URL(string: /objSafeuser?.image))
-            }
-        }
         
-        if let name = objSafeuser?.name {
-            
-                lblName?.text = name
-            
-        } else {
-            lblName.isHidden = true
-        }
+        imgContact.kf.setImage(with: URL(string: /(objSafeuser?.image)), placeholder: Image(asset: .icProfile), options: nil, progressBlock: nil, completionHandler: nil)
         
-//        lblName?.text = /objSafeuser?.name
+        lblName?.text = /objSafeuser?.name
+        lblName.isHidden = (/objSafeuser?.name).isBlank
+        
         lblPhone?.text = /objSafeuser?.unformatted_phone
         
         if objSafeuser?.isSelected == 1 {

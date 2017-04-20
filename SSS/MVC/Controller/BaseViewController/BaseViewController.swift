@@ -14,25 +14,12 @@ import GooglePlacePicker
 import NVActivityIndicatorView
 
 class BaseViewController: UIViewController, UIApplicationDelegate {
-
-    let viewTemp = UIView(frame: UIScreen.main.bounds)
-    
-    var loader : NVActivityIndicatorView?
     
     
     var dataSource : TableViewDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let keyWindow = UIApplication.shared.keyWindow else { return }
-        
-        loader = NVActivityIndicatorView(frame: CGRect(x: view.center.x-22, y: view.center.y-22, w: 44, h: 44) , type: .ballClipRotate, color: colors.loaderColor.color() , padding: nil)
-        
-        viewTemp.addSubview(loader!)
-        keyWindow.addSubview(viewTemp)
-        viewTemp.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        viewTemp.isHidden = true
         
 
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont.Font(.HelveticaNeue , type: .Regular , size: 16)]
@@ -118,19 +105,6 @@ class BaseViewController: UIViewController, UIApplicationDelegate {
         self.view.endEditing(true)
     }
     
-    func startLoader() {
-        
-        loader?.startAnimating()
-        viewTemp.isHidden = false
-        
-    }
-    
-    func stopLoader() {
-        
-        self.loader?.stopAnimating()
-        self.viewTemp.isHidden = true
-        
-    }
     
     func appMovedToBackground() {
         self.view.endEditing(true)

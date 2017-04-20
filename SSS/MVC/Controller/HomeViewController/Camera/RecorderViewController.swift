@@ -638,11 +638,11 @@ extension RecorderViewController : AVAudioRecorderDelegate {
     //MARK: - media api
     func mediaUploadApi(data: Data?, type: MediaType?, thumb: UIImage?) {
         
-        startLoader()
+        Loader.shared.start()
      
         APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: login?.profile?.access_token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: {[weak self] (response) in
             
-            self?.stopLoader()
+            Loader.shared.stop()
             
             self?.handle(response: response)
         })

@@ -647,6 +647,7 @@ asdasdas</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnSkip" destination="swT-Vf-v86" id="VrI-jG-kpr"/>
                         <outlet property="collectionView" destination="V9P-Sc-3T0" id="uvX-ac-Aai"/>
                         <outlet property="pageControlTut" destination="8PL-fF-WQ2" id="fcU-a7-s6q"/>
                     </connections>

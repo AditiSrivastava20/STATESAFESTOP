@@ -119,7 +119,7 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate {
         
         ISMessages.hideAlert(animated: true)
         
-        startLoader()
+        Loader.shared.start()
         
         guard let login = UserDataSingleton.sharedInstance.loggedInUser else {
             return
@@ -130,14 +130,14 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate {
 
             APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: login.profile?.access_token, title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { [weak self] (response) in
                 
-                self?.stopLoader()
+                Loader.shared.stop()
                 
                 self?.handle(response: response)
             })
             
         case .failure( _ ,let msg):
             
-            self.stopLoader()
+            Loader.shared.stop()
             Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
     }

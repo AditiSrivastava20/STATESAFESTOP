@@ -78,12 +78,11 @@ class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
         
         if validate() {
             
-            startLoader()
+            Loader.shared.start()
             
             APIManager.shared.request(with: LoginEndpoint.forgotPassword(email: txtEmail.text), completion: { [weak self] (response) in
                 
-                self?.stopLoader()
-                
+                Loader.shared.stop()                
                 self?.handle(response: response)
             })
         }

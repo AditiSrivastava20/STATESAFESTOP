@@ -59,7 +59,7 @@ class RecordingViewController: BaseViewController {
         
         //Loader
         if isFromMediaSelection {
-            startLoader()
+            Loader.shared.start()
         }
 
     }
@@ -198,7 +198,7 @@ class RecordingViewController: BaseViewController {
             (response) in
             
 
-            self?.stopLoader()
+            Loader.shared.stop()
             
             self?.handle(response: response, check: .populate)
             
@@ -340,11 +340,11 @@ extension RecordingViewController : contactListner {
             
             if !(ids?.isEmpty)! {
                 
-                startLoader()
+                Loader.shared.start()
                 
                 APIManager.shared.request(withArrays: LoginEndpoint.shareothermedia(accessToken: login?.profile?.access_token), arrayOne: [selectedMediaId], arrayTwo: ids, completion: { (response) in
                     
-                    self.stopLoader()
+                    Loader.shared.stop()
                     
                     self.handle(response: response, check: .share)
                     

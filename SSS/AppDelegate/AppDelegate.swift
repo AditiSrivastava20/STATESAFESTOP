@@ -231,6 +231,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Print full message.
         print(userInfo)
         
+        //Notification tapped observer
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification"), object: nil)
+        
     }
     
     
@@ -276,10 +279,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         //For production
-        //FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .prod )
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .prod )
         
         //For Testing
-        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .sandbox )
+        //FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .sandbox )
     }
     
 

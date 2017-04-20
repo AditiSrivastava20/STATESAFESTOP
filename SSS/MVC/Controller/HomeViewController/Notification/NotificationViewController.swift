@@ -31,23 +31,10 @@ class NotificationViewController: UIViewController {
             
         }
     }
-    
-    let viewTemp = UIView(frame: UIScreen.main.bounds)
-    
-    var loader : NVActivityIndicatorView?
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let keyWindow = UIApplication.shared.keyWindow else { return }
-        
-        loader = NVActivityIndicatorView(frame: CGRect(x: view.center.x-22, y: view.center.y-22, w: 44, h: 44) , type: .ballClipRotate, color: colors.loaderColor.color() , padding: nil)
-        
-        viewTemp.addSubview(loader!)
-        keyWindow.addSubview(viewTemp)
-        viewTemp.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        viewTemp.isHidden = true
 
         lblNoNotifications.isHidden = true
         tableView.isHidden = true
@@ -112,15 +99,14 @@ class NotificationViewController: UIViewController {
         
         if showLoader {
             showLoader = false
-            loader?.startAnimating()
-            viewTemp.isHidden = false
+            
+            Loader.shared.start()
             
         }
         
         APIManager.shared.request(with: LoginEndpoint.notification(accessToken: UserDataSingleton.sharedInstance.loggedInUser?.profile?.access_token) , completion: {[weak self] (response) in
             
-            self?.loader?.stopAnimating()
-            self?.viewTemp.isHidden = true
+            Loader.shared.stop()
             
             self?.handle(response: response)
         })
@@ -224,30 +210,30 @@ extension NotificationViewController: UITableViewDelegate {
         
     }
     
-    //MARK: - Tableview delegate
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if arrayNotifications[indexPath.row].notification_type == "2" {
-            
-            guard let urlMedia = arrayNotifications[indexPath.row].media_content else {return}
-            
-            let videoURL = URL(string: urlMedia)
-            let player = AVPlayer(url: videoURL!)
-            let playerViewController = AVPlayerViewController()
-            playerViewController.player = player
-            ez.runThisInMainThread {
-                
-                self.present(playerViewController, animated: true) {
-                    playerViewController.player!.play()
-                }
-            }
-            
-            
-        }
-        
-        
-        
-    }
+//    //MARK: - Tableview delegate
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        if arrayNotifications[indexPath.row].notification_type == "2" {
+//            
+//            guard let urlMedia = arrayNotifications[indexPath.row].media_content else {return}
+//            
+//            let videoURL = URL(string: urlMedia)
+//            let player = AVPlayer(url: videoURL!)
+//            let playerViewController = AVPlayerViewController()
+//            playerViewController.player = player
+//            ez.runThisInMainThread {
+//                
+//                self.present(playerViewController, animated: true) {
+//                    playerViewController.player!.play()
+//                }
+//            }
+//            
+//            
+//        }
+//        
+//        
+//        
+//    }
     
     
 }

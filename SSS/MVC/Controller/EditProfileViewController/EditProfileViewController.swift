@@ -173,7 +173,7 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
             return
         }
         
-        startLoader()
+        Loader.shared.start()
         
         switch validate() {
         case .success:
@@ -183,14 +183,14 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
             
             APIManager.shared.request(withImages: LoginEndpoint.editProfile(accessToken: token, fullName: txtFullname.text, address: txtAddress.text, email: email, phone: txtPhone.text), image: imgProfilePic.image, completion: {[weak self] (response) in
                 
-                self?.stopLoader()
+                Loader.shared.stop()
                 
                 self?.handle(response: response)
             })
             
         case .failure( _ ,let msg):
             
-            self.stopLoader()
+            Loader.shared.stop()
             Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
         

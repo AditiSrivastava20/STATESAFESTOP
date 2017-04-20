@@ -84,19 +84,19 @@ class ResetPinViewController: BaseViewController {
                 return
             }
             
-            startLoader()
+            Loader.shared.start()
             
             APIManager.shared.request(with: LoginEndpoint.resetPin(accessToken: login.profile?.access_token, pinPassword: pinCodeTextField.text) , completion: { [weak self] (response) in
                 
 
-                self?.stopLoader()
+                Loader.shared.stop()
                 
                 self?.handle(response: response)
             })
             
         case .failure( _,let msg):
             
-            self.stopLoader()
+            Loader.shared.stop()
             Alerts.shared.show(alert: .alert, message: msg , type : .error)
         }
         

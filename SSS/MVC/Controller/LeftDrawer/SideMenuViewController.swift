@@ -12,7 +12,7 @@ import EZSwiftExtensions
 import NVActivityIndicatorView
 
 
-class SideMenuViewController: BaseViewController {
+class SideMenuViewController: UIViewController {
     
     @IBOutlet weak var imgProfilePic: UIImageView!
     @IBOutlet weak var lblFullname: UILabel!
@@ -121,11 +121,11 @@ class SideMenuViewController: BaseViewController {
     //MARK: - logout api action
     func logOutApi() {
         
-        startLoader()
+        Loader.shared.start()
         
         APIManager.shared.request(with: LoginEndpoint.logout(accessToken: login?.profile?.access_token), completion: { [weak self] (response) in
             
-            self?.stopLoader()
+            Loader.shared.stop()
             
             self?.handle(response: response)
         })
