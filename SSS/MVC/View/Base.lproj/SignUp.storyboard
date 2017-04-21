@@ -1047,7 +1047,7 @@ asdasdas</string>
                                 <rect key="frame" x="0.0" y="20" width="320" height="230.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="fHE-rj-RYU">
-                                        <rect key="frame" x="63" y="18.5" width="194" height="194"/>
+                                        <rect key="frame" x="63" y="19" width="194" height="194"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -47,12 +47,6 @@ class RecordingViewController: BaseViewController {
         
         lblNoRecordings.isHidden = true
         
-        guard let _ = UserDataSingleton.sharedInstance.loggedInUser else {
-            return
-        }
-        
-        login = UserDataSingleton.sharedInstance.loggedInUser
-        
         tableView?.estimatedRowHeight = 84
         setupTableView(tableView: tableView, cellId: "RecordingTableViewCell", items: arrayRecording)
         tableView.delegate = self
@@ -67,6 +61,12 @@ class RecordingViewController: BaseViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        guard let _ = UserDataSingleton.sharedInstance.loggedInUser else {
+            return
+        }
+        
+        login = UserDataSingleton.sharedInstance.loggedInUser
         
         getRecordings()
     }

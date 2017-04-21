@@ -142,28 +142,6 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
         
     }
     
-    //MARK: - Handle response
-    func handle(response : Response) {
-        
-        switch response{
-        case .success(let responseValue):
-            if let value = responseValue as? User{
-                
-                print(value.msg ?? "")
-                Alerts.shared.show(alert: .success, message: /value.msg, type: .success)
-                UserDataSingleton.sharedInstance.loggedInUser = value
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateSidePanel"), object: nil)
-                popVC()
-            }
-            
-        case .failure(let str):
-            Alerts.shared.show(alert: .alert, message: /str, type: .error)
-        }
-        
-    }
-    
-
-    
     
     //MARK: - Save changes in edit profile
     @IBAction func btnSaveChangesAction(_ sender: UIBarButtonItem) {
@@ -181,11 +159,12 @@ class EditProfileViewController: BaseViewController, TextFieldDelegate {
             let token = UserDataSingleton.sharedInstance.loggedInUser?.profile?.access_token
             let email = UserDataSingleton.sharedInstance.loggedInUser?.profile?.email
             
-            APIManager.shared.request(withImages: LoginEndpoint.editProfile(accessToken: token, fullName: txtFullname.text, address: txtAddress.text, email: email, phone: txtPhone.text), image: imgProfilePic.image, completion: {[weak self] (response) in
+            APIManager.shared.request(withImages: LoginEndpoint.editProfile(accessToken: token, fullName: txtFullname.text, address: txtAddress.text, email: email, phone: txtPhone.text), image: imgProfilePic.image, completion: { (response) in
                 
                 Loader.shared.stop()
                 
-                self?.handle(response: response)
+                HandleResponse.shared.handle(response: response, self, from: .editProfile, param: nil)
+                
             })
             
         case .failure( _ ,let msg):

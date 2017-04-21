@@ -39,26 +39,26 @@ class ResetPinViewController: BaseViewController {
     }
     
     
-    //MARK: - handle api response
-    func handle(response : Response) {
-        
-        switch response{
-        case .success(let responseValue):
-            if let value = responseValue as? User{
-                
-                print(value.msg ?? "")
-                var login = UserDataSingleton.sharedInstance.loggedInUser
-                login?.profile?.pin_password = pinCodeTextField.text
-                UserDataSingleton.sharedInstance.loggedInUser = login
-                Alerts.shared.show(alert: .success, message: value.msg!, type: .success)
-            }
-            popVC()
-            
-        case .failure(let str):
-            Alerts.shared.show(alert: .alert, message: /str, type: .error)
-        }
-        
-    }
+//    //MARK: - handle api response
+//    func handle(response : Response) {
+//        
+//        switch response{
+//        case .success(let responseValue):
+//            if let value = responseValue as? User{
+//                
+//                print(value.msg ?? "")
+//                var login = UserDataSingleton.sharedInstance.loggedInUser
+//                login?.profile?.pin_password = pinCodeTextField.text
+//                UserDataSingleton.sharedInstance.loggedInUser = login
+//                Alerts.shared.show(alert: .success, message: value.msg!, type: .success)
+//            }
+//            popVC()
+//            
+//        case .failure(let str):
+//            Alerts.shared.show(alert: .alert, message: /str, type: .error)
+//        }
+//        
+//    }
     
     
     //MARK: - Validate pin
@@ -86,12 +86,14 @@ class ResetPinViewController: BaseViewController {
             
             Loader.shared.start()
             
-            APIManager.shared.request(with: LoginEndpoint.resetPin(accessToken: login.profile?.access_token, pinPassword: pinCodeTextField.text) , completion: { [weak self] (response) in
+            APIManager.shared.request(with: LoginEndpoint.resetPin(accessToken: login.profile?.access_token, pinPassword: pinCodeTextField.text) , completion: { (response) in
                 
 
                 Loader.shared.stop()
                 
-                self?.handle(response: response)
+                //self?.handle(response: response)
+                HandleResponse.shared.handle(response: response, self, from: .resetPin , param: self.pinCodeTextField.text)
+                
             })
             
         case .failure( _,let msg):

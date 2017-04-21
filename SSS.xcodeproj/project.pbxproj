@@ -62,7 +62,6 @@
 		1DE126861E8BB95600DBE5BA /* SafeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125E21E8BB95600DBE5BA /* SafeListViewController.swift */; };
 		1DE126881E8BB95600DBE5BA /* EnterDetailsFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125E71E8BB95600DBE5BA /* EnterDetailsFirstViewController.swift */; };
 		1DE126891E8BB95600DBE5BA /* EnterDetailsSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125E91E8BB95600DBE5BA /* EnterDetailsSecondViewController.swift */; };
-		1DE1268A1E8BB95600DBE5BA /* CardTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125EC1E8BB95600DBE5BA /* CardTransactionViewController.swift */; };
 		1DE1268B1E8BB95600DBE5BA /* SSSPackageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125EE1E8BB95600DBE5BA /* SSSPackageViewController.swift */; };
 		1DE1268C1E8BB95600DBE5BA /* facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125F11E8BB95600DBE5BA /* facebook.swift */; };
 		1DE1268D1E8BB95600DBE5BA /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE125F21E8BB95600DBE5BA /* Profile.swift */; };
@@ -209,7 +208,6 @@
 		1DE125E21E8BB95600DBE5BA /* SafeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeListViewController.swift; sourceTree = "<group>"; };
 		1DE125E71E8BB95600DBE5BA /* EnterDetailsFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterDetailsFirstViewController.swift; sourceTree = "<group>"; };
 		1DE125E91E8BB95600DBE5BA /* EnterDetailsSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterDetailsSecondViewController.swift; sourceTree = "<group>"; };
-		1DE125EC1E8BB95600DBE5BA /* CardTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransactionViewController.swift; sourceTree = "<group>"; };
 		1DE125EE1E8BB95600DBE5BA /* SSSPackageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSSPackageViewController.swift; sourceTree = "<group>"; };
 		1DE125F11E8BB95600DBE5BA /* facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = facebook.swift; sourceTree = "<group>"; };
 		1DE125F21E8BB95600DBE5BA /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -632,18 +630,9 @@
 		1DE125EA1E8BB95600DBE5BA /* EnterDetailsThird */ = {
 			isa = PBXGroup;
 			children = (
-				1DE125EB1E8BB95600DBE5BA /* CardTransactionViewController */,
 				1DE125ED1E8BB95600DBE5BA /* SSSPackageViewController */,
 			);
 			path = EnterDetailsThird;
-			sourceTree = "<group>";
-		};
-		1DE125EB1E8BB95600DBE5BA /* CardTransactionViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1DE125EC1E8BB95600DBE5BA /* CardTransactionViewController.swift */,
-			);
-			path = CardTransactionViewController;
 			sourceTree = "<group>";
 		};
 		1DE125ED1E8BB95600DBE5BA /* SSSPackageViewController */ = {
@@ -1192,7 +1181,6 @@
 				1D74333F1E93D67800ABC797 /* twitter.swift in Sources */,
 				1DE126751E8BB95600DBE5BA /* ParamKeys.swift in Sources */,
 				1DE1267A1E8BB95600DBE5BA /* CameraViewController.swift in Sources */,
-				1DE1268A1E8BB95600DBE5BA /* CardTransactionViewController.swift in Sources */,
 				1DE126F81E8BE76600DBE5BA /* Complaint.swift in Sources */,
 				1D2822201EA727FD00671424 /* Loader.swift in Sources */,
 				1DEEE64E1E92170D00966D4C /* ForgotPasswordViewController.swift in Sources */,

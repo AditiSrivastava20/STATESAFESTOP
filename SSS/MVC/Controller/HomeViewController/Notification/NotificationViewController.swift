@@ -48,7 +48,7 @@ class NotificationViewController: UIViewController {
         
     }
     
-    
+    //MARK: - handle response
     func handle(response: Response) {
         
         switch response {
@@ -209,31 +209,7 @@ extension NotificationViewController: UITableViewDelegate {
         })
         
     }
-    
-//    //MARK: - Tableview delegate
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//        if arrayNotifications[indexPath.row].notification_type == "2" {
-//            
-//            guard let urlMedia = arrayNotifications[indexPath.row].media_content else {return}
-//            
-//            let videoURL = URL(string: urlMedia)
-//            let player = AVPlayer(url: videoURL!)
-//            let playerViewController = AVPlayerViewController()
-//            playerViewController.player = player
-//            ez.runThisInMainThread {
-//                
-//                self.present(playerViewController, animated: true) {
-//                    playerViewController.player!.play()
-//                }
-//            }
-//            
-//            
-//        }
-//        
-//        
-//        
-//    }
+
     
     
 }

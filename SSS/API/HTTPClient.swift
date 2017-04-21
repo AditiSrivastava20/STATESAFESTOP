@@ -25,7 +25,7 @@ class HTTPClient {
         
         let params = api.parameters!
         var fullPath = ""
-        if api.route.isEqual("devicetoken") {
+        if api.route.isEqual("devicetoken") || api.route.isEqual("invite_status") {
             
             fullPath = "http://35.167.142.176/api/set/" + api.route
             

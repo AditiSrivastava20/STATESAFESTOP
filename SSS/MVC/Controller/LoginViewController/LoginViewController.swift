@@ -80,7 +80,7 @@ extension LoginViewController {
             
             APIManager.shared.request(with: LoginEndpoint.login(email: txtEmail.text, password: txtPassword.text, facebookId: "", twitterId: "", accountType: AccountType.normal.rawValue, deviceToken: ""), completion: { (response) in
                 
-                HandleResponse.shared.handle(response: response, self, from: .login)
+                HandleResponse.shared.handle(response: response, self, from: .login, param: nil)
             })
             
         case .failure( _,let msg):

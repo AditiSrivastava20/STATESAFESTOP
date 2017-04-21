@@ -197,15 +197,6 @@ enum StoryboardScene {
         return vc
     }
     
-    case cardTransactionViewControllerScene = "CardTransactionViewController"
-    static func instantiateCardTransactionViewController() -> SSS.CardTransactionViewController {
-        guard let vc = StoryboardScene.SignUp.cardTransactionViewControllerScene.viewController() as? SSS.CardTransactionViewController
-            else {
-                fatalError("ViewController 'CardTransactionViewController' is not of the expected class SSS.CardTransactionViewController.")
-        }
-        return vc
-    }
-    
 
     case imagePickViewControllerScene = "ImagePickViewController"
     static func instantiateImagePickViewController() -> SSS.ImagePickViewController {

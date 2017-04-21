@@ -94,7 +94,6 @@ enum segues: String {
     case loginToSignup = "loginToSignup"
     case signupToPin = "signupToPin"
     case pinToPackage = "pinToPackage"
-    case packageToInAppPurchase = "packageToInAppPurchase"
     case settingsToResetPin = "settingsToResetPin"
     case loginToForgotPassword = "loginToForgotPassword"
     

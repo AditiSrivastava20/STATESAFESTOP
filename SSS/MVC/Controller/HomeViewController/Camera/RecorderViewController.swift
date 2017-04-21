@@ -621,17 +621,7 @@ extension RecorderViewController : AVAudioRecorderDelegate {
     //MARK: - Handle response
     func handle(response : Response) {
         
-        switch response{
-        case .success(let responseValue):
-            if let value = responseValue as? User{
-                
-                print(value.msg ?? "")
-                Alerts.shared.show(alert: .success, message: /value.msg, type: .success)
-            }
-            
-        case .failure(let str):
-            Alerts.shared.show(alert: .alert, message: /str, type: .error)
-        }
+        HandleResponse.shared.handle(response: response, self, from: .cameraScreen, param: nil)
         
     }
     
@@ -640,11 +630,12 @@ extension RecorderViewController : AVAudioRecorderDelegate {
         
         Loader.shared.start()
      
-        APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: login?.profile?.access_token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: {[weak self] (response) in
+        APIManager.shared.request(withMedia: LoginEndpoint.shareMedia(accessToken: login?.profile?.access_token, media_type: type?.rawValue), media: data, thumbnail: thumb, completion: { [weak self] (response) in
             
             Loader.shared.stop()
             
             self?.handle(response: response)
+            
         })
         
     }

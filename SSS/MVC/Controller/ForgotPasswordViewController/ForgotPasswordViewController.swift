@@ -29,7 +29,6 @@ class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
         }
         
         txtEmail.placeHolderAtt()
-        // Do any additional setup after loading the view.
     }
 
     
@@ -48,24 +47,6 @@ class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
         }
     }
     
-    //MARK: Handle response
-    func handle(response: Response) {
-        
-        switch response{
-        case .success(let responseValue):
-            if let value = responseValue as? User{
-                print(value.msg ?? "")
-                Alerts.shared.show(alert: .success, message: /value.msg, type: .success)
-                
-                ez.dispatchDelay(0.3, closure: {
-                    self.popVC()
-                })
-            }
-            
-        case .failure(let str):
-            Alerts.shared.show(alert: .alert, message: /str, type: .error)
-        }
-    }
     
     
     @IBAction func btnBackAction(_ sender: Any) {
@@ -80,10 +61,11 @@ class ForgotPasswordViewController: BaseViewController, TextFieldDelegate {
             
             Loader.shared.start()
             
-            APIManager.shared.request(with: LoginEndpoint.forgotPassword(email: txtEmail.text), completion: { [weak self] (response) in
+            APIManager.shared.request(with: LoginEndpoint.forgotPassword(email: txtEmail.text), completion: { (response) in
                 
-                Loader.shared.stop()                
-                self?.handle(response: response)
+                Loader.shared.stop()
+                
+                HandleResponse.shared.handle(response: response, self, from: .forgotPassword , param: nil)
             })
         }
         

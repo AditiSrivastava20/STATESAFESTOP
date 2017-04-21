@@ -222,7 +222,7 @@ class EnterDetailsFirstViewController: BaseViewController, TextFieldDelegate {
         APIManager.shared.request(withImages: LoginEndpoint.signup(fullname: txtFullname.text?.uppercaseFirst , email: txtEmailAddress.text, fullAddress: txtFullAddress.text, password: txtPassword.text, facebookId: facebookID, twitterId: twitterID, phone: txtPhoneNumber.text, accountType: accountType(), deviceToken: ""),image: isImageSelected(imageSelected) , completion: { (response) in
             
             Loader.shared.stop()
-            HandleResponse.shared.handle(response: response, self, from: .signup)
+            HandleResponse.shared.handle(response: response, self, from: .signup, param: nil)
             
         })
         

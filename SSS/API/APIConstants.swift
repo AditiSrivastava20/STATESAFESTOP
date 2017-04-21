@@ -37,6 +37,7 @@ internal struct APIConstants {
     static let logout = "logout"
     static let notification = "notification"
     static let pushDeviceToken = "devicetoken"
+    static let inviteStatus = "invite_status"
     
 }
 
@@ -116,6 +117,9 @@ enum Keys: String {
     case old_password = "old_password"
     case new_password = "new_password"
     
+    //invite status 
+    case invite_status = "invite_status"
+    
 
 }
 
@@ -191,6 +195,16 @@ enum Recordinglist {
     
 }
 
+enum InviteStatus: String {
+    
+    case invite = "1"
+    case pay = "2"
+    
+    func status() -> String {
+        return self.rawValue
+    }
+    
+}
 
 
 
@@ -219,6 +233,7 @@ struct Parameters {
     static let logout: [Keys] = [.accessToken]
     static let notification: [Keys] = [.accessToken]
     static let pushDeviceToken: [Keys] = [.accessToken, .deviceToken]
+    static let inviteStatus: [Keys] = [.accessToken, .invite_status]
 }
 
 

@@ -14,8 +14,8 @@ import NVActivityIndicatorView
 
 internal struct FacebookInvite {
     
-    static let image_url = "https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/17522662_979563635512365_8880744625037125330_n.png?oh=83d47d30912cf94ac8b422111fc988d3&oe=59640C01"
-    static let app_link_url = "https://fb.me/1302560886505500"
+    static let message = "State Safe Stop App"
+    static let data = "State Safe Stop"
 }
 
 enum GraphRequest {
@@ -44,7 +44,7 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
             UIApplication.shared.endIgnoringInteractionEvents()
             
             if err != nil {
-                print("failed to start graph request: \(err)")
+                print(err?.localizedDescription ?? "Failed to start graph request")
                 return
             } else if (result?.isCancelled)! {
                 
@@ -82,13 +82,16 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
             self.stopAnimating()
             
             if err != nil {
-                print("failed to start graph request: \(err)")
+                print(err?.localizedDescription ?? "Failed to start graph request")
                 return
             }
+            
             print(result ?? "")
             
             fbProfile = FacebookResponse(result: result as AnyObject?)
+            
             self.apiHit(param: fbProfile!, check: check, obj: obj)
+            
             completion(fbProfile!)
         }
         
@@ -102,30 +105,6 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
 
     }
     
-    //MARK:- Handle
-    func handle(response: Response,_ obj: UIViewController, param: FacebookResponse) {
-        
-        switch response {
-            
-        case .success(let responseValue):
-            
-            if let value = responseValue as? User {
-                UserDataSingleton.sharedInstance.loggedInUser = value
-                LoginChecks.shared.check(obj, user: UserDataSingleton.sharedInstance.loggedInUser)
-            }
-        
-        case .failure( _ ):
-            
-            let vc = StoryboardScene.SignUp.instantiateEnterDetailsFirstViewController()
-            vc.fbProfile = param
-            vc.isFromFacebook = true
-            obj.pushVC(vc)
-            
-            
-        }
-        
-    }
-    
     
     //MARK:- login/signup with facebook
     func apiHit(param: FacebookResponse , check: SocialCheck , obj: UIViewController) {
@@ -135,7 +114,7 @@ class FBManager: UIViewController, NVActivityIndicatorViewable {
             
             APIManager.shared.request(with: LoginEndpoint.login(email: param.email, password: "", facebookId: param.fbId, twitterId: "", accountType: AccountType.facebook.rawValue, deviceToken: ""), completion: { (response) in
                 
-                self.handle(response: response, obj, param: param)
+                HandleResponse.shared.handle(response: response, obj, from: .fbLogin, param: param)
             })
         
         case .signup:

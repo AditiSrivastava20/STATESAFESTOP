@@ -32,6 +32,7 @@ enum LoginEndpoint {
     case forgotPassword(email: String?)
     case notification(accessToken: String?)
     case pushDeviceToken(accessToken: String?, deviceToken: String?)
+    case inviteStatus(accessToken: String?, deviceToken: String?)
     
 }
 
@@ -62,6 +63,7 @@ extension LoginEndpoint : Router{
         case .forgotPassword(_): return APIConstants.forgotPassword
         case .notification(_): return APIConstants.notification
         case .pushDeviceToken(_): return APIConstants.pushDeviceToken
+        case .inviteStatus(_): return APIConstants.inviteStatus
             
         }
     }
@@ -135,7 +137,9 @@ extension LoginEndpoint : Router{
         case .pushDeviceToken(let accessToken, let deviceToken):
             return Parameters.pushDeviceToken.map(values: [accessToken, deviceToken])
     
-        
+        case .inviteStatus(let accessToken, let invite_status):
+            return Parameters.inviteStatus.map(values: [accessToken, invite_status])
+            
         }
     }
     

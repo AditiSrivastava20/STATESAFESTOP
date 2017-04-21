@@ -90,30 +90,6 @@ class TWManager: UIViewController, NVActivityIndicatorViewable {
     }
     
     
-    //MARK: - handle response
-    func handle(response: Response,_ obj: UIViewController, param: TwitterResponse) {
-        
-        switch response {
-            
-        case .success(let responseValue):
-            
-            if let value = responseValue as? User {
-                UserDataSingleton.sharedInstance.loggedInUser = value
-                LoginChecks.shared.check(obj, user: UserDataSingleton.sharedInstance.loggedInUser)
-            }
-            
-        case .failure( _):
-            
-            let vc = StoryboardScene.SignUp.instantiateEnterDetailsFirstViewController()
-            vc.isFromTwitter = true
-            vc.twProfile = param
-            obj.pushVC(vc)
-            
-        }
-        
-    }
-    
-    
     
     //MARK:- login/signup after twitter response
     func apiHit(param: TwitterResponse , check: SocialCheck , obj: UIViewController) {
@@ -123,7 +99,7 @@ class TWManager: UIViewController, NVActivityIndicatorViewable {
             
             APIManager.shared.request(with: LoginEndpoint.login(email: "", password: "", facebookId: "", twitterId: /param.id, accountType: AccountType.twitter.rawValue, deviceToken: ""), completion: { (response) in
                 
-                self.handle(response: response, obj, param: param)
+                HandleResponse.shared.handle(response: response, obj, from: .twLogin , param: param)
                 
             })
             

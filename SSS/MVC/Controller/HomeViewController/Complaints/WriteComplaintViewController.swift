@@ -27,28 +27,11 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(showPopUp), name: NSNotification.Name(rawValue: "complaint_done") , object: nil)
         
         tfTitle?.placeHolderAtt()
         
-        if ShowComplaintDescription {
-            self.navigationItem.title = "Complaint Detail"
-            tfTitle.text = /complaint?.title
-            tfTitle.isEnabled = false
-            
-            txtDesc.text = /complaint?.complaintDescription
-            txtDesc.isEditable = false
-            
-            btnAddFile.setTitle(/complaint?.media_content, for: .normal)
-            btnAddFile.isEnabled = false
-            
-            btnAddComplaint.isHidden = true
-            
-        } else {
-            
-            tfTitle.becomeFirstResponder()
-            
-        }
+        initializeScreen()
         
     }
 
@@ -70,22 +53,30 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate {
         ISMessages.hideAlert(animated: true)
     }
     
-    //MARK: - Handle response 
-    func handle(response: Response) {
-        UIApplication.shared.endIgnoringInteractionEvents()
-        switch response{
-        case .success(let responseValue):
-            if let value = responseValue as? User{
-                print(value.msg ?? "")
-            }
+    //MARK: Action to re-use screen
+    func initializeScreen() {
+        
+        if ShowComplaintDescription {
+            self.navigationItem.title = "Complaint Detail"
+            tfTitle.text = /complaint?.title
+            tfTitle.isEnabled = false
             
-            showPopUp()
+            txtDesc.text = /complaint?.complaintDescription
+            txtDesc.isEditable = false
             
-        case .failure(let str):
-            Alerts.shared.show(alert: .alert, message: /str, type: .error)
+            btnAddFile.setTitle(/complaint?.media_content, for: .normal)
+            btnAddFile.isEnabled = false
+            
+            btnAddComplaint.isHidden = true
+            
+        } else {
+            
+            tfTitle.becomeFirstResponder()
+            
         }
         
     }
+    
     
     //MARK: - Show Success Popup
     func showPopUp() {
@@ -128,11 +119,11 @@ class WriteComplaintViewController: BaseViewController, TextFieldDelegate {
         switch Validate() {
         case .success:
 
-            APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: login.profile?.access_token, title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { [weak self] (response) in
+            APIManager.shared.request(with: LoginEndpoint.addComplaint(accessToken: login.profile?.access_token, title: tfTitle.text, description: txtDesc.text, media_id: /media_id), completion: { (response) in
                 
                 Loader.shared.stop()
                 
-                self?.handle(response: response)
+                HandleResponse.shared.handle(response: response, self, from: .writeComplaint, param: nil)
             })
             
         case .failure( _ ,let msg):

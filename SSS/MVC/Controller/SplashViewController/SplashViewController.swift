@@ -14,39 +14,29 @@
             super.viewDidLoad()
             
             
-            
-            
             let user = UserDataSingleton.sharedInstance.loggedInUser
             
             if  user != nil && user?.profile?.is_pin == "1" {
                 self.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
             } else {
                 
-                
                 let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
                 if launchedBefore  {
+                    
                     let vc = StoryboardScene.SignUp.instantiateLogin()
                     
                     navigationController?.pushViewController(vc, animated: false)
-                } else {
                     
+                } else {
                     
                     let vc = StoryboardScene.SignUp.instantiateTutorialViewController()
                     navigationController?.pushViewController(vc, animated: false)
                     
-                    
                     UserDefaults.standard.set(true, forKey: "launchedBefore")
-                    
-                    
-                    
-                    
-                    
                     
                 }
                 
             }
-            
-            
             
         }
         

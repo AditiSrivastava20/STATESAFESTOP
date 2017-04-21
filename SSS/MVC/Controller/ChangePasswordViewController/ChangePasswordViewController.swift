@@ -61,24 +61,6 @@ class ChangePasswordViewController: BaseViewController, TextFieldDelegate {
         
     }
     
-    //MARK: - handle response
-    func handle(response : Response) {
-        
-        switch response{
-        case .success(let responseValue):
-            if let value = responseValue as? User{
-                
-                print(value.msg ?? "")
-                Alerts.shared.show(alert: .success, message: /value.msg, type: .success)
-
-            }
-            popVC()
-            
-        case .failure(let str):
-            Alerts.shared.show(alert: .alert, message: /str, type: .error)
-        }
-        
-    }
     
     //MARK: hit change password api
     @IBAction func btnChangePasswordAction(_ sender: Any) {
@@ -92,11 +74,12 @@ class ChangePasswordViewController: BaseViewController, TextFieldDelegate {
             
             let token = UserDataSingleton.sharedInstance.loggedInUser?.profile?.access_token
             
-            APIManager.shared.request(with: LoginEndpoint.changePassword(accessToken: token, old_password: txtCurrentPassword.text, new_password: txtNewPassword.text), completion: { [weak self] (response) in
+            APIManager.shared.request(with: LoginEndpoint.changePassword(accessToken: token, old_password: txtCurrentPassword.text, new_password: txtNewPassword.text), completion: { (response) in
                 
                 Loader.shared.stop()
                 
-                self?.handle(response: response)
+                HandleResponse.shared.handle(response: response, self, from: .changePassword , param: nil)
+                
             })
             
             

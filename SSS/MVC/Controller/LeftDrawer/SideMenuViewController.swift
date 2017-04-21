@@ -38,22 +38,6 @@ class SideMenuViewController: UIViewController {
         insertValuesInSidePanel()
     }
     
-    //MARK: Handle response
-    func handle(response: Response) {
-        
-        switch response{
-        case .success(let responseValue):
-            if let value = responseValue as? User{
-                print(value.msg ?? "")
-            }
-            LoginChecks.shared.exitFromMain()
-            
-        case .failure(let str):
-            Alerts.shared.show(alert: .alert, message: /str, type: .error)
-        }
-    }
-    
-    
     
     //MARK: -  Side panel values
     func insertValuesInSidePanel() {
@@ -123,11 +107,11 @@ class SideMenuViewController: UIViewController {
         
         Loader.shared.start()
         
-        APIManager.shared.request(with: LoginEndpoint.logout(accessToken: login?.profile?.access_token), completion: { [weak self] (response) in
+        APIManager.shared.request(with: LoginEndpoint.logout(accessToken: login?.profile?.access_token), completion: { (response) in
             
             Loader.shared.stop()
             
-            self?.handle(response: response)
+            HandleResponse.shared.handle(response: response, self, from: .logout , param: nil)
         })
         
     }
