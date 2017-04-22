@@ -239,7 +239,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         
-        print("hello")
+        print("ios9 notification recieved")
+        
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -256,13 +257,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Print full message.
         print(userInfo)
         
-        //Notification tapped observer
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification"), object: nil)
-        
+        if UIApplication.shared.applicationState == .active  {
+            
+            if #available(iOS 10.0, *)  {
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification"), object: nil)
+                
+            } else {
+                //for IOS9 and below
+                showNotification()
+            }
+            
+        } else {
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification"), object: nil)
+        }
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
+    
+    
+    //MARK: - Show foreground notification in IOS9
+    func showNotification() {
+        
+        let obj = ISMessages.cardAlert(withTitle: "SSS", message: "State Safe Stop", iconImage: Asset.icLogo.image, duration: 0.3, hideOnSwipe: true, hideOnTap: false, alertType: .custom, alertPosition: .top)
+        
+        let tapToOpen = UITapGestureRecognizer(target: self, action:  #selector(self.tappedOnNotification(_:)))
+        
+        obj?.alertViewBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8)
+        obj?.view.addGestureRecognizer(tapToOpen)
+        
+        obj?.show(nil, didHide: nil)
+        
+        ez.dispatchDelay(2.0, closure: {
+            ISMessages.hideAlert(animated: true)
+        })
+        
+    }
+    
+    
+    //MARK: - Tap on IOS9 notification action
+    func tappedOnNotification(_ sender: UIGestureRecognizer) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification"), object: nil)
+        ISMessages.hideAlert(animated: true)
+    }
+    
     
     
     @available(iOS 10.0, *)
@@ -275,8 +315,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
 
-    
-    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         //For production
         FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .prod )
