@@ -12,6 +12,7 @@
 		1D0A15081E8FB864003F1F5A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0A15071E8FB864003F1F5A /* SplashViewController.swift */; };
 		1D0A150B1E8FC406003F1F5A /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0A150A1E8FC406003F1F5A /* EditProfileViewController.swift */; };
 		1D0A150E1E8FD31B003F1F5A /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0A150D1E8FD31B003F1F5A /* ChangePasswordViewController.swift */; };
+		1D1355701EC1C8E300658F7D /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D13556F1EC1C8E300658F7D /* ViewControllerExtension.swift */; };
 		1D2822201EA727FD00671424 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D28221F1EA727FD00671424 /* Loader.swift */; };
 		1D29AA131E97D76100E6C45B /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D29AA121E97D76100E6C45B /* IAPManager.swift */; };
 		1D29AA151E97D93A00E6C45B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D29AA141E97D93A00E6C45B /* StoreKit.framework */; };
@@ -155,6 +156,7 @@
 		1D0A15071E8FB864003F1F5A /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		1D0A150A1E8FC406003F1F5A /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		1D0A150D1E8FD31B003F1F5A /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		1D13556F1EC1C8E300658F7D /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		1D28221F1EA727FD00671424 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		1D29AA121E97D76100E6C45B /* IAPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		1D29AA141E97D93A00E6C45B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -459,6 +461,7 @@
 		1DE125BA1E8BB95600DBE5BA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1D13556F1EC1C8E300658F7D /* ViewControllerExtension.swift */,
 				1DE125BB1E8BB95600DBE5BA /* TextfieldExtensions.swift */,
 				1D3EA93F1E93776500DF40C6 /* UIScrollViewExtension.swift */,
 				1D9A39121E94D797009537B9 /* StringExtensions.swift */,
@@ -1189,6 +1192,7 @@
 				1DE1265F1E8BB95600DBE5BA /* APIConstants.swift in Sources */,
 				1D3EA9401E93776500DF40C6 /* UIScrollViewExtension.swift in Sources */,
 				1D911C111E8F8487003F2EE7 /* SettingsViewController.swift in Sources */,
+				1D1355701EC1C8E300658F7D /* ViewControllerExtension.swift in Sources */,
 				1DE126811E8BB95600DBE5BA /* ImagePickViewController.swift in Sources */,
 				1DE126D01E8BB95600DBE5BA /* ButtonBarPagerTabStripViewController.swift in Sources */,
 				1DE126DA1E8BB95600DBE5BA /* SwipeDirection.swift in Sources */,

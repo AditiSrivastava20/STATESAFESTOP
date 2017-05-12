@@ -69,6 +69,7 @@ class HandleResponse {
                     
                     print("go to main")
                     UserDefaults.standard.set("1", forKey: "FirstSignUp")
+                    UserDefaults.standard.set("1", forKey: "RateUs")
                     obj.present(StoryboardScene.Main.initialViewController() , animated: false, completion: nil)
                     
                     

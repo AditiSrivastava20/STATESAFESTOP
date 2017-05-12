@@ -43,7 +43,7 @@ class ImagePickViewController: UIViewController {
     }
     
     
-    //MARK: - Gallery selected
+    //MARK: - Camera selected
     @IBAction func btnCameraAction(_ sender: Any) {
         
         switch PermissionScope().statusCamera() {

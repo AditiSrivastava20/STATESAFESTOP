@@ -47,7 +47,25 @@ class HomeViewController: TwitterPagerTabStripViewController {
         
         setBtnImage()
         
+        if let rateUs = UserDefaults.standard.value(forKey: "RateUs") as? String {
+            
+            if Int(rateUs)! < 3 {
+                
+                let val = Int(rateUs)! + 1
+                UserDefaults.standard.set("\(val)", forKey: "RateUs")
+                
+            } else if rateUs == "3" {
+                
+                self.openRateUsActionSheet()
+            }
+        } else {
+            
+            UserDefaults.standard.set("1", forKey: "RateUs")
+        }
+        
     }
+    
+    
     
     func checkForNotification(){
          if UserDefaults.standard.object(forKey: "dict") != nil {
